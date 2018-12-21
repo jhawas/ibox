@@ -23,6 +23,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
+                  <th>Username</th>
                   <th>Email</th>
                   <th>Role</th>
                   <th>Created</th>
@@ -35,14 +36,15 @@
                   <tr>
                       <td>{{ $user->id }}</td>
                       <td>{{ ucfirst($user->first_name) . ' ' . ucfirst($user->last_name) }}</td>
+                      <td>{{ $user->username }}</td>
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->user_role->role->name }}</td>
                       <td>{{ $user->created_at }}</td>
                       <td>{{ $user->updated_at }}</td>
                       <td>
-                        {{-- <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-primary">
+                        <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
-                        </a> --}}
+                        </a>
 
                         <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>

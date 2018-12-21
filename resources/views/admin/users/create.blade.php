@@ -19,7 +19,7 @@
               @csrf
               <div class="tile-body">
                   <div class="form-group">
-                    <label class="control-label">First Name</label>
+                    <label class="control-label">Role</label>
                     <select class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" style="width: 100%;" name="role">
                       <option selected value="0">Choose Role</option>
                       @foreach ($roles as $role)
@@ -65,6 +65,15 @@
                     @if ($errors->has('email'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Username</label>
+                    <input name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{old('username')}}" type="text" placeholder="Enter Username">
+                    @if ($errors->has('username'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('username') }}</strong>
                         </span>
                     @endif
                   </div>

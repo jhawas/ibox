@@ -28,6 +28,7 @@ class UserRequest extends FormRequest
             'first_name' => 'required|max:191',
             'middle_name' => 'required|max:191',
             'last_name' => 'required|max:191',
+            'username' => 'required|max:191|unique:users',
             'email' => 'required|email|max:191|unique:users',
             'password' => 'required|min:6|confirmed',
         ];

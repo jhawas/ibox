@@ -56,6 +56,7 @@ class UserController extends Controller
         $user->middle_name = $request->middle_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
+        $user->username = $request->username;
         $user->password = bcrypt($request->password);
         $user->save();
         $user->user_role()->save($user_role);
@@ -71,7 +72,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        // 
+        return view('admin.users.show', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -104,6 +109,7 @@ class UserController extends Controller
         $user->middle_name = $request->middle_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
+        $user->username = $request->username;
         $user->user_role()->update(['role_id' => $request->role]);
         $user->save();
         return redirect()->route('users.index');

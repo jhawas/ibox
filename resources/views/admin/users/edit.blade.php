@@ -3,14 +3,14 @@
 @section('content')
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i> {{ $page }}</h1>
-        <p>{{ $description }}</p>
+          <h1><i class="fa fa-dashboard"></i> {{ $page }}</h1>
+          <p>{{ $description }}</p>
+      </div>
+      <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">{{ $page }}</a></li>
+      </ul>
     </div>
-    <ul class="app-breadcrumb breadcrumb">
-      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-      <li class="breadcrumb-item"><a href="#">{{ $page }}</a></li>
-    </ul>
-  </div>
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
@@ -24,7 +24,7 @@
                     <select class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" style="width: 100%;" name="role">
                       <option selected value="0">Choose Role</option>
                       @foreach ($roles as $role)
-                        <option {{ old('role') == $role->id ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option {{ $user->user_role->role->id == $role->id ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
                       @endforeach
                     </select>
                     @if ($errors->has('role'))
@@ -66,6 +66,15 @@
                     @if ($errors->has('email'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Username</label>
+                    <input name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ $user->username }}" type="text" placeholder="Enter Username">
+                    @if ($errors->has('username'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('username') }}</strong>
                         </span>
                     @endif
                   </div>
