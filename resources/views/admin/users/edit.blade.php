@@ -15,7 +15,8 @@
         <div class="col-md-6">
           <div class="tile">
             <h3 class="tile-title">User Form</h3>
-            <form method="POST" action="{{ route('users.store') }}">
+            <form method="POST" action="{{ route('users.update', $user) }}">
+              @method('PUT')
               @csrf
               <div class="tile-body">
                   <div class="form-group">
@@ -34,7 +35,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">First Name</label>
-                    <input name="first_name" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('first_name')}}" type="text" placeholder="Enter First Name">
+                    <input name="first_name" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{ $user->first_name }}" type="text" placeholder="Enter First Name">
                     @if ($errors->has('first_name'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('first_name') }}</strong>
@@ -43,7 +44,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Middle Name</label>
-                    <input name="middle_name" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('middle_name')}}" type="text" placeholder="Enter Middle Name">
+                    <input name="middle_name" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{ $user->middle_name }}" type="text" placeholder="Enter Middle Name">
                     @if ($errors->has('middle_name'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('middle_name') }}</strong>
@@ -52,7 +53,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Last Name</label>
-                    <input name="last_name" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" value="{{old('last_name')}}" type="text" placeholder="Enter Last Name">
+                    <input name="last_name" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" value="{{ $user->last_name }}" type="text" placeholder="Enter Last Name">
                     @if ($errors->has('last_name'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('last_name') }}</strong>
@@ -61,7 +62,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Email</label>
-                    <input name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{old('email')}}" type="email" placeholder="Enter email address">
+                    <input name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ $user->email }}" type="email" placeholder="Enter email address">
                     @if ($errors->has('email'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('email') }}</strong>

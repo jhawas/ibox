@@ -50,6 +50,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $user_role = new UserRole(['role_id' => $request->role]);
         $user = new User;
         $user->first_name = $request->first_name;
         $user->middle_name = $request->middle_name;
@@ -57,16 +58,9 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
+        $user->user_role()->save($user_role);
 
-        $user_role = new UserRole;
-        $user_role->user_id = $user->id;
-        $user_role->role_id = $request->role;
-        $user_role->save();
-
-        return redirect()->route('users.index', [
-            'page' => $this->page,
-            'description' => $this->description . $this->page,
-        ]);
+        return redirect()->route('users.index');
     }
 
     /**
@@ -77,7 +71,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        // 
     }
 
     /**
@@ -88,7 +82,13 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return view('admin.users.edit', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -100,7 +100,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->first_name = $request->first_name;
+        $user->middle_name = $request->middle_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->user_role()->update(['role_id' => $request->role]);
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**

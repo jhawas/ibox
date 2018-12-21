@@ -7,7 +7,7 @@
     </div>
   </div>
   <ul class="app-menu">
-    @if (Auth::user()->user_role->role->name == 'admin')
+    @if (Auth::user()->user_role->role->name == 'super admin')
       <li>
         <a class="app-menu__item" href="#">
           <i class="app-menu__icon fa fa-dashboard"></i>

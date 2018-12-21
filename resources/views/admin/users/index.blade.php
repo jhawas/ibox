@@ -40,11 +40,11 @@
                       <td>{{ $user->created_at }}</td>
                       <td>{{ $user->updated_at }}</td>
                       <td>
-                        <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-primary">
+                        {{-- <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
-                        </a>
+                        </a> --}}
 
-                        <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-primary">
+                        <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>
                         </a>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $user->id }}">
