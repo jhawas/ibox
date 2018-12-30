@@ -12,6 +12,17 @@ class UserController extends Controller
 {
     public $page = 'Users';
     public $description = 'List of all ';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *

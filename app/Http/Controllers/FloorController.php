@@ -4,9 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Floor;
 use Illuminate\Http\Request;
+use App\Http\Requests\FloorRequest;
 
 class FloorController extends Controller
 {
+    public $page = 'Floors';
+    public $description = 'List of all ';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,12 @@ class FloorController extends Controller
      */
     public function index()
     {
-        //
+        $floors = Floor::all();
+        return view('admin.floors.index', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'floors' => $floors
+        ]);
     }
 
     /**
@@ -24,7 +43,10 @@ class FloorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.floors.create', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+        ]);
     }
 
     /**
@@ -33,9 +55,13 @@ class FloorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FloorRequest $request)
     {
-        //
+        $floor = new Floor;
+        $floor->code = $request->code;
+        $floor->description = $request->description;
+        $floor->save();
+        return redirect()->route('floors.index');
     }
 
     /**
@@ -46,7 +72,11 @@ class FloorController extends Controller
      */
     public function show(Floor $floor)
     {
-        //
+        return view('admin.floors.show', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'floor' => $floor,
+        ]);
     }
 
     /**
@@ -57,7 +87,11 @@ class FloorController extends Controller
      */
     public function edit(Floor $floor)
     {
-        //
+        return view('admin.floors.edit', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'floor' => $floor,
+        ]);
     }
 
     /**
@@ -67,9 +101,12 @@ class FloorController extends Controller
      * @param  \App\Floor  $floor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Floor $floor)
+    public function update(FloorRequest $request, Floor $floor)
     {
-        //
+        $floor->code = $request->code;
+        $floor->description = $request->description;
+        $floor->save();
+        return redirect()->route('floors.index');
     }
 
     /**
@@ -80,6 +117,7 @@ class FloorController extends Controller
      */
     public function destroy(Floor $floor)
     {
-        //
+        $floor->delete();
+        return redirect()->route('floors.index');
     }
 }

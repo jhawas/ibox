@@ -20,7 +20,7 @@
               @csrf
               <div class="tile-body">
                   <div class="form-group">
-                    <label class="control-label">First Name</label>
+                    <label class="control-label">Role</label>
                     <select class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" style="width: 100%;" name="role">
                       <option selected value="0">Choose Role</option>
                       @foreach ($roles as $role)

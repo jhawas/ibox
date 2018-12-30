@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public $page = 'Dashbaord';
+    public $description = 'Monitoring Page';
     /**
      * Create a new controller instance.
      *
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        return view('home', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+        ]);
     }
 }

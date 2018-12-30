@@ -3,10 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\Floor;
+use App\RoomType;
 use Illuminate\Http\Request;
+use App\Http\Requests\RoomsRequest;
 
 class RoomController extends Controller
 {
+    public $page = 'Rooms';
+    public $description = 'List of all ';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +30,12 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Room::all();
+        return view('admin.rooms.index', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'rooms' => $rooms
+        ]);
     }
 
     /**
@@ -24,7 +45,14 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        $floors = Floor::all();
+        $roomTypes = RoomType::all();
+        return view('admin.rooms.create', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'floors' => $floors,
+            'roomTypes' => $roomTypes
+        ]);
     }
 
     /**
@@ -33,9 +61,17 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomsRequest $request)
     {
-        //
+        $room = new Room;
+        $room->code = $request->code;
+        $room->description = $request->description;
+        $room->floor_id = $request->floor;
+        $room->room_type_id = $request->roomType;
+        $room->capacity = $request->capacity;
+        $room->price = $request->price;
+        $room->save();
+        return redirect()->route('rooms.index');
     }
 
     /**
@@ -46,7 +82,11 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        return view('admin.rooms.show', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'room' => $room,
+        ]);
     }
 
     /**
@@ -57,7 +97,15 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        //
+        $floors = Floor::all();
+        $roomTypes = RoomType::all();
+        return view('admin.rooms.edit', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'floors' => $floors,
+            'roomTypes' => $roomTypes,
+            'room' => $room
+        ]);
     }
 
     /**
@@ -67,9 +115,16 @@ class RoomController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Room $room)
+    public function update(RoomsRequest $request, Room $room)
     {
-        //
+        $room->code = $request->code;
+        $room->description = $request->description;
+        $room->floor_id = $request->floor;
+        $room->room_type_id = $request->roomType;
+        $room->capacity = $request->capacity;
+        $room->price = $request->price;
+        $room->save();
+        return redirect()->route('rooms.index');
     }
 
     /**
@@ -80,6 +135,7 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        $room->delete();
+        return redirect()->route('rooms.index');
     }
 }

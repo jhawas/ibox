@@ -18,8 +18,13 @@ class CreateRoomsTable extends Migration
             $table->string('code');
             $table->integer('floor_id')->unsigned()->nullable();
             $table->foreign('floor_id')->references('id')->on('floors')->onDelete('cascade');
-            $table->integer('beds_in_room');
-            $table->string('quality');
+            $table->integer('room_type_id')->unsigned()->nullable();
+            $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade');
+            $table->integer('capacity');
+            $table->string('description');
+            $table->decimal('price', 8, 2);
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
