@@ -27,6 +27,12 @@
           <span class="app-menu__label">Patient Information</span>
         </a>
     </li>
+    <li>
+        <a class="app-menu__item" href="{{ route('patientInformations.index') }}">
+          <i class="app-menu__icon fa fa-pie-chart"></i>
+          <span class="app-menu__label">Doctor Information</span>
+        </a>
+    </li>
     <li class="treeview">
       <a class="app-menu__item" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa fa-th-list"></i>

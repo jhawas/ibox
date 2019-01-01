@@ -26,7 +26,10 @@ class RolesTableSeeder extends Seeder
         	),
         	array(
         		'name' => 'nurse'
-        	)
+        	),
+            array(
+                'name' => 'patient'
+            )
         );
 
         foreach ($roles as $key => $role) {
