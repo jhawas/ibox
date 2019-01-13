@@ -96,7 +96,7 @@
                 <button class="btn btn-primary" type="submit">
                   <i class="fa fa-fw fa-lg fa-check-circle"></i>Register
                 </button>
-                <a class="btn btn-secondary" href="#">
+                <a class="btn btn-secondary" href="{{route('users.index')}}">
                   <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel
                 </a>
               </div>
