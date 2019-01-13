@@ -90,6 +90,14 @@
                         </span>
                     @endif
                   </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input 
+                        name="isReleased" class="form-check-input" 
+                        type="checkbox" 
+                        {{ $patientRecord->isReleased == 1 ? 'checked' : '' }}>Discharged
+                    </label>
+                  </div>
               </div>
               <div class="tile-footer">
                 <button class="btn btn-primary" type="submit">

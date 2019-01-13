@@ -69,6 +69,7 @@ class PatientRecordController extends Controller
      */
     public function store(Request $request)
     {
+        $isReleased = $request->isReleased == 'on' ? true : false;
         $patientRecord = new PatientRecord;
         $patientRecord->user_id = $request->patientInformation;
         $patientRecord->record_type_id = $request->recordType;
@@ -76,6 +77,7 @@ class PatientRecordController extends Controller
         $patientRecord->started_at = $request->startAt;
         $patientRecord->end_at = $request->endAt;
         $patientRecord->description = $request->description;
+        $patientRecord->isReleased = $isReleased;
         $patientRecord->save();
         return redirect()->route('patientRecords.index');
     }
@@ -125,8 +127,14 @@ class PatientRecordController extends Controller
      */
     public function update(Request $request, PatientRecord $patientRecord)
     {
-        $patientRecord->code = $request->code;
+        $isReleased = $request->isReleased == 'on' ? true : false;
+        $patientRecord->user_id = $request->patientInformation;
+        $patientRecord->record_type_id = $request->recordType;
+        $patientRecord->room_id = $request->room;
+        $patientRecord->started_at = $request->startAt;
+        $patientRecord->end_at = $request->endAt;
         $patientRecord->description = $request->description;
+        $patientRecord->isReleased = $isReleased;
         $patientRecord->save();
         return redirect()->route('patientRecords.index');
     }

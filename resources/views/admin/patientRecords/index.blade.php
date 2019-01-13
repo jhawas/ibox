@@ -27,6 +27,7 @@
                   <th>Room</th>
                   <th>Started At</th>
                   <th>End At</th>
+                  <th>Discharged</th>
                   <th>Action</th>
                 </tr>
               </thead>w
@@ -42,6 +43,7 @@
                       <td>{{ $patientRecord->room->code }}</td>
                       <td>{{ $patientRecord->started_at }}</td>
                       <td>{{ $patientRecord->end_at }}</td>
+                      <td>{{ $patientRecord->isReleased ? 'Yes' : 'No' }}</td>
                       <td>
                         <a href="{{ route('patientRecords.show', $patientRecord) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
