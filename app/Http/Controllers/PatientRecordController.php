@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PatientRecord;
 use App\RecordType;
 use App\Room;
+use App\User;
 use Illuminate\Http\Request;
 
 class PatientRecordController extends Controller
@@ -29,7 +30,11 @@ class PatientRecordController extends Controller
      */
     public function index()
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'user', 
+            'recordType'
+        ])->get();
+        // return $patientRecords;
         return view('admin.patientRecords.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -44,13 +49,15 @@ class PatientRecordController extends Controller
      */
     public function create()
     {
+        $patientInformations = User::where('is_user', 0)->get();
         $recordTypes = RecordType::all();
         $rooms = Room::all();
         return view('admin.patientRecords.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'recordTypes' => $recordTypes,
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'patientInformations' => $patientInformations
         ]);
     }
 
@@ -63,7 +70,11 @@ class PatientRecordController extends Controller
     public function store(Request $request)
     {
         $patientRecord = new PatientRecord;
-        $patientRecord->code = $request->code;
+        $patientRecord->user_id = $request->patientInformation;
+        $patientRecord->record_type_id = $request->recordType;
+        $patientRecord->room_id = $request->room;
+        $patientRecord->started_at = $request->startAt;
+        $patientRecord->end_at = $request->endAt;
         $patientRecord->description = $request->description;
         $patientRecord->save();
         return redirect()->route('patientRecords.index');
@@ -92,10 +103,16 @@ class PatientRecordController extends Controller
      */
     public function edit(PatientRecord $patientRecord)
     {
+        $patientInformations = User::where('is_user', 0)->get();
+        $recordTypes = RecordType::all();
+        $rooms = Room::all();
         return view('admin.patientRecords.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'patientRecord' => $patientRecord,
+            'patientInformations' => $patientInformations,
+            'recordTypes' => $recordTypes,
+            'rooms' => $rooms
         ]);
     }
 

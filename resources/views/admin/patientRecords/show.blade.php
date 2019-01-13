@@ -16,7 +16,15 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $patientRecord->code }}</li>
+                  <li class="list-group-item">Patient: {{ 
+                        ucfirst($patientRecord->user->first_name) . ' ' . 
+                        ucfirst($patientRecord->user->middle_name) . ' ' . 
+                        ucfirst($patientRecord->user->last_name)
+                   }}</li>
+                  <li class="list-group-item">Status: {{ $patientRecord->recordType->code }}</li>
+                  <li class="list-group-item">Room: {{ $patientRecord->room->code }}</li>
+                  <li class="list-group-item">Started At: {{ $patientRecord->started_at }}</li>
+                  <li class="list-group-item">End At: {{ $patientRecord->end_at }}</li>
                   <li class="list-group-item">Description: {{ $patientRecord->description }}</li>
                 </ul>
             </div>

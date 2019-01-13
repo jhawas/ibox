@@ -20,19 +20,70 @@
               @csrf
               <div class="tile-body">
                   <div class="form-group">
-                    <label class="control-label">Code</label>
-                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $patientRecord->code }}" type="text" placeholder="Enter Code">
-                    @if ($errors->has('code'))
+                    <label class="control-label">Patient</label>
+                    <select class="form-control{{ $errors->has('patientInformation') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientInformation">
+                      <option selected value="0">Choose Patient</option>
+                      @foreach ($patientInformations as $patientInformation)
+                        <option {{ $patientRecord->user_id == $patientInformation->id ? 'selected' : '' }} value="{{ $patientInformation->id }}">{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->middle_name) . ' ' . ucfirst($patientInformation->last_name) }}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('patientInformation'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('code') }}</strong>
+                            <strong>{{ $errors->first('patientInformation') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Record Types</label>
+                    <select class="form-control{{ $errors->has('recordType') ? ' is-invalid' : '' }}" style="width: 100%;" name="recordType">
+                      <option selected value="0">Choose Record Type</option>
+                      @foreach ($recordTypes as $recordType)
+                        <option {{ $patientRecord->record_type_id == $recordType->id ? 'selected' : '' }} value="{{ $recordType->id }}">{{ $recordType->code }}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('recordType'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('recordType') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Room</label>
+                    <select class="form-control{{ $errors->has('room') ? ' is-invalid' : '' }}" style="width: 100%;" name="room">
+                      <option selected value="0">Choose Room Type</option>
+                      @foreach ($rooms as $room)
+                        <option {{ $patientRecord->room_id == $room->id ? 'selected' : '' }} value="{{ $room->id }}">{{ $room->code }}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('room'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('room') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Start At</label>
+                    <input name="startAt" class="form-control{{ $errors->has('startAt') ? ' is-invalid' : '' }}" value="{{$patientRecord->started_at}}" type="date" placeholder="Enter Start At">
+                    @if ($errors->has('startAt'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('startAt') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">End At</label>
+                    <input name="endAt" class="form-control{{ $errors->has('endAt') ? ' is-invalid' : '' }}" value="{{$patientRecord->end_at}}" type="date" placeholder="Enter Start At">
+                    @if ($errors->has('endAt'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('endAt') }}</strong>
                         </span>
                     @endif
                   </div>
                   <div class="form-group">
                     <label class="control-label">Description</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                      placeholder="Enter Description here..."
-                    >{{$patientRecord->description}}</textarea>
+                      placeholder="Enter Description here...">{{$patientRecord->description}}
+                    </textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>

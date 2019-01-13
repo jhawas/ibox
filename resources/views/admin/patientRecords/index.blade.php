@@ -22,10 +22,11 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Code</th>
-                  <th>Description</th>
-                  <th>Created</th>
-                  <th>Updated</th>
+                  <th>Patient</th>
+                  <th>Status</th>
+                  <th>Room</th>
+                  <th>Started At</th>
+                  <th>End At</th>
                   <th>Action</th>
                 </tr>
               </thead>w
@@ -33,10 +34,14 @@
                 @foreach ($patientRecords as $patientRecord)
                   <tr>
                       <td>{{ $patientRecord->id }}</td>
-                      <td>{{ $patientRecord->code }}</td>
-                      <td>{{ $patientRecord->description }}</td>
-                      <td>{{ $patientRecord->created_at }}</td>
-                      <td>{{ $patientRecord->updated_at }}</td>
+                      <td>{{ 
+                        ucfirst($patientRecord->user->first_name) . ' ' . 
+                        ucfirst($patientRecord->user->middle_name) . ' ' . 
+                        ucfirst($patientRecord->user->last_name) }}</td>
+                      <td>{{ $patientRecord->recordType->code }}</td>
+                      <td>{{ $patientRecord->room->code }}</td>
+                      <td>{{ $patientRecord->started_at }}</td>
+                      <td>{{ $patientRecord->end_at }}</td>
                       <td>
                         <a href="{{ route('patientRecords.show', $patientRecord) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
