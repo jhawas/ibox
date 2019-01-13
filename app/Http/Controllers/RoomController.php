@@ -30,7 +30,12 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::all();
+        $rooms = Room::with([
+            'records' => function($query) {
+                $query->where('isReleased', 0)->get();
+            }
+        ])->get();
+        // return $rooms;
         return view('admin.rooms.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,

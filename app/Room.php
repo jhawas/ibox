@@ -27,4 +27,8 @@ class Room extends Model
         return $this->belongsTo('App\Floor', 'floor_id');
     }
 
+    public function records() {
+        return $this->hasMany('App\PatientRecord');
+    }
+
 }
