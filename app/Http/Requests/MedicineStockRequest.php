@@ -26,7 +26,6 @@ class MedicineStockRequest extends FormRequest
         return [
             'code' => 'required|max:191',
             'description' => 'required|max:191',
-            'massVolumeType' => 'required|not_in:0',
             'medicineType' => 'required|not_in:0',
             'quantity' => 'required|max:191',
             'price' => 'required|max:191|numeric',

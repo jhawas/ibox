@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\UserRole;
 use Illuminate\Http\Request;
 
 class PatientInformationController extends Controller
@@ -56,6 +57,7 @@ class PatientInformationController extends Controller
      */
     public function store(Request $request)
     {
+        $user_role = new UserRole(['role_id' => 6]); // patient id
         $user = new User;
         $user->first_name = $request->first_name;
         $user->middle_name = $request->middle_name;
@@ -63,6 +65,7 @@ class PatientInformationController extends Controller
         $user->email = $request->email;
         $user->is_user = 0;
         $user->save();
+        $user->user_role()->save($user_role);
         return redirect()->route('patientInformations.index');
     }
 

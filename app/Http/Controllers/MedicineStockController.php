@@ -46,12 +46,10 @@ class MedicineStockController extends Controller
      */
     public function create()
     {
-        $massVolumeTypes = MassVolumeType::all();
         $medicineTypes = MedicineType::all();
         return view('admin.medicineStocks.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'massVolumeTypes' => $massVolumeTypes,
             'medicineTypes' => $medicineTypes,
         ]);
     }
@@ -67,7 +65,6 @@ class MedicineStockController extends Controller
         $medicineStock = new MedicineStock;
         $medicineStock->code = $request->code;
         $medicineStock->description = $request->description;
-        $medicineStock->mass_volume_type_id = $request->massVolumeType;
         $medicineStock->medicine_type_id = $request->medicineType;
         $medicineStock->quantity = $request->quantity;
         $medicineStock->price = $request->price;
@@ -98,13 +95,11 @@ class MedicineStockController extends Controller
      */
     public function edit(MedicineStock $medicineStock)
     {
-        $massVolumeTypes = MassVolumeType::all();
         $medicineTypes = MedicineType::all();
         return view('admin.medicineStocks.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'medicineStock' => $medicineStock,
-            'massVolumeTypes' => $massVolumeTypes,
             'medicineTypes' => $medicineTypes,
         ]); 
     }
@@ -120,7 +115,6 @@ class MedicineStockController extends Controller
     {
         $medicineStock->code = $request->code;
         $medicineStock->description = $request->description;
-        $medicineStock->mass_volume_type_id = $request->massVolumeType;
         $medicineStock->medicine_type_id = $request->medicineType;
         $medicineStock->quantity = $request->quantity;
         $medicineStock->price = $request->price;

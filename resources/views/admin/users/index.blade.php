@@ -46,10 +46,19 @@
                           <i class="fa fa-eye"></i>
                         </a>
 
-                        <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">
+                        <a 
+                          href="{{ Auth::user()->user_role->role->id == 1 ? route('users.edit', $user) : '#' }}" 
+                          class="btn btn-primary"
+                        >
                           <i class="fa fa-edit"></i>
                         </a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $user->id }}">
+                        <button 
+                          type="button" 
+                          class="btn btn-danger" 
+                          data-toggle="modal" 
+                          data-target="#myModal-{{ $user->id }}"
+                          disabled="{{ Auth::user()->user_role->role->id == 1 ? true : false}}" 
+                        >
                           <i class="fa fa-eraser"></i>
                         </button>
 

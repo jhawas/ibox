@@ -16,7 +16,7 @@
         <div class="tile">
           <div class="tile-body">
             <div class="controller-wrapper">
-              <a href="{{ route('massVolumeTypes.create') }}" class="btn btn-primary">New</a>
+              <a href="{{ route('typeOfTests.create') }}" class="btn btn-primary">New</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
               <thead>
@@ -28,28 +28,28 @@
                   <th>Updated</th>
                   <th>Action</th>
                 </tr>
-              </thead>
+              </thead>w
               <tbody>
-                @foreach ($massVolumeTypes as $massVolumeType)
+                @foreach ($typeOfTests as $typeOfTest)
                   <tr>
-                      <td>{{ $massVolumeType->id }}</td>
-                      <td>{{ $massVolumeType->code }}</td>
-                      <td>{{ $massVolumeType->description }}</td>
-                      <td>{{ $massVolumeType->created_at }}</td>
-                      <td>{{ $massVolumeType->updated_at }}</td>
+                      <td>{{ $typeOfTest->id }}</td>
+                      <td>{{ $typeOfTest->code }}</td>
+                      <td>{{ $typeOfTest->description }}</td>
+                      <td>{{ $typeOfTest->created_at }}</td>
+                      <td>{{ $typeOfTest->updated_at }}</td>
                       <td>
-                        <a href="{{ route('massVolumeTypes.show', ['id' => $massVolumeType->id]) }}" class="btn btn-primary">
+                        <a href="{{ route('typeOfTests.show', $typeOfTest) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
                         </a>
 
-                        <a href="{{ route('massVolumeTypes.edit', $massVolumeType) }}" class="btn btn-primary">
+                        <a href="{{ route('typeOfTests.edit', $typeOfTest) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $massVolumeType->id }}">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $typeOfTest->id }}">
                           <i class="fa fa-eraser"></i>
                         </button>
 
-                         @include('admin.massVolumeTypes.destroy')
+                         @include('admin.typeOfTests.destroy')
 
                       </td>
                   </tr>

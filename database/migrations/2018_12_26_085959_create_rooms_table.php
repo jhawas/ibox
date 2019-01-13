@@ -22,9 +22,8 @@ class CreateRoomsTable extends Migration
             $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade');
             $table->integer('capacity');
             $table->string('description');
-            $table->decimal('price', 8, 2);
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('trans_user_id')->unsigned()->nullable();
+            $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

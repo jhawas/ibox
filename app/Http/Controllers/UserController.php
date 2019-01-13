@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('is_user', 1)->get();
         return view('admin.users.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,

@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">User Form</h3>
+            <h3 class="tile-title">Patient Information Form</h3>
             <form method="POST" action="{{ route('patientInformations.store') }}">
               @csrf
               <div class="tile-body">

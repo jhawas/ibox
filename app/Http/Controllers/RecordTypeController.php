@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\MassVolumeType;
+use App\RecordType;
 use Illuminate\Http\Request;
-use App\Http\Requests\MassVolumeTypeRequest;
 
-class MassVolumeTypeController extends Controller
+class RecordTypeController extends Controller
 {
-    public $page = 'Mass and Volume';
-    public $description = 'List of all ';
+    public $page = 'Type of Records';
+    public $description = 'List of ';
 
     /**
      * Create a new controller instance.
@@ -28,11 +27,11 @@ class MassVolumeTypeController extends Controller
      */
     public function index()
     {
-        $massVolumeTypes = MassVolumeType::all();
-        return view('admin.massVolumeTypes.index', [
+        $recordTypes = recordType::all();
+        return view('admin.recordTypes.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'massVolumeTypes' => $massVolumeTypes
+            'recordTypes' => $recordTypes
         ]);
     }
 
@@ -43,7 +42,7 @@ class MassVolumeTypeController extends Controller
      */
     public function create()
     {
-        return view('admin.massVolumeTypes.create', [
+        return view('admin.recordTypes.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
         ]);
@@ -55,42 +54,42 @@ class MassVolumeTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MassVolumeTypeRequest $request)
+    public function store(Request $request)
     {
-        $massVolumeType = new MassVolumeType;
-        $massVolumeType->code = $request->code;
-        $massVolumeType->description = $request->description;
-        $massVolumeType->save();
-        return redirect()->route('massVolumeTypes.index');
+        $recordType = new RecordType;
+        $recordType->code = $request->code;
+        $recordType->description = $request->description;
+        $recordType->save();
+        return redirect()->route('recordTypes.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\MassVolumeType  $massVolumeType
+     * @param  \App\RecordType  $recordType
      * @return \Illuminate\Http\Response
      */
-    public function show(MassVolumeType $massVolumeType)
+    public function show(RecordType $recordType)
     {
-        return view('admin.massVolumeTypes.show', [
+        return view('admin.recordTypes.show', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'massVolumeType' => $massVolumeType,
+            'recordType' => $recordType,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MassVolumeType  $massVolumeType
+     * @param  \App\RecordType  $recordType
      * @return \Illuminate\Http\Response
      */
-    public function edit(MassVolumeType $massVolumeType)
+    public function edit(RecordType $recordType)
     {
-        return view('admin.massVolumeTypes.edit', [
+        return view('admin.recordTypes.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'massVolumeType' => $massVolumeType,
+            'recordType' => $recordType,
         ]);
     }
 
@@ -98,26 +97,26 @@ class MassVolumeTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MassVolumeType  $massVolumeType
+     * @param  \App\RecordType  $recordType
      * @return \Illuminate\Http\Response
      */
-    public function update(MassVolumeTypeRequest $request, MassVolumeType $massVolumeType)
+    public function update(Request $request, RecordType $recordType)
     {
-        $massVolumeType->code = $request->code;
-        $massVolumeType->description = $request->description;
-        $massVolumeType->save();
-        return redirect()->route('massVolumeTypes.index');
+        $recordType->code = $request->code;
+        $recordType->description = $request->description;
+        $recordType->save();
+        return redirect()->route('recordTypes.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MassVolumeType  $massVolumeType
+     * @param  \App\RecordType  $recordType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MassVolumeType $massVolumeType)
+    public function destroy(RecordType $recordType)
     {
-        $massVolumeType->delete();
-        return redirect()->route('massVolumeTypes.index');
+        $recordType->delete();
+        return redirect()->route('recordTypes.index');
     }
 }

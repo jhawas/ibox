@@ -37,7 +37,9 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Description</label>
-                    <input name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ $roomType->description }}" type="text" placeholder="Enter description">
+                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                      placeholder="Enter Description here...">{{$roomType->description}}
+                    </textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
@@ -47,7 +49,7 @@
               </div>
               <div class="tile-footer">
                 <button class="btn btn-primary" type="submit">
-                  <i class="fa fa-fw fa-lg fa-check-circle"></i>Register
+                  <i class="fa fa-fw fa-lg fa-check-circle"></i>Save
                 </button>
                 <a class="btn btn-secondary" href="{{ route('roomTypes.index') }}">
                   <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel

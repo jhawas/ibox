@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MassVolumeType extends Model
+class TypeOfTest extends Model
 {
     //
 }

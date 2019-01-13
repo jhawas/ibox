@@ -26,11 +26,11 @@
                   <th>Floor</th>
                   <th>Room Type</th>
                   <th>capacity</th>
-                  <th>price/day</th>
+                  <th>Created</th>
                   <th>Updated</th>
                   <th>Action</th>
                 </tr>
-              </thead>w
+              </thead>
               <tbody>
                 @foreach ($rooms as $room)
                   <tr>
@@ -39,7 +39,6 @@
                       <td>{{ $room->floor->code }}</td>
                       <td>{{ $room->room_type->code }}</td>
                       <td>{{ $room->capacity }}</td>
-                      <td>{{ $room->price }}</td>
                       <td>{{ $room->created_at }}</td>
                       <td>{{ $room->updated_at }}</td>
                       <td>
@@ -63,6 +62,5 @@
             </table>
           </div>
       </div>
-    </div>
     </div>
 @endsection

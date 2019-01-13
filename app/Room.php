@@ -17,7 +17,6 @@ class Room extends Model
         'code',
         'capacity',
         'description',
-        'price'
     ];
 
     public function room_type() {

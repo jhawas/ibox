@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="myModal-{{$massVolumeType->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal-{{$recordType->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">{{ ucfirst($massVolumeType->code) }}</h4>
+        <h4 class="modal-title" id="myModalLabel">{{ ucfirst($recordType->code) }}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
@@ -11,7 +11,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <form action="{{ route('massVolumeTypes.destroy', $massVolumeType) }}" method="POST">
+        <form action="{{ route('recordTypes.destroy', $recordType) }}" method="POST">
             @method('DELETE')
             @csrf
             <button type="submit" class="btn btn-danger">Delete</button>

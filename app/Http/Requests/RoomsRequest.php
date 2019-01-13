@@ -29,7 +29,6 @@ class RoomsRequest extends FormRequest
             'floor' => 'required|not_in:0',
             'roomType' => 'required|not_in:0',
             'capacity' => 'required|max:191|not_in:0',
-            'price' => 'required|max:191|numeric',
         ];
     }
 }

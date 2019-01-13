@@ -14,21 +14,14 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">Room Type Form</h3>
-            <form method="POST" action="{{ route('massVolumeTypes.update', $massVolumeType) }}">
+            <h3 class="tile-title">Laboratory Test Form</h3>
+            <form method="POST" action="{{ route('laboratoryTests.update', $laboratoryTest) }}">
               @method('PUT')
               @csrf
               <div class="tile-body">
                   <div class="form-group">
-                    @if ($errors->has('role'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('role') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
                     <label class="control-label">Code</label>
-                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $massVolumeType->code }}" type="text" placeholder="Enter Code">
+                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $laboratoryTest->code }}" type="text" placeholder="Enter Code">
                     @if ($errors->has('code'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('code') }}</strong>
@@ -37,7 +30,9 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Description</label>
-                    <input name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{ $massVolumeType->description }}" type="text" placeholder="Enter description">
+                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                      placeholder="Enter Description here..."
+                    >{{$laboratoryTest->description}}</textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
@@ -47,9 +42,9 @@
               </div>
               <div class="tile-footer">
                 <button class="btn btn-primary" type="submit">
-                  <i class="fa fa-fw fa-lg fa-check-circle"></i>Register
+                  <i class="fa fa-fw fa-lg fa-check-circle"></i>Save
                 </button>
-                <a class="btn btn-secondary" href="{{ route('massVolumeTypes.index') }}">
+                <a class="btn btn-secondary" href="{{ route('laboratoryTests.index') }}">
                   <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel
                 </a>
               </div>

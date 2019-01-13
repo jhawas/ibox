@@ -69,7 +69,6 @@ class RoomController extends Controller
         $room->floor_id = $request->floor;
         $room->room_type_id = $request->roomType;
         $room->capacity = $request->capacity;
-        $room->price = $request->price;
         $room->save();
         return redirect()->route('rooms.index');
     }
@@ -122,7 +121,6 @@ class RoomController extends Controller
         $room->floor_id = $request->floor;
         $room->room_type_id = $request->roomType;
         $room->capacity = $request->capacity;
-        $room->price = $request->price;
         $room->save();
         return redirect()->route('rooms.index');
     }

@@ -14,8 +14,8 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">User Form</h3>
-            <form method="POST" action="{{ route('massVolumeTypes.store') }}">
+            <h3 class="tile-title">Record Type Form</h3>
+            <form method="POST" action="{{ route('recordTypes.store') }}">
               @csrf
               <div class="tile-body">
                   <div class="form-group">
@@ -29,7 +29,10 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Description</label>
-                    <input name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{old('description')}}" type="text" placeholder="Enter Middle Name">
+                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                      placeholder="Enter Description here...">
+                      {{old('description')}}
+                    </textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
@@ -41,7 +44,7 @@
                 <button class="btn btn-primary" type="submit">
                   <i class="fa fa-fw fa-lg fa-check-circle"></i>Save
                 </button>
-                <a class="btn btn-secondary" href="{{ route('massVolumeTypes.index') }}">
+                <a class="btn btn-secondary" href="{{ route('recordTypes.index') }}">
                   <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel
                 </a>
               </div>

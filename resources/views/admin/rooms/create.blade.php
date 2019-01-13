@@ -30,8 +30,7 @@
                   <div class="form-group">
                     <label class="control-label">Description</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                      placeholder="Enter Description here...">
-                      {{old('description')}}
+                      placeholder="Enter Description here...">{{old('description')}}
                     </textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
@@ -73,15 +72,6 @@
                     @if ($errors->has('capacity'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('capacity') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Price</label>
-                    <input name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" value="{{old('price')}}" type="number" placeholder="Enter price">
-                    @if ($errors->has('price'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('price') }}</strong>
                         </span>
                     @endif
                   </div>

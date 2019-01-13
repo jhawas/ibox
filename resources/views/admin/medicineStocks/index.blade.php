@@ -27,7 +27,6 @@
                   <th>quantity</th>
                   <th>price</th>
                   <th>medicine type</th>
-                  <th>mass_volume type</th>
                   <th>user</th>
                   <th>Created</th>
                   <th>Updated</th>
@@ -43,7 +42,6 @@
                       <td>{{ $medicineStock->quantity }}</td>
                       <td>{{ $medicineStock->price }}</td>
                       <td>{{ $medicineStock->medicineType->code }}</td>
-                      <td>{{ $medicineStock->massVolumeType->code }}</td>
                       <td>{{ $medicineStock->user_id }}</td>
                       <td>{{ $medicineStock->created_at }}</td>
                       <td>{{ $medicineStock->updated_at }}</td>

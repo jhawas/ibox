@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">User Form</h3>
+            <h3 class="tile-title">Room Type Form</h3>
             <form method="POST" action="{{ route('roomTypes.store') }}">
               @csrf
               <div class="tile-body">
@@ -29,7 +29,10 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Description</label>
-                    <input name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{old('description')}}" type="text" placeholder="Enter Middle Name">
+                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                      placeholder="Enter Description here...">
+                      {{old('description')}}
+                    </textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>

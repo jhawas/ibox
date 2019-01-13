@@ -21,7 +21,6 @@
                   <li class="list-group-item">Code: {{ $room->floor->code }}</li>
                   <li class="list-group-item">Description: {{ $room->room_type->code }}</li>
                   <li class="list-group-item">Description: {{ $room->capacity }}</li>
-                  <li class="list-group-item">Price/Day: {{ $room->price }}</li>
                 </ul>
             </div>
           </div>

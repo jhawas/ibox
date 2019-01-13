@@ -16,8 +16,9 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $massVolumeType->code }}</li>
-                  <li class="list-group-item">Description: {{ $massVolumeType->description }}</li>
+                  <li class="list-group-item">Code: {{ $typeOfCharge->code }}</li>
+                  <li class="list-group-item">Price: {{ $typeOfCharge->price }}</li>
+                  <li class="list-group-item">Description: {{ $typeOfCharge->description }}</li>
                 </ul>
             </div>
           </div>

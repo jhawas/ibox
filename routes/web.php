@@ -27,10 +27,9 @@ Route::resource('roomTypes', 'RoomTypeController');
 
 Route::resource('medicineTypes', 'MedicineTypeController');
 
-Route::resource('massVolumeTypes', 'MassVolumeTypeController');
-
 Route::resource('medicineStocks', 'MedicineStockController');
 
+// patient Informations
 Route::get('patientInformations', 'PatientInformationController@index')
 		->name('patientInformations.index');
 
@@ -49,6 +48,61 @@ Route::put('patientInformations/{user}', 'PatientInformationController@update')
 Route::delete('patientInformations/{user}', 'PatientInformationController@destroy')
 		->name('patientInformations.destroy');
 
-Route::delete('patientInformations/{user}/edit', 'PatientInformationController@edit')
+Route::get('patientInformations/{user}/edit', 'PatientInformationController@edit')
 		->name('patientInformations.edit');
 
+// diagnoses
+Route::get('diagnoses', 'DiagnoseController@index')
+		->name('diagnoses.index');
+
+Route::post('diagnoses', 'DiagnoseController@store')
+		->name('diagnoses.store');
+
+Route::get('diagnoses/create', 'DiagnoseController@create')
+		->name('diagnoses.create');
+
+Route::get('diagnoses/{diagnose}', 'DiagnoseController@show')
+		->name('diagnoses.show');
+
+Route::put('diagnoses/{diagnose}', 'DiagnoseController@update')
+		->name('diagnoses.update');
+
+Route::delete('diagnoses/{diagnose}', 'DiagnoseController@destroy')
+		->name('diagnoses.destroy');
+
+Route::get('diagnoses/{diagnose}/edit', 'DiagnoseController@edit')
+		->name('diagnoses.edit');
+
+// Laboratory Test
+Route::get('typeOfLaboratoryTests', 'TypeOfTestController@index')
+		->name('typeOfTests.index');
+
+Route::post('typeOfLaboratoryTests', 'TypeOfTestController@store')
+		->name('typeOfTests.store');
+
+Route::get('typeOfLaboratoryTests/create', 'TypeOfTestController@create')
+		->name('typeOfTests.create');
+
+Route::get('typeOfLaboratoryTests/{typeOfTest}', 'TypeOfTestController@show')
+		->name('typeOfTests.show');
+
+Route::put('typeOfLaboratoryTests/{typeOfTest}', 'TypeOfTestController@update')
+		->name('typeOfTests.update');
+
+Route::delete('typeOfLaboratoryTests/{typeOfTest}', 'TypeOfTestController@destroy')
+		->name('typeOfTests.destroy');
+
+Route::get('typeOfLaboratoryTests/{typeOfTest}/edit', 'TypeOfTestController@edit')
+		->name('typeOfTests.edit');
+
+
+// records types
+Route::resource('recordTypes', 'RecordTypeController');
+
+Route::resource('typeOfCharges', 'TypeOfChargeController');
+
+Route::resource('patientStatementOfAccounts', 'PatientStatementOfAccountController');
+
+Route::resource('patientRecords', 'PatientRecordController');
+
+Route::resource('laboratoryTests', 'LaboratoryTestController');

@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">User Form</h3>
+            <h3 class="tile-title">Medicine Stock Form</h3>
             <form method="POST" action="{{ route('medicineStocks.store') }}">
               @csrf
               <div class="tile-body">
@@ -29,24 +29,13 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Description</label>
-                    <input name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{old('description')}}" type="text" placeholder="Enter Middle Name">
+                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                      placeholder="Enter Description here...">
+                      {{old('description')}}
+                    </textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Mass and Volume Type</label>
-                    <select class="form-control{{ $errors->has('massVolumeType') ? ' is-invalid' : '' }}" style="width: 100%;" name="massVolumeType">
-                      <option selected value="0">Choose Mass and Volume</option>
-                      @foreach ($massVolumeTypes as $massVolumeType)
-                        <option {{ old('massVolumeType') == $massVolumeType->id ? 'selected' : '' }} value="{{ $massVolumeType->id }}">{{ $massVolumeType->code }}</option>
-                      @endforeach
-                    </select>
-                    @if ($errors->has('massVolumeType'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('massVolumeType') }}</strong>
                         </span>
                     @endif
                   </div>

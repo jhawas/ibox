@@ -7,7 +7,8 @@
     </div>
   </div>
   <ul class="app-menu">
-    @if (Auth::user()->user_role->role->name == 'super admin')
+    {{-- supr admin --}}
+    @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2)
       <li>
         <a class="app-menu__item" href="{{ route('home') }}">
           <i class="app-menu__icon fa fa-dashboard"></i>
@@ -21,42 +22,38 @@
         </a>
       </li>
     @endif
-    <li>
-        <a class="app-menu__item" href="{{ route('patientInformations.index') }}">
-          <i class="app-menu__icon fa fa-pie-chart"></i>
-          <span class="app-menu__label">Patient Information</span>
-        </a>
-    </li>
-    <li>
-        <a class="app-menu__item" href="{{ route('patientInformations.index') }}">
-          <i class="app-menu__icon fa fa-pie-chart"></i>
-          <span class="app-menu__label">Doctor Information</span>
-        </a>
-    </li>
     <li class="treeview">
       <a class="app-menu__item" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa fa-th-list"></i>
-          <span class="app-menu__label">Pharmacy</span>
+          <span class="app-menu__label">Manage Patients</span>
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
       <ul class="treeview-menu">
         <li>
-          <a class="treeview-item" href="{{ route('medicineStocks.index') }}">
-            <i class="icon fa fa-circle-o"></i> Medicines stocks
-          </a>
+            <a class="app-menu__item" href="{{ route('patientInformations.index') }}">
+              <i class="app-menu__icon fa fa-pie-chart"></i>
+              <span class="app-menu__label">Patient Information</span>
+            </a>
         </li>
         <li>
-          <a class="treeview-item" href="{{ route('medicineTypes.index') }}">
-            <i class="icon fa fa-circle-o"></i> Medicines Types
-          </a>
+            <a class="app-menu__item" href="{{ route('patientRecords.index') }}">
+              <i class="app-menu__icon fa fa-pie-chart"></i>
+              <span class="app-menu__label">Records</span>
+            </a>
         </li>
         <li>
-          <a class="treeview-item" href="{{ route('massVolumeTypes.index') }}">
-            <i class="icon fa fa-circle-o"></i> Mass and Volume Types
-          </a>
+            <a class="app-menu__item" href="{{ route('laboratoryTests.index') }}">
+              <i class="app-menu__icon fa fa-pie-chart"></i>
+              <span class="app-menu__label">Laboratory</span>
+            </a>
         </li>
       </ul>
     </li>
+    @if(
+      Auth::user()->user_role->role->id == 1 || 
+      Auth::user()->user_role->role->id == 2 ||
+      Auth::user()->user_role->role->id == 4
+    )
     <li class="treeview">
       <a class="app-menu__item" href="#" data-toggle="treeview">
         <i class="app-menu__icon fa fa-th-list"></i>
@@ -81,5 +78,66 @@
         </li>
       </ul>
     </li>
+    @endif
+    @if(
+      Auth::user()->user_role->role->id == 1 || 
+      Auth::user()->user_role->role->id == 2 ||
+      Auth::user()->user_role->role->id == 5
+    )
+    <li class="treeview">
+      <a class="app-menu__item" href="#" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-th-list"></i>
+          <span class="app-menu__label">Pharmacy</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
+          <a class="treeview-item" href="{{ route('medicineStocks.index') }}">
+            <i class="icon fa fa-circle-o"></i> Medicines stocks
+          </a>
+        </li>
+        <li>
+          <a class="treeview-item" href="{{ route('medicineTypes.index') }}">
+            <i class="icon fa fa-circle-o"></i> Medicines Types
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+    @endif
+    @if(
+      Auth::user()->user_role->role->id == 1 || 
+      Auth::user()->user_role->role->id == 2
+    )
+    <li class="treeview">
+      <a class="app-menu__item" href="#" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-th-list"></i>
+          <span class="app-menu__label">Utilities</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
+          <a class="treeview-item" href="{{ route('diagnoses.index') }}">
+            <i class="icon fa fa-circle-o"></i> Diagnoses
+          </a>
+        </li>
+        <li>
+          <a class="treeview-item" href="{{ route('recordTypes.index') }}">
+            <i class="icon fa fa-circle-o"></i> Type of Records
+          </a>
+        </li>
+        <li>
+          <a class="treeview-item" href="{{ route('typeOfCharges.index') }}">
+            <i class="icon fa fa-circle-o"></i> Type of Charges
+          </a>
+        </li>
+        <li>
+          <a class="treeview-item" href="{{ route('typeOfTests.index') }}">
+            <i class="icon fa fa-circle-o"></i> Type of Laboratory Test
+          </a>
+        </li>
+      </ul>
+    </li>
+    @endif
   </ul>
 </aside>
