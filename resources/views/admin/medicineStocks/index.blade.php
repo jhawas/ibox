@@ -22,14 +22,11 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Code</th>
-                  <th>Description</th>
+                  <th>Medicine</th>
                   <th>quantity</th>
+                  <th>Description</th>
                   <th>price</th>
-                  <th>medicine type</th>
-                  <th>user</th>
                   <th>Created</th>
-                  <th>Updated</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -37,14 +34,11 @@
                 @foreach ($medicineStocks as $medicineStock)
                   <tr>
                       <td>{{ $medicineStock->id }}</td>
-                      <td>{{ $medicineStock->code }}</td>
-                      <td>{{ $medicineStock->description }}</td>
+                      <td>{{ $medicineStock->medicine->code }}</td>
                       <td>{{ $medicineStock->quantity }}</td>
-                      <td>{{ $medicineStock->price }}</td>
-                      <td>{{ $medicineStock->medicineType->code }}</td>
-                      <td>{{ $medicineStock->user_id }}</td>
+                      <td>{{ $medicineStock->description }}</td>
+                      <td>{{ $medicineStock->medicine->price }}</td>
                       <td>{{ $medicineStock->created_at }}</td>
-                      <td>{{ $medicineStock->updated_at }}</td>
                       <td>
                         <a href="{{ route('medicineStocks.show', ['id' => $medicineStock->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

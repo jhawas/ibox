@@ -24,6 +24,7 @@
                   <th>ID</th>
                   <th>Code</th>
                   <th>Description</th>
+                  <th>Price</th>
                   <th>Created</th>
                   <th>Updated</th>
                   <th>Action</th>
@@ -35,6 +36,7 @@
                       <td>{{ $roomType->id }}</td>
                       <td>{{ $roomType->code }}</td>
                       <td>{{ $roomType->description }}</td>
+                      <td>{{ $roomType->price }}</td>
                       <td>{{ $roomType->created_at }}</td>
                       <td>{{ $roomType->updated_at }}</td>
                       <td>

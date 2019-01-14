@@ -24,6 +24,7 @@
                   <th>ID</th>
                   <th>Code</th>
                   <th>Description</th>
+                  <th>Price</th>
                   <th>Created</th>
                   <th>Updated</th>
                   <th>Action</th>
@@ -35,6 +36,7 @@
                       <td>{{ $medicineType->id }}</td>
                       <td>{{ $medicineType->code }}</td>
                       <td>{{ $medicineType->description }}</td>
+                      <td>{{ $medicineType->price }}</td>
                       <td>{{ $medicineType->created_at }}</td>
                       <td>{{ $medicineType->updated_at }}</td>
                       <td>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PatientRecord;
-use App\RecordType;
+use App\TypeOfCharge;
 use App\Room;
 use App\User;
 use Illuminate\Http\Request;
@@ -50,7 +50,7 @@ class PatientRecordController extends Controller
     public function create()
     {
         $patientInformations = User::where('is_user', 0)->get();
-        $recordTypes = RecordType::all();
+        $recordTypes = TypeOfCharge::where('type_id', 4)->get();
         $rooms = Room::all();
         return view('admin.patientRecords.create', [
             'page' => $this->page,
@@ -69,10 +69,11 @@ class PatientRecordController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $isReleased = $request->isReleased == 'on' ? true : false;
         $patientRecord = new PatientRecord;
         $patientRecord->user_id = $request->patientInformation;
-        $patientRecord->record_type_id = $request->recordType;
+        $patientRecord->type_of_charge_id = $request->recordType;
         $patientRecord->room_id = $request->room;
         $patientRecord->started_at = $request->startAt;
         $patientRecord->end_at = $request->endAt;
@@ -106,7 +107,7 @@ class PatientRecordController extends Controller
     public function edit(PatientRecord $patientRecord)
     {
         $patientInformations = User::where('is_user', 0)->get();
-        $recordTypes = RecordType::all();
+        $recordTypes = TypeOfCharge::where('type_id', 4)->get();
         $rooms = Room::all();
         return view('admin.patientRecords.edit', [
             'page' => $this->page,
@@ -129,7 +130,7 @@ class PatientRecordController extends Controller
     {
         $isReleased = $request->isReleased == 'on' ? true : false;
         $patientRecord->user_id = $request->patientInformation;
-        $patientRecord->record_type_id = $request->recordType;
+        $patientRecord->type_of_charge_id = $request->recordType;
         $patientRecord->room_id = $request->room;
         $patientRecord->started_at = $request->startAt;
         $patientRecord->end_at = $request->endAt;

@@ -21,7 +21,7 @@
               <div class="tile-body">
                   <div class="form-group">
                     <label class="control-label">Code</label>
-                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $recordType->code }}" type="text" placeholder="Enter Code">
+                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{$recordType->code}}" type="text" placeholder="Enter Code">
                     @if ($errors->has('code'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('code') }}</strong>
@@ -31,11 +31,19 @@
                   <div class="form-group">
                     <label class="control-label">Description</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                      placeholder="Enter Description here..."
-                    >{{$recordType->description}}</textarea>
+                      placeholder="Enter Description here...">{{$recordType->description}}</textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Price</label>
+                    <input name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" value="{{$recordType->price}}" type="number" placeholder="Enter Price">
+                    @if ($errors->has('price'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('price') }}</strong>
                         </span>
                     @endif
                   </div>

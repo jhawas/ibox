@@ -15,12 +15,10 @@ class CreateMedicineStocksTable extends Migration
     {
         Schema::create('medicine_stocks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
-            $table->string('description');
+            $table->integer('type_of_charge_id')->unsigned()->nullable();
+            $table->foreign('type_of_charge_id')->references('id')->on('type_of_charges')->onDelete('cascade');
             $table->integer('quantity');
-            $table->decimal('price', 8, 2);
-            $table->integer('medicine_type_id')->unsigned()->nullable();
-            $table->foreign('medicine_type_id')->references('id')->on('medicine_types')->onDelete('cascade');
+            $table->string('description');
             $table->integer('trans_user_id')->unsigned()->nullable();
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

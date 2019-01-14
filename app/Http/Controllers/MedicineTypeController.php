@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\MedicineType;
+use App\TypeOfCharge;
 use Illuminate\Http\Request;
-use App\Http\Requests\MedicineTypeRequest;
 
 class MedicineTypeController extends Controller
 {
@@ -28,7 +27,7 @@ class MedicineTypeController extends Controller
      */
     public function index()
     {
-        $medicineTypes = MedicineType::all();
+        $medicineTypes = TypeOfCharge::where('type_id', 1)->get();
         return view('admin.medicineTypes.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -55,11 +54,15 @@ class MedicineTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MedicineTypeRequest $request)
+    public function store(Request $request)
     {
-        $medicineType = new MedicineType;
+        $medicineType = new TypeOfCharge;
+        // medicine id
+        $medicineType->type_id = 1;
+
         $medicineType->code = $request->code;
         $medicineType->description = $request->description;
+        $medicineType->price = $request->price;
         $medicineType->save();
         return redirect()->route('medicineTypes.index');
     }
@@ -70,7 +73,7 @@ class MedicineTypeController extends Controller
      * @param  \App\MedicineType  $medicineType
      * @return \Illuminate\Http\Response
      */
-    public function show(MedicineType $medicineType)
+    public function show(TypeOfCharge $medicineType)
     {
         return view('admin.medicineTypes.show', [
             'page' => $this->page,
@@ -85,7 +88,7 @@ class MedicineTypeController extends Controller
      * @param  \App\MedicineType  $medicineType
      * @return \Illuminate\Http\Response
      */
-    public function edit(MedicineType $medicineType)
+    public function edit(TypeOfCharge $medicineType)
     {
         return view('admin.medicineTypes.edit', [
             'page' => $this->page,
@@ -101,10 +104,11 @@ class MedicineTypeController extends Controller
      * @param  \App\MedicineType  $medicineType
      * @return \Illuminate\Http\Response
      */
-    public function update(MedicineTypeRequest $request, MedicineType $medicineType)
+    public function update(Request $request, TypeOfCharge $medicineType)
     {
         $medicineType->code = $request->code;
         $medicineType->description = $request->description;
+        $medicineType->price = $request->price;
         $medicineType->save();
         return redirect()->route('medicineTypes.index');
     }
@@ -115,7 +119,7 @@ class MedicineTypeController extends Controller
      * @param  \App\MedicineType  $medicineType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MedicineType $medicineType)
+    public function destroy(TypeOfCharge $medicineType)
     {
         $medicineType->delete();
         return redirect()->route('medicineTypes.index');

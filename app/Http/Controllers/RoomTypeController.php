@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RoomType;
+use App\TypeOfCharge;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoomTypeRequest;
 
@@ -28,7 +28,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $roomTypes = RoomType::all();
+        $roomTypes = TypeOfCharge::where('type_id', 2)->get();
         return view('admin.roomTypes.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -55,11 +55,14 @@ class RoomTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RoomTypeRequest $request)
+    public function store(Request $request)
     {
-        $roomType = new RoomType;
+        $roomType = new TypeOfCharge;
+        // room id
+        $roomType->type_id = 2;
         $roomType->code = $request->code;
         $roomType->description = $request->description;
+        $roomType->price = $request->price;
         $roomType->save();
         return redirect()->route('roomTypes.index');
     }
@@ -70,7 +73,7 @@ class RoomTypeController extends Controller
      * @param  \App\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function show(RoomType $roomType)
+    public function show(TypeOfCharge $roomType)
     {
         return view('admin.roomTypes.show', [
             'page' => $this->page,
@@ -85,7 +88,7 @@ class RoomTypeController extends Controller
      * @param  \App\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomType $roomType)
+    public function edit(TypeOfCharge $roomType)
     {
         return view('admin.roomTypes.edit', [
             'page' => $this->page,
@@ -101,10 +104,11 @@ class RoomTypeController extends Controller
      * @param  \App\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function update(RoomTypeRequest $request, RoomType $roomType)
+    public function update(Request $request, TypeOfCharge $roomType)
     {
         $roomType->code = $request->code;
         $roomType->description = $request->description;
+        $roomType->price = $request->price;
         $roomType->save();
         return redirect()->route('roomTypes.index');
     }
@@ -115,7 +119,7 @@ class RoomTypeController extends Controller
      * @param  \App\RoomType  $roomType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomType $roomType)
+    public function destroy(TypeOfCharge $roomType)
     {
         $roomType->delete();
         return redirect()->route('roomTypes.index');

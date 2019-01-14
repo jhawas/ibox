@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TypeOfTest;
+use App\TypeOfCharge;
 use Illuminate\Http\Request;
 
 class TypeOfTestController extends Controller
@@ -27,7 +27,7 @@ class TypeOfTestController extends Controller
      */
     public function index()
     {
-        $typeOfTests = TypeOfTest::all();
+        $typeOfTests = TypeOfCharge::where('type_id', 3)->get();
         return view('admin.typeOfTests.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -56,9 +56,12 @@ class TypeOfTestController extends Controller
      */
     public function store(Request $request)
     {
-        $typeOfTest = new TypeOfTest;
+        $typeOfTest = new TypeOfCharge;
+        // laboratory id
+        $typeOfTest->type_id = 3;
         $typeOfTest->code = $request->code;
         $typeOfTest->description = $request->description;
+        $typeOfTest->price = $request->price;
         $typeOfTest->save();
         return redirect()->route('typeOfTests.index');
     }
@@ -69,7 +72,7 @@ class TypeOfTestController extends Controller
      * @param  \App\TypeOfTest  $typeOfTest
      * @return \Illuminate\Http\Response
      */
-    public function show(TypeOfTest $typeOfTest)
+    public function show(TypeOfCharge $typeOfTest)
     {
         return view('admin.typeOfTests.show', [
             'page' => $this->page,
@@ -84,7 +87,7 @@ class TypeOfTestController extends Controller
      * @param  \App\TypeOfTest  $typeOfTest
      * @return \Illuminate\Http\Response
      */
-    public function edit(TypeOfTest $typeOfTest)
+    public function edit(TypeOfCharge $typeOfTest)
     {
         return view('admin.typeOfTests.edit', [
             'page' => $this->page,
@@ -100,10 +103,11 @@ class TypeOfTestController extends Controller
      * @param  \App\TypeOfTest  $typeOfTest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TypeOfTest $typeOfTest)
+    public function update(Request $request, TypeOfCharge $typeOfTest)
     {
         $typeOfTest->code = $request->code;
         $typeOfTest->description = $request->description;
+        $typeOfTest->price = $request->price;
         $typeOfTest->save();
         return redirect()->route('typeOfTests.index');
     }
@@ -114,7 +118,7 @@ class TypeOfTestController extends Controller
      * @param  \App\TypeOfTest  $typeOfTest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TypeOfTest $typeOfTest)
+    public function destroy(TypeOfCharge $typeOfTest)
     {
         $typeOfTest->delete();
         return redirect()->route('typeOfTests.index');

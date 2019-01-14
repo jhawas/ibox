@@ -24,21 +24,23 @@
                   <th>ID</th>
                   <th>Code</th>
                   <th>Description</th>
+                  <th>Price</th>
                   <th>Created</th>
                   <th>Updated</th>
                   <th>Action</th>
                 </tr>
-              </thead>w
+              </thead>
               <tbody>
                 @foreach ($recordTypes as $recordType)
                   <tr>
                       <td>{{ $recordType->id }}</td>
                       <td>{{ $recordType->code }}</td>
                       <td>{{ $recordType->description }}</td>
+                      <td>{{ $recordType->price }}</td>
                       <td>{{ $recordType->created_at }}</td>
                       <td>{{ $recordType->updated_at }}</td>
                       <td>
-                        <a href="{{ route('recordTypes.show', $recordType) }}" class="btn btn-primary">
+                        <a href="{{ route('recordTypes.show', ['id' => $recordType->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
                         </a>
 

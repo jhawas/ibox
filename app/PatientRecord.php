@@ -11,7 +11,7 @@ class PatientRecord extends Model
     }
 
     public function recordType() {
-    	return $this->belongsTo('App\RecordType', 'record_type_id');
+    	return $this->belongsTo('App\TypeOfCharge', 'type_of_charge_id');
     }
 
     public function room() {

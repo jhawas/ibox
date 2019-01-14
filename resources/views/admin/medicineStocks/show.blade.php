@@ -16,12 +16,12 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $medicineStock->code }}</li>
-                  <li class="list-group-item">Description: {{ $medicineStock->description }}</li>
+                  <li class="list-group-item">Medicine: {{ $medicineStock->medicine->code }}</li>
                   <li class="list-group-item">Quantity: {{ $medicineStock->quantity }}</li>
-                  <li class="list-group-item">Price: {{ $medicineStock->price }}</li>
-                  <li class="list-group-item">Medicine Type: {{ $medicineStock->medicineType->code }}</li>
-                  <li class="list-group-item">Mass Volume Type: {{ $medicineStock->massVolumeType->code }}</li>
+                  <li class="list-group-item">Description: {{ $medicineStock->description }}</li>
+                  <li class="list-group-item">Price: {{ $medicineStock->medicine->price }}</li>
+                  <li class="list-group-item">Created At: {{ $medicineStock->created_at }}</li>
+                  <li class="list-group-item">Updated At: {{ $medicineStock->updated_at }}</li>
                 </ul>
             </div>
           </div>

@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypeOfCharge extends Model
 {
-    //
+    public function type() {
+        return $this->belongsTo('App\Type', 'type_id');
+    }
 }

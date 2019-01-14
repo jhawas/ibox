@@ -20,40 +20,11 @@
               @csrf
               <div class="tile-body">
                   <div class="form-group">
-                    <label class="control-label">Code</label>
-                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{$medicineStock->code}}" type="text" placeholder="Enter Code">
-                    @if ($errors->has('code'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('code') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Description</label>
-                    <input name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" value="{{$medicineStock->description}}" type="text" placeholder="Enter Description Name">
-                    @if ($errors->has('description'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Description</label>
-                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                      placeholder="Enter Description here...">{{$medicineStock->description}}
-                    </textarea>
-                    @if ($errors->has('description'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
                     <label class="control-label">Medicine Type</label>
                     <select class="form-control{{ $errors->has('medicineType') ? ' is-invalid' : '' }}" style="width: 100%;" name="medicineType">
                       <option selected value="0">Choose Medicine</option>
                       @foreach ($medicineTypes as $medicineType)
-                        <option {{ $medicineStock->medicine_type_id == $medicineType->id ? 'selected' : '' }} value="{{ $medicineType->id }}">{{ $medicineType->code }}</option>
+                        <option {{ $medicineStock->type_of_charge_id == $medicineType->id ? 'selected' : '' }} value="{{ $medicineType->id }}">{{ $medicineType->code }}</option>
                       @endforeach
                     </select>
                     @if ($errors->has('medicineType'))
@@ -64,7 +35,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Quantity</label>
-                    <input name="quantity" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" value="{{ $medicineStock->quantity }}" type="number" placeholder="Enter Quantity Name">
+                    <input name="quantity" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" value="{{$medicineStock->quantity}}" type="number" placeholder="Enter Quantity">
                     @if ($errors->has('quantity'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('quantity') }}</strong>
@@ -72,11 +43,12 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label class="control-label">Price</label>
-                    <input name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" value="{{ $medicineStock->price }}" type="text" placeholder="Enter Middle Name">
-                    @if ($errors->has('price'))
+                    <label class="control-label">Description</label>
+                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                      placeholder="Enter Description here...">{{$medicineStock->description}}</textarea>
+                    @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('price') }}</strong>
+                            <strong>{{ $errors->first('description') }}</strong>
                         </span>
                     @endif
                   </div>

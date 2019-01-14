@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use App\Floor;
-use App\RoomType;
+use App\TypeOfCharge;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoomsRequest;
 
@@ -51,7 +51,7 @@ class RoomController extends Controller
     public function create()
     {
         $floors = Floor::all();
-        $roomTypes = RoomType::all();
+        $roomTypes = TypeOfCharge::where('type_id', 2)->get();
         return view('admin.rooms.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -72,7 +72,7 @@ class RoomController extends Controller
         $room->code = $request->code;
         $room->description = $request->description;
         $room->floor_id = $request->floor;
-        $room->room_type_id = $request->roomType;
+        $room->type_of_charge_id = $request->roomType;
         $room->capacity = $request->capacity;
         $room->save();
         return redirect()->route('rooms.index');
@@ -124,7 +124,7 @@ class RoomController extends Controller
         $room->code = $request->code;
         $room->description = $request->description;
         $room->floor_id = $request->floor;
-        $room->room_type_id = $request->roomType;
+        $room->type_of_charge_id = $request->roomType;
         $room->capacity = $request->capacity;
         $room->save();
         return redirect()->route('rooms.index');

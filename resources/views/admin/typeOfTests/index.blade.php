@@ -24,21 +24,23 @@
                   <th>ID</th>
                   <th>Code</th>
                   <th>Description</th>
+                  <th>Price</th>
                   <th>Created</th>
                   <th>Updated</th>
                   <th>Action</th>
                 </tr>
-              </thead>w
+              </thead>
               <tbody>
                 @foreach ($typeOfTests as $typeOfTest)
                   <tr>
                       <td>{{ $typeOfTest->id }}</td>
                       <td>{{ $typeOfTest->code }}</td>
                       <td>{{ $typeOfTest->description }}</td>
+                      <td>{{ $typeOfTest->price }}</td>
                       <td>{{ $typeOfTest->created_at }}</td>
                       <td>{{ $typeOfTest->updated_at }}</td>
                       <td>
-                        <a href="{{ route('typeOfTests.show', $typeOfTest) }}" class="btn btn-primary">
+                        <a href="{{ route('typeOfTests.show', ['id' => $typeOfTest->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
                         </a>
 

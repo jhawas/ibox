@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RecordType;
+use App\TypeOfCharge;
 use Illuminate\Http\Request;
 
 class RecordTypeController extends Controller
@@ -27,7 +27,7 @@ class RecordTypeController extends Controller
      */
     public function index()
     {
-        $recordTypes = recordType::all();
+        $recordTypes = TypeOfCharge::where('type_id', 4)->get();
         return view('admin.recordTypes.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -56,9 +56,12 @@ class RecordTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $recordType = new RecordType;
+        $recordType = new TypeOfCharge;
+        // others id
+        $recordType->type_id = 4;
         $recordType->code = $request->code;
         $recordType->description = $request->description;
+        $recordType->price = $request->price;
         $recordType->save();
         return redirect()->route('recordTypes.index');
     }
@@ -69,7 +72,7 @@ class RecordTypeController extends Controller
      * @param  \App\RecordType  $recordType
      * @return \Illuminate\Http\Response
      */
-    public function show(RecordType $recordType)
+    public function show(TypeOfCharge $recordType)
     {
         return view('admin.recordTypes.show', [
             'page' => $this->page,
@@ -84,7 +87,7 @@ class RecordTypeController extends Controller
      * @param  \App\RecordType  $recordType
      * @return \Illuminate\Http\Response
      */
-    public function edit(RecordType $recordType)
+    public function edit(TypeOfCharge $recordType)
     {
         return view('admin.recordTypes.edit', [
             'page' => $this->page,
@@ -100,10 +103,11 @@ class RecordTypeController extends Controller
      * @param  \App\RecordType  $recordType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RecordType $recordType)
+    public function update(Request $request, TypeOfCharge $recordType)
     {
         $recordType->code = $request->code;
         $recordType->description = $request->description;
+        $recordType->price = $request->price;
         $recordType->save();
         return redirect()->route('recordTypes.index');
     }
@@ -114,7 +118,7 @@ class RecordTypeController extends Controller
      * @param  \App\RecordType  $recordType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RecordType $recordType)
+    public function destroy(TypeOfCharge $recordType)
     {
         $recordType->delete();
         return redirect()->route('recordTypes.index');

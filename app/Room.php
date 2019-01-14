@@ -20,7 +20,7 @@ class Room extends Model
     ];
 
     public function room_type() {
-        return $this->belongsTo('App\RoomType', 'room_type_id');
+        return $this->belongsTo('App\TypeOfCharge', 'type_of_charge_id');
     }
 
     public function floor() {

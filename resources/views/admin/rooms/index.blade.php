@@ -28,7 +28,6 @@
                   <th>capacity</th>
                   <th>Occupied</th>
                   <th>Created</th>
-                  <th>Updated</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -42,7 +41,6 @@
                       <td>{{ $room->capacity }}</td>
                       <td>{{ $room->records->count() }}</td>
                       <td>{{ $room->created_at }}</td>
-                      <td>{{ $room->updated_at }}</td>
                       <td>
                         <a href="{{ route('rooms.show', ['id' => $room->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

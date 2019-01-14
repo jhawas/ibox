@@ -90,18 +90,6 @@
                         </span>
                     @endif
                   </div>
-                  <div class="form-group">
-                    <label class="control-label">Description</label>
-                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                      placeholder="Enter Description here...">
-                      {{old('description')}}
-                    </textarea>
-                    @if ($errors->has('description'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                    @endif
-                  </div>
                   <div class="form-check">
                     <label class="form-check-label">
                       <input name="isReleased" class="form-check-input" type="checkbox">Discharged

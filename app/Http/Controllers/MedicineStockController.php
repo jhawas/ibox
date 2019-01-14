@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MedicineStock;
-use App\MassVolumeType;
-use App\MedicineType;
-use App\Http\Requests\MedicineStockRequest;
+use App\TypeOfCharge;
 use Illuminate\Http\Request;
 
 class MedicineStockController extends Controller
@@ -46,7 +44,7 @@ class MedicineStockController extends Controller
      */
     public function create()
     {
-        $medicineTypes = MedicineType::all();
+        $medicineTypes = TypeOfCharge::where('type_id', 1)->get();
         return view('admin.medicineStocks.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -60,14 +58,12 @@ class MedicineStockController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MedicineStockRequest $request)
+    public function store(Request $request)
     {
         $medicineStock = new MedicineStock;
-        $medicineStock->code = $request->code;
-        $medicineStock->description = $request->description;
-        $medicineStock->medicine_type_id = $request->medicineType;
+        $medicineStock->type_of_charge_id = $request->medicineType;
         $medicineStock->quantity = $request->quantity;
-        $medicineStock->price = $request->price;
+        $medicineStock->description = $request->description;
         $medicineStock->save();
         return redirect()->route('medicineStocks.index');
     }
@@ -95,7 +91,7 @@ class MedicineStockController extends Controller
      */
     public function edit(MedicineStock $medicineStock)
     {
-        $medicineTypes = MedicineType::all();
+        $medicineTypes = TypeOfCharge::where('type_id', 1)->get();
         return view('admin.medicineStocks.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -111,13 +107,11 @@ class MedicineStockController extends Controller
      * @param  \App\MedicineStock  $medicineStock
      * @return \Illuminate\Http\Response
      */
-    public function update(MedicineStockRequest $request, MedicineStock $medicineStock)
+    public function update(Request $request, MedicineStock $medicineStock)
     {
-        $medicineStock->code = $request->code;
-        $medicineStock->description = $request->description;
-        $medicineStock->medicine_type_id = $request->medicineType;
+        $medicineStock->type_of_charge_id = $request->medicineType;
         $medicineStock->quantity = $request->quantity;
-        $medicineStock->price = $request->price;
+        $medicineStock->description = $request->description;
         $medicineStock->save();
         return redirect()->route('medicineStocks.index');
     }
