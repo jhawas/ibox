@@ -28,7 +28,21 @@ class PatientInformationController extends Controller
      */
     public function index()
     {
-        $patientInformations = User::where('is_user', 0)->get();
+        $patientInformations = User::with([
+            'records' => function($record) {
+                $record->with([
+                    'user',
+                    'recordType',
+                    'room',
+                    'billings' => function($billing) {
+                        $billing->with([
+                            'charge'
+                        ]);
+                    }
+                ]);
+            }
+        ])->where('is_user', 0)->get();
+        // return $patientInformations;
         return view('admin.patientInformations.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,

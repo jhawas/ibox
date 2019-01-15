@@ -101,8 +101,6 @@ Route::resource('recordTypes', 'RecordTypeController');
 
 Route::resource('typeOfCharges', 'TypeOfChargeController');
 
-Route::resource('patientStatementOfAccounts', 'PatientStatementOfAccountController');
-
 Route::resource('patientRecords', 'PatientRecordController');
 
 Route::resource('laboratoryTests', 'LaboratoryTestController');

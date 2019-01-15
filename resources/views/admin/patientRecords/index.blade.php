@@ -25,7 +25,7 @@
                   <th>Patient</th>
                   <th>Status</th>
                   <th>Room</th>
-                  <th>Started At</th>
+                  <th>Created At</th>
                   <th>Billing</th>
                   <th>Discharged</th>
                   <th>Action</th>
@@ -41,7 +41,7 @@
                         ucfirst($patientRecord->user->last_name) }}</td>
                       <td>{{ $patientRecord->recordType->code }}</td>
                       <td>{{ $patientRecord->room->code }}</td>
-                      <td>{{ $patientRecord->started_at }}</td>
+                      <td>{{ $patientRecord->created_at }}</td>
                       <td>
                         <a href="{{ route('patientBillings.index', $patientRecord) }}">
                           Billing

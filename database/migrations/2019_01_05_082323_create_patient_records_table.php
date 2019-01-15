@@ -27,9 +27,9 @@ class CreatePatientRecordsTable extends Migration
             $table->integer('trans_user_id')->unsigned()->nullable();
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->datetime('started_at');
+            $table->date('started_at');
 
-            $table->datetime('end_at');
+            $table->date('end_at');
             
             $table->string('description');
 

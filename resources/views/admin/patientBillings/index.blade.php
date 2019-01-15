@@ -1,3 +1,4 @@
+<?php $totalBill = 0; ?>
 @extends('admin.layouts.app')
 
 @section('content')
@@ -33,6 +34,7 @@
               </thead>
               <tbody>
                 @foreach ($patientBillings as $patientBilling)
+                  <?php $totalBill += $patientBilling->total; ?>
                   <tr>
                       <td>{{ $patientBilling->id }}</td>
                       <td>{{ ucfirst($patientBilling->charge->code) . ' (' . strtoupper($patientBilling->charge->type->code).')' }}</td>
@@ -56,6 +58,9 @@
                 @endforeach
               </tbody>
             </table>
+          </div>
+          <div class="total-container" style="padding-top: 20px;">
+              <h3>Total Bill: P{{ $totalBill }}</h3>
           </div>
       </div>
     </div>

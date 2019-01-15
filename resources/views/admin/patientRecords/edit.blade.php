@@ -38,7 +38,7 @@
                     <select class="form-control{{ $errors->has('recordType') ? ' is-invalid' : '' }}" style="width: 100%;" name="recordType">
                       <option selected value="0">Choose Record Type</option>
                       @foreach ($recordTypes as $recordType)
-                        <option {{ $patientRecord->record_type_id == $recordType->id ? 'selected' : '' }} value="{{ $recordType->id }}">{{ $recordType->code }}</option>
+                        <option {{ $patientRecord->type_of_charge_id == $recordType->id ? 'selected' : '' }} value="{{ $recordType->id }}">{{ $recordType->code }}</option>
                       @endforeach
                     </select>
                     @if ($errors->has('recordType'))

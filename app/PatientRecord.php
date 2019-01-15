@@ -17,4 +17,8 @@ class PatientRecord extends Model
     public function room() {
     	return $this->belongsTo('App\Room', 'room_id');
     }
+
+    public function billings() {
+        return $this->hasMany('App\PatientBilling');
+    }
 }
