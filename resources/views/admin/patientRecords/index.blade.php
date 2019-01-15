@@ -26,7 +26,7 @@
                   <th>Status</th>
                   <th>Room</th>
                   <th>Started At</th>
-                  <th>End At</th>
+                  <th>Billing</th>
                   <th>Discharged</th>
                   <th>Action</th>
                 </tr>
@@ -42,7 +42,11 @@
                       <td>{{ $patientRecord->recordType->code }}</td>
                       <td>{{ $patientRecord->room->code }}</td>
                       <td>{{ $patientRecord->started_at }}</td>
-                      <td>{{ $patientRecord->end_at }}</td>
+                      <td>
+                        <a href="{{ route('patientBillings.index', $patientRecord) }}">
+                          Billing
+                        </a>
+                      </td>
                       <td>{{ $patientRecord->isReleased ? 'Yes' : 'No' }}</td>
                       <td>
                         <a href="{{ route('patientRecords.show', $patientRecord) }}" class="btn btn-primary">

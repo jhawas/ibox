@@ -106,3 +106,22 @@ Route::resource('patientStatementOfAccounts', 'PatientStatementOfAccountControll
 Route::resource('patientRecords', 'PatientRecordController');
 
 Route::resource('laboratoryTests', 'LaboratoryTestController');
+
+// billing
+Route::get('patientBillings/{patientRecord}', 'PatientBillingController@index')
+		->name('patientBillings.index');
+
+Route::get('patientBillings/{patientRecord}/create', 'PatientBillingController@create')
+		->name('patientBillings.create');
+
+Route::post('patientBillings/{patientRecord}/store', 'PatientBillingController@store')
+		->name('patientBillings.store');
+
+Route::get('patientBillings/{patientRecord}/{patientBilling}/edit', 'PatientBillingController@edit')
+		->name('patientBillings.edit');
+
+Route::put('patientBillings/{patientRecord}/{patientBilling}', 'PatientBillingController@update')
+		->name('patientBillings.update');
+
+Route::delete('patientBillings/{patientRecord}/{patientBilling}', 'PatientBillingController@destroy')
+		->name('patientBillings.destroy');
