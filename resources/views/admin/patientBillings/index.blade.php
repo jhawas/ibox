@@ -27,6 +27,7 @@
                   <th>Created</th>
                   <th>Price</th>
                   <th>Description</th>
+                  <th>Total</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -39,6 +40,7 @@
                       <td>{{ $patientBilling->created_at }}</td>
                       <td>{{ $patientBilling->price }}</td>
                       <td>{{ $patientBilling->description }}</td>
+                      <td>{{ $patientBilling->total }}</td>
                       <td>
                         <a href="{{ route('patientBillings.edit', [$patientRecord, $patientBilling]) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>
