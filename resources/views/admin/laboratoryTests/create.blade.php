@@ -14,10 +14,40 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">Diagnose Form</h3>
-            <form method="POST" action="{{ route('laboratoryTests.store') }}">
+            <h3 class="tile-title">Laboratory Test Form</h3>
+            <form method="POST" action="{{ route('laboratoryTests.store') }}" enctype="multipart/form-data">
               @csrf
               <div class="tile-body">
+                  <div class="form-group">
+                    <label class="control-label">Patient Record</label>
+                    <select class="form-control{{ $errors->has('patientRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientRecord">
+                      <option selected value="0">Choose Test</option>
+                      @foreach ($patientRecords as $patientRecord)
+                        <option {{ old('patientRecord') == $patientRecord->id ? 'selected' : '' }} value="{{ $patientRecord->id }}">
+                          {{ 'Record ID:' . $patientRecord->id . ' ( ' . ucfirst($patientRecord->user->first_name) . ' ' . ucfirst($patientRecord->user->middle_name) . ' ' . ucfirst($patientRecord->user->last_name) . ' )'}}
+                        </option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('patientRecord'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('patientRecord') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Type Of Test</label>
+                    <select class="form-control{{ $errors->has('typeOfTest') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfTest">
+                      <option selected value="0">Choose Test</option>
+                      @foreach ($typeOfTests as $typeOfTest)
+                        <option {{ old('typeOfTest') == $typeOfTest->id ? 'selected' : '' }} value="{{ $typeOfTest->id }}">{{ $typeOfTest->code }}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('typeOfTest'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('typeOfTest') }}</strong>
+                        </span>
+                    @endif
+                  </div>
                   <div class="form-group">
                     <label class="control-label">Description</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
@@ -29,6 +59,10 @@
                             <strong>{{ $errors->first('description') }}</strong>
                         </span>
                     @endif
+                  </div>
+                  <div class="form-group">
+                    <label for="image">Laboratory File</label>
+                    <input class="form-control-file" id="file" type="file" aria-describedby="fileHelp" name="file" value="{{old('image')}}"><small class="form-text text-muted" id="fileHelp">this field allow user to add laboratory result</small>
                   </div>
               </div>
               <div class="tile-footer">

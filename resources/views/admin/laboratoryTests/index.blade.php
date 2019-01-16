@@ -22,7 +22,9 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Code</th>
+                  <th>Record ID</th>
+                  <th>Patient</th>
+                  <th>Laboratory</th>
                   <th>Description</th>
                   <th>Created</th>
                   <th>Updated</th>
@@ -33,7 +35,9 @@
                 @foreach ($laboratoryTests as $laboratoryTest)
                   <tr>
                       <td>{{ $laboratoryTest->id }}</td>
-                      <td>{{ $laboratoryTest->code }}</td>
+                      <td>{{ $laboratoryTest->record->id }}</td>
+                      <td>{{ ucfirst($laboratoryTest->record->user->first_name) . ' ' . ucfirst($laboratoryTest->record->user->middle_name) . ' ' . ucfirst($laboratoryTest->record->user->last_name) }}</td>
+                      <td>{{ strtoupper($laboratoryTest->charge->code) }}</td>
                       <td>{{ $laboratoryTest->description }}</td>
                       <td>{{ $laboratoryTest->created_at }}</td>
                       <td>{{ $laboratoryTest->updated_at }}</td>

@@ -16,8 +16,24 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $laboratoryTest->code }}</li>
-                  <li class="list-group-item">Description: {{ $laboratoryTest->description }}</li>
+                  <li class="list-group-item">Record ID: 
+                    {{ $laboratoryTest->record->id }}
+                  </li>
+                  <li class="list-group-item">Patient: 
+                    {{ ucfirst($laboratoryTest->record->user->first_name) . ' ' . ucfirst($laboratoryTest->record->user->middle_name) . ' ' . ucfirst($laboratoryTest->record->user->last_name) }}
+                  </li>
+                  <li class="list-group-item">Create At: 
+                    {{ $laboratoryTest->created_at }}
+                  </li>
+                  <li class="list-group-item">Description: 
+                    {{ $laboratoryTest->description }}
+                  </li>
+                  <li class="list-group-item">Test: 
+                    {{ $laboratoryTest->charge->code }}
+                  </li>
+                  <li class="list-group-item"> 
+                    <img src="{{asset('storage/'.$laboratoryTest->image)}}" />
+                  </li>
                 </ul>
             </div>
           </div>

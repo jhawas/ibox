@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\LaboratoryTest;
 use App\PatientRecord;
-use App\TypeOfTest;
+use App\TypeOfCharge;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
+
+use Storage;
 
 class LaboratoryTestController extends Controller
 {
@@ -29,7 +32,15 @@ class LaboratoryTestController extends Controller
      */
     public function index()
     {
-        $laboratoryTests = LaboratoryTest::all();
+        $laboratoryTests = LaboratoryTest::with([
+            'record' => function($record) {
+                $record->with([
+                    'user'
+                ]);
+            },
+            'charge'
+        ])->get();
+        // return $laboratoryTests;
         return view('admin.laboratoryTests.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -44,8 +55,11 @@ class LaboratoryTestController extends Controller
      */
     public function create()
     {
-        $patientRecords = PatientRecord::all();
-        $typeOfTests = TypeOfTest::all();
+        $patientRecords = PatientRecord::with([
+            'user'
+        ])->get();
+        // return $patientRecords;
+        $typeOfTests = TypeOfCharge::where('type_id', 3)->get();
         return view('admin.laboratoryTests.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -62,9 +76,15 @@ class LaboratoryTestController extends Controller
      */
     public function store(Request $request)
     {
+        $file_path = null;
+        if ($request->hasFile('file')) {
+            $file_path = Storage::putFile('public/laboratory', $request->file('file'));
+        }  
         $laboratoryTest = new LaboratoryTest;
-        $laboratoryTest->code = $request->code;
+        $laboratoryTest->patient_record_id = $request->patientRecord;
+        $laboratoryTest->type_of_charge_id = $request->typeOfTest;
         $laboratoryTest->description = $request->description;
+        $laboratoryTest->image = $file_path;
         $laboratoryTest->save();
         return redirect()->route('laboratoryTests.index');
     }
@@ -93,7 +113,7 @@ class LaboratoryTestController extends Controller
     public function edit(LaboratoryTest $laboratoryTest)
     {
         $patientRecords = PatientRecord::all();
-        $typeOfTests = TypeOfTest::all();
+        $typeOfTests = TypeOfCharge::where('type_id', 3)->get();
         return view('admin.laboratoryTests.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -112,7 +132,17 @@ class LaboratoryTestController extends Controller
      */
     public function update(Request $request, LaboratoryTest $laboratoryTest)
     {
-        $laboratoryTest->code = $request->code;
+
+        // path of image uploaded
+        if ($request->hasFile('file')) {
+            // delete old logo
+            Storage::delete([$laboratoryTest->image]);
+            // upload videos and assigned
+            $file_path = Storage::putFile('public/laboratory', $request->file('file'));
+            $laboratoryTest->image = $file_path;
+        }
+        $laboratoryTest->patient_record_id = $request->patientRecord;
+        $laboratoryTest->type_of_charge_id = $request->typeOfTest;
         $laboratoryTest->description = $request->description;
         $laboratoryTest->save();
         return redirect()->route('laboratoryTests.index');
@@ -126,6 +156,7 @@ class LaboratoryTestController extends Controller
      */
     public function destroy(LaboratoryTest $laboratoryTest)
     {
+        Storage::delete([$laboratoryTest->image]);
         $laboratoryTest->delete();
         return redirect()->route('laboratoryTests.index');
     }

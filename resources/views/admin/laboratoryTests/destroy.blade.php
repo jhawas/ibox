@@ -3,7 +3,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">{{ ucfirst($laboratoryTest->code) }}</h4>
+        <h4 class="modal-title" id="myModalLabel">
+          {{ strtoupper($laboratoryTest->charge->code) .': Record ID:' . $laboratoryTest->record->id . ' ( ' . ucfirst($laboratoryTest->record->user->first_name) . ' ' . ucfirst($laboratoryTest->record->user->middle_name) . ' ' . ucfirst($laboratoryTest->record->user->last_name) . ' )' }}
+        </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">

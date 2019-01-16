@@ -15,29 +15,53 @@
         <div class="col-md-6">
           <div class="tile">
             <h3 class="tile-title">Laboratory Test Form</h3>
-            <form method="POST" action="{{ route('laboratoryTests.update', $laboratoryTest) }}">
+            <form method="POST" action="{{ route('laboratoryTests.update', $laboratoryTest) }}" enctype="multipart/form-data">
               @method('PUT')
               @csrf
               <div class="tile-body">
                   <div class="form-group">
-                    <label class="control-label">Code</label>
-                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $laboratoryTest->code }}" type="text" placeholder="Enter Code">
-                    @if ($errors->has('code'))
+                    <label class="control-label">Patient Record</label>
+                    <select class="form-control{{ $errors->has('patientRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientRecord">
+                      <option selected value="0">Choose Test</option>
+                      @foreach ($patientRecords as $patientRecord)
+                        <option {{ $laboratoryTest->patient_record_id == $patientRecord->id ? 'selected' : '' }} value="{{ $patientRecord->id }}">
+                          {{ 'Record ID:' . $patientRecord->id . ' ( ' . ucfirst($patientRecord->user->first_name) . ' ' . ucfirst($patientRecord->user->middle_name) . ' ' . ucfirst($patientRecord->user->last_name) . ' )'}}
+                        </option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('patientRecord'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('code') }}</strong>
+                            <strong>{{ $errors->first('patientRecord') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Type Of Test</label>
+                    <select class="form-control{{ $errors->has('typeOfTest') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfTest">
+                      <option selected value="0">Choose Test</option>
+                      @foreach ($typeOfTests as $typeOfTest)
+                        <option {{ $laboratoryTest->type_of_charge_id == $typeOfTest->id ? 'selected' : '' }} value="{{ $typeOfTest->id }}">{{ $typeOfTest->code }}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('typeOfTest'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('typeOfTest') }}</strong>
                         </span>
                     @endif
                   </div>
                   <div class="form-group">
                     <label class="control-label">Description</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                      placeholder="Enter Description here..."
-                    >{{$laboratoryTest->description}}</textarea>
+                      placeholder="Enter Description here...">{{$laboratoryTest->description}}</textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
                         </span>
                     @endif
+                  </div>
+                  <div class="form-group">
+                    <label for="image">Laboratory File</label>
+                    <input class="form-control-file" id="file" type="file" aria-describedby="fileHelp" name="file" value="{{$laboratoryTest->image}}"><small class="form-text text-muted" id="fileHelp">this field allow user to add laboratory result</small>
                   </div>
               </div>
               <div class="tile-footer">
