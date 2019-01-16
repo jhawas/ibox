@@ -55,6 +55,16 @@
                                       <li class="list-group-item">Total: P{{ $total }}</li>
                                   </ul>
                               </li>
+                              <li class="list-group-item">
+                                  Diagnoses:
+                                  <ul class="list-group list-group-flush">
+                                      @foreach ($record->diagnoses as $key2 => $diagnose)
+                                          <li class="list-group-item">
+                                              {{ $diagnose->diagnose->code }}
+                                          </li>
+                                      @endforeach
+                                  </ul>
+                              </li>
                             </ul>
                         </div>
                     </div>  

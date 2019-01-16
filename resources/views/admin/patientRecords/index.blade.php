@@ -27,6 +27,7 @@
                   <th>Room</th>
                   <th>Created At</th>
                   <th>Billing</th>
+                  <th>Diagnoses</th>
                   <th>Discharged</th>
                   <th>Action</th>
                 </tr>
@@ -45,6 +46,11 @@
                       <td>
                         <a href="{{ route('patientBillings.index', $patientRecord) }}">
                           Billing
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{{ route('patientDiagnoses.index', $patientRecord) }}">
+                          Diagnoses
                         </a>
                       </td>
                       <td>{{ $patientRecord->isReleased ? 'Yes' : 'No' }}</td>

@@ -21,4 +21,8 @@ class PatientRecord extends Model
     public function billings() {
         return $this->hasMany('App\PatientBilling');
     }
+
+    public function diagnoses() {
+        return $this->hasMany('App\PatientDiagnose');
+    }
 }

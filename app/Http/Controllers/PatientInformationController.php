@@ -34,6 +34,11 @@ class PatientInformationController extends Controller
                     'user',
                     'recordType',
                     'room',
+                    'diagnoses' => function($diagnoses) {
+                        $diagnoses->with([
+                            'diagnose'
+                        ]);
+                    },
                     'billings' => function($billing) {
                         $billing->with([
                             'charge'

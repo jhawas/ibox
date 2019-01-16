@@ -123,3 +123,22 @@ Route::put('patientBillings/{patientRecord}/{patientBilling}', 'PatientBillingCo
 
 Route::delete('patientBillings/{patientRecord}/{patientBilling}', 'PatientBillingController@destroy')
 		->name('patientBillings.destroy');
+
+// patient diagnoses
+Route::get('patientDiagnoses/{patientRecord}', 'PatientDiagnoseController@index')
+		->name('patientDiagnoses.index');
+
+Route::get('patientDiagnoses/{patientRecord}/create', 'PatientDiagnoseController@create')
+		->name('patientDiagnoses.create');
+
+Route::post('patientDiagnoses/{patientRecord}/store', 'PatientDiagnoseController@store')
+		->name('patientDiagnoses.store');
+
+Route::get('patientDiagnoses/{patientRecord}/{patientDiagnose}/edit', 'PatientDiagnoseController@edit')
+		->name('patientDiagnoses.edit');
+
+Route::put('patientDiagnoses/{patientRecord}/{patientDiagnose}', 'PatientDiagnoseController@update')
+		->name('patientDiagnoses.update');
+
+Route::delete('patientDiagnoses/{patientRecord}/{patientDiagnose}', 'PatientDiagnoseController@destroy')
+		->name('patientDiagnoses.destroy');
