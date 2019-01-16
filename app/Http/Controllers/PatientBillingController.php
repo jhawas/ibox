@@ -138,4 +138,13 @@ class PatientBillingController extends Controller
         $patientBilling->delete();
         return redirect()->route('patientBillings.index', $patientRecord);
     }
+
+    public function print(PatientRecord $patientRecord)
+    {
+        $patientBillings = PatientBilling::where('patient_record_id', $patientRecord->id)->get();
+        return view('admin.patientBillings.print', [
+            'patientRecord' => $patientRecord,
+            'patientBillings' => $patientBillings
+        ]);
+    }
 }

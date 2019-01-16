@@ -1,3 +1,4 @@
+<?php use App\Services\FilePathService; ?>
 @extends('admin.layouts.app')
 
 @section('content')
@@ -32,7 +33,7 @@
                     {{ $laboratoryTest->charge->code }}
                   </li>
                   <li class="list-group-item"> 
-                    <img src="{{asset('storage/'.$laboratoryTest->image)}}" />
+                    <img class="image" src="{{asset('storage/'. FilePathService::setPath($laboratoryTest->image))}}" />
                   </li>
                 </ul>
             </div>

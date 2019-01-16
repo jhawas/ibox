@@ -43,7 +43,7 @@ class PatientInformationController extends Controller
                         $billing->with([
                             'charge'
                         ]);
-                    }
+                    },
                 ]);
             }
         ])->where('is_user', 0)->get();
@@ -145,5 +145,51 @@ class PatientInformationController extends Controller
     {
         $user->delete();
         return redirect()->route('patientInformations.index');
+    }
+
+    /**
+     * Show print page.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function print()
+    {
+        $patientInformations = User::with([
+            'records' => function($record) {
+                $record->with([
+                    'user',
+                    'recordType',
+                    'room',
+                    'diagnoses' => function($diagnoses) {
+                        $diagnoses->with([
+                            'diagnose'
+                        ]);
+                    },
+                    'billings' => function($billing) {
+                        $billing->with([
+                            'charge'
+                        ]);
+                    }
+                ]);
+            }
+        ])->where('is_user', 0)->get();
+        // return $patientInformations;
+        return view('admin.patientInformations.print', [
+            'patientInformations' => $patientInformations,
+        ]);
+    }
+
+    /**
+     * Show print history page.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function printHistory(User $user) 
+    {
+        return view('admin.patientInformations.history', [
+            'patientInformation' => $user,
+        ]);
     }
 }

@@ -17,6 +17,7 @@
           <div class="tile-body">
             <div class="controller-wrapper">
               <a href="{{ route('patientInformations.create') }}" class="btn btn-primary">New</a>
+               <a href="{{ route('patientInformations.print') }}" class="btn btn-primary">Print Master List</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
               <thead>
@@ -25,7 +26,7 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Created</th>
-                  <th>Updated</th>
+                  <th>History</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -36,7 +37,9 @@
                       <td>{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->last_name) }}</td>
                       <td>{{ $patientInformation->email }}</td>
                       <td>{{ $patientInformation->created_at }}</td>
-                      <td>{{ $patientInformation->updated_at }}</td>
+                      <td>
+                        <a href="{{ route('patientInformations.printHistory', $patientInformation) }}" class="btn btn-primary">Print</a>
+                      </td>
                       <td>
                         <a href="{{ route('patientInformations.show', $patientInformation) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

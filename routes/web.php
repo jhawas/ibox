@@ -29,6 +29,9 @@ Route::resource('medicineTypes', 'MedicineTypeController');
 
 Route::resource('medicineStocks', 'MedicineStockController');
 
+Route::get('medicineStocks/inventory/print', 'MedicineStockController@print')
+		->name('medicineStocks.print');
+
 // patient Informations
 Route::get('patientInformations', 'PatientInformationController@index')
 		->name('patientInformations.index');
@@ -50,6 +53,12 @@ Route::delete('patientInformations/{user}', 'PatientInformationController@destro
 
 Route::get('patientInformations/{user}/edit', 'PatientInformationController@edit')
 		->name('patientInformations.edit');
+
+Route::get('patientInformations/patients/print', 'PatientInformationController@print')
+		->name('patientInformations.print');
+
+Route::get('patientInformations/{user}/print', 'PatientInformationController@printHistory')
+		->name('patientInformations.printHistory');
 
 // diagnoses
 Route::get('diagnoses', 'DiagnoseController@index')
@@ -123,6 +132,9 @@ Route::put('patientBillings/{patientRecord}/{patientBilling}', 'PatientBillingCo
 
 Route::delete('patientBillings/{patientRecord}/{patientBilling}', 'PatientBillingController@destroy')
 		->name('patientBillings.destroy');
+
+Route::get('patientBillings/{patientRecord}/print', 'PatientBillingController@print')
+		->name('patientBillings.print');
 
 // patient diagnoses
 Route::get('patientDiagnoses/{patientRecord}', 'PatientDiagnoseController@index')

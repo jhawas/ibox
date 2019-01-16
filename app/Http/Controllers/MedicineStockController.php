@@ -127,4 +127,17 @@ class MedicineStockController extends Controller
         $medicineStock->delete();
         return redirect()->route('medicineStocks.index');
     }
+
+    /**
+     * Inventory Page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function print()
+    {
+        $medicineStocks = MedicineStock::all();
+        return view('admin.medicineStocks.print', [
+            'medicineStocks' => $medicineStocks,
+        ]);
+    }
 }
