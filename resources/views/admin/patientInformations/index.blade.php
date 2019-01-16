@@ -17,7 +17,7 @@
           <div class="tile-body">
             <div class="controller-wrapper">
               <a href="{{ route('patientInformations.create') }}" class="btn btn-primary">New</a>
-               <a href="{{ route('patientInformations.print') }}" class="btn btn-primary">Print Master List</a>
+               <a href="{{ route('patientInformations.print') }}" target="_blank" class="btn btn-primary">Print Master List</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
               <thead>
@@ -38,7 +38,7 @@
                       <td>{{ $patientInformation->email }}</td>
                       <td>{{ $patientInformation->created_at }}</td>
                       <td>
-                        <a href="{{ route('patientInformations.printHistory', $patientInformation) }}" class="btn btn-primary">Print</a>
+                        <a href="{{ route('patientInformations.printHistory', $patientInformation) }}" class="btn btn-primary" target="_blank">Print</a>
                       </td>
                       <td>
                         <a href="{{ route('patientInformations.show', $patientInformation) }}" class="btn btn-primary">

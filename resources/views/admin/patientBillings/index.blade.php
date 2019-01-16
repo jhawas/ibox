@@ -18,7 +18,7 @@
           <div class="tile-body">
             <div class="controller-wrapper">
               <a href="{{ route('patientBillings.create', $patientRecord) }}" class="btn btn-primary">New</a>
-              <a href="{{ route('patientBillings.print', $patientRecord) }}" class="btn btn-primary">Print</a>
+              <a href="{{ route('patientBillings.print', $patientRecord) }}" target="_blank" class="btn btn-primary">Print</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
               <thead>
