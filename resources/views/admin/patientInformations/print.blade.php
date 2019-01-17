@@ -17,15 +17,17 @@
               </thead>
               <tbody>
                   @foreach ($patientInformations as $patientInformation)
-                    <td>{{ $patientInformation->id }}</td>
-                    <td>{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->middle_name) . ' ' . $patientInformation->last_name }}</td>
-                    <td>
-                        @foreach ($patientInformation->records as $record)
-                            @foreach ($record->diagnoses as $diagnose)
-                                <div>{{$diagnose->diagnose->code}}</div>
-                            @endforeach
-                        @endforeach
-                    </td>
+                    <tr>
+                      <td>{{ $patientInformation->id }}</td>
+                      <td>{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->middle_name) . ' ' . $patientInformation->last_name }}</td>
+                      <td>
+                          @foreach ($patientInformation->records as $record)
+                              @foreach ($record->diagnoses as $diagnose)
+                                  <div>{{$diagnose->diagnose->code}}</div>
+                              @endforeach
+                          @endforeach
+                      </td>
+                    </tr>
                   @endforeach
               </tbody>
             </table>

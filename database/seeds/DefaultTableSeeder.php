@@ -98,5 +98,70 @@ class DefaultTableSeeder extends Seeder
                 'role_id' => 2
             ]));
         });
+
+        factory(App\User::class, 20)
+        ->create([
+            'is_user' => 0
+        ])->each(function ($user) {
+             $user->user_role()->save(factory(App\UserRole::class)->make([
+                'user_id' => $user->id,
+                'role_id' => 6
+            ]));
+        });
+
+        // factory(App\Diagnose::class, 20)->create();
+
+        $typeOfRecords = array(
+            array(
+                'code' => 'Out Patient',
+                'description' => 'Out Patient',
+                'price' => 300
+            ),
+            array(
+                'code' => 'In Patient',
+                'description' => 'In Patient',
+                'price' => 0
+            ),
+        );
+
+        // for type of records
+        foreach ($typeOfRecords as $key => $typeOfRecord) {
+            factory(App\TypeOfCharge::class)->create([
+                'code' => $typeOfRecord['code'],
+                'description' => $typeOfRecord['description'],
+                'price' => $typeOfRecord['price'],
+                'type_id' => 4
+            ]);
+        }
+
+        $typeOfRooms = array(
+            array(
+                'code' => 'Private Room',
+                'description' => 'Private Room',
+                'price' => 1000
+            ),
+            array(
+                'code' => 'Semi-Private Room',
+                'description' => 'Semi-Private Room',
+                'price' => 500
+            ),
+            array(
+                'code' => 'Regular Room',
+                'description' => 'Regular Room',
+                'price' => 300
+            ),
+        );
+
+        // for type of room
+        foreach ($typeOfRooms as $key => $typeOfRoom) {
+            factory(App\TypeOfCharge::class)->create([
+                'code' => $typeOfRoom['code'],
+                'description' => $typeOfRoom['description'],
+                'price' => $typeOfRoom['price'],
+                'type_id' => 2
+            ]);
+        }
+
+
     }
 }
