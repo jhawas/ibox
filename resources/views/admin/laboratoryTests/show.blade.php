@@ -24,7 +24,7 @@
                     {{ ucfirst($laboratoryTest->record->user->first_name) . ' ' . ucfirst($laboratoryTest->record->user->middle_name) . ' ' . ucfirst($laboratoryTest->record->user->last_name) }}
                   </li>
                   <li class="list-group-item">Create At: 
-                    {{ $laboratoryTest->created_at }}
+                    {{ $laboratoryTest->created_at->toFormattedDateString() }}
                   </li>
                   <li class="list-group-item">Description: 
                     {{ $laboratoryTest->description }}

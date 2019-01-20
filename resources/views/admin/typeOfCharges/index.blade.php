@@ -39,8 +39,8 @@
                       <td>{{ $typeOfCharge->type->code }}</td>
                       <td>{{ $typeOfCharge->price }}</td>
                       <td>{{ $typeOfCharge->description }}</td>
-                      <td>{{ $typeOfCharge->created_at }}</td>
-                      <td>{{ $typeOfCharge->updated_at }}</td>
+                      <td>{{ $typeOfCharge->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $typeOfCharge->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('typeOfCharges.show', $typeOfCharge) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

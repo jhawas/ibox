@@ -19,8 +19,8 @@
                   <li class="list-group-item">Code: {{ $medicineType->code }}</li>
                   <li class="list-group-item">Description: {{ $medicineType->description }}</li>
                   <li class="list-group-item">Price: {{ $medicineType->price }}</li>
-                  <li class="list-group-item">Created At: {{ $medicineType->created_at }}</li>
-                  <li class="list-group-item">Updated At: {{ $medicineType->updated_at }}</li>
+                  <li class="list-group-item">Created At: {{ $medicineType->created_at->toFormattedDateString() }}</li>
+                  <li class="list-group-item">Updated At: {{ $medicineType->updated_at->toFormattedDateString() }}</li>
                 </ul>
             </div>
           </div>

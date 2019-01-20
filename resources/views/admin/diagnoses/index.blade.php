@@ -35,8 +35,8 @@
                       <td>{{ $diagnose->id }}</td>
                       <td>{{ $diagnose->code }}</td>
                       <td>{{ $diagnose->description }}</td>
-                      <td>{{ $diagnose->created_at }}</td>
-                      <td>{{ $diagnose->updated_at }}</td>
+                      <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $diagnose->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('diagnoses.show', $diagnose) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

@@ -19,8 +19,8 @@
                   <li class="list-group-item">Code: {{ $room->code }}</li>
                   <li class="list-group-item">Description: {{ $room->description }}</li>
                   <li class="list-group-item">Code: {{ $room->floor->code }}</li>
-                  <li class="list-group-item">Description: {{ $room->room_type->code }}</li>
-                  <li class="list-group-item">Description: {{ $room->capacity }}</li>
+                  <li class="list-group-item">Type Of Room: {{ $room->room_type->code }}</li>
+                  <li class="list-group-item">Capacity: {{ $room->capacity }}</li>
                 </ul>
             </div>
           </div>

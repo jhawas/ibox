@@ -39,8 +39,8 @@
                       <td>{{ $user->username }}</td>
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->user_role->role->name }}</td>
-                      <td>{{ $user->created_at }}</td>
-                      <td>{{ $user->updated_at }}</td>
+                      <td>{{ $user->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $user->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

@@ -19,8 +19,8 @@
                   <li class="list-group-item">Code: {{ $roomType->code }}</li>
                   <li class="list-group-item">Description: {{ $roomType->description }}</li>
                   <li class="list-group-item">Price: {{ $roomType->price }}</li>
-                  <li class="list-group-item">Created At: {{ $roomType->created_at }}</li>
-                  <li class="list-group-item">Updated At: {{ $roomType->updated_at }}</li>
+                  <li class="list-group-item">Created At: {{ $roomType->created_at->toFormattedDateString() }}</li>
+                  <li class="list-group-item">Updated At: {{ $roomType->updated_at->toFormattedDateString() }}</li>
                 </ul>
             </div>
           </div>

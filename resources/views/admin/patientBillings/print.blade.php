@@ -29,7 +29,7 @@
                 <td>{{ $patientBilling->id }}</td>
                 <td>{{ ucfirst($patientBilling->charge->code) . ' (' . strtoupper($patientBilling->charge->type->code).')' }}</td>
                 <td>{{ $patientBilling->quantity }}</td>
-                <td>{{ $patientBilling->created_at }}</td>
+                <td>{{ $patientBilling->created_at->toFormattedDateString() }}</td>
                 <td style="text-align: right">{{ $patientBilling->price }}</td>
                 <td>{{ $patientBilling->description }}</td>
                 <td style="text-align: right">{{ $patientBilling->total }}</td>

@@ -19,8 +19,8 @@
                   <li class="list-group-item">Code: {{ $typeOfTest->code }}</li>
                   <li class="list-group-item">Description: {{ $typeOfTest->description }}</li>
                   <li class="list-group-item">Price: {{ $typeOfTest->price }}</li>
-                  <li class="list-group-item">Created At: {{ $typeOfTest->created_at }}</li>
-                  <li class="list-group-item">Updated At: {{ $typeOfTest->updated_at }}</li>
+                  <li class="list-group-item">Created At: {{ $typeOfTest->created_at->toFormattedDateString() }}</li>
+                  <li class="list-group-item">Updated At: {{ $typeOfTest->updated_at->toFormattedDateString() }}</li>
                 </ul>
             </div>
           </div>

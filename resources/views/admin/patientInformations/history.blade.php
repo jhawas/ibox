@@ -25,7 +25,7 @@
                     <tr>
                       <td>{{ $record->id}}</td>
                       <td>{{ $record->recordType->code}}</td>
-                      <td>{{ $record->created_at}}</td>
+                      <td>{{ $record->created_at->toFormattedDateString()}}</td>
                       <td>{{ $record->room->code}}</td>
                       <td>{{ $record->description}}</td>
                       <td>

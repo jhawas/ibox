@@ -26,7 +26,7 @@
                   <td>{{ $medicineStock->quantity }}</td>
                   <td>{{ $medicineStock->description }}</td>
                   <td>{{ $medicineStock->medicine->price }}</td>
-                  <td>{{ $medicineStock->created_at }}</td>
+                  <td>{{ $medicineStock->created_at->toFormattedDateString() }}</td>
               </tr>
             @endforeach
           </tbody>

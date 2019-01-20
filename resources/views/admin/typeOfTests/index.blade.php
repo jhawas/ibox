@@ -37,8 +37,8 @@
                       <td>{{ $typeOfTest->code }}</td>
                       <td>{{ $typeOfTest->description }}</td>
                       <td>{{ $typeOfTest->price }}</td>
-                      <td>{{ $typeOfTest->created_at }}</td>
-                      <td>{{ $typeOfTest->updated_at }}</td>
+                      <td>{{ $typeOfTest->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $typeOfTest->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('typeOfTests.show', ['id' => $typeOfTest->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

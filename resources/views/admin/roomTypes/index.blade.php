@@ -37,8 +37,8 @@
                       <td>{{ $roomType->code }}</td>
                       <td>{{ $roomType->description }}</td>
                       <td>{{ $roomType->price }}</td>
-                      <td>{{ $roomType->created_at }}</td>
-                      <td>{{ $roomType->updated_at }}</td>
+                      <td>{{ $roomType->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $roomType->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('roomTypes.show', ['id' => $roomType->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

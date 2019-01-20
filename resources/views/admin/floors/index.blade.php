@@ -35,8 +35,8 @@
                       <td>{{ $floor->id }}</td>
                       <td>{{ $floor->code }}</td>
                       <td>{{ $floor->description }}</td>
-                      <td>{{ $floor->created_at }}</td>
-                      <td>{{ $floor->updated_at }}</td>
+                      <td>{{ $floor->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $floor->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('floors.show', ['id' => $floor->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

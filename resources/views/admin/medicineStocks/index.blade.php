@@ -39,7 +39,7 @@
                       <td>{{ $medicineStock->quantity }}</td>
                       <td>{{ $medicineStock->description }}</td>
                       <td>{{ $medicineStock->medicine->price }}</td>
-                      <td>{{ $medicineStock->created_at }}</td>
+                      <td>{{ $medicineStock->created_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('medicineStocks.show', ['id' => $medicineStock->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

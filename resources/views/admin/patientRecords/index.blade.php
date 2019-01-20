@@ -42,7 +42,7 @@
                         ucfirst($patientRecord->user->last_name) }}</td>
                       <td>{{ $patientRecord->recordType->code }}</td>
                       <td>{{ $patientRecord->room->code }}</td>
-                      <td>{{ $patientRecord->created_at }}</td>
+                      <td>{{ $patientRecord->created_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('patientBillings.index', $patientRecord) }}">
                           Billing

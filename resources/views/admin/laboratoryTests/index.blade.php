@@ -39,8 +39,8 @@
                       <td>{{ ucfirst($laboratoryTest->record->user->first_name) . ' ' . ucfirst($laboratoryTest->record->user->middle_name) . ' ' . ucfirst($laboratoryTest->record->user->last_name) }}</td>
                       <td>{{ strtoupper($laboratoryTest->charge->code) }}</td>
                       <td>{{ $laboratoryTest->description }}</td>
-                      <td>{{ $laboratoryTest->created_at }}</td>
-                      <td>{{ $laboratoryTest->updated_at }}</td>
+                      <td>{{ $laboratoryTest->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $laboratoryTest->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('laboratoryTests.show', $laboratoryTest) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

@@ -36,7 +36,7 @@
                       <td>{{ $patientInformation->id }}</td>
                       <td>{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->last_name) }}</td>
                       <td>{{ $patientInformation->email }}</td>
-                      <td>{{ $patientInformation->created_at }}</td>
+                      <td>{{ $patientInformation->created_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('patientInformations.printHistory', $patientInformation) }}" class="btn btn-primary" target="_blank">Print</a>
                       </td>

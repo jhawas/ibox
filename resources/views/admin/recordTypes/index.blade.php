@@ -37,8 +37,8 @@
                       <td>{{ $recordType->code }}</td>
                       <td>{{ $recordType->description }}</td>
                       <td>{{ $recordType->price }}</td>
-                      <td>{{ $recordType->created_at }}</td>
-                      <td>{{ $recordType->updated_at }}</td>
+                      <td>{{ $recordType->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $recordType->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('recordTypes.show', ['id' => $recordType->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

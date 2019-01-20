@@ -20,8 +20,8 @@
                   <li class="list-group-item">Quantity: {{ $medicineStock->quantity }}</li>
                   <li class="list-group-item">Description: {{ $medicineStock->description }}</li>
                   <li class="list-group-item">Price: {{ $medicineStock->medicine->price }}</li>
-                  <li class="list-group-item">Created At: {{ $medicineStock->created_at }}</li>
-                  <li class="list-group-item">Updated At: {{ $medicineStock->updated_at }}</li>
+                  <li class="list-group-item">Created At: {{ $medicineStock->created_at->toFormattedDateString() }}</li>
+                  <li class="list-group-item">Updated At: {{ $medicineStock->updated_at->toFormattedDateString() }}</li>
                 </ul>
             </div>
           </div>

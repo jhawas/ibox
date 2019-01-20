@@ -33,7 +33,7 @@
                   <tr>
                       <td>{{ $patientDiagnose->id }}</td>
                       <td>{{ $patientDiagnose->diagnose->code }}</td>
-                      <td>{{ $patientDiagnose->created_at }}</td>
+                      <td>{{ $patientDiagnose->created_at->toFormattedDateString() }}</td>
                       <td>{{ $patientDiagnose->description }}</td>
                       <td>
                         <a href="{{ route('patientDiagnoses.edit', [$patientRecord, $patientDiagnose]) }}" class="btn btn-primary">

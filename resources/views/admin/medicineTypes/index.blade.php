@@ -37,8 +37,8 @@
                       <td>{{ $medicineType->code }}</td>
                       <td>{{ $medicineType->description }}</td>
                       <td>{{ $medicineType->price }}</td>
-                      <td>{{ $medicineType->created_at }}</td>
-                      <td>{{ $medicineType->updated_at }}</td>
+                      <td>{{ $medicineType->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $medicineType->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('medicineTypes.show', ['id' => $medicineType->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
