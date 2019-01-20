@@ -16,8 +16,8 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $prescription->code }}</li>
-                  <li class="list-group-item">Description: {{ $prescription->description }}</li>
+                  <li class="list-group-item">Patient: {{ 'Record ID:' . $prescription->records->id . ' ( ' . ucfirst($prescription->records->user->first_name) . ' ' . ucfirst($prescription->records->user->middle_name) . ' ' . ucfirst($prescription->records->user->last_name) . ' )' }}</li>
+                  <li class="list-group-item">Description/Note: {{ $prescription->description }}</li>
                 </ul>
             </div>
           </div>

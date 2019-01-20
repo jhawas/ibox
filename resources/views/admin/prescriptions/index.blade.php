@@ -22,7 +22,9 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Description</th>
+                  <th>Patient</th>
+                  <th>Description/Note</th>
+                  <td>Approved</td>
                   <th>Created</th>
                   <th>Updated</th>
                   <th>Action</th>
@@ -32,7 +34,9 @@
                 @foreach ($prescriptions as $prescription)
                   <tr>
                       <td>{{ $prescription->id }}</td>
+                      <td>{{ 'Record ID:' . $prescription->records->id . ' ( ' . ucfirst($prescription->records->user->first_name) . ' ' . ucfirst($prescription->records->user->middle_name) . ' ' . ucfirst($prescription->records->user->last_name) . ' )' }}</td>
                       <td>{{ $prescription->description }}</td>
+                      <td>{{ $prescription->is_approved ? 'Yes' : 'No' }}</td>
                       <td>{{ $prescription->created_at->toFormattedDateString() }}</td>
                       <td>{{ $prescription->updated_at->toFormattedDateString() }}</td>
                       <td>

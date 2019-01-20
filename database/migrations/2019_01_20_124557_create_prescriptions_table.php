@@ -17,9 +17,8 @@ class CreatePrescriptionsTable extends Migration
             $table->increments('id');
             $table->integer('patient_record_id')->unsigned()->nullable();
             $table->foreign('patient_record_id')->references('id')->on('patient_records')->onDelete('cascade');
-            $table->integer('medicine_stock_id')->unsigned()->nullable();
-            $table->foreign('medicine_stock_id')->references('id')->on('medicine_stocks')->onDelete('cascade');
             $table->string('description')->nullable();
+            $table->boolean('is_approved')->default(0);
             $table->timestamps();
         });
     }

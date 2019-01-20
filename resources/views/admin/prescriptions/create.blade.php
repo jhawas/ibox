@@ -35,21 +35,7 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label class="control-label">Medicine</label>
-                    <select class="form-control{{ $errors->has('medicineStock') ? ' is-invalid' : '' }}" style="width: 100%;" name="medicineStock">
-                      <option selected value="0"><--Choose Medicine--></option>
-                      @foreach ($medicineStocks as $index => $medicineStock)
-                        <option {{ old('medicineStock') == $medicineStock->id ? 'selected' : '' }} value="{{$medicineStock->id}}">{{ ucfirst($medicineStock->medicine->code) }}</option>
-                      @endforeach
-                    </select>
-                    @if ($errors->has('medicineStock'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('medicineStock') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Description</label>
+                    <label class="control-label">Description/Note</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                       placeholder="Enter Description here...">
                       {{old('description')}}

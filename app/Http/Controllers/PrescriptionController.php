@@ -45,12 +45,10 @@ class PrescriptionController extends Controller
     public function create()
     {
         $patientRecords = PatientRecord::all();
-        $medicineStocks = MedicineStock::all();
         return view('admin.prescriptions.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'patientRecords' => $patientRecords,
-            'medicineStocks' => $medicineStocks
         ]);
     }
 
@@ -64,7 +62,6 @@ class PrescriptionController extends Controller
     {
         $prescription = new Prescription;
         $prescription->patient_record_id = $request->patientRecord;
-        $prescription->medicine_stock_id = $request->medicineStock;
         $prescription->description = $request->description;
         $prescription->save();
         return redirect()->route('prescriptions.index');
@@ -94,13 +91,11 @@ class PrescriptionController extends Controller
     public function edit(Prescription $prescription)
     {
         $patientRecords = PatientRecord::all();
-        $medicineStocks = MedicineStock::all();
         return view('admin.prescriptions.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'prescription' => $prescription,
             'patientRecords' => $patientRecords,
-            'medicineStocks' => $medicineStocks
         ]);
     }
 
@@ -113,9 +108,10 @@ class PrescriptionController extends Controller
      */
     public function update(Request $request, Prescription $prescription)
     {
+        $is_approved = $request->is_approved == 'on' ? true : false;
         $prescription->description = $request->description;
         $prescription->patient_record_id = $request->patientRecord;
-        $prescription->medicine_stock_id = $request->medicineStock;
+        $prescription->is_approved = $is_approved;
         $prescription->save();
         return redirect()->route('prescriptions.index');
     }

@@ -47,12 +47,12 @@
               <span class="app-menu__label">Laboratory</span>
             </a>
         </li>
-        {{-- <li>
+        <li>
             <a class="app-menu__item" href="{{ route('prescriptions.index') }}">
               <i class="app-menu__icon fa fa-pie-chart"></i>
               <span class="app-menu__label">Prescription</span>
             </a>
-        </li> --}}
+        </li>
       </ul>
     </li>
     @if(

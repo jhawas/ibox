@@ -36,21 +36,7 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label class="control-label">Medicine</label>
-                    <select class="form-control{{ $errors->has('medicineStock') ? ' is-invalid' : '' }}" style="width: 100%;" name="medicineStock">
-                      <option selected value="0"><--Choose Medicine--></option>
-                      @foreach ($medicineStocks as $index => $medicineStock)
-                        <option {{ $prescription->medicine_stock_id == $medicineStock->id ? 'selected' : '' }} value="{{$medicineStock->id}}">{{ ucfirst($medicineStock->medicine->code) }}</option>
-                      @endforeach
-                    </select>
-                    @if ($errors->has('medicineStock'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('medicineStock') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Description</label>
+                    <label class="control-label">Description/Note</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                       placeholder="Enter Description here...">{{$prescription->description}}</textarea>
                     @if ($errors->has('description'))
@@ -59,6 +45,18 @@
                         </span>
                     @endif
                   </div>
+                  @if(Auth::user()->user_role->role->id == 4 || Auth::user()->user_role->role->id == 5 || Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2)
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input 
+                          name="is_approved" 
+                          class="form-check-input" 
+                          type="checkbox"
+                          {{ $prescription->is_approved == 1 ? 'checked' : '' }}
+                        >presciption approved
+                      </label>
+                    </div>
+                  @endif
               </div>
               <div class="tile-footer">
                 <button class="btn btn-primary" type="submit">
