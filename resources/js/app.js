@@ -36,7 +36,6 @@ const app = new Vue({
 
 $("#datatable").DataTable();
 
-
 var treeviewMenu = $('.app-menu');
 
 // Toggle Sidebar

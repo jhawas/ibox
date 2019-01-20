@@ -22,7 +22,7 @@ class CreatePatientBillingsTable extends Migration
             $table->decimal('price', 8, 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->decimal('total', 8, 2)->nullable();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

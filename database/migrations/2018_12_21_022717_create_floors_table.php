@@ -15,8 +15,8 @@ class CreateFloorsTable extends Migration
     {
         Schema::create('floors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
-            $table->string('description');
+            $table->string('code')->nullable();
+            $table->string('description')->nullable();
             $table->integer('trans_user_id')->unsigned()->nullable();
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

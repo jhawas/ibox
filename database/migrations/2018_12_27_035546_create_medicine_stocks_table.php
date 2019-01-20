@@ -17,8 +17,8 @@ class CreateMedicineStocksTable extends Migration
             $table->increments('id');
             $table->integer('type_of_charge_id')->unsigned()->nullable();
             $table->foreign('type_of_charge_id')->references('id')->on('type_of_charges')->onDelete('cascade');
-            $table->integer('quantity');
-            $table->string('description');
+            $table->integer('quantity')->default(1);
+            $table->string('description')->nullable();
             $table->integer('trans_user_id')->unsigned()->nullable();
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

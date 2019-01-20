@@ -21,7 +21,7 @@ class CreateLaboratoryTestsTable extends Migration
             $table->foreign('type_of_charge_id')->references('id')->on('type_of_charges')->onDelete('cascade');
             $table->integer('trans_user_id')->unsigned()->nullable();
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('image');
             $table->timestamps();
         });

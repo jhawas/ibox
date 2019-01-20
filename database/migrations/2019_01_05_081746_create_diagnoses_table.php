@@ -15,8 +15,8 @@ class CreateDiagnosesTable extends Migration
     {
         Schema::create('diagnoses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
-            $table->string('description');
+            $table->string('code')->nullable();
+            $table->string('description')->nullable();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->foreign('parent_id')->references('id')->on('diagnoses')->onDelete('cascade');
             $table->integer('trans_user_id')->unsigned()->nullable();
