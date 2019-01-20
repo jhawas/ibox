@@ -23,8 +23,8 @@
                    }}</li>
                   <li class="list-group-item">Status: {{ $patientRecord->recordType->code }}</li>
                   <li class="list-group-item">Room: {{ $patientRecord->room->code }}</li>
-                  <li class="list-group-item">Started At: {{ $patientRecord->started_at->toFormattedDateString() }}</li>
-                  <li class="list-group-item">End At: {{ $patientRecord->end_at->toFormattedDateString() }}</li>
+                  <li class="list-group-item">Started At: {{ \Carbon\Carbon::parse($patientRecord->started_at)->format('M, d Y')}}</li>
+                  <li class="list-group-item">End At: {{ \Carbon\Carbon::parse($patientRecord->end_at)->format('M, d Y')}}</li>
                   <li class="list-group-item">Description: {{ $patientRecord->description }}</li>
                    <li class="list-group-item">Dicharged: {{ $patientRecord->isReleased ? 'Yes' : 'No' }}</li>
                 </ul>
