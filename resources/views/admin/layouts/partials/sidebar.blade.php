@@ -30,27 +30,23 @@
       </a>
       <ul class="treeview-menu">
         <li>
-            <a class="app-menu__item" href="{{ route('patientInformations.index') }}">
-              <i class="app-menu__icon fa fa-pie-chart"></i>
-              <span class="app-menu__label">Patient Information</span>
+            <a class="treeview-item" href="{{ route('patientInformations.index') }}">
+              <i class="icon fa fa-circle-o"></i> Patient Information
             </a>
         </li>
         <li>
-            <a class="app-menu__item" href="{{ route('patientRecords.index') }}">
-              <i class="app-menu__icon fa fa-pie-chart"></i>
-              <span class="app-menu__label">Records</span>
+            <a class="treeview-item" href="{{ route('patientRecords.index') }}">
+              <i class="icon fa fa-circle-o"></i> Records
             </a>
         </li>
         <li>
-            <a class="app-menu__item" href="{{ route('laboratoryTests.index') }}">
-              <i class="app-menu__icon fa fa-pie-chart"></i>
-              <span class="app-menu__label">Laboratory</span>
+            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+              <i class="icon fa fa-circle-o"></i> Laboratory
             </a>
         </li>
         <li>
-            <a class="app-menu__item" href="{{ route('prescriptions.index') }}">
-              <i class="app-menu__icon fa fa-pie-chart"></i>
-              <span class="app-menu__label">Prescription</span>
+            <a class="treeview-item" href="{{ route('prescriptions.index') }}">
+              <i class="icon fa fa-circle-o"></i> Prescription
             </a>
         </li>
       </ul>
