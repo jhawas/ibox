@@ -33,6 +33,8 @@ class CreateUsersTable extends Migration
             $table->string('zipcode')->nullable();
             $table->string('address')->nullable();
             $table->string('address2')->nullable();
+            $table->string('degree')->nullable();
+            $table->string('specialty')->nullable();
             $table->string('password')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
