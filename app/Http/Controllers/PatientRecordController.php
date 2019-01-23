@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\PatientRecord;
 use App\TypeOfCharge;
+use App\PatientDiagnose;
+use App\Diagnose;
 use App\Room;
 use App\User;
 use Illuminate\Http\Request;
@@ -49,6 +51,7 @@ class PatientRecordController extends Controller
      */
     public function create()
     {
+        $diagnoses = Diagnose::all();
         $patientInformations = User::where('is_user', 0)->get();
         $recordTypes = TypeOfCharge::where('type_id', 4)->get();
         $rooms = Room::all();
@@ -57,7 +60,8 @@ class PatientRecordController extends Controller
             'description' => $this->description . $this->page,
             'recordTypes' => $recordTypes,
             'rooms' => $rooms,
-            'patientInformations' => $patientInformations
+            'patientInformations' => $patientInformations,
+            'diagnoses' => $diagnoses,
         ]);
     }
 
@@ -75,11 +79,24 @@ class PatientRecordController extends Controller
         $patientRecord->user_id = $request->patientInformation;
         $patientRecord->type_of_charge_id = $request->recordType;
         $patientRecord->room_id = $request->room;
-        $patientRecord->started_at = $request->startAt;
-        $patientRecord->end_at = $request->endAt;
+        // $patientRecord->started_at = $request->startAt;
+        // $patientRecord->end_at = $request->endAt;
         $patientRecord->description = $request->description;
         $patientRecord->isReleased = $isReleased;
         $patientRecord->save();
+
+        // initial diagnoses
+        $patientDiagnose = new PatientDiagnose;
+        $patientDiagnose->diagnose_id = $request->diagnoses;
+        $patientDiagnose->patient_record_id = $patientRecord->id;
+        $patientDiagnose->weight = $request->weight;
+        $patientDiagnose->height = $request->height;
+        $patientDiagnose->temperature = $request->temperature;
+        $patientDiagnose->blood_pressure = $request->blood_pressure;
+        $patientDiagnose->pulse_rate = $request->pulse_rate;
+        $patientDiagnose->description = $request->diagnoses_description;
+        $patientDiagnose->save();
+
         return redirect()->route('patientRecords.index');
     }
 
@@ -106,6 +123,7 @@ class PatientRecordController extends Controller
      */
     public function edit(PatientRecord $patientRecord)
     {
+        $diagnoses = Diagnose::all();
         $patientInformations = User::where('is_user', 0)->get();
         $recordTypes = TypeOfCharge::where('type_id', 4)->get();
         $rooms = Room::all();
@@ -115,7 +133,8 @@ class PatientRecordController extends Controller
             'patientRecord' => $patientRecord,
             'patientInformations' => $patientInformations,
             'recordTypes' => $recordTypes,
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'diagnoses' => $diagnoses,
         ]);
     }
 
@@ -132,8 +151,8 @@ class PatientRecordController extends Controller
         $patientRecord->user_id = $request->patientInformation;
         $patientRecord->type_of_charge_id = $request->recordType;
         $patientRecord->room_id = $request->room;
-        $patientRecord->started_at = $request->startAt;
-        $patientRecord->end_at = $request->endAt;
+        // $patientRecord->started_at = $request->startAt;
+        // $patientRecord->end_at = $request->endAt;
         $patientRecord->description = $request->description;
         $patientRecord->isReleased = $isReleased;
         $patientRecord->save();

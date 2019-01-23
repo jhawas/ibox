@@ -19,6 +19,11 @@ class CreatePatientDiagnosesTable extends Migration
             $table->foreign('diagnose_id')->references('id')->on('diagnoses')->onDelete('cascade');
             $table->integer('patient_record_id')->unsigned()->nullable();
             $table->foreign('patient_record_id')->references('id')->on('patient_records')->onDelete('cascade');
+            $table->string('weight')->nullable();
+            $table->string('height')->nullable();
+            $table->string('temperature')->nullable();
+            $table->string('blood_pressure')->nullable();
+            $table->string('pulse_rate')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });

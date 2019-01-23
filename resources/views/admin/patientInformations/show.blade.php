@@ -11,7 +11,7 @@
         <li class="breadcrumb-item"><a href="#">{{ $page }}</a></li>
       </ul>
     </div>
-      <div class="row">
+    <div class="row">
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">
@@ -26,51 +26,83 @@
           </div>
         </div>
         <div class="col-md-12">
-          <div class="tile">
-            <div class="tile-body">
-                <div class="title-container">
-                  <h4>Medical History</h4>
-                </div>
+            <div class="tile">
+              <div class="tile-body">
+                <h3 class="tile-title">Medical History</h3>
                 @foreach ($patientInformation->records as $key => $record)
-                    <?php $total = 0 ?>
-                    <div class="record-container">
-                        <div class="record-id-container">
-                            <h5>Record ID: {{ $record->id }}</h5>
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item">Status: {{$record->recordType->code}}</li>
-                              <li class="list-group-item">Room: {{$record->room->code}}</li>
-                              <li class="list-group-item">Description/Details: {{$record->description}}</li>
-                              <li class="list-group-item">Date and Time: {{$record->created_at}}</li>
-                              <li class="list-group-item">
-                                Billing Charges:
-                                  <ul class="list-group list-group-flush">
-                                    @foreach ($record->billings as $key2 => $billing)
-                                      <?php $total += $billing->total ?>
-                                      <li class="list-group-item">
-                                        {{$billing->charge->code}}: P{{$billing->charge->price}}
-                                        <br/>
-                                        Quantity/Day: {{$billing->quantity}}
-                                      </li>
-                                    @endforeach
-                                      <li class="list-group-item">Total: P{{ $total }}</li>
-                                  </ul>
-                              </li>
-                              <li class="list-group-item">
-                                  Diagnoses:
-                                  <ul class="list-group list-group-flush">
-                                      @foreach ($record->diagnoses as $key2 => $diagnose)
-                                          <li class="list-group-item">
-                                              {{ $diagnose->diagnose->code }}
-                                          </li>
-                                      @endforeach
-                                  </ul>
-                              </li>
-                            </ul>
-                        </div>
-                    </div>  
-                @endforeach
+                  <?php $total = 0 ?>
+                  <div class="record-container">
+                      <div class="record-id-container">
+                          <h5>Record ID: {{ $record->id }}</h5>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Status: {{$record->recordType->code}}</li>
+                            <li class="list-group-item">Room: {{$record->room->code}}</li>
+                            <li class="list-group-item">Description/Details: {{$record->description}}</li>
+                            <li class="list-group-item">Date and Time: {{$record->created_at}}</li>
+                          </ul>
+                      </div>
+                  </div> 
+                  <div>
+                    <h5>Billing</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Charges</th>
+                          <th>Amount</th>
+                          <th>Quantity/Days</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->billings as $key2 => $billing)
+                         <?php $total += $billing->total ?>
+                          <tr>
+                            <td>{{ $billing->charge->code }}</td>
+                            <td>{{ $billing->charge->price }}</td>
+                            <td>{{ $billing->quantity }}</td>
+                            <td>{{ $billing->total }}</td>
+                          </tr>
+                        @endforeach
+                        <tr>
+                          <td colspan="4">Total: P{{ number_format($total,2) }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div>
+                    <h5>Patient Chart</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Diagnoses Code</th>
+                          <th>Diagnoses</th>
+                          <th>Weight</th>
+                          <th>Height</th>
+                          <th>Temperature</th>
+                          <th>Blood Pressure</th>
+                          <th>Pulse Rate</th>
+                          <th>Created</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->diagnoses as $diagnose)
+                          <tr>
+                              <td>{{ $diagnose->diagnose->code }}</td>
+                              <td>{{ $diagnose->description }}</td>
+                              <td>{{ $diagnose->weight }}</td>
+                              <td>{{ $diagnose->height }}</td>
+                              <td>{{ $diagnose->temperature }}</td>
+                              <td>{{ $diagnose->blood_pressure }}</td>
+                              <td>{{ $diagnose->pulse_rate }}</td>
+                              <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+              @endforeach
             </div>
           </div>
-        </div>
       </div>
+    </div>
 @endsection

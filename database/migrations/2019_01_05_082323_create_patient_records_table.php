@@ -31,8 +31,15 @@ class CreatePatientRecordsTable extends Migration
 
             $table->date('end_at')->nullable();
             
-            $table->string('description')->nullable();
 
+            $table->string('weight')->nullable();
+            $table->string('height')->nullable();
+            $table->string('temperature')->nullable();
+            $table->string('blood_pressure')->nullable();
+            $table->string('pulse_rate')->nullable();
+
+            $table->string('description')->nullable();
+            
             $table->boolean('isReleased')->default(0);
 
             $table->timestamps();

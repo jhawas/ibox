@@ -81,7 +81,7 @@
       </ul>
     </li>
     @endif
-    @if(
+   {{--  @if(
       Auth::user()->user_role->role->id == 1 || 
       Auth::user()->user_role->role->id == 2 ||
       Auth::user()->user_role->role->id == 5
@@ -106,7 +106,7 @@
         
       </ul>
     </li>
-    @endif
+    @endif --}}
     @if(
       Auth::user()->user_role->role->id == 1 || 
       Auth::user()->user_role->role->id == 2

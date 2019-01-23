@@ -25,13 +25,14 @@
                   <th>Patient</th>
                   <th>Status</th>
                   <th>Room</th>
-                  <th>Created At</th>
+                  <th>Started At</th>
+                  <th>End At</th>
                   <th>Billing</th>
                   <th>Diagnoses</th>
                   <th>Discharged</th>
                   <th>Action</th>
                 </tr>
-              </thead>w
+              </thead>
               <tbody>
                 @foreach ($patientRecords as $patientRecord)
                   <tr>
@@ -43,6 +44,7 @@
                       <td>{{ $patientRecord->recordType->code }}</td>
                       <td>{{ $patientRecord->room->code }}</td>
                       <td>{{ $patientRecord->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $patientRecord->isReleased ? $patientRecord->updated_at->toFormattedDateString() : '' }}</td>
                       <td>
                         <a href="{{ route('patientBillings.index', $patientRecord) }}">
                           Billing

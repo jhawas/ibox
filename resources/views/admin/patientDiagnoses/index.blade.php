@@ -22,9 +22,14 @@
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Diagnoses Code</th>
                   <th>Diagnoses</th>
+                  <th>Weight</th>
+                  <th>Height</th>
+                  <th>Temperature</th>
+                  <th>Blood Pressure</th>
+                  <th>Pulse Rate</th>
                   <th>Created</th>
-                  <th>Description</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -33,8 +38,13 @@
                   <tr>
                       <td>{{ $patientDiagnose->id }}</td>
                       <td>{{ $patientDiagnose->diagnose->code }}</td>
-                      <td>{{ $patientDiagnose->created_at->toFormattedDateString() }}</td>
                       <td>{{ $patientDiagnose->description }}</td>
+                      <td>{{ $patientDiagnose->weight }}</td>
+                      <td>{{ $patientDiagnose->height }}</td>
+                      <td>{{ $patientDiagnose->temperature }}</td>
+                      <td>{{ $patientDiagnose->blood_pressure }}</td>
+                      <td>{{ $patientDiagnose->pulse_rate }}</td>
+                      <td>{{ $patientDiagnose->created_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('patientDiagnoses.edit', [$patientRecord, $patientDiagnose]) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>

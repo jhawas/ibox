@@ -162,6 +162,22 @@ class DefaultTableSeeder extends Seeder
             ]);
         }
 
+        for ($i=1; $i <= 5; $i++) { 
+            factory(App\Floor::class)->create([
+                'code' => 'Floor ' . $i,
+                'description' => 'Floor ' . $i,
+            ]);
+        }
 
+        for ($i=1; $i <= 10; $i++) { 
+            $roomType = rand(3, 5);
+            factory(App\Room::class)->create([
+                'code' => 'Room '. $i,
+                'floor_id' => rand(1,5),
+                'type_of_charge_id' => $roomType,
+                'capacity' => $roomType == 3 ? 1 : 5,
+                'description' => 'Room ' . $i
+            ]);
+        }
     }
 }
