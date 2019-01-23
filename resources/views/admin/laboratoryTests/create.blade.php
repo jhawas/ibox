@@ -20,7 +20,7 @@
               <div class="tile-body">
                   <div class="form-group">
                     <label class="control-label">Patient Record</label>
-                    <select class="form-control{{ $errors->has('patientRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientRecord">
+                    <select class="select2 form-control{{ $errors->has('patientRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientRecord">
                       <option selected value="0">Choose Test</option>
                       @foreach ($patientRecords as $patientRecord)
                         <option {{ old('patientRecord') == $patientRecord->id ? 'selected' : '' }} value="{{ $patientRecord->id }}">
@@ -36,7 +36,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Type Of Test</label>
-                    <select class="form-control{{ $errors->has('typeOfTest') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfTest">
+                    <select class="select2 form-control{{ $errors->has('typeOfTest') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfTest">
                       <option selected value="0">Choose Test</option>
                       @foreach ($typeOfTests as $typeOfTest)
                         <option {{ old('typeOfTest') == $typeOfTest->id ? 'selected' : '' }} value="{{ $typeOfTest->id }}">{{ $typeOfTest->code }}</option>

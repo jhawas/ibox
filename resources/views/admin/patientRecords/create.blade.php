@@ -20,7 +20,7 @@
               <div class="tile-body">
                   <div class="form-group">
                     <label class="control-label">Patient</label>
-                    <select class="form-control{{ $errors->has('patientInformation') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientInformation">
+                    <select class="select2 form-control{{ $errors->has('patientInformation') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientInformation">
                       <option selected value="0">Choose Patient</option>
                       @foreach ($patientInformations as $patientInformation)
                         <option {{ old('patientInformation') == $patientInformation->id ? 'selected' : '' }} value="{{ $patientInformation->id }}">{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->middle_name) . ' ' . ucfirst($patientInformation->last_name) }}</option>

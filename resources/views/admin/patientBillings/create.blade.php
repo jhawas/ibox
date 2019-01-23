@@ -20,7 +20,7 @@
               <div class="tile-body">
                   <div class="form-group">
                     <label class="control-label">Charges</label>
-                    <select class="form-control{{ $errors->has('typeOfCharge') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfCharge">
+                    <select class="select2 form-control{{ $errors->has('typeOfCharge') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfCharge">
                       <option selected value="0"><--Choose Charges--></option>
                       @foreach ($types as $index => $type)
                         @if ($type->typeOfCharges->count() > 0)

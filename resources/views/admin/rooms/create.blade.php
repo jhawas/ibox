@@ -40,7 +40,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Room Type</label>
-                    <select class="form-control{{ $errors->has('roomType') ? ' is-invalid' : '' }}" style="width: 100%;" name="roomType">
+                    <select class="select2 form-control{{ $errors->has('roomType') ? ' is-invalid' : '' }}" style="width: 100%;" name="roomType">
                       <option selected value="0">Choose Room Type</option>
                       @foreach ($roomTypes as $roomType)
                         <option {{ old('roomType') == $roomType->id ? 'selected' : '' }} value="{{ $roomType->id }}">{{ $roomType->code }}</option>
@@ -54,7 +54,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Floors</label>
-                    <select class="form-control{{ $errors->has('floor') ? ' is-invalid' : '' }}" style="width: 100%;" name="floor">
+                    <select class="select2 form-control{{ $errors->has('floor') ? ' is-invalid' : '' }}" style="width: 100%;" name="floor">
                       <option selected value="0">Choose Floor</option>
                       @foreach ($floors as $floor)
                         <option {{ old('floor') == $floor->id ? 'selected' : '' }} value="{{ $floor->id }}">{{ $floor->code }}</option>

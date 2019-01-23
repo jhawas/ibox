@@ -34,7 +34,11 @@ const app = new Vue({
     el: '#app'
 });
 
+import select2 from 'select2';
+
 $("#datatable").DataTable();
+
+$(".select2").select2();
 
 var treeviewMenu = $('.app-menu');
 

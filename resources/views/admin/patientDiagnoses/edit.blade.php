@@ -21,7 +21,7 @@
               <div class="tile-body">
                   <div class="form-group">
                     <label class="control-label">Diagnoses</label>
-                    <select class="form-control{{ $errors->has('diagnoses') ? ' is-invalid' : '' }}" style="width: 100%;" name="diagnoses">
+                    <select class="select2 form-control{{ $errors->has('diagnoses') ? ' is-invalid' : '' }}" style="width: 100%;" name="diagnoses">
                       <option selected value="0"><--Choose Diagnoses--></option>
                       @foreach ($diagnoses as $index => $diagnose)
                         <option {{ $patientDiagnose->diagnose_id == $diagnose->id ? 'selected' : '' }} value="{{$diagnose->id}}">{{ ucfirst($diagnose->code) }}</option>

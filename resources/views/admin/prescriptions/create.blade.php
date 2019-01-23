@@ -20,7 +20,7 @@
               <div class="tile-body">
                   <div class="form-group">
                     <label class="control-label">Patient Record</label>
-                    <select class="form-control{{ $errors->has('patientRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientRecord">
+                    <select class="select2 form-control{{ $errors->has('patientRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientRecord">
                       <option selected value="0">Choose Patient</option>
                       @foreach ($patientRecords as $patientRecord)
                         <option {{ old('patientRecord') == $patientRecord->id ? 'selected' : '' }} value="{{ $patientRecord->id }}">

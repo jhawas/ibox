@@ -21,7 +21,7 @@
               <div class="tile-body">
                   <div class="form-group">
                     <label class="control-label">Medicine Type</label>
-                    <select class="form-control{{ $errors->has('medicineType') ? ' is-invalid' : '' }}" style="width: 100%;" name="medicineType">
+                    <select class="select2 form-control{{ $errors->has('medicineType') ? ' is-invalid' : '' }}" style="width: 100%;" name="medicineType">
                       <option selected value="0">Choose Medicine</option>
                       @foreach ($medicineTypes as $medicineType)
                         <option {{ $medicineStock->type_of_charge_id == $medicineType->id ? 'selected' : '' }} value="{{ $medicineType->id }}">{{ $medicineType->code }}</option>
