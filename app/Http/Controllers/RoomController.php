@@ -71,7 +71,7 @@ class RoomController extends Controller
         $room = new Room;
         $room->code = $request->code;
         $room->description = $request->description;
-        $room->floor_id = $request->floor;
+        // $room->floor_id = $request->floor;
         $room->type_of_charge_id = $request->roomType;
         $room->capacity = $request->capacity;
         $room->save();
@@ -123,7 +123,7 @@ class RoomController extends Controller
     {
         $room->code = $request->code;
         $room->description = $request->description;
-        $room->floor_id = $request->floor;
+        // $room->floor_id = $request->floor;
         $room->type_of_charge_id = $request->roomType;
         $room->capacity = $request->capacity;
         $room->save();

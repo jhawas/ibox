@@ -19,6 +19,7 @@ class CreatePatientBillingsTable extends Migration
             $table->foreign('patient_record_id')->references('id')->on('patient_records')->onDelete('cascade');
             $table->integer('type_of_charge_id')->unsigned()->nullable();
             $table->foreign('type_of_charge_id')->references('id')->on('type_of_charges')->onDelete('cascade');
+            $table->string('code')->nullable();
             $table->decimal('price', 8, 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->decimal('total', 8, 2)->nullable();

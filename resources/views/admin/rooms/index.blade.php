@@ -36,7 +36,7 @@
                   <tr>
                       <td>{{ $room->id }}</td>
                       <td>{{ $room->code }}</td>
-                      <td>{{ $room->floor->code }}</td>
+                      <td>{{ $room->room_type->floor }}</td>
                       <td>{{ $room->room_type->code }}</td>
                       <td>{{ $room->capacity }}</td>
                       <td>{{ $room->records->count() }}</td>

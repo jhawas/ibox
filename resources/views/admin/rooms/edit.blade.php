@@ -58,7 +58,7 @@
                         </span>
                     @endif
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label class="control-label">Floors</label>
                     <select class="select2 form-control{{ $errors->has('floor') ? ' is-invalid' : '' }}" style="width: 100%;" name="floor">
                       <option selected value="0">Choose Floor</option>
@@ -71,7 +71,7 @@
                             <strong>{{ $errors->first('floor') }}</strong>
                         </span>
                     @endif
-                  </div>
+                  </div> --}}
                   <div class="form-group">
                     <label class="control-label">Capacity</label>
                     <input name="capacity" class="form-control{{ $errors->has('capacity') ? ' is-invalid' : '' }}" value="{{ $room->capacity }}" type="number" placeholder="Enter capacity">

@@ -56,6 +56,7 @@ class RecordTypeController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->floor;
         $recordType = new TypeOfCharge;
         // others id
         $recordType->type_id = 4;

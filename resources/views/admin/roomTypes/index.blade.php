@@ -24,6 +24,7 @@
                   <th>ID</th>
                   <th>Code</th>
                   <th>Description</th>
+                  <th>Floor</th>
                   <th>Price</th>
                   <th>Created</th>
                   <th>Updated</th>
@@ -36,6 +37,7 @@
                       <td>{{ $roomType->id }}</td>
                       <td>{{ $roomType->code }}</td>
                       <td>{{ $roomType->description }}</td>
+                      <td>{{ $roomType->floor }}</td>
                       <td>{{ $roomType->price }}</td>
                       <td>{{ $roomType->created_at->toFormattedDateString() }}</td>
                       <td>{{ $roomType->updated_at->toFormattedDateString() }}</td>

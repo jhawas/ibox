@@ -19,7 +19,7 @@
               @method('PUT')
               @csrf
               <div class="tile-body">
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label class="control-label">Charges</label>
                     <select class="select2 form-control{{ $errors->has('typeOfCharge') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfCharge">
                       <option selected value="0"><--Choose Charges--></option>
@@ -37,9 +37,27 @@
                             <strong>{{ $errors->first('typeOfCharge') }}</strong>
                         </span>
                     @endif
+                  </div> --}}
+                  <div class="form-group">
+                    <label class="control-label">Charge Code</label>
+                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $patientBilling->code }}" type="text" placeholder="Enter code">
+                    @if ($errors->has('code'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('code') }}</strong>
+                        </span>
+                    @endif
                   </div>
                   <div class="form-group">
-                    <label class="control-label">Quantity/Days</label>
+                    <label class="control-label">Price</label>
+                    <input name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" value="{{ $patientBilling->price }}" type="text" placeholder="Enter price">
+                    @if ($errors->has('price'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('price') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Quantity</label>
                     <input name="quantity" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" value="{{ $patientBilling->quantity }}" type="text" placeholder="Enter quantity">
                     @if ($errors->has('quantity'))
                         <span class="invalid-feedback" role="alert">

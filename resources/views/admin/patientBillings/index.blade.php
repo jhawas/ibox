@@ -27,18 +27,28 @@
                   <th>Charges</th>
                   <th>Quantity/Days</th>
                   <th>Created</th>
-                  <th>Price</th>
+                  <th>Price/Rate</th>
                   <th>Description</th>
                   <th>Total</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td>{{ '' }}</td>
+                  <td>{{ ucfirst($patientRecord->recordType->code) }}</td>
+                  <td>{{ $patientRecord->created_at->toFormattedDateString() }}</td>
+                  <td>{{ 'system generated' }}</td>
+                  <td>{{ $patientRecord->room->room_type->price }}</td>
+                  <td>{{ 'system generated' }}</td>
+                  <td>{{ 'total' }}</td>
+                  <td>{{ 'system generated' }}</td>
+                </tr>
                 @foreach ($patientBillings as $patientBilling)
                   <?php $totalBill += $patientBilling->total; ?>
                   <tr>
                       <td>{{ $patientBilling->id }}</td>
-                      <td>{{ ucfirst($patientBilling->charge->code) . ' (' . strtoupper($patientBilling->charge->type->code).')' }}</td>
+                      <td>{{ ucfirst($patientBilling->code) }}</td>
                       <td>{{ $patientBilling->quantity }}</td>
                       <td>{{ $patientBilling->created_at->toFormattedDateString() }}</td>
                       <td>{{ $patientBilling->price }}</td>

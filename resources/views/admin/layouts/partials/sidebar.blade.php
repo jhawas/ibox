@@ -68,11 +68,11 @@
             <i class="icon fa fa-circle-o"></i> Rooms
           </a>
         </li>
-        <li>
+        {{-- <li>
           <a class="treeview-item" href="{{ route('floors.index') }}">
             <i class="icon fa fa-circle-o"></i> Floors
           </a>
-        </li>
+        </li> --}}
         <li>
           <a class="treeview-item" href="{{ route('roomTypes.index') }}">
             <i class="icon fa fa-circle-o"></i> Room Types

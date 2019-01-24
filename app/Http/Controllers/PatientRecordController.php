@@ -34,7 +34,12 @@ class PatientRecordController extends Controller
     {
         $patientRecords = PatientRecord::with([
             'user', 
-            'recordType'
+            'recordType',
+            'room' => function($query) {
+                $query->with([
+                    'room_type'
+                ]);
+            },
         ])->get();
         // return $patientRecords;
         return view('admin.patientRecords.index', [

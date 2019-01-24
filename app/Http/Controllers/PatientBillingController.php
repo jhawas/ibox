@@ -30,7 +30,10 @@ class PatientBillingController extends Controller
      */
     public function index(PatientRecord $patientRecord)
     {
-        $patientBillings = PatientBilling::where('patient_record_id', $patientRecord->id)->get();
+        $patientBillings = PatientBilling::with([
+            'records'
+        ])->where('patient_record_id', $patientRecord->id)
+            ->get();
         // return $patientBillings;
         return view('admin.patientBillings.index', [
             'page' => $this->page,
@@ -68,10 +71,11 @@ class PatientBillingController extends Controller
         $typeOfCharge = typeOfCharge::where('id', $request->typeOfCharge)->get();
         $patientBilling = new PatientBilling;
         $patientBilling->patient_record_id = $patientRecord->id;
-        $patientBilling->type_of_charge_id = $request->typeOfCharge;
+        // $patientBilling->type_of_charge_id = $request->typeOfCharge;
+        $patientBilling->code = $request->code;
         $patientBilling->quantity = $request->quantity;
-        $patientBilling->price = $typeOfCharge[0]->price;
-        $patientBilling->total = ($request->quantity * $typeOfCharge[0]->price);
+        $patientBilling->price =  $request->price;
+        $patientBilling->total = ($request->quantity * $request->price);
         $patientBilling->description = $request->description;
         $patientBilling->save();
         return redirect()->route('patientBillings.index', $patientRecord);
@@ -118,11 +122,12 @@ class PatientBillingController extends Controller
     {
         $typeOfCharge = typeOfCharge::where('id', $request->typeOfCharge)->get();
         $patientBilling->patient_record_id = $patientRecord->id;
-        $patientBilling->type_of_charge_id = $request->typeOfCharge;
+        // $patientBilling->type_of_charge_id = $request->typeOfCharge;
+        $patientBilling->code = $request->code;
         $patientBilling->quantity = $request->quantity;
-        $patientBilling->price = $typeOfCharge[0]->price;
+        $patientBilling->price =  $request->price;
+        $patientBilling->total = ($request->quantity * $request->price);
         $patientBilling->description = $request->description;
-        $patientBilling->total = ($request->quantity * $typeOfCharge[0]->price);
         $patientBilling->save();
         return redirect()->route('patientBillings.index', $patientRecord);
     }

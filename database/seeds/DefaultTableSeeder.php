@@ -138,17 +138,20 @@ class DefaultTableSeeder extends Seeder
             array(
                 'code' => 'Private Room',
                 'description' => 'Private Room',
-                'price' => 1000
+                'price' => 1000,
+                'floor' => 'Floor 1',
             ),
             array(
                 'code' => 'Semi-Private Room',
                 'description' => 'Semi-Private Room',
-                'price' => 500
+                'price' => 500,
+                'floor' => 'Floor 2',
             ),
             array(
                 'code' => 'Regular Room',
                 'description' => 'Regular Room',
-                'price' => 300
+                'price' => 300,
+                'floor' => 'Floor 3',
             ),
         );
 
@@ -158,7 +161,8 @@ class DefaultTableSeeder extends Seeder
                 'code' => $typeOfRoom['code'],
                 'description' => $typeOfRoom['description'],
                 'price' => $typeOfRoom['price'],
-                'type_id' => 2
+                'type_id' => 2,
+                'floor' => $typeOfRoom['floor']
             ]);
         }
 

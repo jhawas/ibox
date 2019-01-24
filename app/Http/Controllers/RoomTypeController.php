@@ -63,6 +63,7 @@ class RoomTypeController extends Controller
         $roomType->code = $request->code;
         $roomType->description = $request->description;
         $roomType->price = $request->price;
+        $roomType->floor = $request->floor;
         $roomType->save();
         return redirect()->route('roomTypes.index');
     }
@@ -109,6 +110,7 @@ class RoomTypeController extends Controller
         $roomType->code = $request->code;
         $roomType->description = $request->description;
         $roomType->price = $request->price;
+        $roomType->floor = $request->floor;
         $roomType->save();
         return redirect()->route('roomTypes.index');
     }

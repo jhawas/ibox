@@ -74,7 +74,7 @@
                           @endif
                         </div>
                       </div>
-                      {{-- <div class="col-md-12">
+                      <div class="col-md-12">
                           <h3 class="tile-title">Initial Test</h3>
                           <div class="form-group">
                             <label class="control-label">Weight</label>
@@ -147,7 +147,7 @@
                                 </span>
                             @endif
                           </div>
-                      </div> --}}
+                      </div>
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">

@@ -24,9 +24,9 @@ class RoomsRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|max:191',
+            'code' => 'required|max:191|unique:rooms',
             'description' => 'required|max:191',
-            'floor' => 'required|not_in:0',
+            // 'floor' => 'required|not_in:0',
             'roomType' => 'required|not_in:0',
             'capacity' => 'required|max:191|not_in:0',
         ];
