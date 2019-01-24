@@ -33,6 +33,21 @@ Route::resource('prescriptions', 'PrescriptionController');
 
 Route::resource('rounds', 'RoundController');
 
+// cashier
+Route::get('selection', 'CashierController@selection')
+		->name('cashiers.selection');
+Route::post('selection', 'CashierController@storeSelection')
+		->name('cashiers.storeSelection');
+
+Route::get('cashiers/{patientRecord}', 'CashierController@index')
+		->name('cashiers.index');
+
+Route::post('cashiers/{patientRecord}/store', 'CashierController@store')
+		->name('cashiers.store');
+
+Route::get('cashiers/{cashier}/print', 'CashierController@print')
+		->name('cashiers.print');
+
 Route::get('medicineStocks/inventory/print', 'MedicineStockController@print')
 		->name('medicineStocks.print');
 

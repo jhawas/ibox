@@ -15,6 +15,11 @@ class CreateCashiersTable extends Migration
     {
         Schema::create('cashiers', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('patient_record_id')->unsigned()->nullable();
+            $table->foreign('patient_record_id')->references('id')->on('patient_records')->onDelete('cascade');
+            $table->decimal('total', 8, 2)->nullable();
+            $table->decimal('amount', 8, 2)->nullable();
+            $table->decimal('change', 8, 2)->nullable();
             $table->timestamps();
         });
     }
