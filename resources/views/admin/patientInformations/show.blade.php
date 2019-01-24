@@ -57,8 +57,8 @@
                         @foreach ($record->billings as $key2 => $billing)
                          <?php $total += $billing->total ?>
                           <tr>
-                            <td>{{ $billing->charge->code }}</td>
-                            <td>{{ $billing->charge->price }}</td>
+                            <td>{{ $billing->code }}</td>
+                            <td>{{ $billing->price }}</td>
                             <td>{{ $billing->quantity }}</td>
                             <td>{{ $billing->total }}</td>
                           </tr>

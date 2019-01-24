@@ -78,7 +78,7 @@
                           <h3 class="tile-title">Initial Test</h3>
                           <div class="form-group">
                             <label class="control-label">Weight</label>
-                            <input name="weight" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('weight')}}" type="text" placeholder="Enter Weight">
+                            <input name="weight" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{ $patientDiagnose->weight }}" type="text" placeholder="Enter Weight">
                             @if ($errors->has('weight'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('weight') }}</strong>
@@ -87,7 +87,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label">Height</label>
-                            <input name="height" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('height')}}" type="text" placeholder="Enter height">
+                            <input name="height" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{$patientDiagnose->height}}" type="text" placeholder="Enter height">
                             @if ($errors->has('height'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('height') }}</strong>
@@ -96,7 +96,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label">Temperature</label>
-                            <input name="temperature" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('temperature')}}" type="text" placeholder="Enter temperature">
+                            <input name="temperature" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{$patientDiagnose->temperature}}" type="text" placeholder="Enter temperature">
                             @if ($errors->has('temperature'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('temperature') }}</strong>
@@ -105,7 +105,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label">Blood Pressure</label>
-                            <input name="blood_pressure" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('blood_pressure')}}" type="text" placeholder="Enter blood pressure">
+                            <input name="blood_pressure" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{$patientDiagnose->blood_pressure}}" type="text" placeholder="Enter blood pressure">
                             @if ($errors->has('blood_pressure'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('blood_pressure') }}</strong>
@@ -114,7 +114,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label">Pulse Rate</label>
-                            <input name="pulse_rate" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('pulse_rate')}}" type="text" placeholder="Enter pulse rate">
+                            <input name="pulse_rate" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{$patientDiagnose->pulse_rate}}" type="text" placeholder="Enter pulse rate">
                             @if ($errors->has('pulse_rate'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('pulse_rate') }}</strong>
@@ -126,7 +126,7 @@
                             <select class="select2 form-control{{ $errors->has('diagnoses') ? ' is-invalid' : '' }}" style="width: 100%;" name="diagnoses">
                               <option selected value="0"><--Choose Diagnoses--></option>
                               @foreach ($diagnoses as $index => $diagnose)
-                                <option {{ old('diagnoses') == $diagnose->id ? 'selected' : '' }} value="{{$diagnose->id}}">{{ ucfirst($diagnose->code) }}</option>
+                                <option {{ $patientDiagnose->diagnose_id == $diagnose->id ? 'selected' : '' }} value="{{$diagnose->id}}">{{ ucfirst($diagnose->code) }}</option>
                               @endforeach
                             </select>
                             @if ($errors->has('diagnoses'))
@@ -138,9 +138,7 @@
                           <div class="form-group">
                             <label class="control-label">Initial Diagnoses</label>
                             <textarea name="diagnoses_description" class="form-control{{ $errors->has('diagnoses_description') ? ' is-invalid' : '' }}"
-                              placeholder="Enter diagnoses_description here...">
-                              {{old('diagnoses_description')}}
-                            </textarea>
+                              placeholder="Enter diagnoses_description here...">{{$patientDiagnose->description}}</textarea>
                             @if ($errors->has('diagnoses_description'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('diagnoses_description') }}</strong>
