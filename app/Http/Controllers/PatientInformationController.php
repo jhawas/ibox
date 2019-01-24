@@ -83,6 +83,14 @@ class PatientInformationController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->is_user = 0;
+        $user->birthdate = $request->birthdate;
+        $user->sex = $request->sex;
+        $user->weight = $request->weight;
+        $user->height = $request->height;
+        $user->religion = $request->religion;
+        $user->occupation = $request->occupation;
+        $user->specialty = $request->specialty;
+        $user->degree = $request->degree;
         $user->save();
         $user->user_role()->save($user_role);
         return redirect()->route('patientInformations.index');
@@ -131,6 +139,14 @@ class PatientInformationController extends Controller
         $user->middle_name = $request->middle_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
+        $user->birthdate = $request->birthdate;
+        $user->sex = $request->sex;
+        $user->weight = $request->weight;
+        $user->height = $request->height;
+        $user->religion = $request->religion;
+        $user->occupation = $request->occupation;
+        $user->specialty = $request->specialty;
+        $user->degree = $request->degree;
         $user->save();
         return redirect()->route('patientInformations.index');
     }

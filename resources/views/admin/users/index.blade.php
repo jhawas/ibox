@@ -26,8 +26,9 @@
                   <th>Username</th>
                   <th>Email</th>
                   <th>Role</th>
-                  <th>Created</th>
-                  <th>Updated</th>
+                  <th>occupation</th>
+                  <th>specialty</th>
+                  <th>degree</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -39,8 +40,9 @@
                       <td>{{ $user->username }}</td>
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->user_role->role->name }}</td>
-                      <td>{{ $user->created_at->toFormattedDateString() }}</td>
-                      <td>{{ $user->updated_at->toFormattedDateString() }}</td>
+                      <td>{{ $user->occupation }}</td>
+                      <td>{{ $user->specialty }}</td>
+                      <td>{{ $user->degree }}</td>
                       <td>
                         <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
@@ -57,7 +59,7 @@
                           class="btn btn-danger" 
                           data-toggle="modal" 
                           data-target="#myModal-{{ $user->id }}"
-                          disabled="{{ Auth::user()->user_role->role->id == 1 ? true : false}}" 
+                          {{ Auth::user()->user_role->role->id == 1 ? '' : 'disabled'}} 
                         >
                           <i class="fa fa-eraser"></i>
                         </button>
