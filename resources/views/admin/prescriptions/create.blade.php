@@ -35,6 +35,24 @@
                     @endif
                   </div>
                   <div class="form-group">
+                    <label class="control-label">Time</label>
+                    <input name="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" value="{{old('time')}}" type="time" placeholder="Enter time">
+                    @if ($errors->has('time'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('time') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Date</label>
+                    <input name="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" value="{{old('date')}}" type="date" placeholder="Enter date">
+                    @if ($errors->has('date'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('date') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
                     <label class="control-label">Description/Note</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                       placeholder="Enter Description here...">

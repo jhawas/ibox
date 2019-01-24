@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrescriptionsTable extends Migration
+class CreateRoundsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreatePrescriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('prescriptions', function (Blueprint $table) {
+        Schema::create('rounds', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('patient_record_id')->unsigned()->nullable();
             $table->foreign('patient_record_id')->references('id')->on('patient_records')->onDelete('cascade');
             $table->time('time')->nullable();
             $table->date('date')->nullable();
             $table->string('description')->nullable();
-            $table->boolean('is_approved')->default(0);
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreatePrescriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prescriptions');
+        Schema::dropIfExists('rounds');
     }
 }

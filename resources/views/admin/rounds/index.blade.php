@@ -16,7 +16,7 @@
         <div class="tile">
           <div class="tile-body">
             <div class="controller-wrapper">
-              <a href="{{ route('prescriptions.create') }}" class="btn btn-primary">New</a>
+              <a href="{{ route('rounds.create') }}" class="btn btn-primary">New</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
               <thead>
@@ -24,34 +24,32 @@
                   <th>ID</th>
                   <th>Patient</th>
                   <th>Description/Note</th>
-                  <td>Approved</td>
                   <th>Date</th>
                   <th>Time</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($prescriptions as $prescription)
+                @foreach ($rounds as $round)
                   <tr>
-                      <td>{{ $prescription->id }}</td>
-                      <td>{{ 'Record ID:' . $prescription->records->id . ' ( ' . ucfirst($prescription->records->user->first_name) . ' ' . ucfirst($prescription->records->user->middle_name) . ' ' . ucfirst($prescription->records->user->last_name) . ' )' }}</td>
-                      <td>{{ $prescription->description }}</td>
-                      <td>{{ $prescription->is_approved ? 'Yes' : 'No' }}</td>
-                      <td>{{ $prescription->date }}</td>
-                      <td>{{ \Carbon\Carbon::parse($prescription->time)->format('h:i A') }}</td>
+                      <td>{{ $round->id }}</td>
+                      <td>{{ 'Record ID:' . $round->records->id . ' ( ' . ucfirst($round->records->user->first_name) . ' ' . ucfirst($round->records->user->middle_name) . ' ' . ucfirst($round->records->user->last_name) . ' )' }}</td>
+                      <td>{{ $round->description }}</td>
+                      <td>{{ $round->date }}</td>
+                      <td>{{ \Carbon\Carbon::parse($round->time)->format('h:i A') }}</td>
                       <td>
-                        <a href="{{ route('prescriptions.show', $prescription) }}" class="btn btn-primary">
+                        <a href="{{ route('rounds.show', $round) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
                         </a>
 
-                        <a href="{{ route('prescriptions.edit', $prescription) }}" class="btn btn-primary">
+                        <a href="{{ route('rounds.edit', $round) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $prescription->id }}">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $round->id }}">
                           <i class="fa fa-eraser"></i>
                         </button>
 
-                         @include('admin.prescriptions.destroy')
+                         @include('admin.rounds.destroy')
 
                       </td>
                   </tr>

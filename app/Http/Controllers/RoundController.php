@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Prescription;
+use App\Round;
 use App\PatientRecord;
-use App\MedicineStock;
 use Illuminate\Http\Request;
 
-class PrescriptionController extends Controller
+class RoundController extends Controller
 {
-    public $page = 'Prescriptions';
+    public $page = 'Rounds';
     public $description = 'List of all ';
 
     /**
@@ -29,11 +28,11 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
-        $prescriptions = Prescription::all();
-        return view('admin.prescriptions.index', [
+        $rounds = Round::all();
+        return view('admin.rounds.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'prescriptions' => $prescriptions
+            'rounds' => $rounds
         ]);
     }
 
@@ -45,7 +44,7 @@ class PrescriptionController extends Controller
     public function create()
     {
         $patientRecords = PatientRecord::all();
-        return view('admin.prescriptions.create', [
+        return view('admin.rounds.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'patientRecords' => $patientRecords,
@@ -60,43 +59,43 @@ class PrescriptionController extends Controller
      */
     public function store(Request $request)
     {
-        $prescription = new Prescription;
-        $prescription->patient_record_id = $request->patientRecord;
-        $prescription->description = $request->description;
-        $prescription->time = $request->time;
-        $prescription->date = $request->date;
-        $prescription->save();
-        return redirect()->route('prescriptions.index');
+        $round = new Round;
+        $round->patient_record_id = $request->patientRecord;
+        $round->description = $request->description;
+        $round->time = $request->time;
+        $round->date = $request->date;
+        $round->save();
+        return redirect()->route('rounds.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Prescription  $prescription
+     * @param  \App\Round  $round
      * @return \Illuminate\Http\Response
      */
-    public function show(Prescription $prescription)
+    public function show(Round $round)
     {
-        return view('admin.prescriptions.show', [
+        return view('admin.rounds.show', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'prescription' => $prescription,
+            'round' => $round,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Prescription  $prescription
+     * @param  \App\Round  $round
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prescription $prescription)
+    public function edit(Round $round)
     {
         $patientRecords = PatientRecord::all();
-        return view('admin.prescriptions.edit', [
+        return view('admin.rounds.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'prescription' => $prescription,
+            'round' => $round,
             'patientRecords' => $patientRecords,
         ]);
     }
@@ -105,30 +104,28 @@ class PrescriptionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Prescription  $prescription
+     * @param  \App\Round  $round
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prescription $prescription)
+    public function update(Request $request, Round $round)
     {
-        $is_approved = $request->is_approved == 'on' ? true : false;
-        $prescription->description = $request->description;
-        $prescription->patient_record_id = $request->patientRecord;
-        $prescription->time = $request->time;
-        $prescription->date = $request->date;
-        $prescription->is_approved = $is_approved;
-        $prescription->save();
-        return redirect()->route('prescriptions.index');
+        $round->description = $request->description;
+        $round->patient_record_id = $request->patientRecord;
+        $round->time = $request->time;
+        $round->date = $request->date;
+        $round->save();
+        return redirect()->route('rounds.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Prescription  $prescription
+     * @param  \App\Round  $round
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prescription $prescription)
+    public function destroy(Round $round)
     {
-        $prescription->delete();
-        return redirect()->route('prescriptions.index');
+        $round->delete();
+        return redirect()->route('rounds.index');
     }
 }

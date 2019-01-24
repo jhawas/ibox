@@ -34,7 +34,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {{-- <tr>
                   <td>{{ '' }}</td>
                   <td>{{ ucfirst($patientRecord->recordType->code) }}</td>
                   <td>{{ $patientRecord->created_at->toFormattedDateString() }}</td>
@@ -43,7 +43,7 @@
                   <td>{{ 'system generated' }}</td>
                   <td>{{ 'total' }}</td>
                   <td>{{ 'system generated' }}</td>
-                </tr>
+                </tr> --}}
                 @foreach ($patientBillings as $patientBilling)
                   <?php $totalBill += $patientBilling->total; ?>
                   <tr>

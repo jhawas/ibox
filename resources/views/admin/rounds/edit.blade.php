@@ -14,8 +14,8 @@
       <div class="row">
         <div class="col-md-6">
           <div class="tile">
-            <h3 class="tile-title">Prescription Form</h3>
-            <form method="POST" action="{{ route('prescriptions.update', $prescription) }}">
+            <h3 class="tile-title">Round Form</h3>
+            <form method="POST" action="{{ route('rounds.update', $round) }}">
               @method('PUT')
               @csrf
               <div class="tile-body">
@@ -24,7 +24,7 @@
                     <select class="select2 form-control{{ $errors->has('patientRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientRecord">
                       <option selected value="0">Choose Patient</option>
                       @foreach ($patientRecords as $patientRecord)
-                        <option {{ $prescription->patient_record_id == $patientRecord->id ? 'selected' : '' }} value="{{ $patientRecord->id }}">
+                        <option {{ $round->patient_record_id == $patientRecord->id ? 'selected' : '' }} value="{{ $patientRecord->id }}">
                           {{ 'Record ID:' . $patientRecord->id . ' ( ' . ucfirst($patientRecord->user->first_name) . ' ' . ucfirst($patientRecord->user->middle_name) . ' ' . ucfirst($patientRecord->user->last_name) . ' )'}}
                         </option>
                       @endforeach
@@ -37,7 +37,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Time</label>
-                    <input name="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" value="{{$prescription->time}}" type="time" placeholder="Enter time">
+                    <input name="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" value="{{$round->time}}" type="time" placeholder="Enter time">
                     @if ($errors->has('time'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('time') }}</strong>
@@ -46,7 +46,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label">Date</label>
-                    <input name="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" value="{{$prescription->date}}" type="date" placeholder="Enter date">
+                    <input name="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" value="{{$round->date}}" type="date" placeholder="Enter date">
                     @if ($errors->has('date'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('date') }}</strong>
@@ -56,31 +56,19 @@
                   <div class="form-group">
                     <label class="control-label">Description/Note</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                      placeholder="Enter Description here...">{{$prescription->description}}</textarea>
+                      placeholder="Enter Description here...">{{$round->description}}</textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
                         </span>
                     @endif
                   </div>
-                  @if(Auth::user()->user_role->role->id == 4 || Auth::user()->user_role->role->id == 5 || Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2)
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input 
-                          name="is_approved" 
-                          class="form-check-input" 
-                          type="checkbox"
-                          {{ $prescription->is_approved == 1 ? 'checked' : '' }}
-                        >presciption approved
-                      </label>
-                    </div>
-                  @endif
               </div>
               <div class="tile-footer">
                 <button class="btn btn-primary" type="submit">
                   <i class="fa fa-fw fa-lg fa-check-circle"></i>Save
                 </button>
-                <a class="btn btn-secondary" href="{{ route('prescriptions.index') }}">
+                <a class="btn btn-secondary" href="{{ route('rounds.index') }}">
                   <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel
                 </a>
               </div>

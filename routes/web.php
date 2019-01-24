@@ -31,6 +31,8 @@ Route::resource('medicineStocks', 'MedicineStockController');
 
 Route::resource('prescriptions', 'PrescriptionController');
 
+Route::resource('rounds', 'RoundController');
+
 Route::get('medicineStocks/inventory/print', 'MedicineStockController@print')
 		->name('medicineStocks.print');
 

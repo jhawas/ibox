@@ -27,7 +27,7 @@
             <?php $totalBill += $patientBilling->total; ?>
             <tr>
                 <td>{{ $patientBilling->id }}</td>
-                <td>{{ ucfirst($patientBilling->charge->code) . ' (' . strtoupper($patientBilling->charge->type->code).')' }}</td>
+                <td>{{ ucfirst($patientBilling->code) }}</td>
                 <td>{{ $patientBilling->quantity }}</td>
                 <td>{{ $patientBilling->created_at->toFormattedDateString() }}</td>
                 <td style="text-align: right">{{ $patientBilling->price }}</td>

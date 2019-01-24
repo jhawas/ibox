@@ -56,7 +56,7 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label class="control-label">Quantity</label>
+                    <label class="control-label">Quantity/Day</label>
                     <input name="quantity" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" value="{{ old('quantity') }}" type="text" placeholder="Enter quantity">
                     @if ($errors->has('quantity'))
                         <span class="invalid-feedback" role="alert">
