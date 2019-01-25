@@ -100,6 +100,49 @@
                       </tbody>
                     </table>
                   </div>
+                  <div>
+                    <h5>Prescriptions</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Description/Note</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->prescriptions as $prescription)
+                          <tr>
+                              <td>{{ $prescription->description }}</td>
+                              <td>{{ $prescription->date }}</td>
+                              <td>{{ \Carbon\Carbon::parse($prescription->time)->format('h:i A') }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                  <div>
+                    <h5>Rounds</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Description/Note</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->rounds as $round)
+                          <tr>
+                              <td>{{ $round->description }}</td>
+                              <td>{{ $round->date }}</td>
+                              <td>{{ \Carbon\Carbon::parse($round->time)->format('h:i A') }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
               @endforeach
             </div>
           </div>

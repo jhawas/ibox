@@ -60,7 +60,64 @@
                             <td>{{ $diagnose->blood_pressure }}</td>
                             <td>{{ $diagnose->pulse_rate }}</td>
                             <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
-                            </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="tile">
+              <div class="tile-body">
+                <h3 class="tile-title">Prescriptions</h3>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Description/Note</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($patientRecord->prescriptions as $prescription)
+                        <tr>
+                            <td>{{ $prescription->id }}</td>
+                            <td>{{ $prescription->description }}</td>
+                            <td>{{ $prescription->date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($prescription->time)->format('h:i A') }}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="tile">
+              <div class="tile-body">
+                <h3 class="tile-title">Rounds</h3>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Description/Note</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($patientRecord->rounds as $round)
+                        <tr>
+                            <td>{{ $round->id }}</td>
+                            <td>{{ $round->description }}</td>
+                            <td>{{ $round->date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($round->time)->format('h:i A') }}</td>
                         </tr>
                       @endforeach
                     </tbody>

@@ -25,4 +25,12 @@ class PatientRecord extends Model
     public function diagnoses() {
         return $this->hasMany('App\PatientDiagnose');
     }
+
+    public function rounds() {
+        return $this->hasMany('App\Round');
+    }
+
+    public function prescriptions() {
+        return $this->hasMany('App\Prescription');
+    }
 }
