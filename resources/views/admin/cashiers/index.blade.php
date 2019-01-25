@@ -17,9 +17,13 @@
           <form method="POST" action="{{ route('cashiers.store', $patientRecord) }}">
               @csrf
             <div class="tile-body">
+                <?php $totalBill = 0; ?>
                 <div class="form-group">
                   <label class="control-label">Total Bill</label>
-                  <input name="bill" class="form-control{{ $errors->has('bill') ? ' is-invalid' : '' }}" value="{{number_format($totalBill, 2)}}" type="number" placeholder="Enter bill">
+                  @foreach($billings as $billings)
+                      <?php $totalBill += $billings->total ?>
+                  @endforeach
+                  <input name="bill" class="form-control{{ $errors->has('bill') ? ' is-invalid' : '' }}" value="{{$totalBill}}" type="number" placeholder="Enter bill">
                   @if ($errors->has('bill'))
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('bill') }}</strong>

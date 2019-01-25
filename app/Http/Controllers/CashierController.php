@@ -66,12 +66,13 @@ class CashierController extends Controller
      */
     public function index(PatientRecord $patientRecord)
     {
-        // return $patientRecord;
+        // return $patientRecord->billings;
         return view('admin.cashiers.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'patientRecord' => $patientRecord,
-            'totalBill' => $patientRecord->billings->sum('total'),
+            // 'totalBill' => $patientRecord->billings->sum('total'),
+            'billings' => $patientRecord->billings,
         ]);
     }
 
