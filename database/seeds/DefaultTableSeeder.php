@@ -54,10 +54,7 @@ class DefaultTableSeeder extends Seeder
         	),
         	array(
         		'name' => 'nurse'
-        	),
-            array(
-                'name' => 'patient'
-            )
+        	)
         );
 
         foreach ($roles as $key => $role) {
@@ -99,38 +96,22 @@ class DefaultTableSeeder extends Seeder
             ]));
         });
 
-        factory(App\User::class, 20)
-        ->create([
-            'is_user' => 0
-        ])->each(function ($user) {
-             $user->user_role()->save(factory(App\UserRole::class)->make([
-                'user_id' => $user->id,
-                'role_id' => 6
-            ]));
-        });
-
-        // factory(App\Diagnose::class, 20)->create();
-
         $typeOfRecords = array(
             array(
                 'code' => 'Out Patient',
                 'description' => 'Out Patient',
-                'price' => 300
             ),
             array(
                 'code' => 'In Patient',
                 'description' => 'In Patient',
-                'price' => 0
             ),
         );
 
         // for type of records
         foreach ($typeOfRecords as $key => $typeOfRecord) {
-            factory(App\TypeOfCharge::class)->create([
+            factory(App\TypeOfRecord::class)->create([
                 'code' => $typeOfRecord['code'],
                 'description' => $typeOfRecord['description'],
-                'price' => $typeOfRecord['price'],
-                'type_id' => 4
             ]);
         }
 
@@ -138,31 +119,22 @@ class DefaultTableSeeder extends Seeder
             array(
                 'code' => 'Private Room',
                 'description' => 'Private Room',
-                'price' => 1000,
-                'floor' => 'Floor 1',
             ),
             array(
                 'code' => 'Semi-Private Room',
                 'description' => 'Semi-Private Room',
-                'price' => 500,
-                'floor' => 'Floor 2',
             ),
             array(
-                'code' => 'Regular Room',
-                'description' => 'Regular Room',
-                'price' => 300,
-                'floor' => 'Floor 3',
+                'code' => 'Ward',
+                'description' => 'Ward',
             ),
         );
 
         // for type of room
         foreach ($typeOfRooms as $key => $typeOfRoom) {
-            factory(App\TypeOfCharge::class)->create([
+            factory(App\TypeOfRoom::class)->create([
                 'code' => $typeOfRoom['code'],
                 'description' => $typeOfRoom['description'],
-                'price' => $typeOfRoom['price'],
-                'type_id' => 2,
-                'floor' => $typeOfRoom['floor']
             ]);
         }
 
@@ -174,12 +146,12 @@ class DefaultTableSeeder extends Seeder
         }
 
         for ($i=1; $i <= 10; $i++) { 
-            $roomType = rand(3, 5);
+            $roomType = rand(1, 3);
             factory(App\Room::class)->create([
                 'code' => 'Room '. $i,
                 'floor_id' => rand(1,5),
-                'type_of_charge_id' => $roomType,
-                'capacity' => $roomType == 3 ? 1 : 5,
+                'type_of_room_id' => $roomType,
+                'capacity' => $roomType == 1 ? 1 : 5,
                 'description' => 'Room ' . $i
             ]);
         }

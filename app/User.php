@@ -32,7 +32,4 @@ class User extends Authenticatable
         return $this->hasOne('App\UserRole');
     }
 
-    public function records() {
-        return $this->hasMany('App\PatientRecord')->orderBy('id', 'desc');
-    }
 }

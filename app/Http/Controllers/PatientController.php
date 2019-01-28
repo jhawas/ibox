@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\UserRole;
+use App\Patient;
 use Illuminate\Http\Request;
 
-class PatientInformationController extends Controller
+class PatientController extends Controller
 {
     public $page = 'Patient Information';
     public $description = 'List of all ';
@@ -28,7 +27,7 @@ class PatientInformationController extends Controller
      */
     public function index()
     {
-        $patientInformations = User::with([
+        $patients = Patient::with([
             'records' => function($record) {
                 $record->with([
                     'user',
@@ -46,12 +45,12 @@ class PatientInformationController extends Controller
                     },
                 ]);
             }
-        ])->where('is_user', 0)->get();
-        // return $patientInformations;
-        return view('admin.patientInformations.index', [
+        ])->get();
+        // return $patients;
+        return view('admin.patients.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'patientInformations' => $patientInformations
+            'patients' => $patients
         ]);
     }
 
@@ -62,7 +61,7 @@ class PatientInformationController extends Controller
      */
     public function create()
     {
-        return view('admin.patientInformations.create', [
+        return view('admin.patients.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
         ]);
@@ -76,24 +75,17 @@ class PatientInformationController extends Controller
      */
     public function store(Request $request)
     {
-        $user_role = new UserRole(['role_id' => 6]); // patient id
-        $user = new User;
-        $user->first_name = $request->first_name;
-        $user->middle_name = $request->middle_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->is_user = 0;
-        $user->birthdate = $request->birthdate;
-        $user->sex = $request->sex;
-        $user->weight = $request->weight;
-        $user->height = $request->height;
-        $user->religion = $request->religion;
-        $user->occupation = $request->occupation;
-        $user->specialty = $request->specialty;
-        $user->degree = $request->degree;
-        $user->save();
-        $user->user_role()->save($user_role);
-        return redirect()->route('patientInformations.index');
+        $patient = new Patient;
+        $patient->first_name = $request->first_name;
+        $patient->middle_name = $request->middle_name;
+        $patient->last_name = $request->last_name;
+        $patient->birthdate = $request->birthdate;
+        $patient->sex = $request->sex;
+        // $patient->weight = $request->weight;
+        // $patient->height = $request->height;
+        $patient->religion = $request->religion;
+        $patient->save();
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -102,12 +94,12 @@ class PatientInformationController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Patient $patient)
     {
-        return view('admin.patientInformations.show', [
+        return view('admin.patients.show', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'patientInformation' => $user,
+            'patient' => $patient,
         ]);
     }
 
@@ -117,12 +109,12 @@ class PatientInformationController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Patient $patient)
     {
-        return view('admin.patientInformations.edit', [
+        return view('admin.patients.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'patientInformation' => $user,
+            'patient' => $patient,
         ]);
     }
 
@@ -133,22 +125,18 @@ class PatientInformationController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Patient $patient)
     {
-        $user->first_name = $request->first_name;
-        $user->middle_name = $request->middle_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->birthdate = $request->birthdate;
-        $user->sex = $request->sex;
-        $user->weight = $request->weight;
-        $user->height = $request->height;
-        $user->religion = $request->religion;
-        $user->occupation = $request->occupation;
-        $user->specialty = $request->specialty;
-        $user->degree = $request->degree;
-        $user->save();
-        return redirect()->route('patientInformations.index');
+        $patient->first_name = $request->first_name;
+        $patient->middle_name = $request->middle_name;
+        $patient->last_name = $request->last_name;
+        $patient->birthdate = $request->birthdate;
+        $patient->sex = $request->sex;
+        // $patient->weight = $request->weight;
+        // $patient->height = $request->height;
+        $patient->religion = $request->religion;
+        $patient->save();
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -157,10 +145,10 @@ class PatientInformationController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Patient $patient)
     {
-        $user->delete();
-        return redirect()->route('patientInformations.index');
+        $patient->delete();
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -171,7 +159,7 @@ class PatientInformationController extends Controller
      */
     public function print()
     {
-        $patientInformations = User::with([
+        $patients = Patient::with([
             'records' => function($record) {
                 $record->with([
                     'user',
@@ -189,10 +177,10 @@ class PatientInformationController extends Controller
                     }
                 ]);
             }
-        ])->where('is_user', 0)->get();
-        // return $patientInformations;
-        return view('admin.patientInformations.print', [
-            'patientInformations' => $patientInformations,
+        ])->get();
+        // return $patients;
+        return view('admin.patients.print', [
+            'patients' => $patients,
         ]);
     }
 
@@ -202,10 +190,10 @@ class PatientInformationController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function printHistory(User $user) 
+    public function printHistory(Patient $patient) 
     {
-        return view('admin.patientInformations.history', [
-            'patientInformation' => $user,
+        return view('admin.patients.history', [
+            'patient' => $patient,
         ]);
     }
 }

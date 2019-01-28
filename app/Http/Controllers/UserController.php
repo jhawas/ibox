@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('is_user', 1)->get();
+        $users = User::all();
         return view('admin.users.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -71,12 +71,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->birthdate = $request->birthdate;
         $user->sex = $request->sex;
-        $user->weight = $request->weight;
-        $user->height = $request->height;
-        $user->religion = $request->religion;
-        $user->occupation = $request->occupation;
         $user->specialty = $request->specialty;
-        $user->degree = $request->degree;
         $user->save();
         $user->user_role()->save($user_role);
 
@@ -131,12 +126,7 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->birthdate = $request->birthdate;
         $user->sex = $request->sex;
-        $user->weight = $request->weight;
-        $user->height = $request->height;
-        $user->religion = $request->religion;
-        $user->occupation = $request->occupation;
         $user->specialty = $request->specialty;
-        $user->degree = $request->degree;
         $user->user_role()->update(['role_id' => $request->role]);
         $user->save();
         return redirect()->route('users.index');

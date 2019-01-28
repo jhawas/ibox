@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class PatientRecord extends Model
 {
-    public function user() {
-    	return $this->belongsTo('App\User', 'user_id');
+    public function patient() {
+    	return $this->belongsTo('App\Patient', 'patient_id');
     }
 
     public function recordType() {
-    	return $this->belongsTo('App\TypeOfCharge', 'type_of_charge_id');
+    	return $this->belongsTo('App\TypeOfRecord', 'type_of_record_id');
     }
 
     public function room() {

@@ -31,6 +31,14 @@ Route::resource('medicineStocks', 'MedicineStockController');
 
 Route::resource('prescriptions', 'PrescriptionController');
 
+Route::resource('patients', 'PatientController');
+
+Route::get('patients/patients/print', 'PatientController@print')
+		->name('patients.print');
+
+Route::get('patients/{patient}/print', 'PatientController@printHistory')
+		->name('patients.printHistory');
+
 Route::resource('rounds', 'RoundController');
 
 // cashier
@@ -52,32 +60,32 @@ Route::get('medicineStocks/inventory/print', 'MedicineStockController@print')
 		->name('medicineStocks.print');
 
 // patient Informations
-Route::get('patientInformations', 'PatientInformationController@index')
-		->name('patientInformations.index');
+// Route::get('patientInformations', 'PatientInformationController@index')
+// 		->name('patientInformations.index');
 
-Route::post('patientInformations', 'PatientInformationController@store')
-		->name('patientInformations.store');
+// Route::post('patientInformations', 'PatientInformationController@store')
+// 		->name('patientInformations.store');
 
-Route::get('patientInformations/create', 'PatientInformationController@create')
-		->name('patientInformations.create');
+// Route::get('patientInformations/create', 'PatientInformationController@create')
+// 		->name('patientInformations.create');
 
-Route::get('patientInformations/{user}', 'PatientInformationController@show')
-		->name('patientInformations.show');
+// Route::get('patientInformations/{user}', 'PatientInformationController@show')
+// 		->name('patientInformations.show');
 
-Route::put('patientInformations/{user}', 'PatientInformationController@update')
-		->name('patientInformations.update');
+// Route::put('patientInformations/{user}', 'PatientInformationController@update')
+// 		->name('patientInformations.update');
 
-Route::delete('patientInformations/{user}', 'PatientInformationController@destroy')
-		->name('patientInformations.destroy');
+// Route::delete('patientInformations/{user}', 'PatientInformationController@destroy')
+// 		->name('patientInformations.destroy');
 
-Route::get('patientInformations/{user}/edit', 'PatientInformationController@edit')
-		->name('patientInformations.edit');
+// Route::get('patientInformations/{user}/edit', 'PatientInformationController@edit')
+// 		->name('patientInformations.edit');
 
-Route::get('patientInformations/patients/print', 'PatientInformationController@print')
-		->name('patientInformations.print');
+// Route::get('patientInformations/patients/print', 'PatientInformationController@print')
+// 		->name('patientInformations.print');
 
-Route::get('patientInformations/{user}/print', 'PatientInformationController@printHistory')
-		->name('patientInformations.printHistory');
+// Route::get('patientInformations/{user}/print', 'PatientInformationController@printHistory')
+// 		->name('patientInformations.printHistory');
 
 // diagnoses
 Route::get('diagnoses', 'DiagnoseController@index')

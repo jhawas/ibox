@@ -4,7 +4,7 @@
     <header id="header" class="header">
         <h2>Gaviola Medical Hospital</h2>
         <div class="title">History - 
-          {{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->middle_name) . ' ' .  ucfirst($patientInformation->last_name)}}
+          {{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->middle_name) . ' ' .  ucfirst($patient->last_name)}}
         </div>
         <div class="date">January 17, 2019</div>
     </header><!-- /header -->
@@ -21,7 +21,7 @@
                 </tr>
               </thead>
               <tbody> 
-                  @foreach ($patientInformation->records as $record)
+                  @foreach ($patient->records as $record)
                     <tr>
                       <td>{{ $record->id}}</td>
                       <td>{{ $record->recordType->code}}</td>

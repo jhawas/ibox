@@ -18,8 +18,8 @@ class CreateRoomsTable extends Migration
             $table->string('code')->nullable();
             $table->integer('floor_id')->unsigned()->nullable();
             $table->foreign('floor_id')->references('id')->on('floors')->onDelete('cascade');
-            $table->integer('type_of_charge_id')->unsigned()->nullable();
-            $table->foreign('type_of_charge_id')->references('id')->on('type_of_charges')->onDelete('cascade');
+            $table->integer('type_of_room_id')->unsigned()->nullable();
+            $table->foreign('type_of_room_id')->references('id')->on('type_of_rooms')->onDelete('cascade');
             $table->integer('capacity')->default(1);
             $table->string('description')->nullable();
             $table->integer('trans_user_id')->unsigned()->nullable();

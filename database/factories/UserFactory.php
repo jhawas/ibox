@@ -25,7 +25,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
         'birthdate' => $faker->date,
         'sex' => rand(0, 1) ? 'male' : 'female',
-        'occupation' => $faker->jobTitle,
         'specialty' => $faker->jobTitle,
     ];
 });

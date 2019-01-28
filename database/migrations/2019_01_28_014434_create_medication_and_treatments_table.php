@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePatientBillingsTable extends Migration
+class CreateMedicationAndTreatmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreatePatientBillingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('patient_billings', function (Blueprint $table) {
+        Schema::create('medication_and_treatments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('patient_record_id')->unsigned()->nullable();
             $table->foreign('patient_record_id')->references('id')->on('patient_records')->onDelete('cascade');
-            $table->integer('type_of_charge_id')->unsigned()->nullable();
-            $table->foreign('type_of_charge_id')->references('id')->on('type_of_charges')->onDelete('cascade');
-            $table->decimal('price', 8, 2)->nullable();
-            $table->integer('quantity')->nullable();
-            $table->decimal('total', 8, 2)->nullable();
-            $table->string('description')->nullable();
+            $table->string('medicine')->nullable();
+            $table->date('date')->nullable();
+            $table->time('time')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreatePatientBillingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patient_billings');
+        Schema::dropIfExists('medication_and_treatments');
     }
 }

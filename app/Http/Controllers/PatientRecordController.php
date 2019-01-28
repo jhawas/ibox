@@ -33,7 +33,7 @@ class PatientRecordController extends Controller
     public function index()
     {
         $patientRecords = PatientRecord::with([
-            'user', 
+            'patient', 
             'recordType',
             'room' => function($query) {
                 $query->with([
@@ -57,8 +57,8 @@ class PatientRecordController extends Controller
     public function create()
     {
         $diagnoses = Diagnose::all();
-        $patientInformations = User::where('is_user', 0)->get();
-        $recordTypes = TypeOfCharge::where('type_id', 4)->get();
+        $patientInformations = Patient::all();
+        $recordTypes = TypeOfRecord::all();
         $rooms = Room::all();
         return view('admin.patientRecords.create', [
             'page' => $this->page,
@@ -79,15 +79,15 @@ class PatientRecordController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $isReleased = $request->isReleased == 'on' ? true : false;
+        $discharged = $request->discharged == 'on' ? true : false;
         $patientRecord = new PatientRecord;
-        $patientRecord->user_id = $request->patientInformation;
+        $patientRecord->patient_id = $request->patientInformation;
         $patientRecord->type_of_charge_id = $request->recordType;
         $patientRecord->room_id = $request->room;
         // $patientRecord->started_at = $request->startAt;
         // $patientRecord->end_at = $request->endAt;
         $patientRecord->description = $request->description;
-        $patientRecord->isReleased = $isReleased;
+        $patientRecord->discharged = $discharged;
         $patientRecord->save();
 
         // initial diagnoses
@@ -129,8 +129,8 @@ class PatientRecordController extends Controller
     public function edit(PatientRecord $patientRecord)
     {
         $diagnoses = Diagnose::all();
-        $patientInformations = User::where('is_user', 0)->get();
-        $recordTypes = TypeOfCharge::where('type_id', 4)->get();
+        $patientInformations = Patient::all();
+        $recordTypes = TypeOfRecord::all();
         $patientDiagnose = PatientDiagnose::where('patient_record_id', $patientRecord->id)->first();
         $rooms = Room::all();
         return view('admin.patientRecords.edit', [
@@ -165,14 +165,14 @@ class PatientRecordController extends Controller
         $patientDiagnose->description = $request->diagnoses_description;
         $patientDiagnose->save();
 
-        $isReleased = $request->isReleased == 'on' ? true : false;
-        $patientRecord->user_id = $request->patientInformation;
+        $discharged = $request->discharged == 'on' ? true : false;
+        $patientRecord->patient_id = $request->patientInformation;
         $patientRecord->type_of_charge_id = $request->recordType;
         $patientRecord->room_id = $request->room;
         // $patientRecord->started_at = $request->startAt;
         // $patientRecord->end_at = $request->endAt;
         $patientRecord->description = $request->description;
-        $patientRecord->isReleased = $isReleased;
+        $patientRecord->discharged = $discharged;
         $patientRecord->save();
         return redirect()->route('patientRecords.index');
     }

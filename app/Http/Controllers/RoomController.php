@@ -32,7 +32,7 @@ class RoomController extends Controller
     {
         $rooms = Room::with([
             'records' => function($query) {
-                $query->where('isReleased', 0)->get();
+                
             }
         ])->get();
         // return $rooms;

@@ -30,7 +30,7 @@
       </a>
       <ul class="treeview-menu">
         <li>
-            <a class="treeview-item" href="{{ route('patientInformations.index') }}">
+            <a class="treeview-item" href="{{ route('patients.index') }}">
               <i class="icon fa fa-circle-o"></i> Patient Information
             </a>
         </li>

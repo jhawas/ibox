@@ -16,8 +16,8 @@
         <div class="tile">
           <div class="tile-body">
             <div class="controller-wrapper">
-              <a href="{{ route('patientInformations.create') }}" class="btn btn-primary">New</a>
-               <a href="{{ route('patientInformations.print') }}" target="_blank" class="btn btn-primary">Print Master List</a>
+              <a href="{{ route('patients.create') }}" class="btn btn-primary">New</a>
+               <a href="{{ route('patients.print') }}" target="_blank" class="btn btn-primary">Print Master List</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
               <thead>
@@ -31,27 +31,27 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($patientInformations as $patientInformation)
+                @foreach ($patients as $patient)
                   <tr>
-                      <td>{{ $patientInformation->id }}</td>
-                      <td>{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->last_name) }}</td>
-                      <td>{{ $patientInformation->email }}</td>
-                      <td>{{ $patientInformation->created_at->toFormattedDateString() }}</td>
+                      <td>{{ $patient->id }}</td>
+                      <td>{{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->last_name) }}</td>
+                      <td>{{ $patient->email }}</td>
+                      <td>{{ $patient->created_at->toFormattedDateString() }}</td>
                       <td>
-                        <a href="{{ route('patientInformations.printHistory', $patientInformation) }}" class="btn btn-primary" target="_blank">Print</a>
+                        <a href="{{ route('patients.printHistory', $patient) }}" class="btn btn-primary" target="_blank">Print</a>
                       </td>
                       <td>
-                        <a href="{{ route('patientInformations.show', $patientInformation) }}" class="btn btn-primary">
+                        <a href="{{ route('patients.show', $patient) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
                         </a>
-                        <a href="{{ route('patientInformations.edit', $patientInformation) }}" class="btn btn-primary">
+                        <a href="{{ route('patients.edit', $patient) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $patientInformation->id }}">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $patient->id }}">
                           <i class="fa fa-eraser"></i>
                         </button>
 
-                         @include('admin.patientInformations.destroy')
+                         @include('admin.patients.destroy')
 
                       </td>
                   </tr>

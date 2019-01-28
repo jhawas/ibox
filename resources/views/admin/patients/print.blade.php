@@ -16,12 +16,12 @@
                 </tr>
               </thead>
               <tbody>
-                  @foreach ($patientInformations as $patientInformation)
+                  @foreach ($patients as $patient)
                     <tr>
-                      <td>{{ $patientInformation->id }}</td>
-                      <td>{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->middle_name) . ' ' . $patientInformation->last_name }}</td>
+                      <td>{{ $patient->id }}</td>
+                      <td>{{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->middle_name) . ' ' . $patient->last_name }}</td>
                       <td>
-                          @foreach ($patientInformation->records as $record)
+                          @foreach ($patient->records as $record)
                               @foreach ($record->diagnoses as $diagnose)
                                   <div>{{$diagnose->diagnose->code}}</div>
                               @endforeach

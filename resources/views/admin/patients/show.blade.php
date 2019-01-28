@@ -19,8 +19,8 @@
                   <h4>Information</h4>
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Name: {{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->middle_name) . ' ' . ucfirst($patientInformation->last_name)}}</li>
-                  <li class="list-group-item">Email: {{ $patientInformation->email }}</li>
+                  <li class="list-group-item">Name: {{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->middle_name) . ' ' . ucfirst($patient->last_name)}}</li>
+                  <li class="list-group-item">Email: {{ $patient->email }}</li>
                 </ul>
             </div>
           </div>
@@ -29,7 +29,7 @@
             <div class="tile">
               <div class="tile-body">
                 <h3 class="tile-title">Medical History</h3>
-                @foreach ($patientInformation->records as $key => $record)
+                @foreach ($patient->records as $key => $record)
                   <?php $total = 0 ?>
                   <div class="record-container">
                       <div class="record-id-container">
