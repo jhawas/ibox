@@ -17,9 +17,9 @@
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Patient: {{ 
-                        ucfirst($patientRecord->user->first_name) . ' ' . 
-                        ucfirst($patientRecord->user->middle_name) . ' ' . 
-                        ucfirst($patientRecord->user->last_name)
+                        ucfirst($patientRecord->patient->first_name) . ' ' . 
+                        ucfirst($patientRecord->patient->middle_name) . ' ' . 
+                        ucfirst($patientRecord->patient->last_name)
                    }}</li>
                   <li class="list-group-item">Status: {{ $patientRecord->recordType->code }}</li>
                   <li class="list-group-item">Room: {{ $patientRecord->room->code }}</li>
@@ -41,11 +41,7 @@
                       <tr>
                         <th>Diagnoses Code</th>
                         <th>Diagnoses</th>
-                        <th>Weight</th>
-                        <th>Height</th>
-                        <th>Temperature</th>
-                        <th>Blood Pressure</th>
-                        <th>Pulse Rate</th>
+                        <th>Remarks</th>
                         <th>Created</th>
                       </tr>
                     </thead>
@@ -54,70 +50,8 @@
                         <tr>
                             <td>{{ $diagnose->diagnose->code }}</td>
                             <td>{{ $diagnose->description }}</td>
-                            <td>{{ $diagnose->weight }}</td>
-                            <td>{{ $diagnose->height }}</td>
-                            <td>{{ $diagnose->temperature }}</td>
-                            <td>{{ $diagnose->blood_pressure }}</td>
-                            <td>{{ $diagnose->pulse_rate }}</td>
+                            <td>{{ $diagnose->remarks }}</td>
                             <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="tile">
-              <div class="tile-body">
-                <h3 class="tile-title">Prescriptions</h3>
-                <div>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Description/Note</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($patientRecord->prescriptions as $prescription)
-                        <tr>
-                            <td>{{ $prescription->id }}</td>
-                            <td>{{ $prescription->description }}</td>
-                            <td>{{ $prescription->date }}</td>
-                            <td>{{ \Carbon\Carbon::parse($prescription->time)->format('h:i A') }}</td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="tile">
-              <div class="tile-body">
-                <h3 class="tile-title">Rounds</h3>
-                <div>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Description/Note</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($patientRecord->rounds as $round)
-                        <tr>
-                            <td>{{ $round->id }}</td>
-                            <td>{{ $round->description }}</td>
-                            <td>{{ $round->date }}</td>
-                            <td>{{ \Carbon\Carbon::parse($round->time)->format('h:i A') }}</td>
                         </tr>
                       @endforeach
                     </tbody>

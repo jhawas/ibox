@@ -50,6 +50,7 @@ class CreatePatientRecordsTable extends Migration
 
             $table->integer('philhealth_membership_id')->unsigned()->nullable();
             $table->foreign('philhealth_membership_id')->references('id')->on('philhealth_memberships')->onDelete('cascade');
+            $table->string('sponsor')->nullable();
 
             $table->integer('result_id')->unsigned()->nullable();
             $table->foreign('result_id')->references('id')->on('results')->onDelete('cascade');

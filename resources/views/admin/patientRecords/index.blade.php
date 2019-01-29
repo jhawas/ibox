@@ -38,9 +38,9 @@
                   <tr>
                       <td>{{ $patientRecord->id }}</td>
                       <td>{{ 
-                        ucfirst($patientRecord->user->first_name) . ' ' . 
-                        ucfirst($patientRecord->user->middle_name) . ' ' . 
-                        ucfirst($patientRecord->user->last_name) }}</td>
+                        ucfirst($patientRecord->patient->first_name) . ' ' . 
+                        ucfirst($patientRecord->patient->middle_name) . ' ' . 
+                        ucfirst($patientRecord->patient->last_name) }}</td>
                       <td>{{ $patientRecord->recordType->code }}</td>
                       <td>{{ $patientRecord->room->code }}</td>
                       <td>{{ $patientRecord->created_at->toFormattedDateString() }}</td>

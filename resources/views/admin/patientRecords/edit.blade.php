@@ -12,21 +12,21 @@
       </ul>
     </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">Patient Record Form</h3>
             <form method="POST" action="{{ route('patientRecords.update', $patientRecord) }}">
               @method('PUT')
               @csrf
               <div class="tile-body">
                   <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-6">
+                        <legend>Standard Information</legend>
                         <div class="form-group">
                           <label class="control-label">Patient</label>
-                          <select class="select2 form-control{{ $errors->has('patientInformation') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientInformation">
+                          <select class="select2 form-control{{ $errors->has('patient') ? ' is-invalid' : '' }}" style="width: 100%;" name="patient">
                             <option selected value="0">Choose Patient</option>
-                            @foreach ($patientInformations as $patientInformation)
-                              <option {{ $patientRecord->user_id == $patientInformation->id ? 'selected' : '' }} value="{{ $patientInformation->id }}">{{ ucfirst($patientInformation->first_name) . ' ' . ucfirst($patientInformation->middle_name) . ' ' . ucfirst($patientInformation->last_name) }}</option>
+                            @foreach ($patients as $patient)
+                              <option {{ $patientRecord->patient_id == $patient->id ? 'selected' : '' }} value="{{ $patient->id }}">{{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->middle_name) . ' ' . ucfirst($patient->last_name) }}</option>
                             @endforeach
                           </select>
                           @if ($errors->has('patientInformation'))
@@ -36,16 +36,16 @@
                           @endif
                         </div>
                         <div class="form-group">
-                          <label class="control-label">Record Types</label>
-                          <select class="select2 form-control{{ $errors->has('recordType') ? ' is-invalid' : '' }}" style="width: 100%;" name="recordType">
+                          <label class="control-label">Type Of Record</label>
+                          <select class="select2 form-control{{ $errors->has('typeOfRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfRecord">
                             <option selected value="0">Choose Record Type</option>
-                            @foreach ($recordTypes as $recordType)
-                              <option {{ $patientRecord->type_of_charge_id == $recordType->id ? 'selected' : '' }} value="{{ $recordType->id }}">{{ $recordType->code }}</option>
+                            @foreach ($typeOfRecords as $typeOfRecord)
+                              <option {{ $patientRecord->type_of_record_id == $typeOfRecord->id ? 'selected' : '' }} value="{{ $typeOfRecord->id }}">{{ $typeOfRecord->code }}</option>
                             @endforeach
                           </select>
-                          @if ($errors->has('recordType'))
+                          @if ($errors->has('typeOfRecord'))
                               <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $errors->first('recordType') }}</strong>
+                                  <strong>{{ $errors->first('typeOfRecord') }}</strong>
                               </span>
                           @endif
                         </div>
@@ -64,30 +64,26 @@
                           @endif
                         </div>
                         <div class="form-group">
-                          <label class="control-label">Description</label>
-                          <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                            placeholder="Enter Description here...">{{$patientRecord->description}}</textarea>
-                          @if ($errors->has('description'))
+                          <label class="control-label">Bed</label>
+                          <input name="bed" class="form-control{{ $errors->has('bed') ? ' is-invalid' : '' }}" value="{{$patientRecord->bed}}" type="text" placeholder="Enter Bed">
+                          @if ($errors->has('bed'))
                               <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $errors->first('description') }}</strong>
+                                  <strong>{{ $errors->first('bed') }}</strong>
                               </span>
                           @endif
                         </div>
-                      </div>
-                      <div class="col-md-12">
-                          <h3 class="tile-title">Initial Test</h3>
-                          <div class="form-group">
-                            <label class="control-label">Weight</label>
-                            <input name="weight" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{ $patientDiagnose->weight }}" type="text" placeholder="Enter Weight">
-                            @if ($errors->has('weight'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('weight') }}</strong>
-                                </span>
-                            @endif
-                          </div>
+                        <div class="form-group">
+                          <label class="control-label">Weight</label>
+                          <input name="weight" class="form-control{{ $errors->has('weight') ? ' is-invalid' : '' }}" value="{{$patientRecord->weight}}" type="text" placeholder="Enter Weight">
+                          @if ($errors->has('weight'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('weight') }}</strong>
+                              </span>
+                          @endif
+                        </div>
                           <div class="form-group">
                             <label class="control-label">Height</label>
-                            <input name="height" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{$patientDiagnose->height}}" type="text" placeholder="Enter height">
+                            <input name="height" class="form-control{{ $errors->has('height') ? ' is-invalid' : '' }}" value="{{$patientRecord->height}}" type="text" placeholder="Enter height">
                             @if ($errors->has('height'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('height') }}</strong>
@@ -96,7 +92,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label">Temperature</label>
-                            <input name="temperature" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{$patientDiagnose->temperature}}" type="text" placeholder="Enter temperature">
+                            <input name="temperature" class="form-control{{ $errors->has('temperature') ? ' is-invalid' : '' }}" value="{{$patientRecord->temperature}}" type="text" placeholder="Enter temperature">
                             @if ($errors->has('temperature'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('temperature') }}</strong>
@@ -105,7 +101,7 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label">Blood Pressure</label>
-                            <input name="blood_pressure" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{$patientDiagnose->blood_pressure}}" type="text" placeholder="Enter blood pressure">
+                            <input name="blood_pressure" class="form-control{{ $errors->has('blood_pressure') ? ' is-invalid' : '' }}" value="{{$patientRecord->blood_pressure}}" type="text" placeholder="Enter blood pressure">
                             @if ($errors->has('blood_pressure'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('blood_pressure') }}</strong>
@@ -114,42 +110,209 @@
                           </div>
                           <div class="form-group">
                             <label class="control-label">Pulse Rate</label>
-                            <input name="pulse_rate" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{$patientDiagnose->pulse_rate}}" type="text" placeholder="Enter pulse rate">
+                            <input name="pulse_rate" class="form-control{{ $errors->has('pulse_rate') ? ' is-invalid' : '' }}" value="{{$patientRecord->pulse_rate}}" type="text" placeholder="Enter pulse rate">
                             @if ($errors->has('pulse_rate'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('pulse_rate') }}</strong>
                                 </span>
                             @endif
                           </div>
-                          <div class="form-group">
-                            <label class="control-label">Diagnoses Code</label>
-                            <select class="select2 form-control{{ $errors->has('diagnoses') ? ' is-invalid' : '' }}" style="width: 100%;" name="diagnoses">
-                              <option selected value="0"><--Choose Diagnoses--></option>
-                              @foreach ($diagnoses as $index => $diagnose)
-                                <option {{ $patientDiagnose->diagnose_id == $diagnose->id ? 'selected' : '' }} value="{{$diagnose->id}}">{{ ucfirst($diagnose->code) }}</option>
-                              @endforeach
-                            </select>
-                            @if ($errors->has('diagnoses'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('diagnoses') }}</strong>
-                                </span>
-                            @endif
-                          </div>
-                          <div class="form-group">
-                            <label class="control-label">Initial Diagnoses</label>
-                            <textarea name="diagnoses_description" class="form-control{{ $errors->has('diagnoses_description') ? ' is-invalid' : '' }}"
-                              placeholder="Enter diagnoses_description here...">{{$patientDiagnose->description}}</textarea>
-                            @if ($errors->has('diagnoses_description'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('diagnoses_description') }}</strong>
-                                </span>
-                            @endif
-                          </div>
+                      </div>
+                      <div class="col-md-6">
+                        <legend>Admission/Check Up</legend>
+                        <div class="form-group">
+                          <label class="control-label">Doctor</label>
+                          <select class="select2 form-control{{ $errors->has('admitted_checkup_by') ? ' is-invalid' : '' }}" style="width: 100%;" name="admitted_checkup_by">
+                            <option selected value="0">Choose Doctor</option>
+                            @foreach ($users as $user)
+                              <option {{ $patientRecord->admitted_and_check_up_by == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ ucfirst($user->first_name) . ' ' . ucfirst($user->middle_name) . ' ' . ucfirst($user->last_name) }}</option>
+                            @endforeach
+                          </select>
+                          @if ($errors->has('admitted_checkup_by'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('admitted_checkup_by') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Date</label>
+                          <input name="admitted_checkup_date" class="form-control{{ $errors->has('admitted_checkup_date') ? ' is-invalid' : '' }}" value="{{$patientRecord->addmitted_and_check_up_date}}" type="date" placeholder="Enter pulse rate">
+                          @if ($errors->has('admitted_checkup_date'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('admitted_checkup_date') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Time</label>
+                          <input name="admitted_checkup_time" class="form-control{{ $errors->has('admitted_checkup_time') ? ' is-invalid' : '' }}" value="{{$patientRecord->addmitted_and_check_up_time}}" type="time" placeholder="Enter pulse rate">
+                          @if ($errors->has('admitted_checkup_time'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('admitted_checkup_time') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                        <legend>Discharge</legend>
+                        <div class="form-group">
+                          <label class="control-label">Doctor</label>
+                          <select class="select2 form-control{{ $errors->has('discharge_by') ? ' is-invalid' : '' }}" style="width: 100%;" name="discharge_by">
+                            <option selected value="0">Choose Doctor</option>
+                            @foreach ($users as $user)
+                              <option {{ $patientRecord->discharge_by == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ ucfirst($user->first_name) . ' ' . ucfirst($user->middle_name) . ' ' . ucfirst($user->last_name) }}</option>
+                            @endforeach
+                          </select>
+                          @if ($errors->has('discharge_by'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('discharge_by') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Date</label>
+                          <input name="discharge_date" class="form-control{{ $errors->has('discharge_date') ? ' is-invalid' : '' }}" value="{{$patientRecord->discharge_date}}" type="date" placeholder="Enter pulse rate">
+                          @if ($errors->has('discharge_date'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('discharge_date') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Time</label>
+                          <input name="discharge_time" class="form-control{{ $errors->has('discharge_time') ? ' is-invalid' : '' }}" value="{{$patientRecord->discharge_time}}" type="time" placeholder="Enter pulse rate">
+                          @if ($errors->has('discharge_time'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('discharge_time') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                        <legend>Initial Diagnoses</legend>
+                        <div class="form-group">
+                          <label class="control-label">Diagnoses Code</label>
+                          <select class="select2 form-control{{ $errors->has('diagnose') ? ' is-invalid' : '' }}" style="width: 100%;" name="diagnose">
+                            <option selected value="0">Choose Code</option>
+                            @foreach ($diagnoses as $diagnose)
+                              <option {{ $patientDiagnose->diagnose_id == $diagnose->id ? 'selected' : '' }} value="{{ $diagnose->id }}">{{ $diagnose->code }}</option>
+                            @endforeach
+                          </select>
+                          @if ($errors->has('diagnose'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('diagnose') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Diagnoses</label>
+                          <textarea name="diagnoses_description" class="form-control{{ $errors->has('diagnoses_description') ? ' is-invalid' : '' }}"
+                            placeholder="Enter diagnoses_description here...">{{$patientDiagnose->diagnoses}}</textarea>
+                          @if ($errors->has('diagnoses_description'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('diagnoses_description') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Remarks</label>
+                          <textarea name="remarks" class="form-control{{ $errors->has('remarks') ? ' is-invalid' : '' }}"
+                            placeholder="Enter remarks here...">{{$patientDiagnose->remarks}}</textarea>
+                          @if ($errors->has('remarks'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('remarks') }}</strong>
+                              </span>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <legend>Additional Information</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="control-label">Philhealth Membership</label>
+                                  <select class="select2 form-control{{ $errors->has('philhealthMembership') ? ' is-invalid' : '' }}" style="width: 100%;" name="philhealthMembership">
+                                    <option selected value="0">Choose Membership</option>
+                                    @foreach ($philhealthMemberships as $philhealthMembership)
+                                      <option {{ $patientRecord->philhealth_membership_id == $philhealthMembership->id ? 'selected' : '' }} value="{{ $philhealthMembership->id }}">{{$philhealthMembership->code}}</option>
+                                    @endforeach
+                                  </select>
+                                  @if ($errors->has('philhealthMembership'))
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $errors->first('philhealthMembership') }}</strong>
+                                      </span>
+                                  @endif
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label">Sponsor</label>
+                                  <input name="sponsor" class="form-control{{ $errors->has('sponsor') ? ' is-invalid' : '' }}" value="{{$patientRecord->sponsor}}" type="text" placeholder="Enter Sponsor">
+                                  @if ($errors->has('sponsor'))
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $errors->first('sponsor') }}</strong>
+                                      </span>
+                                  @endif
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label">Disposition</label>
+                                  <select class="select2 form-control{{ $errors->has('disposition') ? ' is-invalid' : '' }}" style="width: 100%;" name="disposition">
+                                    <option selected value="0">Choose Disposition</option>
+                                    @foreach ($dispositions as $disposition)
+                                      <option {{ $patientRecord->disposition_id == $disposition->id ? 'selected' : '' }} value="{{ $disposition->id }}">{{$disposition->code}}</option>
+                                    @endforeach
+                                  </select>
+                                  @if ($errors->has('disposition'))
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $errors->first('room') }}</strong>
+                                      </span>
+                                  @endif
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label">Results</label>
+                                  <select class="select2 form-control{{ $errors->has('result') ? ' is-invalid' : '' }}" style="width: 100%;" name="result">
+                                    <option selected value="0">Choose Result</option>
+                                    @foreach ($results as $result)
+                                      <option {{ $patientRecord->result_id == $result->id ? 'selected' : '' }} value="{{ $result->id }}">{{$result->code}}</option>
+                                    @endforeach
+                                  </select>
+                                  @if ($errors->has('result'))
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $errors->first('result') }}</strong>
+                                      </span>
+                                  @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="control-label">Attending Physician</label>
+                                <select class="select2 form-control{{ $errors->has('physician') ? ' is-invalid' : '' }}" style="width: 100%;" name="physician">
+                                  <option selected value="0">Choose Doctor</option>
+                                  @foreach ($users as $user)
+                                    <option {{ $patientRecord->attending_physician == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ ucfirst($user->first_name) . ' ' . ucfirst($user->middle_name) . ' ' . ucfirst($user->last_name) }}</option>
+                                  @endforeach
+                                </select>
+                                @if ($errors->has('physician'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('physician') }}</strong>
+                                    </span>
+                                @endif
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Chart Completed By</label>
+                                <select class="select2 form-control{{ $errors->has('chartCompletedBy') ? ' is-invalid' : '' }}" style="width: 100%;" name="chartCompletedBy">
+                                  <option selected value="0">Choose Staff</option>
+                                  @foreach ($users as $user)
+                                    <option {{ $patientRecord->chart_completed_by == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ ucfirst($user->first_name) . ' ' . ucfirst($user->middle_name) . ' ' . ucfirst($user->last_name) }}</option>
+                                  @endforeach
+                                </select>
+                                @if ($errors->has('chartCompletedBy'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('chartCompletedBy') }}</strong>
+                                    </span>
+                                @endif
+                              </div>
+                            </div>
+                        </div>
                       </div>
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input name="isReleased" class="form-check-input" type="checkbox">Discharged
+                      <input name="discharged" class="form-check-input" type="checkbox">Discharged
                     </label>
                   </div>
               </div>

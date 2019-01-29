@@ -28,7 +28,7 @@
                   <th>Updated</th>
                   <th>Action</th>
                 </tr>
-              </thead>w
+              </thead>
               <tbody>
                 @foreach ($diagnoses as $diagnose)
                   <tr>

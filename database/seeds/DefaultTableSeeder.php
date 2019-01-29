@@ -96,6 +96,92 @@ class DefaultTableSeeder extends Seeder
             ]));
         });
 
+
+        // disposition
+        $dispositions = array(
+            array(
+                'code' => 'Discharged',
+                'description' => 'Discharged',
+            ),
+            array(
+                'code' => 'Transfered',
+                'description' => 'Transfered',
+            ),
+            array(
+                'code' => 'AMA',
+                'description' => 'AMA',
+            ),
+            array(
+                'code' => 'Absconded',
+                'description' => 'Absconded',
+            ),
+        );
+
+        foreach ($dispositions as $key => $disposition) {
+            factory(App\Disposition::class)->create([
+                'code' => $disposition['code'],
+                'description' => $disposition['description'],
+            ]);
+        }
+
+        // results
+        $results = array(
+            array(
+                'code' => 'Recovered',
+                'description' => 'Recovered',
+            ),
+            array(
+                'code' => 'Improved',
+                'description' => 'Improved',
+            ),
+            array(
+                'code' => 'Unimproved',
+                'description' => 'Unimproved',
+            ),
+            array(
+                'code' => 'Died',
+                'description' => 'Died',
+            ),
+        );
+
+        foreach ($results as $key => $result) {
+            factory(App\Result::class)->create([
+                'code' => $result['code'],
+                'description' => $result['description'],
+            ]);
+        }
+
+        // philhealth membership
+        $memberships = array(
+            array(
+                'code' => 'Employed',
+                'description' => 'Employed',
+            ),
+            array(
+                'code' => 'Self Employed',
+                'description' => 'Self Employed',
+            ),
+            array(
+                'code' => 'Lifetime(retires)',
+                'description' => 'Lifetime(retires)',
+            ),
+            array(
+                'code' => 'Overseas',
+                'description' => 'Overseas',
+            ),
+            array(
+                'code' => 'Sponsored',
+                'description' => 'Sponsored',
+            ),
+        );
+
+        foreach ($memberships as $key => $membership) {
+            factory(App\PhilhealthMembership::class)->create([
+                'code' => $membership['code'],
+                'description' => $membership['description'],
+            ]);
+        }
+
         $typeOfRecords = array(
             array(
                 'code' => 'Out Patient',

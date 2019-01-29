@@ -9,6 +9,9 @@ use App\Diagnose;
 use App\Room;
 use App\Patient;
 use App\User;
+use App\Disposition;
+use App\Result;
+use App\PhilhealthMembership;
 use Illuminate\Http\Request;
 
 class PatientRecordController extends Controller
@@ -58,18 +61,24 @@ class PatientRecordController extends Controller
     public function create()
     {
         $diagnoses = Diagnose::all();
-        $patientInformations = Patient::all();
-        $recordTypes = TypeOfRecord::all();
+        $patients = Patient::all();
+        $typeOfRecords = TypeOfRecord::all();
         $rooms = Room::all();
         $users = User::all();
+        $dispositions = Disposition::all(); 
+        $philhealthMemberships = PhilhealthMembership::all();
+        $results = Result::all();
         return view('admin.patientRecords.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'recordTypes' => $recordTypes,
+            'typeOfRecords' => $typeOfRecords,
             'rooms' => $rooms,
-            'patientInformations' => $patientInformations,
+            'patients' => $patients,
             'diagnoses' => $diagnoses,
             'users' => $users,
+            'dispositions' => $dispositions,
+            'philhealthMemberships' => $philhealthMemberships,
+            'results' => $results,
         ]);
     }
 
@@ -84,25 +93,36 @@ class PatientRecordController extends Controller
         // return $request;
         $discharged = $request->discharged == 'on' ? true : false;
         $patientRecord = new PatientRecord;
-        $patientRecord->patient_id = $request->patientInformation;
-        $patientRecord->type_of_charge_id = $request->recordType;
-        $patientRecord->room_id = $request->room;
-        // $patientRecord->started_at = $request->startAt;
-        // $patientRecord->end_at = $request->endAt;
-        $patientRecord->description = $request->description;
+        $patientRecord->patient_id = $request->patient;
+        $patientRecord->type_of_record_id = $this->isDropdownEmpty($request->typeOfRecord);
+        $patientRecord->room_id = $this->isDropdownEmpty($request->room);
+        $patientRecord->bed = $request->bed;
+        $patientRecord->weight = $request->weight;
+        $patientRecord->height = $request->height;
+        $patientRecord->temperature = $request->temperature;
+        $patientRecord->blood_pressure = $request->blood_pressure;
+        $patientRecord->pulse_rate = $request->pulse_rate;
+        $patientRecord->admitted_and_check_up_by = $this->isDropdownEmpty($request->admitted_checkup_by);
+        $patientRecord->addmitted_and_check_up_date = $request->admitted_checkup_date;
+        $patientRecord->addmitted_and_check_up_time = $request->admitted_checkup_time;
+        $patientRecord->discharge_by = $this->isDropdownEmpty($request->discharge_by);
+        $patientRecord->discharge_date = $request->discharge_date;
+        $patientRecord->discharge_time = $request->discharge_time;
+        $patientRecord->attending_physician = $this->isDropdownEmpty($request->physician);
+        $patientRecord->chart_completed_by = $this->isDropdownEmpty($request->chartCompletedBy);
+        $patientRecord->disposition_id = $this->isDropdownEmpty($request->disposition);
+        $patientRecord->philhealth_membership_id = $this->isDropdownEmpty($request->philhealthMembership);
+        $patientRecord->result_id = $this->isDropdownEmpty($request->result);
+        $patientRecord->sponsor = $request->sponsor;
         $patientRecord->discharged = $discharged;
         $patientRecord->save();
 
         // initial diagnoses
         $patientDiagnose = new PatientDiagnose;
-        $patientDiagnose->diagnose_id = $request->diagnoses;
+        $patientDiagnose->diagnose_id = $this->isDropdownEmpty($request->diagnose);
         $patientDiagnose->patient_record_id = $patientRecord->id;
-        $patientDiagnose->weight = $request->weight;
-        $patientDiagnose->height = $request->height;
-        $patientDiagnose->temperature = $request->temperature;
-        $patientDiagnose->blood_pressure = $request->blood_pressure;
-        $patientDiagnose->pulse_rate = $request->pulse_rate;
-        $patientDiagnose->description = $request->diagnoses_description;
+        $patientDiagnose->diagnoses = $request->diagnoses_description;
+        $patientDiagnose->remarks = $request->remarks;
         $patientDiagnose->save();
 
         return redirect()->route('patientRecords.index');
@@ -132,21 +152,27 @@ class PatientRecordController extends Controller
     public function edit(PatientRecord $patientRecord)
     {
         $diagnoses = Diagnose::all();
-        $patientInformations = Patient::all();
-        $recordTypes = TypeOfRecord::all();
+        $patients = Patient::all();
+        $typeOfRecords = TypeOfRecord::all();
         $patientDiagnose = PatientDiagnose::where('patient_record_id', $patientRecord->id)->first();
         $rooms = Room::all();
         $users = User::all();
+        $dispositions = Disposition::all(); 
+        $philhealthMemberships = PhilhealthMembership::all();
+        $results = Result::all();
         return view('admin.patientRecords.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'patientRecord' => $patientRecord,
-            'patientInformations' => $patientInformations,
-            'recordTypes' => $recordTypes,
+            'patients' => $patients,
+            'typeOfRecords' => $typeOfRecords,
             'rooms' => $rooms,
             'diagnoses' => $diagnoses,
             'patientDiagnose' => $patientDiagnose,
             'users' => $users,
+            'dispositions' => $dispositions,
+            'philhealthMemberships' => $philhealthMemberships,
+            'results' => $results,
         ]);
     }
 
@@ -160,23 +186,35 @@ class PatientRecordController extends Controller
     public function update(Request $request, PatientRecord $patientRecord)
     {
         $patientDiagnose = PatientDiagnose::where('patient_record_id', $patientRecord->id)->first();
-        $patientDiagnose->diagnose_id = $request->diagnoses;
+        $patientDiagnose->diagnose_id = $this->isDropdownEmpty($request->diagnose);
         $patientDiagnose->patient_record_id = $patientRecord->id;
-        $patientDiagnose->weight = $request->weight;
-        $patientDiagnose->height = $request->height;
-        $patientDiagnose->temperature = $request->temperature;
-        $patientDiagnose->blood_pressure = $request->blood_pressure;
-        $patientDiagnose->pulse_rate = $request->pulse_rate;
-        $patientDiagnose->description = $request->diagnoses_description;
+        $patientDiagnose->diagnoses = $request->diagnoses_description;
+        $patientDiagnose->remarks = $request->remarks;
         $patientDiagnose->save();
 
+        // patient record
         $discharged = $request->discharged == 'on' ? true : false;
-        $patientRecord->patient_id = $request->patientInformation;
-        $patientRecord->type_of_charge_id = $request->recordType;
-        $patientRecord->room_id = $request->room;
-        // $patientRecord->started_at = $request->startAt;
-        // $patientRecord->end_at = $request->endAt;
-        $patientRecord->description = $request->description;
+        $patientRecord->patient_id = $request->patient;
+        $patientRecord->type_of_record_id = $this->isDropdownEmpty($request->typeOfRecord);
+        $patientRecord->room_id = $this->isDropdownEmpty($request->room);
+        $patientRecord->bed = $request->bed;
+        $patientRecord->weight = $request->weight;
+        $patientRecord->height = $request->height;
+        $patientRecord->temperature = $request->temperature;
+        $patientRecord->blood_pressure = $request->blood_pressure;
+        $patientRecord->pulse_rate = $request->pulse_rate;
+        $patientRecord->admitted_and_check_up_by = $this->isDropdownEmpty($request->admitted_checkup_by);
+        $patientRecord->addmitted_and_check_up_date = $request->admitted_checkup_date;
+        $patientRecord->addmitted_and_check_up_time = $request->admitted_checkup_time;
+        $patientRecord->discharge_by = $this->isDropdownEmpty($request->discharge_by);
+        $patientRecord->discharge_date = $request->discharge_date;
+        $patientRecord->discharge_time = $request->discharge_time;
+        $patientRecord->attending_physician = $this->isDropdownEmpty($request->physician);
+        $patientRecord->chart_completed_by = $this->isDropdownEmpty($request->chartCompletedBy);
+        $patientRecord->disposition_id = $this->isDropdownEmpty($request->disposition);
+        $patientRecord->philhealth_membership_id = $this->isDropdownEmpty($request->philhealthMembership);
+        $patientRecord->result_id = $this->isDropdownEmpty($request->result);
+        $patientRecord->sponsor = $request->sponsor;
         $patientRecord->discharged = $discharged;
         $patientRecord->save();
         return redirect()->route('patientRecords.index');
@@ -192,5 +230,9 @@ class PatientRecordController extends Controller
     {
         $patientRecord->delete();
         return redirect()->route('patientRecords.index');
+    }
+
+    public function isDropdownEmpty($value) {
+        return $value == 0 ? null : $value;
     }
 }
