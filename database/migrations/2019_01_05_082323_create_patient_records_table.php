@@ -37,6 +37,9 @@ class CreatePatientRecordsTable extends Migration
             $table->integer('attending_physician')->unsigned()->nullable();
             $table->foreign('attending_physician')->references('id')->on('users')->onDelete('cascade');
 
+            $table->integer('chart_completed_by')->unsigned()->nullable();
+            $table->foreign('chart_completed_by')->references('id')->on('users')->onDelete('cascade');
+
             $table->integer('room_id')->unsigned()->nullable();
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
 

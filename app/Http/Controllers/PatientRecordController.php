@@ -8,6 +8,7 @@ use App\PatientDiagnose;
 use App\Diagnose;
 use App\Room;
 use App\Patient;
+use App\User;
 use Illuminate\Http\Request;
 
 class PatientRecordController extends Controller
@@ -60,6 +61,7 @@ class PatientRecordController extends Controller
         $patientInformations = Patient::all();
         $recordTypes = TypeOfRecord::all();
         $rooms = Room::all();
+        $users = User::all();
         return view('admin.patientRecords.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -67,6 +69,7 @@ class PatientRecordController extends Controller
             'rooms' => $rooms,
             'patientInformations' => $patientInformations,
             'diagnoses' => $diagnoses,
+            'users' => $users,
         ]);
     }
 
@@ -133,6 +136,7 @@ class PatientRecordController extends Controller
         $recordTypes = TypeOfRecord::all();
         $patientDiagnose = PatientDiagnose::where('patient_record_id', $patientRecord->id)->first();
         $rooms = Room::all();
+        $users = User::all();
         return view('admin.patientRecords.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -142,6 +146,7 @@ class PatientRecordController extends Controller
             'rooms' => $rooms,
             'diagnoses' => $diagnoses,
             'patientDiagnose' => $patientDiagnose,
+            'users' => $users,
         ]);
     }
 
