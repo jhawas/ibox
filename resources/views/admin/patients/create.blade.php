@@ -22,7 +22,7 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label class="control-label">First Name</label>
-                            <input name="first_name" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('first_name')}}" type="text" placeholder="Enter First Name">
+                            <input name="first_name" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" value="{{old('first_name')}}" type="text" placeholder="Enter First Name">
                             @if ($errors->has('first_name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('first_name') }}</strong>
@@ -48,19 +48,17 @@
                             @endif
                           </div>
                           <div class="form-group">
-                            <label class="control-label">Email</label>
-                            <input name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{old('email')}}" type="email" placeholder="Enter email address">
-                            @if ($errors->has('email'))
+                            <label class="control-label">Suffix</label>
+                            <input name="suffix" class="form-control{{ $errors->has('suffix') ? ' is-invalid' : '' }}" value="{{old('suffix')}}" type="text" placeholder="Enter Suffix">
+                            @if ($errors->has('suffix'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $errors->first('suffix') }}</strong>
                                 </span>
                             @endif
                           </div>
-                      </div>
-                      <div class="col-md-6">
                           <div class="form-group">
                             <label class="control-label">Birthdate</label>
-                            <input name="birthdate" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('birthdate')}}" type="date" placeholder="Enter Birthdate">
+                            <input name="birthdate" class="form-control{{ $errors->has('birthdate') ? ' is-invalid' : '' }}" value="{{old('birthdate')}}" type="date" placeholder="Enter Birthdate">
                             @if ($errors->has('birthdate'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('birthdate') }}</strong>
@@ -71,8 +69,8 @@
                             <label class="control-label">Sex</label>
                             <select class="select2 form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}" style="width: 100%;" name="sex">
                               <option selected value="0">Choose Sex</option>
-                              <option selected value="male">Male</option>
-                              <option selected value="female">Female</option>
+                              <option value="male">Male</option>
+                              <option value="female">Female</option>
                             </select>
                             @if ($errors->has('sex'))
                                 <span class="invalid-feedback" role="alert">
@@ -81,56 +79,104 @@
                             @endif
                           </div>
                           <div class="form-group">
-                            <label class="control-label">Weight</label>
-                            <input name="weight" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('weight')}}" type="text" placeholder="Enter weight">
-                            @if ($errors->has('weight'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('weight') }}</strong>
-                                </span>
-                            @endif
-                          </div>
-                          <div class="form-group">
-                            <label class="control-label">Height</label>
-                            <input name="height" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('height')}}" type="text" placeholder="Enter height">
-                            @if ($errors->has('height'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('height') }}</strong>
-                                </span>
-                            @endif
-                          </div>
-                          <div class="form-group">
                             <label class="control-label">Religion</label>
-                            <input name="religion" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('religion')}}" type="text" placeholder="Enter religion">
+                            <input name="religion" class="form-control{{ $errors->has('religion') ? ' is-invalid' : '' }}" value="{{old('religion')}}" type="text" placeholder="Enter religion">
                             @if ($errors->has('religion'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('religion') }}</strong>
                                 </span>
                             @endif
                           </div>
+                          <fieldset class="form-group">
+                            <legend>Civil Status</legend>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" id="csSingle" type="radio" name="civil_status[]" value="single" checked="">Single
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" id="csMarried" type="radio" name="civil_status[]" value="married">Married
+                              </label>
+                            </div>
+                            <div class="form-check disabled">
+                              <label class="form-check-label">
+                                <input class="form-check-input" id="csWidowed" type="radio" name="civil_status[]" value="widowed">Widowed
+                              </label>
+                            </div>
+                          </fieldset>
                           <div class="form-group">
-                            <label class="control-label">Occupation</label>
-                            <input name="occupation" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('occupation')}}" type="text" placeholder="Enter occupation">
-                            @if ($errors->has('occupation'))
+                            <label class="control-label">Address</label>
+                            <textarea name="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
+                              placeholder="Enter address here...">{{old('address')}}</textarea>                            @if ($errors->has('address'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('occupation') }}</strong>
+                                    <strong>{{ $errors->first('address') }}</strong>
+                                </span>
+                            @endif
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="control-label">Spouse</label>
+                            <input name="spouse" class="form-control{{ $errors->has('spouse') ? ' is-invalid' : '' }}" value="{{old('spouse')}}" type="text" placeholder="Enter spouse">
+                            @if ($errors->has('spouse'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('spouse') }}</strong>
                                 </span>
                             @endif
                           </div>
                           <div class="form-group">
-                            <label class="control-label">Specialty</label>
-                            <input name="specialty" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('specialty')}}" type="text" placeholder="Enter specialty">
-                            @if ($errors->has('specialty'))
+                            <label class="control-label">Spouse Address</label>
+                            <textarea name="spouse_address" class="form-control{{ $errors->has('spouse_address') ? ' is-invalid' : '' }}"
+                              placeholder="Enter address here...">{{old('spouse_address')}}</textarea>                            @if ($errors->has('spouse_address'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('specialty') }}</strong>
+                                    <strong>{{ $errors->first('spouse_address') }}</strong>
                                 </span>
                             @endif
                           </div>
                           <div class="form-group">
-                            <label class="control-label">Degree</label>
-                            <input name="degree" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" value="{{old('degree')}}" type="text" placeholder="Enter degree">
-                            @if ($errors->has('degree'))
+                            <label class="control-label">Mother</label>
+                            <input name="mother" class="form-control{{ $errors->has('mother') ? ' is-invalid' : '' }}" value="{{old('mother')}}" type="text" placeholder="Enter mother">
+                            @if ($errors->has('mother'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('degree') }}</strong>
+                                    <strong>{{ $errors->first('mother') }}</strong>
+                                </span>
+                            @endif
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">Father</label>
+                            <input name="father" class="form-control{{ $errors->has('father') ? ' is-invalid' : '' }}" value="{{old('father')}}" type="text" placeholder="Enter father">
+                            @if ($errors->has('father'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('father') }}</strong>
+                                </span>
+                            @endif
+                          </div>
+                          <legend>Emergency Contact</legend>
+                          <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input name="e_name" class="form-control{{ $errors->has('e_name') ? ' is-invalid' : '' }}" value="{{old('e_name')}}" type="text" placeholder="Enter e_name">
+                            @if ($errors->has('e_name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('e_name') }}</strong>
+                                </span>
+                            @endif
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">Phone</label>
+                            <input name="e_contact" class="form-control{{ $errors->has('e_contact') ? ' is-invalid' : '' }}" value="{{old('e_contact')}}" type="text" placeholder="Enter e_contact">
+                            @if ($errors->has('e_contact'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('e_contact') }}</strong>
+                                </span>
+                            @endif
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label">Address</label>
+                            <textarea name="e_address" class="form-control{{ $errors->has('e_address') ? ' is-invalid' : '' }}"
+                              placeholder="Enter address here...">{{old('e_address')}}</textarea>                            @if ($errors->has('e_address'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('e_address') }}</strong>
                                 </span>
                             @endif
                           </div>

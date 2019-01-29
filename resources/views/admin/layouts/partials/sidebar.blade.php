@@ -44,16 +44,6 @@
               <i class="icon fa fa-circle-o"></i> Laboratory
             </a>
         </li>
-        <li>
-            <a class="treeview-item" href="{{ route('prescriptions.index') }}">
-              <i class="icon fa fa-circle-o"></i> Prescription
-            </a>
-        </li>
-        <li>
-            <a class="treeview-item" href="{{ route('rounds.index') }}">
-              <i class="icon fa fa-circle-o"></i> Round
-            </a>
-        </li>
       </ul>
     </li>
     @if(

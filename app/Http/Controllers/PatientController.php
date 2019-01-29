@@ -79,11 +79,19 @@ class PatientController extends Controller
         $patient->first_name = $request->first_name;
         $patient->middle_name = $request->middle_name;
         $patient->last_name = $request->last_name;
+        $patient->suffix = $request->suffix;
         $patient->birthdate = $request->birthdate;
         $patient->sex = $request->sex;
-        // $patient->weight = $request->weight;
-        // $patient->height = $request->height;
         $patient->religion = $request->religion;
+        $patient->civil_status = $request->civil_status[0];
+        $patient->address = $request->address;
+        $patient->spouse = $request->spouse;
+        $patient->spouse_address = $request->spouse_address;
+        $patient->mother = $request->mother;
+        $patient->father = $request->father;
+        $patient->e_name = $request->e_name;
+        $patient->e_contact = $request->e_contact;
+        $patient->e_address = $request->e_address;
         $patient->save();
         return redirect()->route('patients.index');
     }
@@ -130,11 +138,19 @@ class PatientController extends Controller
         $patient->first_name = $request->first_name;
         $patient->middle_name = $request->middle_name;
         $patient->last_name = $request->last_name;
+        $patient->suffix = $request->suffix;
         $patient->birthdate = $request->birthdate;
         $patient->sex = $request->sex;
-        // $patient->weight = $request->weight;
-        // $patient->height = $request->height;
         $patient->religion = $request->religion;
+        $patient->civil_status = $request->civil_status[0];
+        $patient->address = $request->address;
+        $patient->spouse = $request->spouse;
+        $patient->spouse_address = $request->spouse_address;
+        $patient->mother = $request->mother;
+        $patient->father = $request->father;
+        $patient->e_name = $request->e_name;
+        $patient->e_contact = $request->e_contact;
+        $patient->e_address = $request->e_address;
         $patient->save();
         return redirect()->route('patients.index');
     }

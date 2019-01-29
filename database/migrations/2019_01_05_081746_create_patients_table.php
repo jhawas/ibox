@@ -19,8 +19,9 @@ class CreatePatientsTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('suffix')->nullable();
             $table->string('username')->unique()->nullable();
-            $table->datetime('birthdate')->nullable();
+            $table->date('birthdate')->nullable();
             $table->string('religion')->nullable();
             $table->string('sex')->nullable();
             $table->string('address')->nullable();

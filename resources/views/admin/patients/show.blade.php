@@ -20,7 +20,18 @@
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Name: {{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->middle_name) . ' ' . ucfirst($patient->last_name)}}</li>
-                  <li class="list-group-item">Email: {{ $patient->email }}</li>
+                  <li class="list-group-item">Birthdate: {{ $patient->birthdate }}</li>
+                  <li class="list-group-item">Sex: {{ $patient->sex }}</li>
+                  <li class="list-group-item">Religion: {{ $patient->religion }}</li>
+                  <li class="list-group-item">Civil Status: {{ $patient->civil_status }}</li>
+                  <li class="list-group-item">Address: {{ $patient->address }}</li>
+                  <li class="list-group-item">Spouse: {{ $patient->spouse }}</li>
+                  <li class="list-group-item">Spouse Address: {{ $patient->spouse_address }}</li>
+                  <li class="list-group-item">Mother: {{ $patient->mother }}</li>
+                  <li class="list-group-item">Father: {{ $patient->father }}</li>
+                  <li class="list-group-item">Emergency Contact: {{ $patient->e_name }}</li>
+                  <li class="list-group-item">Emergency Contact Number: {{ $patient->e_contact }}</li>
+                  <li class="list-group-item">Emergency Address: {{ $patient->e_address }}</li>
                 </ul>
             </div>
           </div>

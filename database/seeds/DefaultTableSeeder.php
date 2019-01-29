@@ -155,5 +155,7 @@ class DefaultTableSeeder extends Seeder
                 'description' => 'Room ' . $i
             ]);
         }
+
+        factory(App\Patient::class, 20)->create();
     }
 }

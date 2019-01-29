@@ -16,6 +16,8 @@ class CreatePatientRecordsTable extends Migration
         Schema::create('patient_records', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('case_no')->nullable();
+
             $table->integer('patient_id')->unsigned()->nullable();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
 
@@ -37,6 +39,8 @@ class CreatePatientRecordsTable extends Migration
 
             $table->integer('room_id')->unsigned()->nullable();
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+
+            $table->string('bed')->nullable();
 
             $table->integer('disposition_id')->unsigned()->nullable();
             $table->foreign('disposition_id')->references('id')->on('dispositions')->onDelete('cascade');

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\PatientRecord;
-use App\TypeOfCharge;
+use App\TypeOfRecord;
 use App\PatientDiagnose;
 use App\Diagnose;
 use App\Room;
-use App\User;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class PatientRecordController extends Controller

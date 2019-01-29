@@ -66,6 +66,7 @@ class UserController extends Controller
         $user->first_name = $request->first_name;
         $user->middle_name = $request->middle_name;
         $user->last_name = $request->last_name;
+        $user->suffix = $request->suffix;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->password = bcrypt($request->password);
@@ -122,8 +123,10 @@ class UserController extends Controller
         $user->first_name = $request->first_name;
         $user->middle_name = $request->middle_name;
         $user->last_name = $request->last_name;
+        $user->suffix = $request->suffix;
         $user->email = $request->email;
         $user->username = $request->username;
+        $user->password = bcrypt($request->password);
         $user->birthdate = $request->birthdate;
         $user->sex = $request->sex;
         $user->specialty = $request->specialty;

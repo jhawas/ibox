@@ -24,7 +24,6 @@
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Email</th>
                   <th>Created</th>
                   <th>History</th>
                   <th>Action</th>
@@ -35,7 +34,6 @@
                   <tr>
                       <td>{{ $patient->id }}</td>
                       <td>{{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->last_name) }}</td>
-                      <td>{{ $patient->email }}</td>
                       <td>{{ $patient->created_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('patients.printHistory', $patient) }}" class="btn btn-primary" target="_blank">Print</a>

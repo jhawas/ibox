@@ -17,6 +17,9 @@
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Name: {{ $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name}}</li>
+                  <li class="list-group-item">Sex: {{ $user->sex }}</li>
+                  <li class="list-group-item">Birthdate: {{ $user->birthdate }}</li>
+                  <li class="list-group-item">Specialty: {{ $user->specialty }}</li>
                   <li class="list-group-item">Role: {{ $user->user_role->role->name }}</li>
                   <li class="list-group-item">Email: {{ $user->email }}</li>
                   <li class="list-group-item">Username: {{ $user->username }}</li>
