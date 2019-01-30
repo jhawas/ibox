@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">{{ ucfirst($intravenousFluid->code) }}</h4>
+        <h4 class="modal-title" id="myModalLabel">{{ 'Record ID:' . $intravenousFluid->record->id . ' ( ' . ucfirst($intravenousFluid->record->patient->first_name) . ' ' . ucfirst($intravenousFluid->record->patient->middle_name) . ' ' . ucfirst($intravenousFluid->record->patient->last_name) . ' )' }}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">

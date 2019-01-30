@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\MedicationAndTreatment;
+use App\PatientRecord;
 use Illuminate\Http\Request;
 
 class MedicationAndTreatmentController extends Controller
 {
+    public $page = 'Medication And Treatment';
+    public $description = 'List of ';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +29,12 @@ class MedicationAndTreatmentController extends Controller
      */
     public function index()
     {
-        //
+        $medicationAndTreatments = MedicationAndTreatment::all();
+        return view('admin.medicationAndTreatments.index', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'medicationAndTreatments' => $medicationAndTreatments
+        ]);
     }
 
     /**
@@ -24,7 +44,12 @@ class MedicationAndTreatmentController extends Controller
      */
     public function create()
     {
-        //
+        $patientRecords = PatientRecord::all();
+        return view('admin.medicationAndTreatments.create', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'patientRecords' => $patientRecords,
+        ]);
     }
 
     /**
@@ -35,7 +60,14 @@ class MedicationAndTreatmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $medicationAndTreatment = new MedicationAndTreatment;
+        $medicationAndTreatment->patient_record_id = $request->patientRecord;
+        $medicationAndTreatment->medicine = $request->medicine;
+        $medicationAndTreatment->date = $request->date;
+        $medicationAndTreatment->time = $request->time;
+        $medicationAndTreatment->remarks = $request->remarks;
+        $medicationAndTreatment->save();
+        return redirect()->route('medicationAndTreatments.index');
     }
 
     /**
@@ -46,7 +78,11 @@ class MedicationAndTreatmentController extends Controller
      */
     public function show(MedicationAndTreatment $medicationAndTreatment)
     {
-        //
+        return view('admin.medicationAndTreatments.show', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'medicationAndTreatment' => $medicationAndTreatment,
+        ]);
     }
 
     /**
@@ -57,7 +93,13 @@ class MedicationAndTreatmentController extends Controller
      */
     public function edit(MedicationAndTreatment $medicationAndTreatment)
     {
-        //
+        $patientRecords = PatientRecord::all();
+        return view('admin.medicationAndTreatments.edit', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'medicationAndTreatment' => $medicationAndTreatment,
+            'patientRecords' => $patientRecords,
+        ]);
     }
 
     /**
@@ -69,7 +111,13 @@ class MedicationAndTreatmentController extends Controller
      */
     public function update(Request $request, MedicationAndTreatment $medicationAndTreatment)
     {
-        //
+        $medicationAndTreatment->patient_record_id = $request->patientRecord;
+        $medicationAndTreatment->medicine = $request->medicine;
+        $medicationAndTreatment->date = $request->date;
+        $medicationAndTreatment->time = $request->time;
+        $medicationAndTreatment->remarks = $request->remarks;
+        $medicationAndTreatment->save();
+        return redirect()->route('medicationAndTreatments.index');
     }
 
     /**
@@ -80,6 +128,7 @@ class MedicationAndTreatmentController extends Controller
      */
     public function destroy(MedicationAndTreatment $medicationAndTreatment)
     {
-        //
+        $medicationAndTreatment->delete();
+        return redirect()->route('medicationAndTreatments.index');
     }
 }

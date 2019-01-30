@@ -196,5 +196,36 @@
               </div>
             </div>
           </div>
+          <div class="col-md-12">
+            <div class="tile">
+              <div class="tile-body">
+                <h3 class="tile-title">Medication and Treatment</h3>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Medicine</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Remarks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($patientRecord->medicationAndTreatments as $medicationAndTreatment)
+                        <tr>
+                            <td>{{ $medicationAndTreatment->id }}</td>
+                            <td>{{ $medicationAndTreatment->medicine }}</td>
+                            <td>{{ $medicationAndTreatment->date }}</td>
+                            <td>{{ $medicationAndTreatment->time }}</td>
+                            <td>{{ $medicationAndTreatment->remarks }}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 @endsection
