@@ -160,6 +160,41 @@
                 </div>
               </div>
             </div>
-        </div>
+          </div>
+          <div class="col-md-12">
+            <div class="tile">
+              <div class="tile-body">
+                <h3 class="tile-title">Intravenous Fluids</h3>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Solution</th>
+                        <th>Vol.</th>
+                        <th>GTSS</th>
+                        <th>Remarks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($patientRecord->intravenousFluids as $intravenousFluid)
+                        <tr>
+                            <td>{{ $intravenousFluid->id }}</td>
+                            <td>{{ $intravenousFluid->date }}</td>
+                            <td>{{ $intravenousFluid->time }}</td>
+                            <td>{{ $intravenousFluid->kind_of_solution }}</td>
+                            <td>{{ $intravenousFluid->vol }}</td>
+                            <td>{{ $intravenousFluid->gtss }}</td>
+                            <td>{{ $intravenousFluid->remarks }}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 @endsection
