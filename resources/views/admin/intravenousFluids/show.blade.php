@@ -16,8 +16,14 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $diagnose->code }}</li>
-                  <li class="list-group-item">Description: {{ $diagnose->description }}</li>
+                  <li class="list-group-item">Record Id: {{ $intravenousFluid->patient_record_id }}</li>
+                  <li class="list-group-item">Patient: {{ ucfirst($intravenousFluid->record->patient->first_name) . ' ' . ucfirst($intravenousFluid->record->patient->middle_name) . ' ' . ucfirst($intravenousFluid->record->patient->last_name) }}</li>
+                  <li class="list-group-item">Date: {{ $intravenousFluid->date }}</li>
+                  <li class="list-group-item">Time: {{ $intravenousFluid->time }}</li>
+                  <li class="list-group-item">Kind of Solution: {{ $intravenousFluid->kind_of_solution }}</li>
+                  <li class="list-group-item">Vol.: {{ $intravenousFluid->vol }}</li>
+                  <li class="list-group-item">GTSS: {{ $intravenousFluid->gtss }}</li>
+                  <li class="list-group-item">Remarks: {{ $intravenousFluid->remarks }}</li>
                 </ul>
             </div>
           </div>

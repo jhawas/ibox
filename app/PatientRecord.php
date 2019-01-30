@@ -43,4 +43,12 @@ class PatientRecord extends Model
         return $this->hasMany('App\NursesNote');
     }
 
+    public function intravenousFluids() {
+        return $this->hasMany('App\IntravenousFluid');
+    }
+
+    public function medicationAndTreatments() {
+        return $this->hasMany('App\MedicationAndTreatment');
+    }
+
 }

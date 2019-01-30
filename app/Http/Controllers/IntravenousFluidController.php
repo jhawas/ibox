@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\IntravenousFluid;
+use App\PatientRecord;
 use Illuminate\Http\Request;
 
 class IntravenousFluidController extends Controller
 {
+
+    public $page = 'Intravenous Fluids';
+    public $description = 'List of ';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +29,12 @@ class IntravenousFluidController extends Controller
      */
     public function index()
     {
-        //
+        $intravenousFluids = IntravenousFluid::all();
+        return view('admin.intravenousFluids.index', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'intravenousFluids' => $intravenousFluids
+        ]);
     }
 
     /**
@@ -24,7 +44,12 @@ class IntravenousFluidController extends Controller
      */
     public function create()
     {
-        //
+        $patientRecords = PatientRecord::all();
+        return view('admin.intravenousFluids.create', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'patientRecords' => $patientRecords,
+        ]);
     }
 
     /**
@@ -35,7 +60,18 @@ class IntravenousFluidController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $intravenousFluid = new IntravenousFluid;
+        $intravenousFluid->patient_record_id = $request->patientRecord;
+        $intravenousFluid->date = $request->date;
+        $intravenousFluid->time = $request->time;
+        $intravenousFluid->bot_no = $request->bot_no;
+        $intravenousFluid->kind_of_solution = $request->kind_of_solution;
+        $intravenousFluid->vol = $request->vol;
+        $intravenousFluid->gtss = $request->gtss;
+        $intravenousFluid->remarks = $request->remarks;
+        $intravenousFluid->nurse_id = \Auth::user()->id;
+        $intravenousFluid->save();
+        return redirect()->route('intravenousFluids.index');
     }
 
     /**
@@ -46,7 +82,11 @@ class IntravenousFluidController extends Controller
      */
     public function show(IntravenousFluid $intravenousFluid)
     {
-        //
+        return view('admin.intravenousFluids.show', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'intravenousFluid' => $intravenousFluid,
+        ]);
     }
 
     /**
@@ -57,7 +97,13 @@ class IntravenousFluidController extends Controller
      */
     public function edit(IntravenousFluid $intravenousFluid)
     {
-        //
+        $patientRecords = PatientRecord::all();
+        return view('admin.intravenousFluids.edit', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'intravenousFluid' => $intravenousFluid,
+            'patientRecords' => $patientRecords,
+        ]);
     }
 
     /**
@@ -69,7 +115,17 @@ class IntravenousFluidController extends Controller
      */
     public function update(Request $request, IntravenousFluid $intravenousFluid)
     {
-        //
+        $intravenousFluid->patient_record_id = $request->patientRecord;
+        $intravenousFluid->date = $request->date;
+        $intravenousFluid->time = $request->time;
+        $intravenousFluid->bot_no = $request->bot_no;
+        $intravenousFluid->kind_of_solution = $request->kind_of_solution;
+        $intravenousFluid->vol = $request->vol;
+        $intravenousFluid->gtss = $request->gtss;
+        $intravenousFluid->remarks = $request->remarks;
+        $intravenousFluid->nurse_id = \Auth::user()->id;
+        $intravenousFluid->save();
+        return redirect()->route('intravenousFluids.index');
     }
 
     /**
@@ -80,6 +136,7 @@ class IntravenousFluidController extends Controller
      */
     public function destroy(IntravenousFluid $intravenousFluid)
     {
-        //
+        $intravenousFluid->delete();
+        return redirect()->route('intravenousFluids.index');
     }
 }
