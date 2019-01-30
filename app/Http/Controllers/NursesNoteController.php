@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\NursesNote;
+use App\PatientRecord;
 use Illuminate\Http\Request;
 
 class NursesNoteController extends Controller
 {
+    public $page = 'Nurses Note';
+    public $description = 'List of ';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,12 @@ class NursesNoteController extends Controller
      */
     public function index()
     {
-        //
+        $nursesNotes = NursesNote::all();
+        return view('admin.nursesNotes.index', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'nursesNotes' => $nursesNotes
+        ]);
     }
 
     /**
@@ -24,7 +43,12 @@ class NursesNoteController extends Controller
      */
     public function create()
     {
-        //
+        $patientRecords = PatientRecord::all();
+        return view('admin.nursesNotes.create', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'patientRecords' => $patientRecords,
+        ]);
     }
 
     /**
@@ -35,7 +59,15 @@ class NursesNoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nursesNote = new NursesNote;
+        $nursesNote->patient_record_id = $request->patientRecord;
+        $nursesNote->date = $request->date;
+        $nursesNote->time = $request->time;
+        $nursesNote->focus = $request->focus;
+        $nursesNote->data_action_response = $request->data_action_response;
+        $nursesNote->nurse_id = \Auth::user()->id;
+        $nursesNote->save();
+        return redirect()->route('nursesNotes.index');
     }
 
     /**
@@ -46,7 +78,11 @@ class NursesNoteController extends Controller
      */
     public function show(NursesNote $nursesNote)
     {
-        //
+        return view('admin.nursesNotes.show', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'nursesNote' => $nursesNote,
+        ]);
     }
 
     /**
@@ -57,7 +93,13 @@ class NursesNoteController extends Controller
      */
     public function edit(NursesNote $nursesNote)
     {
-        //
+        $patientRecords = PatientRecord::all();
+        return view('admin.nursesNotes.edit', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'nursesNote' => $nursesNote,
+            'patientRecords' => $patientRecords,
+        ]);
     }
 
     /**
@@ -69,7 +111,14 @@ class NursesNoteController extends Controller
      */
     public function update(Request $request, NursesNote $nursesNote)
     {
-        //
+        $nursesNote->patient_record_id = $request->patientRecord;
+        $nursesNote->date = $request->date;
+        $nursesNote->time = $request->time;
+        $nursesNote->focus = $request->focus;
+        $nursesNote->data_action_response = $request->data_action_response;
+        $nursesNote->nurse_id = \Auth::user()->id;
+        $nursesNote->save();
+        return redirect()->route('nursesNotes.index');
     }
 
     /**
@@ -80,6 +129,7 @@ class NursesNoteController extends Controller
      */
     public function destroy(NursesNote $nursesNote)
     {
-        //
+        $nursesNote->delete();
+        return redirect()->route('nursesNotes.index');
     }
 }

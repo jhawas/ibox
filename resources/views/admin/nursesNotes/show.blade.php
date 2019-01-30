@@ -16,8 +16,13 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $diagnose->code }}</li>
-                  <li class="list-group-item">Description: {{ $diagnose->description }}</li>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Record Id: {{ $nursesNote->patient_record_id }}</li>
+                  <li class="list-group-item">Patient: {{ ucfirst($nursesNote->record->patient->first_name) . ' ' . ucfirst($nursesNote->record->patient->middle_name) . ' ' . ucfirst($nursesNote->record->patient->last_name) }}</li>
+                  <li class="list-group-item">Date: {{ $nursesNote->date }}</li>
+                  <li class="list-group-item">Time: {{ $nursesNote->time }}</li>
+                  <li class="list-group-item">Focus: {{ $nursesNote->focus }}</li>
+                  <li class="list-group-item">Action Response: {{ $nursesNote->data_action_response }}</li>
                 </ul>
             </div>
           </div>

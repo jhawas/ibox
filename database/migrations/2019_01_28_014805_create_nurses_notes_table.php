@@ -21,6 +21,8 @@ class CreateNursesNotesTable extends Migration
             $table->time('time')->nullable();
             $table->string('focus')->nullable();
             $table->string('data_action_response')->nullable();
+            $table->integer('nurse_id')->unsigned()->nullable();
+            $table->foreign('nurse_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

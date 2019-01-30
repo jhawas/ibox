@@ -16,40 +16,44 @@
         <div class="tile">
           <div class="tile-body">
             <div class="controller-wrapper">
-              <a href="{{ route('diagnoses.create') }}" class="btn btn-primary">New</a>
+              <a href="{{ route('nursesNotes.create') }}" class="btn btn-primary">New</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Code</th>
-                  <th>Description</th>
-                  <th>Created</th>
-                  <th>Updated</th>
+                  <th>Record ID</th>
+                  <th>Patient</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Focus</th>
+                  <th>Action Response</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($diagnoses as $diagnose)
+                @foreach ($nursesNotes as $nursesNote)
                   <tr>
-                      <td>{{ $diagnose->id }}</td>
-                      <td>{{ $diagnose->code }}</td>
-                      <td>{{ $diagnose->description }}</td>
-                      <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
-                      <td>{{ $diagnose->updated_at->toFormattedDateString() }}</td>
+                      <td>{{ $nursesNote->id }}</td>
+                      <td>{{ $nursesNote->patient_record_id }}</td>
+                      <td>{{ ucfirst($nursesNote->record->patient->first_name) . ' ' . ucfirst($nursesNote->record->patient->middle_name) . ' ' . ucfirst($nursesNote->record->patient->last_name) }}</td>
+                      <td>{{ $nursesNote->date }}</td>
+                      <td>{{ $nursesNote->time }}</td>
+                      <td>{{ $nursesNote->focus }}</td>
+                      <td>{{ $nursesNote->data_action_response }}</td>
                       <td>
-                        <a href="{{ route('diagnoses.show', $diagnose) }}" class="btn btn-primary">
+                        <a href="{{ route('nursesNotes.show', $nursesNote) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
                         </a>
 
-                        <a href="{{ route('diagnoses.edit', $diagnose) }}" class="btn btn-primary">
+                        <a href="{{ route('nursesNotes.edit', $nursesNote) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $diagnose->id }}">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{ $nursesNote->id }}">
                           <i class="fa fa-eraser"></i>
                         </button>
 
-                         @include('admin.diagnoses.destroy')
+                         @include('admin.nursesNotes.destroy')
 
                       </td>
                   </tr>

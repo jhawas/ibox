@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NursesNote extends Model
 {
-    //
+    public function record() {
+    	return $this->belongsTo('App\PatientRecord', 'patient_record_id');
+    }
 }

@@ -23,15 +23,15 @@ class CreateVitalSignsTable extends Migration
             $table->string('t')->nullable();
             $table->string('p')->nullable();
             $table->string('r')->nullable();
-            $table->string('intake_oral')->nullable();
-            $table->string('intake_iv')->nullable();
-            $table->string('intake_ng')->nullable();
-            $table->string('total_intake')->nullable();
-            $table->string('output_urine')->nullable();
-            $table->string('output_stool')->nullable();
-            $table->string('output_emesis')->nullable();
-            $table->string('output_ng')->nullable();
-            $table->string('total_output')->nullable();
+            $table->integer('intake_oral')->nullable();
+            $table->integer('intake_iv')->nullable();
+            $table->integer('intake_ng')->nullable();
+            $table->integer('total_intake')->nullable();
+            $table->integer('output_urine')->nullable();
+            $table->integer('output_stool')->nullable();
+            $table->integer('output_emesis')->nullable();
+            $table->integer('output_ng')->nullable();
+            $table->integer('total_output')->nullable();
             $table->timestamps();
         });
     }

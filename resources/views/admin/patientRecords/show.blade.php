@@ -48,7 +48,7 @@
                     <tbody>
                       @foreach ($patientRecord->diagnoses as $diagnose)
                         <tr>
-                            <td>{{ $diagnose->diagnose->code }}</td>
+                            <td>{{ $diagnose->diagnose ? $diagnose->diagnose->code : null}}</td>
                             <td>{{ $diagnose->diagnoses }}</td>
                             <td>{{ $diagnose->remarks }}</td>
                             <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
@@ -69,8 +69,6 @@
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Record ID</th>
-                        <th>Patient</th>
                         <th>BP</th>
                         <th>T</th>
                         <th>P</th>
@@ -85,8 +83,6 @@
                       @foreach ($patientRecord->vitalSigns as $vitalSign)
                         <tr>
                             <td>{{ $vitalSign->id }}</td>
-                            <td>{{ $vitalSign->patient_record_id }}</td>
-                            <td>{{ ucfirst($vitalSign->record->patient->first_name) . ' ' . ucfirst($vitalSign->record->patient->middle_name) . ' ' . ucfirst($vitalSign->record->patient->last_name) }}</td>
                             <td>{{ $vitalSign->bp }}</td>
                             <td>{{ $vitalSign->t }}</td>
                             <td>{{ $vitalSign->p }}</td>
@@ -95,6 +91,68 @@
                             <td>{{ $vitalSign->total_output }}</td>
                             <td>{{ $vitalSign->date }}</td>
                             <td>{{ $vitalSign->time }}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="tile">
+              <div class="tile-body">
+                <h3 class="tile-title">Doctor's Orders</h3>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Progress Note</th>
+                        <th>Doctor's Orders</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($patientRecord->doctorsOrders as $doctorsOrder)
+                        <tr>
+                            <td>{{ $doctorsOrder->id }}</td>
+                            <td>{{ $doctorsOrder->date }}</td>
+                            <td>{{ $doctorsOrder->time }}</td>
+                            <td>{{ $doctorsOrder->progress_note }}</td>
+                            <td>{{ $doctorsOrder->doctors_orders }}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="tile">
+              <div class="tile-body">
+                <h3 class="tile-title">Nurses Notes</h3>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Focus</th>
+                        <th>Action Response</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($patientRecord->nursesNotes as $nursesNote)
+                        <tr>
+                            <td>{{ $nursesNote->id }}</td>
+                            <td>{{ $nursesNote->date }}</td>
+                            <td>{{ $nursesNote->time }}</td>
+                            <td>{{ $nursesNote->focus }}</td>
+                            <td>{{ $nursesNote->data_action_response }}</td>
                         </tr>
                       @endforeach
                     </tbody>

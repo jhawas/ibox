@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\DoctorsOrder;
+use App\PatientRecord;
+use App\User;
 use Illuminate\Http\Request;
 
 class DoctorsOrderController extends Controller
 {
+    public $page = "Doctor's Order";
+    public $description = 'List of all ';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +29,12 @@ class DoctorsOrderController extends Controller
      */
     public function index()
     {
-        //
+        $doctorsOrders = DoctorsOrder::all();
+        return view('admin.doctorsOrders.index', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'doctorsOrders' => $doctorsOrders
+        ]);
     }
 
     /**
@@ -24,7 +44,14 @@ class DoctorsOrderController extends Controller
      */
     public function create()
     {
-        //
+        $patientRecords = PatientRecord::all();
+        $doctors = User::all();
+        return view('admin.doctorsOrders.create', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'patientRecords' => $patientRecords,
+            'doctors' => $doctors
+        ]);
     }
 
     /**
@@ -35,8 +62,15 @@ class DoctorsOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $doctorsOrder = new DoctorsOrder;
+        $doctorsOrder->patient_record_id = $request->patientRecord;
+        $doctorsOrder->date = $request->date;
+        $doctorsOrder->time = $request->time;
+        $doctorsOrder->progress_note = $request->progress_note;
+        $doctorsOrder->doctors_orders = $request->doctors_orders;
+        $doctorsOrder->physician_id = \Auth::user()->id;
+        $doctorsOrder->save();
+        return redirect()->route('doctorsOrders.index');    }
 
     /**
      * Display the specified resource.
@@ -46,7 +80,11 @@ class DoctorsOrderController extends Controller
      */
     public function show(DoctorsOrder $doctorsOrder)
     {
-        //
+        return view('admin.doctorsOrders.show', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'doctorsOrder' => $doctorsOrder,
+        ]);
     }
 
     /**
@@ -57,7 +95,15 @@ class DoctorsOrderController extends Controller
      */
     public function edit(DoctorsOrder $doctorsOrder)
     {
-        //
+        $patientRecords = PatientRecord::all();
+        $doctors = User::all();
+        return view('admin.doctorsOrders.edit', [
+            'page' => $this->page,
+            'description' => $this->description . $this->page,
+            'doctorsOrder' => $doctorsOrder,
+            'patientRecords' => $patientRecords,
+            'doctors' => $doctors,
+        ]);
     }
 
     /**
@@ -69,7 +115,14 @@ class DoctorsOrderController extends Controller
      */
     public function update(Request $request, DoctorsOrder $doctorsOrder)
     {
-        //
+        $doctorsOrder->patient_record_id = $request->patientRecord;
+        $doctorsOrder->date = $request->date;
+        $doctorsOrder->time = $request->time;
+        $doctorsOrder->progress_note = $request->progress_note;
+        $doctorsOrder->doctors_orders = $request->doctors_orders;
+        $doctorsOrder->physician_id = \Auth::user()->id;
+        $doctorsOrder->save();
+        return redirect()->route('doctorsOrders.index');
     }
 
     /**
@@ -80,6 +133,7 @@ class DoctorsOrderController extends Controller
      */
     public function destroy(DoctorsOrder $doctorsOrder)
     {
-        //
+        $doctorsOrder->delete();
+        return redirect()->route('doctorsOrders.index');
     }
 }
