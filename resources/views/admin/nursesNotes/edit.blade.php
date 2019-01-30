@@ -22,7 +22,7 @@
                   <div class="form-group">
                     <label class="control-label">Patient Record</label>
                     <select class="select2 form-control{{ $errors->has('patientRecord') ? ' is-invalid' : '' }}" style="width: 100%;" name="patientRecord">
-                      <option selected value="0">Choose Test</option>
+                      <option selected value="0">Choose Patient</option>
                       @foreach ($patientRecords as $patientRecord)
                         <option {{ $nursesNote->patient_record_id == $patientRecord->id ? 'selected' : '' }} value="{{ $patientRecord->id }}">
                           {{ 'Record ID:' . $patientRecord->id . ' ( ' . ucfirst($patientRecord->patient->first_name) . ' ' . ucfirst($patientRecord->patient->middle_name) . ' ' . ucfirst($patientRecord->patient->last_name) . ' )'}}

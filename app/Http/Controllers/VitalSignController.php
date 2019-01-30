@@ -70,12 +70,12 @@ class VitalSignController extends Controller
         $vitalSign->intake_oral = $request->intake_oral;
         $vitalSign->intake_iv = $request->intake_iv;
         $vitalSign->intake_ng = $request->intake_ng;
-        // $vitalSign->total_intake = ($request->intake_oral + $request->intake_iv + $request->intake_ng);
+        $vitalSign->total_intake = ($request->intake_oral + $request->intake_iv + $request->intake_ng);
         $vitalSign->output_urine = $request->output_urine;
         $vitalSign->output_stool = $request->output_stool;
         $vitalSign->output_emesis = $request->output_emesis;
         $vitalSign->output_ng = $request->output_ng;
-        // $vitalSign->total_output = ($request->output_urine + $request->output_stool + $request->output_emesis + $request->output_ng);
+        $vitalSign->total_output = ($request->output_urine + $request->output_stool + $request->output_emesis + $request->output_ng);
         $vitalSign->save();
         return redirect()->route('vitalSigns.index');
     }
@@ -131,12 +131,12 @@ class VitalSignController extends Controller
         $vitalSign->intake_oral = $request->intake_oral;
         $vitalSign->intake_iv = $request->intake_iv;
         $vitalSign->intake_ng = $request->intake_ng;
-        // $vitalSign->total_intake = ($request->intake_oral + $request->intake_iv + $request->intake_ng);
+        $vitalSign->total_intake = ($request->intake_oral + $request->intake_iv + $request->intake_ng);
         $vitalSign->output_urine = $request->output_urine;
         $vitalSign->output_stool = $request->output_stool;
         $vitalSign->output_emesis = $request->output_emesis;
         $vitalSign->output_ng = $request->output_ng;
-        // $vitalSign->total_output = ($request->output_urine + $request->output_stool + $request->output_emesis + $request->output_ng);
+        $vitalSign->total_output = ($request->output_urine + $request->output_stool + $request->output_emesis + $request->output_ng);
         $vitalSign->save();
         return redirect()->route('vitalSigns.index');
     }
