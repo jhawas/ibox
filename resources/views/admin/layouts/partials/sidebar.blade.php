@@ -45,27 +45,27 @@
             </a>
         </li>
         <li>
-            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+            <a class="treeview-item" href="{{ route('vitalSigns.index') }}">
               <i class="icon fa fa-circle-o"></i> Vital Sign
             </a>
         </li>
         <li>
-            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+            <a class="treeview-item" href="{{ route('doctorsOrders.index') }}">
               <i class="icon fa fa-circle-o"></i> Doctor's Order
             </a>
         </li>
         <li>
-            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+            <a class="treeview-item" href="{{ route('nursesNotes.index') }}">
               <i class="icon fa fa-circle-o"></i> Nurse Note
             </a>
         </li>
         <li>
-            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+            <a class="treeview-item" href="{{ route('intravenousFluids.index') }}">
               <i class="icon fa fa-circle-o"></i> Intravenous Fluids
             </a>
         </li>
         <li>
-            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+            <a class="treeview-item" href="{{ route('medicationAndTreatments.index') }}">
               <i class="icon fa fa-circle-o"></i> Medication & Treatment
             </a>
         </li>

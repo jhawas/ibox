@@ -31,6 +31,16 @@ Route::resource('medicineStocks', 'MedicineStockController');
 
 Route::resource('patients', 'PatientController');
 
+Route::resource('vitalSigns', 'VitalSignController');
+
+Route::resource('doctorsOrders', 'DoctorsOrderController');
+
+Route::resource('nursesNotes', 'NursesNoteController');
+
+Route::resource('intravenousFluids', 'IntravenousFluidController');
+
+Route::resource('medicationAndTreatments', 'MedicationAndTreatmentController');
+
 Route::get('patients/patients/print', 'PatientController@print')
 		->name('patients.print');
 

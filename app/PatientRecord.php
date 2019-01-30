@@ -31,4 +31,8 @@ class PatientRecord extends Model
         return $this->hasMany('App\PatientDiagnose');
     }
 
+    public function vitalSigns() {
+        return $this->hasMany('App\VitalSign');
+    }
+
 }

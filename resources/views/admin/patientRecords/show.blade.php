@@ -60,5 +60,48 @@
               </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="tile">
+              <div class="tile-body">
+                <h3 class="tile-title">Vital Signs</h3>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Record ID</th>
+                        <th>Patient</th>
+                        <th>BP</th>
+                        <th>T</th>
+                        <th>P</th>
+                        <th>R</th>
+                        <th>Total Intake</th>
+                        <th>Total Output</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($patientRecord->vitalSigns as $vitalSign)
+                        <tr>
+                            <td>{{ $vitalSign->id }}</td>
+                            <td>{{ $vitalSign->patient_record_id }}</td>
+                            <td>{{ ucfirst($vitalSign->record->patient->first_name) . ' ' . ucfirst($vitalSign->record->patient->middle_name) . ' ' . ucfirst($vitalSign->record->patient->last_name) }}</td>
+                            <td>{{ $vitalSign->bp }}</td>
+                            <td>{{ $vitalSign->t }}</td>
+                            <td>{{ $vitalSign->p }}</td>
+                            <td>{{ $vitalSign->r }}</td>
+                            <td>{{ $vitalSign->total_intake }}</td>
+                            <td>{{ $vitalSign->total_output }}</td>
+                            <td>{{ $vitalSign->date }}</td>
+                            <td>{{ $vitalSign->time }}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
 @endsection
