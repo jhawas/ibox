@@ -6,7 +6,7 @@
         <div class="title">History - 
           {{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->middle_name) . ' ' .  ucfirst($patient->last_name)}}
         </div>
-        <div class="date">January 17, 2019</div>
+        <div class="date">{{\Carbon\Carbon::now()->toFormattedDateString()}}</div>
     </header><!-- /header -->
     <div class="content">
         <table class="table">
@@ -16,7 +16,6 @@
                   <th>Status</th>
                   <th>Date</th>
                   <th>Room</th>
-                  <th>Description</th>
                   <th>Diagnoses</th>
                 </tr>
               </thead>
@@ -27,10 +26,9 @@
                       <td>{{ $record->recordType->code}}</td>
                       <td>{{ $record->created_at->toFormattedDateString()}}</td>
                       <td>{{ $record->room->code}}</td>
-                      <td>{{ $record->description}}</td>
                       <td>
                         @foreach ($record->diagnoses as $diagnose)
-                            <div>{{$diagnose->diagnose->code}}</div>
+                            <div>{{$diagnose->diagnose ? $diagnose->diagnose->code : null}}</div>
                         @endforeach
                       </td>
                     </tr>

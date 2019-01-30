@@ -4,7 +4,7 @@
     <header id="header" class="header">
         <h2>Gaviola Medical Hospital</h2>
         <div class="title">Patient Master List</div>
-        <div class="date">January 17, 2019</div>
+        <div class="date">{{\Carbon\Carbon::now()->toFormattedDateString()}}</div>
     </header><!-- /header -->
     <div class="content">
         <table class="table">
@@ -12,7 +12,8 @@
                 <tr>
                   <th>ID</th>
                   <th>Patient</th>
-                  <th>Diagnoses</th>
+                  <th>Sex</th>
+                  <th>Birthdate</th>
                 </tr>
               </thead>
               <tbody>
@@ -20,13 +21,15 @@
                     <tr>
                       <td>{{ $patient->id }}</td>
                       <td>{{ ucfirst($patient->first_name) . ' ' . ucfirst($patient->middle_name) . ' ' . $patient->last_name }}</td>
-                      <td>
+                      <td>{{ $patient->sex}}</td>
+                      <td>{{ $patient->birthdate}}</td>
+                      {{-- <td>
                           @foreach ($patient->records as $record)
                               @foreach ($record->diagnoses as $diagnose)
-                                  <div>{{$diagnose->diagnose->code}}</div>
+                                  <div>{{$diagnose->diagnose ? $diagnose->diagnose->code : null}}</div>
                               @endforeach
                           @endforeach
-                      </td>
+                      </td> --}}
                     </tr>
                   @endforeach
               </tbody>
