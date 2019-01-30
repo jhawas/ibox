@@ -34,7 +34,7 @@ class PatientDiagnoseController extends Controller
             'diagnose',
             'record' => function($record) {
                 $record->with([
-                    'user',
+                    'patient',
                     'room'
                 ]);
             }
@@ -76,7 +76,8 @@ class PatientDiagnoseController extends Controller
         $patientDiagnose = new PatientDiagnose;
         $patientDiagnose->patient_record_id = $patientRecord->id;
         $patientDiagnose->diagnose_id = $request->diagnoses;
-        $patientDiagnose->description = $request->description;
+        $patientDiagnose->diagnoses = $request->description;
+        $patientDiagnose->remarks = $request->remarks;
         $patientDiagnose->save();
         return redirect()->route('patientDiagnoses.index', $patientRecord);
     }
@@ -121,7 +122,8 @@ class PatientDiagnoseController extends Controller
     {
         $patientDiagnose->patient_record_id = $patientRecord->id;
         $patientDiagnose->diagnose_id = $request->diagnoses;
-        $patientDiagnose->description = $request->description;
+        $patientDiagnose->diagnoses = $request->description;
+        $patientDiagnose->remarks = $request->remarks;
         $patientDiagnose->save();
         return redirect()->route('patientDiagnoses.index', $patientRecord);
     }

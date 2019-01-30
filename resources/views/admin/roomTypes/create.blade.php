@@ -39,24 +39,6 @@
                         </span>
                     @endif
                   </div>
-                  <div class="form-group">
-                    <label class="control-label">Floor</label>
-                    <input name="floor" class="form-control{{ $errors->has('floor') ? ' is-invalid' : '' }}" value="{{old('floor')}}" type="text" placeholder="Enter Floor">
-                    @if ($errors->has('floor'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('floor') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Price</label>
-                    <input name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" value="{{old('price')}}" type="number" placeholder="Enter Price">
-                    @if ($errors->has('price'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('price') }}</strong>
-                        </span>
-                    @endif
-                  </div>
               </div>
               <div class="tile-footer">
                 <button class="btn btn-primary" type="submit">

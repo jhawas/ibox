@@ -49,7 +49,7 @@
                     <select class="select2 form-control{{ $errors->has('roomType') ? ' is-invalid' : '' }}" style="width: 100%;" name="roomType">
                       <option selected value="0">Choose Room Type</option>
                       @foreach ($roomTypes as $roomType)
-                        <option {{ $room->room_type_id == $roomType->id ? 'selected' : '' }} value="{{ $roomType->id }}">{{ $roomType->code }}</option>
+                        <option {{ $room->type_of_room_id == $roomType->id ? 'selected' : '' }} value="{{ $roomType->id }}">{{ $roomType->code }}</option>
                       @endforeach
                     </select>
                     @if ($errors->has('roomType'))
@@ -58,7 +58,7 @@
                         </span>
                     @endif
                   </div>
-                  {{-- <div class="form-group">
+                  <div class="form-group">
                     <label class="control-label">Floors</label>
                     <select class="select2 form-control{{ $errors->has('floor') ? ' is-invalid' : '' }}" style="width: 100%;" name="floor">
                       <option selected value="0">Choose Floor</option>
@@ -71,7 +71,7 @@
                             <strong>{{ $errors->first('floor') }}</strong>
                         </span>
                     @endif
-                  </div> --}}
+                  </div>
                   <div class="form-group">
                     <label class="control-label">Capacity</label>
                     <input name="capacity" class="form-control{{ $errors->has('capacity') ? ' is-invalid' : '' }}" value="{{ $room->capacity }}" type="number" placeholder="Enter capacity">

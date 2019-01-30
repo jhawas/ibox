@@ -30,7 +30,7 @@ class PatientController extends Controller
         $patients = Patient::with([
             'records' => function($record) {
                 $record->with([
-                    'user',
+                    'patient',
                     'recordType',
                     'room',
                     'diagnoses' => function($diagnoses) {
@@ -178,7 +178,7 @@ class PatientController extends Controller
         $patients = Patient::with([
             'records' => function($record) {
                 $record->with([
-                    'user',
+                    'patient',
                     'recordType',
                     'room',
                     'diagnoses' => function($diagnoses) {

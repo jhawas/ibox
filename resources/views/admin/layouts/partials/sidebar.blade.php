@@ -44,6 +44,31 @@
               <i class="icon fa fa-circle-o"></i> Laboratory
             </a>
         </li>
+        <li>
+            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+              <i class="icon fa fa-circle-o"></i> Vital Sign
+            </a>
+        </li>
+        <li>
+            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+              <i class="icon fa fa-circle-o"></i> Doctor's Order
+            </a>
+        </li>
+        <li>
+            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+              <i class="icon fa fa-circle-o"></i> Nurse Note
+            </a>
+        </li>
+        <li>
+            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+              <i class="icon fa fa-circle-o"></i> Intravenous Fluids
+            </a>
+        </li>
+        <li>
+            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+              <i class="icon fa fa-circle-o"></i> Medication & Treatment
+            </a>
+        </li>
       </ul>
     </li>
     @if(
@@ -63,11 +88,11 @@
             <i class="icon fa fa-circle-o"></i> Rooms
           </a>
         </li>
-        {{-- <li>
+        <li>
           <a class="treeview-item" href="{{ route('floors.index') }}">
             <i class="icon fa fa-circle-o"></i> Floors
           </a>
-        </li> --}}
+        </li>
         <li>
           <a class="treeview-item" href="{{ route('roomTypes.index') }}">
             <i class="icon fa fa-circle-o"></i> Room Types
@@ -123,11 +148,11 @@
             <i class="icon fa fa-circle-o"></i> Type of Records
           </a>
         </li>
-        {{-- <li>
+        <li>
           <a class="treeview-item" href="{{ route('typeOfCharges.index') }}">
             <i class="icon fa fa-circle-o"></i> Type of Charges
           </a>
-        </li> --}}
+        </li>
         <li>
           <a class="treeview-item" href="{{ route('typeOfTests.index') }}">
             <i class="icon fa fa-circle-o"></i> Type of Laboratory Test

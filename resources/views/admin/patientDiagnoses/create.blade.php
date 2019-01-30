@@ -3,7 +3,7 @@
 @section('content')
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i> {{ $page . '-' . ucfirst($patientRecord->user->first_name) . ' ' . ucfirst($patientRecord->user->middle_name) . ' ' . ucfirst($patientRecord->user->last_name)}}</h1>
+        <h1><i class="fa fa-dashboard"></i> {{ $page . '-' . ucfirst($patientRecord->patient->first_name) . ' ' . ucfirst($patientRecord->patient->middle_name) . ' ' . ucfirst($patientRecord->patient->last_name)}}</h1>
         <p>{{ $description }}</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
@@ -19,7 +19,7 @@
               @csrf
               <div class="tile-body">
                   <div class="form-group">
-                    <label class="control-label">Diagnoses</label>
+                    <label class="control-label">Diagnoses Code</label>
                     <select class="select2 form-control{{ $errors->has('diagnoses') ? ' is-invalid' : '' }}" style="width: 100%;" name="diagnoses">
                       <option selected value="0"><--Choose Diagnoses--></option>
                       @foreach ($diagnoses as $index => $diagnose)
@@ -33,14 +33,26 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label class="control-label">Description</label>
+                    <label class="control-label">Diagnoses</label>
                     <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
-                      placeholder="Enter Description here...">
+                      placeholder="Enter Diagnoses here...">
                       {{old('description')}}
                     </textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Remarks</label>
+                    <textarea name="remarks" class="form-control{{ $errors->has('remarks') ? ' is-invalid' : '' }}"
+                      placeholder="Enter remarks here...">
+                      {{old('remarks')}}
+                    </textarea>
+                    @if ($errors->has('remarks'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('remarks') }}</strong>
                         </span>
                     @endif
                   </div>

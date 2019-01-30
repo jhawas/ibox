@@ -4,7 +4,7 @@
 @section('content')
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i> {{ $page . '-' . ucfirst($patientRecord->user->first_name) . ' ' . ucfirst($patientRecord->user->middle_name) . ' ' . ucfirst($patientRecord->user->last_name) }}</h1>
+        <h1><i class="fa fa-dashboard"></i> {{ $page . '-' . ucfirst($patientRecord->patient->first_name) . ' ' . ucfirst($patientRecord->patient->middle_name) . ' ' . ucfirst($patientRecord->patient->last_name) }}</h1>
         <p>{{ $description }}</p>
       </div>
       <ul class="app-breadcrumb breadcrumb">

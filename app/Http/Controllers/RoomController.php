@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use App\Floor;
-use App\TypeOfCharge;
+use App\TypeOfRoom;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoomsRequest;
 
@@ -51,7 +51,7 @@ class RoomController extends Controller
     public function create()
     {
         $floors = Floor::all();
-        $roomTypes = TypeOfCharge::where('type_id', 2)->get();
+        $roomTypes = TypeOfRoom::all();
         return view('admin.rooms.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -71,8 +71,8 @@ class RoomController extends Controller
         $room = new Room;
         $room->code = $request->code;
         $room->description = $request->description;
-        // $room->floor_id = $request->floor;
-        $room->type_of_charge_id = $request->roomType;
+        $room->floor_id = $request->floor;
+        $room->type_of_room_id = $request->roomType;
         $room->capacity = $request->capacity;
         $room->save();
         return redirect()->route('rooms.index');
@@ -102,7 +102,7 @@ class RoomController extends Controller
     public function edit(Room $room)
     {
         $floors = Floor::all();
-        $roomTypes = RoomType::all();
+        $roomTypes = TypeOfRoom::all();
         return view('admin.rooms.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -123,8 +123,8 @@ class RoomController extends Controller
     {
         $room->code = $request->code;
         $room->description = $request->description;
-        // $room->floor_id = $request->floor;
-        $room->type_of_charge_id = $request->roomType;
+        $room->floor_id = $request->floor;
+        $room->type_of_room_id = $request->roomType;
         $room->capacity = $request->capacity;
         $room->save();
         return redirect()->route('rooms.index');

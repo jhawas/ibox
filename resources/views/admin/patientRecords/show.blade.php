@@ -34,7 +34,7 @@
         <div class="col-md-12">
             <div class="tile">
               <div class="tile-body">
-                <h3 class="tile-title">Patient Chart</h3>
+                <h3 class="tile-title">Diagnoses</h3>
                 <div>
                   <table class="table">
                     <thead>
@@ -49,7 +49,7 @@
                       @foreach ($patientRecord->diagnoses as $diagnose)
                         <tr>
                             <td>{{ $diagnose->diagnose->code }}</td>
-                            <td>{{ $diagnose->description }}</td>
+                            <td>{{ $diagnose->diagnoses }}</td>
                             <td>{{ $diagnose->remarks }}</td>
                             <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
                         </tr>

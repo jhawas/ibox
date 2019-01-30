@@ -168,7 +168,7 @@
                         </div>
                         <div class="form-group">
                           <label class="control-label">Date</label>
-                          <input name="discharge_date" class="form-control{{ $errors->has('discharge_date') ? ' is-invalid' : '' }}" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" type="date" placeholder="Enter pulse rate">
+                          <input name="discharge_date" class="form-control{{ $errors->has('discharge_date') ? ' is-invalid' : '' }}" value="{{old('discharge_date')}}" type="date" placeholder="Enter pulse rate">
                           @if ($errors->has('discharge_date'))
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $errors->first('discharge_date') }}</strong>

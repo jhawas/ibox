@@ -3,7 +3,7 @@
 @section('content')
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i> {{ $page . '-' . ucfirst($patientRecord->user->first_name) . ' ' . ucfirst($patientRecord->user->middle_name) . ' ' . ucfirst($patientRecord->user->last_name) }}</h1>
+        <h1><i class="fa fa-dashboard"></i> {{ $page . '-' . ucfirst($patientRecord->patient->first_name) . ' ' . ucfirst($patientRecord->patient->middle_name) . ' ' . ucfirst($patientRecord->patient->last_name) }}</h1>
         <p>{{ $description }}</p>
       </div>
       <ul class="app-breadcrumb breadcrumb">
@@ -24,11 +24,6 @@
                   <th>ID</th>
                   <th>Diagnoses Code</th>
                   <th>Diagnoses</th>
-                  <th>Weight</th>
-                  <th>Height</th>
-                  <th>Temperature</th>
-                  <th>Blood Pressure</th>
-                  <th>Pulse Rate</th>
                   <th>Created</th>
                   <th>Action</th>
                 </tr>
@@ -38,12 +33,7 @@
                   <tr>
                       <td>{{ $patientDiagnose->id }}</td>
                       <td>{{ $patientDiagnose->diagnose->code }}</td>
-                      <td>{{ $patientDiagnose->description }}</td>
-                      <td>{{ $patientDiagnose->weight }}</td>
-                      <td>{{ $patientDiagnose->height }}</td>
-                      <td>{{ $patientDiagnose->temperature }}</td>
-                      <td>{{ $patientDiagnose->blood_pressure }}</td>
-                      <td>{{ $patientDiagnose->pulse_rate }}</td>
+                      <td>{{ $patientDiagnose->diagnoses }}</td>
                       <td>{{ $patientDiagnose->created_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('patientDiagnoses.edit', [$patientRecord, $patientDiagnose]) }}" class="btn btn-primary">

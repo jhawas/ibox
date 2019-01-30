@@ -18,18 +18,18 @@
             <div class="controller-wrapper">
               <a href="{{ route('patientRecords.create') }}" class="btn btn-primary">New</a>
             </div>
-            <table class="table table-hover table-bordered" id="datatable">
+            <table class="table table-hover" id="datatable">
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Patient</th>
                   <th>Status</th>
                   <th>Room</th>
-                  <th>Started At</th>
-                  <th>End At</th>
-                  <th>Billing</th>
+                  <th>Bed</th>
+                  <th>A & C (Date/Time)</th>
+                  <th>Discharge(Date/Time)</th>
+                  <th>Disposition</th>
                   <th>Diagnoses</th>
-                  <th>Discharged</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -43,19 +43,15 @@
                         ucfirst($patientRecord->patient->last_name) }}</td>
                       <td>{{ $patientRecord->recordType->code }}</td>
                       <td>{{ $patientRecord->room->code }}</td>
-                      <td>{{ $patientRecord->created_at->toFormattedDateString() }}</td>
-                      <td>{{ $patientRecord->isReleased ? $patientRecord->updated_at->toFormattedDateString() : '' }}</td>
-                      <td>
-                        <a href="{{ route('patientBillings.index', $patientRecord) }}">
-                          Billing
-                        </a>
-                      </td>
+                      <td>{{ $patientRecord->bed }}</td>
+                      <td>{{ $patientRecord->addmitted_and_check_up_date . '/' . $patientRecord->addmitted_and_check_up_time }}</td>
+                      <td>{{ $patientRecord->discharge_date . '/' . $patientRecord->discharge_time }}</td>
+                      <td>{{$patientRecord->disposition ? $patientRecord->disposition->code : null}}</td>
                       <td>
                         <a href="{{ route('patientDiagnoses.index', $patientRecord) }}">
                           Diagnoses
                         </a>
                       </td>
-                      <td>{{ $patientRecord->isReleased ? 'Yes' : 'No' }}</td>
                       <td>
                         <a href="{{ route('patientRecords.show', $patientRecord) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

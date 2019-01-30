@@ -18,6 +18,11 @@ class PatientRecord extends Model
     	return $this->belongsTo('App\Room', 'room_id');
     }
 
+    public function disposition() {
+        return $this->belongsTo('App\Disposition', 'disposition_id');
+    }
+
+
     public function billings() {
         return $this->hasMany('App\PatientBilling');
     }
@@ -26,11 +31,4 @@ class PatientRecord extends Model
         return $this->hasMany('App\PatientDiagnose');
     }
 
-    public function rounds() {
-        return $this->hasMany('App\Round');
-    }
-
-    public function prescriptions() {
-        return $this->hasMany('App\Prescription');
-    }
 }

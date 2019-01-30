@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TypeOfCharge;
+use App\TypeOfRoom;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoomTypeRequest;
 
@@ -28,7 +28,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $roomTypes = TypeOfCharge::where('type_id', 2)->get();
+        $roomTypes = TypeOfRoom::all();
         return view('admin.roomTypes.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,

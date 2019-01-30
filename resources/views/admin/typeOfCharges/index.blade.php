@@ -23,7 +23,6 @@
                 <tr>
                   <th>ID</th>
                   <th>Code</th>
-                  <th>Types</th>
                   <th>Price</th>
                   <th>Description</th>
                   <th>Created</th>
@@ -36,7 +35,6 @@
                   <tr>
                       <td>{{ $typeOfCharge->id }}</td>
                       <td>{{ $typeOfCharge->code }}</td>
-                      <td>{{ $typeOfCharge->type->code }}</td>
                       <td>{{ $typeOfCharge->price }}</td>
                       <td>{{ $typeOfCharge->description }}</td>
                       <td>{{ $typeOfCharge->created_at->toFormattedDateString() }}</td>

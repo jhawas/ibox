@@ -54,44 +54,13 @@
                       </div>
                   </div> 
                   <div>
-                    <h5>Billing</h5>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Charges</th>
-                          <th>Amount</th>
-                          <th>Quantity/Days</th>
-                          <th>Total</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach ($record->billings as $key2 => $billing)
-                         <?php $total += $billing->total ?>
-                          <tr>
-                            <td>{{ $billing->code }}</td>
-                            <td>{{ $billing->price }}</td>
-                            <td>{{ $billing->quantity }}</td>
-                            <td>{{ $billing->total }}</td>
-                          </tr>
-                        @endforeach
-                        <tr>
-                          <td colspan="4">Total: P{{ number_format($total,2) }}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div>
-                    <h5>Patient Chart</h5>
+                    <h5>Diagnoses</h5>
                     <table class="table">
                       <thead>
                         <tr>
                           <th>Diagnoses Code</th>
                           <th>Diagnoses</th>
-                          <th>Weight</th>
-                          <th>Height</th>
-                          <th>Temperature</th>
-                          <th>Blood Pressure</th>
-                          <th>Pulse Rate</th>
+                          <th>Remarks</th>
                           <th>Created</th>
                         </tr>
                       </thead>
@@ -99,55 +68,9 @@
                         @foreach ($record->diagnoses as $diagnose)
                           <tr>
                               <td>{{ $diagnose->diagnose->code }}</td>
-                              <td>{{ $diagnose->description }}</td>
-                              <td>{{ $diagnose->weight }}</td>
-                              <td>{{ $diagnose->height }}</td>
-                              <td>{{ $diagnose->temperature }}</td>
-                              <td>{{ $diagnose->blood_pressure }}</td>
-                              <td>{{ $diagnose->pulse_rate }}</td>
+                              <td>{{ $diagnose->diagnoses }}</td>
+                              <td>{{ $diagnose->remarks }}</td>
                               <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
-                          </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                  <div>
-                    <h5>Prescriptions</h5>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Description/Note</th>
-                          <th>Date</th>
-                          <th>Time</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach ($record->prescriptions as $prescription)
-                          <tr>
-                              <td>{{ $prescription->description }}</td>
-                              <td>{{ $prescription->date }}</td>
-                              <td>{{ \Carbon\Carbon::parse($prescription->time)->format('h:i A') }}</td>
-                          </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                  <div>
-                    <h5>Rounds</h5>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Description/Note</th>
-                          <th>Date</th>
-                          <th>Time</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach ($record->rounds as $round)
-                          <tr>
-                              <td>{{ $round->description }}</td>
-                              <td>{{ $round->date }}</td>
-                              <td>{{ \Carbon\Carbon::parse($round->time)->format('h:i A') }}</td>
                           </tr>
                         @endforeach
                       </tbody>
