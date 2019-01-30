@@ -3,7 +3,7 @@
 @section('content')
     <header id="header" class="header">
         <h2>Gaviola Medical Hospital</h2>
-        <div class="title">Receipt - {{ ucfirst($cashier->records->user->first_name) . ' ' . ucfirst($cashier->records->user->middle_name) . ' ' . ucfirst($cashier->records->user->last_name) }}</div>
+        <div class="title">Receipt - {{ ucfirst($cashier->records->patient->first_name) . ' ' . ucfirst($cashier->records->patient->middle_name) . ' ' . ucfirst($cashier->records->patient->last_name) }}</div>
         <div class="date">January 25, 2019</div>
     </header><!-- /header -->
     <div class="content">
@@ -20,7 +20,7 @@
           <tbody>
               <tr>
                   <td>{{ $cashier->id }}</td>
-                  <td>{{ ucfirst($cashier->records->user->first_name) . ' ' . ucfirst($cashier->records->user->middle_name) . ' ' . ucfirst($cashier->records->user->last_name) }}</td>
+                  <td>{{ ucfirst($cashier->records->patient->first_name) . ' ' . ucfirst($cashier->records->patient->middle_name) . ' ' . ucfirst($cashier->records->patient->last_name) }}</td>
                   <td>{{ $cashier->total }}</td>
                   <td>{{ $cashier->amount }}</td>
                   <td>{{ $cashier->change }}</td>
