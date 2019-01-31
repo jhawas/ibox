@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('patientRecords', 'API\BillingController@patientRecords');
+
+Route::get('billing/patientRecord/{patient_record_id}', 'API\BillingController@billing');
+
+Route::post('billing', 'API\BillingController@storeBilling');

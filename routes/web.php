@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('billing', 'BillingController@index')->name('billing.index');
+
 Route::resource('users', 'UserController');
 
 Route::resource('rooms', 'RoomController');

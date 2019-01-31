@@ -16,3 +16,4 @@ Route::resource('photos', 'PhotoController')->names([
 ]);
 
 php artisan make:request StoreBlogPost
+php artisan make:controller API/PhotoController --api
