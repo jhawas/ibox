@@ -80,6 +80,7 @@
 @import '~vali-admin/src/sass/4-pages/user-profile';
 
 @import 'print';
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -129,4 +130,20 @@
 
 .image {
     width: 100%;
+}
+
+.control-container {
+    margin-bottom: 20px;
+    & .control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & .v-select {
+            flex-grow: 1;
+        }
+
+        & .btn {
+            margin-left: 10px,
+        }
+    }
 }

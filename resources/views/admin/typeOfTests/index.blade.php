@@ -24,7 +24,6 @@
                   <th>ID</th>
                   <th>Code</th>
                   <th>Description</th>
-                  <th>Price</th>
                   <th>Created</th>
                   <th>Updated</th>
                   <th>Action</th>
@@ -36,7 +35,6 @@
                       <td>{{ $typeOfTest->id }}</td>
                       <td>{{ $typeOfTest->code }}</td>
                       <td>{{ $typeOfTest->description }}</td>
-                      <td>{{ $typeOfTest->price }}</td>
                       <td>{{ $typeOfTest->created_at->toFormattedDateString() }}</td>
                       <td>{{ $typeOfTest->updated_at->toFormattedDateString() }}</td>
                       <td>

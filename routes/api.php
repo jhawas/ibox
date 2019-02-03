@@ -22,3 +22,7 @@ Route::get('patientRecords', 'API\BillingController@patientRecords');
 Route::get('billing/patientRecord/{patient_record_id}', 'API\BillingController@billing');
 
 Route::post('billing', 'API\BillingController@storeBilling');
+
+Route::get('billing/charges', 'API\BillingController@charges');
+
+Route::delete('billing/removed/{id}', 'API\BillingController@removedBill');

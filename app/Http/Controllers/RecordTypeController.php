@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TypeOfCharge;
+use App\TypeOfRecord;
 use Illuminate\Http\Request;
 
 class RecordTypeController extends Controller
@@ -27,7 +27,7 @@ class RecordTypeController extends Controller
      */
     public function index()
     {
-        $recordTypes = TypeOfCharge::where('type_id', 4)->get();
+        $recordTypes = TypeOfRecord::all();
         return view('admin.recordTypes.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -57,9 +57,7 @@ class RecordTypeController extends Controller
     public function store(Request $request)
     {
         return $request->floor;
-        $recordType = new TypeOfCharge;
-        // others id
-        $recordType->type_id = 4;
+        $recordType = new TypeOfRecord;
         $recordType->code = $request->code;
         $recordType->description = $request->description;
         $recordType->price = $request->price;

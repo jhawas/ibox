@@ -21,7 +21,7 @@
                     {{ $laboratoryTest->record->id }}
                   </li>
                   <li class="list-group-item">Patient: 
-                    {{ ucfirst($laboratoryTest->record->user->first_name) . ' ' . ucfirst($laboratoryTest->record->user->middle_name) . ' ' . ucfirst($laboratoryTest->record->user->last_name) }}
+                    {{ ucfirst($laboratoryTest->record->patient->first_name) . ' ' . ucfirst($laboratoryTest->record->patient->middle_name) . ' ' . ucfirst($laboratoryTest->record->patient->last_name) }}
                   </li>
                   <li class="list-group-item">Create At: 
                     {{ $laboratoryTest->created_at->toFormattedDateString() }}
@@ -29,8 +29,8 @@
                   <li class="list-group-item">Description: 
                     {{ $laboratoryTest->description }}
                   </li>
-                  <li class="list-group-item">Test: 
-                    {{ $laboratoryTest->charge->code }}
+                  <li class="list-group-item">Laboratory: 
+                    {{ $laboratoryTest->laboratory->code }}
                   </li>
                   <li class="list-group-item"> 
                     <img class="image" src="{{asset('storage/'. FilePathService::setPath($laboratoryTest->image))}}" />

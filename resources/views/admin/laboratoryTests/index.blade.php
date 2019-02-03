@@ -30,14 +30,14 @@
                   <th>Updated</th>
                   <th>Action</th>
                 </tr>
-              </thead>w
+              </thead>
               <tbody>
                 @foreach ($laboratoryTests as $laboratoryTest)
                   <tr>
                       <td>{{ $laboratoryTest->id }}</td>
                       <td>{{ $laboratoryTest->record->id }}</td>
-                      <td>{{ ucfirst($laboratoryTest->record->user->first_name) . ' ' . ucfirst($laboratoryTest->record->user->middle_name) . ' ' . ucfirst($laboratoryTest->record->user->last_name) }}</td>
-                      <td>{{ strtoupper($laboratoryTest->charge->code) }}</td>
+                      <td>{{ ucfirst($laboratoryTest->record->patient->first_name) . ' ' . ucfirst($laboratoryTest->record->patient->middle_name) . ' ' . ucfirst($laboratoryTest->record->patient->last_name) }}</td>
+                      <td>{{ strtoupper($laboratoryTest->laboratory->code) }}</td>
                       <td>{{ $laboratoryTest->description }}</td>
                       <td>{{ $laboratoryTest->created_at->toFormattedDateString() }}</td>
                       <td>{{ $laboratoryTest->updated_at->toFormattedDateString() }}</td>

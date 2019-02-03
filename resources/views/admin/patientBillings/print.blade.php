@@ -4,9 +4,9 @@
     <header id="header" class="header">
         <h2>Gaviola Medical Hospital</h2>
         <div class="title">Billing - 
-          {{ ucfirst($patientRecord->user->first_name) . ' ' . ucfirst($patientRecord->user->middle_name) . ' ' . ucfirst($patientRecord->user->last_name) }}
+          {{ ucfirst($patientRecord->patient->first_name) . ' ' . ucfirst($patientRecord->patient->middle_name) . ' ' . ucfirst($patientRecord->patient->last_name) }}
         </div>
-        <div class="date">January 17, 2019</div>
+        <div class="date">{{\Carbon\Carbon::now()->toFormattedDateString()}}</div>
     </header><!-- /header -->
     <div class="content">
       <table class="table">

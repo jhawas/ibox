@@ -143,11 +143,11 @@
             <i class="icon fa fa-circle-o"></i> Diagnoses
           </a>
         </li>
-        <li>
+        {{-- <li>
           <a class="treeview-item" href="{{ route('recordTypes.index') }}">
             <i class="icon fa fa-circle-o"></i> Type of Records
           </a>
-        </li>
+        </li> --}}
         <li>
           <a class="treeview-item" href="{{ route('typeOfCharges.index') }}">
             <i class="icon fa fa-circle-o"></i> Type of Charges

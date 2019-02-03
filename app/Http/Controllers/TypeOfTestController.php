@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TypeOfCharge;
+use App\TypeOfLaboratory;
 use Illuminate\Http\Request;
 
 class TypeOfTestController extends Controller
@@ -27,7 +27,7 @@ class TypeOfTestController extends Controller
      */
     public function index()
     {
-        $typeOfTests = TypeOfCharge::where('type_id', 3)->get();
+        $typeOfTests = TypeOfLaboratory::all();
         return view('admin.typeOfTests.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -56,12 +56,9 @@ class TypeOfTestController extends Controller
      */
     public function store(Request $request)
     {
-        $typeOfTest = new TypeOfCharge;
-        // laboratory id
-        $typeOfTest->type_id = 3;
+        $typeOfTest = new TypeOfLaboratory;
         $typeOfTest->code = $request->code;
         $typeOfTest->description = $request->description;
-        $typeOfTest->price = $request->price;
         $typeOfTest->save();
         return redirect()->route('typeOfTests.index');
     }
@@ -72,7 +69,7 @@ class TypeOfTestController extends Controller
      * @param  \App\TypeOfTest  $typeOfTest
      * @return \Illuminate\Http\Response
      */
-    public function show(TypeOfCharge $typeOfTest)
+    public function show(TypeOfLaboratory $typeOfTest)
     {
         return view('admin.typeOfTests.show', [
             'page' => $this->page,
@@ -87,7 +84,7 @@ class TypeOfTestController extends Controller
      * @param  \App\TypeOfTest  $typeOfTest
      * @return \Illuminate\Http\Response
      */
-    public function edit(TypeOfCharge $typeOfTest)
+    public function edit(TypeOfLaboratory $typeOfTest)
     {
         return view('admin.typeOfTests.edit', [
             'page' => $this->page,
@@ -103,11 +100,10 @@ class TypeOfTestController extends Controller
      * @param  \App\TypeOfTest  $typeOfTest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TypeOfCharge $typeOfTest)
+    public function update(Request $request, TypeOfLaboratory $typeOfTest)
     {
         $typeOfTest->code = $request->code;
         $typeOfTest->description = $request->description;
-        $typeOfTest->price = $request->price;
         $typeOfTest->save();
         return redirect()->route('typeOfTests.index');
     }
@@ -118,7 +114,7 @@ class TypeOfTestController extends Controller
      * @param  \App\TypeOfTest  $typeOfTest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TypeOfCharge $typeOfTest)
+    public function destroy(TypeOfLaboratory $typeOfTest)
     {
         $typeOfTest->delete();
         return redirect()->route('typeOfTests.index');

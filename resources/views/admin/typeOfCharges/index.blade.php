@@ -29,7 +29,7 @@
                   <th>Updated</th>
                   <th>Action</th>
                 </tr>
-              </thead>w
+              </thead>
               <tbody>
                 @foreach ($typeOfCharges as $typeOfCharge)
                   <tr>

@@ -36,9 +36,9 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label class="control-label">Type Of Test</label>
+                    <label class="control-label">Type Of Laboratory</label>
                     <select class="select2 form-control{{ $errors->has('typeOfTest') ? ' is-invalid' : '' }}" style="width: 100%;" name="typeOfTest">
-                      <option selected value="0">Choose Test</option>
+                      <option selected value="0">Choose Laboratory</option>
                       @foreach ($typeOfTests as $typeOfTest)
                         <option {{ $laboratoryTest->type_of_charge_id == $typeOfTest->id ? 'selected' : '' }} value="{{ $typeOfTest->id }}">{{ $typeOfTest->code }}</option>
                       @endforeach

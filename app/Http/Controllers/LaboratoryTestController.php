@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\LaboratoryTest;
 use App\PatientRecord;
-use App\TypeOfCharge;
+use App\TypeOfLaboratory;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 
@@ -35,10 +35,10 @@ class LaboratoryTestController extends Controller
         $laboratoryTests = LaboratoryTest::with([
             'record' => function($record) {
                 $record->with([
-                    'user'
+                    'patient'
                 ]);
             },
-            'charge'
+            'laboratory'
         ])->get();
         // return $laboratoryTests;
         return view('admin.laboratoryTests.index', [
@@ -56,10 +56,10 @@ class LaboratoryTestController extends Controller
     public function create()
     {
         $patientRecords = PatientRecord::with([
-            'user'
+            'patient'
         ])->get();
         // return $patientRecords;
-        $typeOfTests = TypeOfCharge::where('type_id', 3)->get();
+        $typeOfTests = TypeOfLaboratory::all();
         return view('admin.laboratoryTests.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -82,7 +82,7 @@ class LaboratoryTestController extends Controller
         }  
         $laboratoryTest = new LaboratoryTest;
         $laboratoryTest->patient_record_id = $request->patientRecord;
-        $laboratoryTest->type_of_charge_id = $request->typeOfTest;
+        $laboratoryTest->type_of_laboratory_id = $request->typeOfTest;
         $laboratoryTest->description = $request->description;
         $laboratoryTest->image = $file_path;
         $laboratoryTest->save();
@@ -113,7 +113,7 @@ class LaboratoryTestController extends Controller
     public function edit(LaboratoryTest $laboratoryTest)
     {
         $patientRecords = PatientRecord::all();
-        $typeOfTests = TypeOfCharge::where('type_id', 3)->get();
+        $typeOfTests = TypeOfLaboratory::all();
         return view('admin.laboratoryTests.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -142,7 +142,7 @@ class LaboratoryTestController extends Controller
             $laboratoryTest->image = $file_path;
         }
         $laboratoryTest->patient_record_id = $request->patientRecord;
-        $laboratoryTest->type_of_charge_id = $request->typeOfTest;
+        $laboratoryTest->type_of_laboratory_id = $request->typeOfTest;
         $laboratoryTest->description = $request->description;
         $laboratoryTest->save();
         return redirect()->route('laboratoryTests.index');

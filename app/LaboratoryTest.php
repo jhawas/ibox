@@ -10,7 +10,7 @@ class LaboratoryTest extends Model
     	return $this->belongsTo('App\PatientRecord', 'patient_record_id');
     }
 
-    public function charge() {
-    	return $this->belongsTo('App\TypeOfCharge', 'type_of_charge_id');
+    public function laboratory() {
+    	return $this->belongsTo('App\TypeOfLaboratory', 'type_of_laboratory_id');
     }
 }
