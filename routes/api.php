@@ -28,3 +28,7 @@ Route::get('billing/charges', 'API\BillingController@charges');
 Route::delete('billing/removed/{id}', 'API\BillingController@removedBill');
 
 Route::get('billing/total/{patient_record_id}', 'API\BillingController@getTotalBill');
+
+Route::post('billing/payment', 'API\BillingController@storePayment');
+
+Route::get('billing/status/{patient_record_id}', 'API\BillingController@getPaymentStatus');

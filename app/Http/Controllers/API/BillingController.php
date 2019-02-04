@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\PatientRecord;
 use App\TypeOfCharge;
 use App\PatientBilling;
+use App\Cashier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -64,5 +65,25 @@ class BillingController extends Controller
         ->where('patient_record_id', $patient_record_id)
         ->get()->sum('total');
         return $patientBilling;
+    }
+
+    public function storePayment(Request $request) {
+        $payment = new Cashier;
+        $payment->patient_record_id = $request->patient_record_id;
+        $payment->total = $request->totalBill;
+        $payment->amount = $request->enteredAmount;
+        $payment->change = $request->change;
+        $payment->save();
+
+        $patientRecord = PatientRecord::where('id', $request->patient_record_id)->first();
+        $patientRecord->is_paid = 1;
+        $patientRecord->save();
+
+        return 'success';
+    }
+
+    public function getPaymentStatus($patient_record_id = null) {
+        $patientRecord = PatientRecord::where('id', $request->patient_record_id)->first();
+        return $patientRecord;
     }
 }

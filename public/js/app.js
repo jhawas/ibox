@@ -63278,6 +63278,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63287,12 +63311,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            patientRecod: [{}],
+            patientRecord: [],
             billings: [],
             patient_record_id: null,
             charges: [],
             price: null,
             totalBill: 0,
+            amountEntered: 0,
+            change: 0,
+            is_paid: 0,
             form: {
                 price: 0,
                 typeOfCharge: null,
@@ -63318,14 +63345,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         closedModal: function closedModal() {
             this.$refs.myModalRef.hide();
         },
+        showCashierModal: function showCashierModal() {
+            this.$refs.myCashier.show();
+        },
+        closedCashierModal: function closedCashierModal() {
+            this.$refs.myCashier.hide();
+        },
         patientRecords: function patientRecords() {
             var _this = this;
 
             axios.get('/api/patientRecords').then(function (response) {
-                _this.patientRecod = response.data.map(function (patientRecord) {
+                _this.patientRecord = response.data.map(function (patientRecord) {
                     return {
                         value: patientRecord.id,
-                        label: 'Record No.:' + patientRecord.id + ' (' + patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name + ')'
+                        label: 'Record No.:' + patientRecord.id + ' (' + patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name + ')',
+                        is_paid: patientRecord.is_paid
                     };
                 });
             });
@@ -63334,6 +63368,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.patient_record_id = event.value;
             this.billing();
             this.getTotalBill();
+            this.is_paid = event.is_paid;
+            // this.getPaymentStatus();
         },
         billing: function billing() {
             var _this2 = this;
@@ -63406,6 +63442,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         printUrl: function printUrl() {
             window.open('patientBillings/' + this.patient_record_id + '/print', '_blank');
+        },
+        savePayment: function savePayment() {
+            var _this7 = this;
+
+            axios.post('/api/billing/payment', {
+                patient_record_id: this.patient_record_id,
+                totalBill: this.totalBill,
+                enteredAmount: this.enteredAmount,
+                change: this.change
+            }).then(function (response) {
+                if (response.data == 'success') {
+                    // this.getPaymentStatus();
+                    _this7.closedCashierModal();
+                }
+            }).catch(function (response) {
+                console.log(response);
+            });
+        },
+        getChanged: function getChanged() {
+            this.change = this.amountEntered - this.totalBill;
         }
     }
 
@@ -63437,14 +63493,14 @@ var render = function() {
           { staticClass: "card-body" },
           [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6 control-container" }, [
+              _c("div", { staticClass: "col-md-8 control-container" }, [
                 _c(
                   "div",
                   { staticClass: "control" },
                   [
                     _c("v-select", {
                       attrs: {
-                        options: _vm.patientRecod,
+                        options: _vm.patientRecord,
                         onChange: _vm.getPatientRecordID
                       }
                     }),
@@ -63456,7 +63512,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: { click: _vm.showModal }
                       },
-                      [_vm._v("Add")]
+                      [_vm._v("Add Bill")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -63467,13 +63523,23 @@ var render = function() {
                         on: { click: _vm.printUrl }
                       },
                       [_vm._v("Print")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: { click: _vm.showCashierModal }
+                      },
+                      [_vm._v("Payment")]
                     )
                   ],
                   1
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 total-bill-container" }, [
+              _c("div", { staticClass: "col-md-4 total-bill-container" }, [
                 _vm._v(
                   "\n                        Total: " +
                     _vm._s(_vm.totalBill) +
@@ -63481,6 +63547,130 @@ var render = function() {
                 )
               ])
             ]),
+            _vm._v(" "),
+            _c(
+              "b-modal",
+              {
+                ref: "myCashier",
+                attrs: { "hide-footer": "", title: "Cashier Form" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "Charges" } }, [
+                        _vm._v("Total Bill")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.totalBill,
+                            expression: "totalBill"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Enter Charges",
+                          disabled: ""
+                        },
+                        domProps: { value: _vm.totalBill },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.totalBill = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "Amount" } }, [
+                        _vm._v("Amount")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.amountEntered,
+                            expression: "amountEntered"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Enter Price" },
+                        domProps: { value: _vm.amountEntered },
+                        on: {
+                          change: _vm.getChanged,
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.amountEntered = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "Charges" } }, [
+                        _vm._v("Change")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.change,
+                            expression: "change"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "Enter Price" },
+                        domProps: { value: _vm.change },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.change = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "button-container" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button" },
+                          on: { click: _vm.savePayment }
+                        },
+                        [_vm._v("Payment")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button" },
+                          on: { click: _vm.closedCashierModal }
+                        },
+                        [_vm._v("Close")]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            ),
             _vm._v(" "),
             _c(
               "b-modal",
@@ -63629,33 +63819,42 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      _vm._l(_vm.billings, function(billing) {
-                        return _c("tr", [
-                          _c("td", [_vm._v(_vm._s(billing.bill))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(billing.price))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(billing.quantity))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(billing.total))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary",
-                                on: {
-                                  click: function($event) {
-                                    _vm.removeBilling(billing.id)
+                      { staticClass: "is-paid-container" },
+                      [
+                        _vm.is_paid == 1
+                          ? _c("div", { staticClass: "is-paid" }, [
+                              _vm._v("Paid")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._l(_vm.billings, function(billing) {
+                          return _c("tr", [
+                            _c("td", [_vm._v(_vm._s(billing.bill))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(billing.price))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(billing.quantity))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(billing.total))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.removeBilling(billing.id)
+                                    }
                                   }
-                                }
-                              },
-                              [_vm._v("x")]
-                            )
+                                },
+                                [_vm._v("x")]
+                              )
+                            ])
                           ])
-                        ])
-                      }),
-                      0
+                        })
+                      ],
+                      2
                     )
                   ]
                 )

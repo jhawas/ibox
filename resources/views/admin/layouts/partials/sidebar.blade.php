@@ -164,14 +164,14 @@
     <li>
       <a class="app-menu__item" href="{{ route('billing.index') }}">
         <i class="app-menu__icon fa fa-dashboard"></i>
-        <span class="app-menu__label">Billing</span>
+        <span class="app-menu__label">Billing & Payment</span>
       </a>
     </li>
-    <li>
+    {{-- <li>
       <a class="app-menu__item" href="{{ route('cashiers.selection') }}">
         <i class="app-menu__icon fa fa-dashboard"></i>
         <span class="app-menu__label">Cashier</span>
       </a>
-    </li>
+    </li> --}}
   </ul>
 </aside>

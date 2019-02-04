@@ -5,18 +5,41 @@
                 <div class="card-header">Billing</div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6 control-container">
+                        <div class="col-md-8 control-container">
                             <div class="control">
-                                <v-select :options="patientRecod" :onChange="getPatientRecordID"></v-select>
+                                <v-select :options="patientRecord" :onChange="getPatientRecordID"></v-select>
 
-                                <button type="button" class="btn btn-primary" @click="showModal">Add</button>
+                                <button type="button" class="btn btn-primary" @click="showModal">Add Bill</button>
                                 <button type="button" class="btn btn-primary" @click="printUrl">Print</button>
+                                <button type="button" class="btn btn-primary" @click="showCashierModal">Payment</button>
                             </div>
                         </div>
-                        <div class="col-md-6 total-bill-container">
+                        <div class="col-md-4 total-bill-container">
                             Total: {{ totalBill }}
                         </div>
                     </div>
+                    <b-modal ref="myCashier" hide-footer title="Cashier Form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="Charges">Total Bill</label>
+                                    <input type="text" class="form-control" placeholder="Enter Charges" v-model="totalBill" disabled="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Amount">Amount</label>
+                                    <input type="text" class="form-control" placeholder="Enter Price" v-model="amountEntered" @change="getChanged">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Charges">Change</label>
+                                    <input type="text" class="form-control" placeholder="Enter Price" v-model="change">
+                                </div>
+                                <div class="button-container">
+                                    <button type="button" class="btn btn-primary" @click="savePayment">Payment</button>
+                                    <button type="button" class="btn btn-primary" @click="closedCashierModal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </b-modal>
                     <b-modal ref="myModalRef" hide-footer title="Charges Form">
                         <div class="row">
                             <div class="col-md-12">
@@ -55,7 +78,8 @@
                                   <th>Delete</th>
                                 </tr>
                               </thead>
-                              <tbody>
+                              <tbody class="is-paid-container">
+                                    <div class="is-paid" v-if="is_paid == 1">Paid</div>
                                     <tr v-for="billing in billings">
                                           <td>{{ billing.bill }}</td>
                                           <td>{{ billing.price }}</td>
@@ -84,12 +108,15 @@
 
         data() {
             return {
-                patientRecod: [{}],
+                patientRecord: [],
                 billings: [],
                 patient_record_id: null,
                 charges: [],
                 price: null,
                 totalBill: 0,
+                amountEntered: 0,
+                change: 0,
+                is_paid: 0,
                 form: {
                     price: 0,
                     typeOfCharge: null,
@@ -121,12 +148,21 @@
                 this.$refs.myModalRef.hide();
             },
 
+            showCashierModal() {
+               this.$refs.myCashier.show();
+            },
+
+            closedCashierModal() {
+                this.$refs.myCashier.hide();
+            },
+
             patientRecords() {
                 axios.get('/api/patientRecords')
                 .then(response => {
-                    this.patientRecod = response.data.map( (patientRecord) => ({ 
+                    this.patientRecord = response.data.map( (patientRecord) => ({ 
                         value: patientRecord.id, 
-                        label: 'Record No.:' + patientRecord.id + ' (' + patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name + ')'
+                        label: 'Record No.:' + patientRecord.id + ' (' + patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name + ')',
+                        is_paid: patientRecord.is_paid
                     }));
                 });
             },
@@ -135,6 +171,8 @@
                 this.patient_record_id = event.value;
                 this.billing();
                 this.getTotalBill();
+                this.is_paid = event.is_paid;
+                // this.getPaymentStatus();
             },
 
             billing() {
@@ -206,7 +244,36 @@
 
             printUrl() {
                 window.open('patientBillings/'+ this.patient_record_id +'/print', '_blank');
-            } 
+            },
+
+            savePayment() {
+                axios.post('/api/billing/payment', {
+                    patient_record_id: this.patient_record_id,
+                    totalBill: this.totalBill,
+                    enteredAmount: this.enteredAmount,
+                    change: this.change
+                })
+                .then(response => {
+                    if(response.data == 'success') {
+                        // this.getPaymentStatus();
+                        this.closedCashierModal();
+                    }  
+                })
+                .catch (response => {
+                    console.log(response);
+                });
+            },
+
+            getChanged() {
+                this.change = this.amountEntered - this.totalBill;
+            },
+
+            // getPaymentStatus() {
+            //     axios.get('/api/billing/status/'+ this.patient_record_id)
+            //     .then(response => {
+            //         this.is_paid = response.data.is_paid;
+            //     });
+            // } 
         }
 
     }

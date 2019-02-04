@@ -66,6 +66,7 @@ class CreatePatientRecordsTable extends Migration
             $table->integer('trans_user_id')->unsigned()->nullable();
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->boolean('is_paid')->default(0);
             $table->timestamps();
         });
     }

@@ -19736,3 +19736,27 @@ be a descendant of the grid when it is being dragged.
   font-size: 20px;
 }
 
+.is-paid-container {
+  position: relative;
+}
+
+.is-paid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(83, 75, 95, 0.6);
+  font-size: 40px;
+}
+
