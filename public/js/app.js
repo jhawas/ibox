@@ -63275,6 +63275,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63330,6 +63333,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getPatientRecordID: function getPatientRecordID(event) {
             this.patient_record_id = event.value;
             this.billing();
+            this.getTotalBill();
         },
         billing: function billing() {
             var _this2 = this;
@@ -63355,6 +63359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 if (response.data == 'success') {
                     _this3.billing();
+                    _this3.getTotalBill();
                     _this3.$refs.myModalRef.hide();
                 }
             }).catch(function (response) {
@@ -63389,6 +63394,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).catch(function (response) {
                 console.log(response);
+            });
+        },
+        getTotalBill: function getTotalBill() {
+            var _this6 = this;
+
+            axios.get('/api/billing/total/' + this.patient_record_id).then(function (response) {
+                _this6.totalBill = response.data;
+                console.log(response.data);
             });
         },
         printUrl: function printUrl() {
@@ -63457,6 +63470,14 @@ var render = function() {
                     )
                   ],
                   1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 total-bill-container" }, [
+                _vm._v(
+                  "\n                        Total: " +
+                    _vm._s(_vm.totalBill) +
+                    "\n                    "
                 )
               ])
             ]),

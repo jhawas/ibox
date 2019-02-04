@@ -56,4 +56,13 @@ class BillingController extends Controller
         $patientBilling->delete();
         return 'success';
     }
+
+    public function getTotalBill($patient_record_id = null) {
+        $patientBilling = PatientBilling::with([
+            'charge'
+        ])
+        ->where('patient_record_id', $patient_record_id)
+        ->get()->sum('total');
+        return $patientBilling;
+    }
 }

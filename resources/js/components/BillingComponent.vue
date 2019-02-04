@@ -13,6 +13,9 @@
                                 <button type="button" class="btn btn-primary" @click="printUrl">Print</button>
                             </div>
                         </div>
+                        <div class="col-md-6 total-bill-container">
+                            Total: {{ totalBill }}
+                        </div>
                     </div>
                     <b-modal ref="myModalRef" hide-footer title="Charges Form">
                         <div class="row">
@@ -131,6 +134,7 @@
             getPatientRecordID(event) {
                 this.patient_record_id = event.value;
                 this.billing();
+                this.getTotalBill();
             },
 
             billing() {
@@ -156,6 +160,7 @@
                 .then(response => {
                     if(response.data == 'success') {
                         this.billing();
+                        this.getTotalBill();
                         this.$refs.myModalRef.hide();
                     }  
                 })
@@ -188,6 +193,14 @@
                 })
                 .catch (response => {
                     console.log(response);
+                });
+            },
+
+            getTotalBill() {
+                axios.get('/api/billing/total/'+ this.patient_record_id)
+                .then(response => {
+                    this.totalBill = response.data;
+                    console.log(response.data);
                 });
             },
 
