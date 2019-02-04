@@ -18,7 +18,7 @@
                             Total: {{ totalBill }}
                         </div>
                     </div>
-                    <b-modal ref="myCashier" hide-footer title="Cashier Form">
+                    <b-modal ref="myCashier" hide-footer title="Payment Form">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

@@ -63552,7 +63552,7 @@ var render = function() {
               "b-modal",
               {
                 ref: "myCashier",
-                attrs: { "hide-footer": "", title: "Cashier Form" }
+                attrs: { "hide-footer": "", title: "Payment Form" }
               },
               [
                 _c("div", { staticClass: "row" }, [
