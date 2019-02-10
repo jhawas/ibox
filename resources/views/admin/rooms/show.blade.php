@@ -16,7 +16,7 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $room->code }}</li>
+                  <li class="list-group-item">Name: {{ $room->code }}</li>
                   <li class="list-group-item">Description: {{ $room->description }}</li>
                   <li class="list-group-item">Floor: {{ $room->floor->code }}</li>
                   <li class="list-group-item">Type Of Room: {{ $room->room_type->code }}</li>

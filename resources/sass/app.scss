@@ -172,3 +172,28 @@
     background-color: rgba(83, 75, 95, 0.6);
     font-size: 40px;
 }
+
+.biling-breakdown {
+    border-top: 1px solid;
+    .lists {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+.patient-details {
+    .group {
+        display: flex;
+        .label {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+    }
+}
+
+.header {
+    .title {
+        padding-bottom: 20px;
+    }
+}

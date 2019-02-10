@@ -22,7 +22,7 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Code</th>
+                  <th>Name</th>
                   <th>Floor</th>
                   <th>Room Type</th>
                   <th>capacity</th>

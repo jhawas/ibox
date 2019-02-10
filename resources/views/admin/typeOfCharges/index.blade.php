@@ -22,11 +22,10 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Code</th>
+                  <th>Parent</th>
+                  <th>Name</th>
                   <th>Price</th>
                   <th>Description</th>
-                  <th>Created</th>
-                  <th>Updated</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -34,11 +33,10 @@
                 @foreach ($typeOfCharges as $typeOfCharge)
                   <tr>
                       <td>{{ $typeOfCharge->id }}</td>
+                      <td>{{ $typeOfCharge->parent ? $typeOfCharge->parent->code : null }}</td>
                       <td>{{ $typeOfCharge->code }}</td>
                       <td>{{ $typeOfCharge->price }}</td>
                       <td>{{ $typeOfCharge->description }}</td>
-                      <td>{{ $typeOfCharge->created_at->toFormattedDateString() }}</td>
-                      <td>{{ $typeOfCharge->updated_at->toFormattedDateString() }}</td>
                       <td>
                         <a href="{{ route('typeOfCharges.show', $typeOfCharge) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

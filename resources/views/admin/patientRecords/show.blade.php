@@ -39,7 +39,7 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Diagnoses Code</th>
+                        <th>Diagnoses Name</th>
                         <th>Diagnoses</th>
                         <th>Remarks</th>
                         <th>Created</th>

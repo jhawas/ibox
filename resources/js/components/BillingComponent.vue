@@ -79,7 +79,6 @@
                                 </tr>
                               </thead>
                               <tbody class="is-paid-container">
-                                    <div class="is-paid" v-if="is_paid == 1">Paid</div>
                                     <tr v-for="billing in billings">
                                           <td>{{ billing.bill }}</td>
                                           <td>{{ billing.price }}</td>
@@ -243,7 +242,7 @@
             },
 
             printUrl() {
-                window.open('patientBillings/'+ this.patient_record_id +'/print', '_blank');
+                window.open('print/'+ this.patient_record_id +'/billing', '_blank');
             },
 
             savePayment() {

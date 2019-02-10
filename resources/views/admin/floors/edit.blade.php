@@ -27,8 +27,8 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label class="control-label">Code</label>
-                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $floor->code }}" type="text" placeholder="Enter Code">
+                    <label class="control-label">Name</label>
+                    <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $floor->code }}" type="text" placeholder="Enter Name">
                     @if ($errors->has('code'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('code') }}</strong>

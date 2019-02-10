@@ -42,9 +42,11 @@ class TypeOfChargeController extends Controller
      */
     public function create()
     {
+        $typeOfCharges = TypeOfCharge::where('parent_id', null)->get();
         return view('admin.typeOfCharges.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
+            'typeOfCharges' => $typeOfCharges,
         ]);
     }
 
@@ -60,6 +62,7 @@ class TypeOfChargeController extends Controller
         $typeOfCharge->code = $request->code;
         $typeOfCharge->description = $request->description;
         $typeOfCharge->price = $request->price;
+        $typeOfCharge->parent_id = $request->parent == 0 ? null : $request->parent;
         $typeOfCharge->save();
         return redirect()->route('typeOfCharges.index');
     }
@@ -87,10 +90,12 @@ class TypeOfChargeController extends Controller
      */
     public function edit(TypeOfCharge $typeOfCharge)
     {
+        $typeOfCharges = TypeOfCharge::where('parent_id', null)->get();
         return view('admin.typeOfCharges.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
             'typeOfCharge' => $typeOfCharge,
+            'typeOfCharges' => $typeOfCharges,
         ]);
     }
 
@@ -106,6 +111,7 @@ class TypeOfChargeController extends Controller
         $typeOfCharge->code = $request->code;
         $typeOfCharge->description = $request->description;
         $typeOfCharge->price = $request->price;
+        $typeOfCharge->parent_id = $request->parent == 0 ? null : $request->parent;
         $typeOfCharge->save();
         return redirect()->route('typeOfCharges.index');
     }

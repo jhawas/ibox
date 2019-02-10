@@ -25,7 +25,9 @@ class BillingController extends Controller
 
     public function charges()
     {
-        $typeOfCharges = TypeOfCharge::all();
+        $typeOfCharges = TypeOfCharge::with([
+            'parent'
+        ])->where('price', '>', 0)->get();
         return $typeOfCharges;
     }
 

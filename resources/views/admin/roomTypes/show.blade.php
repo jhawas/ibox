@@ -16,7 +16,7 @@
           <div class="tile">
             <div class="tile-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Code: {{ $roomType->code }}</li>
+                  <li class="list-group-item">Name: {{ $roomType->code }}</li>
                   <li class="list-group-item">Description: {{ $roomType->description }}</li>
                   <li class="list-group-item">Price: {{ $roomType->price }}</li>
                   <li class="list-group-item">Created At: {{ $roomType->created_at->toFormattedDateString() }}</li>

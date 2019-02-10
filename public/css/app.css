@@ -19760,3 +19760,32 @@ be a descendant of the grid when it is being dragged.
   font-size: 40px;
 }
 
+.biling-breakdown {
+  border-top: 1px solid;
+}
+
+.biling-breakdown .lists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.patient-details .group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.patient-details .group .label {
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.header .title {
+  padding-bottom: 20px;
+}
+

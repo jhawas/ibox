@@ -80374,7 +80374,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -80514,7 +80513,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         printUrl: function printUrl() {
-            window.open('patientBillings/' + this.patient_record_id + '/print', '_blank');
+            window.open('print/' + this.patient_record_id + '/billing', '_blank');
         },
         savePayment: function savePayment() {
             var _this7 = this;
@@ -80893,41 +80892,33 @@ var render = function() {
                     _c(
                       "tbody",
                       { staticClass: "is-paid-container" },
-                      [
-                        _vm.is_paid == 1
-                          ? _c("div", { staticClass: "is-paid" }, [
-                              _vm._v("Paid")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._l(_vm.billings, function(billing) {
-                          return _c("tr", [
-                            _c("td", [_vm._v(_vm._s(billing.bill))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(billing.price))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(billing.quantity))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(billing.total))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.removeBilling(billing.id)
-                                    }
+                      _vm._l(_vm.billings, function(billing) {
+                        return _c("tr", [
+                          _c("td", [_vm._v(_vm._s(billing.bill))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(billing.price))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(billing.quantity))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(billing.total))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                on: {
+                                  click: function($event) {
+                                    _vm.removeBilling(billing.id)
                                   }
-                                },
-                                [_vm._v("x")]
-                              )
-                            ])
+                                }
+                              },
+                              [_vm._v("x")]
+                            )
                           ])
-                        })
-                      ],
-                      2
+                        ])
+                      }),
+                      0
                     )
                   ]
                 )
