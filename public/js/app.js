@@ -80374,6 +80374,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -80392,6 +80398,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             amountEntered: 0,
             change: 0,
             is_paid: 0,
+            payment: null,
             form: {
                 price: 0,
                 typeOfCharge: null,
@@ -80418,6 +80425,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$refs.myModalRef.hide();
         },
         showCashierModal: function showCashierModal() {
+            if (this.payment.length > 0) {
+                this.$refs.warning.show();
+                return;
+            }
             this.$refs.myCashier.show();
         },
         closedCashierModal: function closedCashierModal() {
@@ -80440,6 +80451,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.patient_record_id = event.value;
             this.billing();
             this.getTotalBill();
+            this.getPayment();
             this.is_paid = event.is_paid;
             // this.getPaymentStatus();
         },
@@ -80534,7 +80546,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getChanged: function getChanged() {
             this.change = this.amountEntered - this.totalBill;
+        },
+        getPayment: function getPayment() {
+            var _this8 = this;
+
+            axios.get('/api/payment/' + this.patient_record_id).then(function (response) {
+                _this8.payment = response.data;
+                console.log(_this8.payment);
+            });
         }
+
+        // getPaymentStatus() {
+        //     axios.get('/api/billing/status/'+ this.patient_record_id)
+        //     .then(response => {
+        //         this.is_paid = response.data.is_paid;
+        //     });
+        // } 
+
     }
 
 });
@@ -80581,7 +80609,10 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-primary",
-                        attrs: { type: "button" },
+                        attrs: {
+                          type: "button",
+                          disabled: !_vm.patient_record_id
+                        },
                         on: { click: _vm.showModal }
                       },
                       [_vm._v("Add Bill")]
@@ -80591,7 +80622,10 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-primary",
-                        attrs: { type: "button" },
+                        attrs: {
+                          type: "button",
+                          disabled: !_vm.patient_record_id
+                        },
                         on: { click: _vm.printUrl }
                       },
                       [_vm._v("Print")]
@@ -80601,7 +80635,10 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-primary",
-                        attrs: { type: "button" },
+                        attrs: {
+                          type: "button",
+                          disabled: !_vm.patient_record_id
+                        },
                         on: { click: _vm.showCashierModal }
                       },
                       [_vm._v("Payment")]
@@ -80739,6 +80776,23 @@ var render = function() {
                         [_vm._v("Close")]
                       )
                     ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "b-modal",
+              {
+                ref: "warning",
+                attrs: { "hide-footer": "", title: "Warning" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _vm._v(
+                      "\n                            Patient already paid.\n                        "
+                    )
                   ])
                 ])
               ]

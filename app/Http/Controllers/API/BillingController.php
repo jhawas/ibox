@@ -88,4 +88,10 @@ class BillingController extends Controller
         $patientRecord = PatientRecord::where('id', $request->patient_record_id)->first();
         return $patientRecord;
     }
+
+    public function getPayment($patient_record_id = null) {
+        // return $patient_record_id;
+        $cashier = Cashier::where('patient_record_id', $patient_record_id)->get();
+        return $cashier;
+    } 
 }

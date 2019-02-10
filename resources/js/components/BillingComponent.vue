@@ -8,10 +8,9 @@
                         <div class="col-md-8 control-container">
                             <div class="control">
                                 <v-select :options="patientRecord" :onChange="getPatientRecordID"></v-select>
-
-                                <button type="button" class="btn btn-primary" @click="showModal">Add Bill</button>
-                                <button type="button" class="btn btn-primary" @click="printUrl">Print</button>
-                                <button type="button" class="btn btn-primary" @click="showCashierModal">Payment</button>
+                                <button type="button" class="btn btn-primary" @click="showModal" :disabled="!patient_record_id">Add Bill</button>
+                                <button type="button" class="btn btn-primary" @click="printUrl" :disabled="!patient_record_id">Print</button>
+                                <button type="button" class="btn btn-primary" @click="showCashierModal" :disabled="!patient_record_id" >Payment</button>
                             </div>
                         </div>
                         <div class="col-md-4 total-bill-container">
@@ -37,6 +36,13 @@
                                     <button type="button" class="btn btn-primary" @click="savePayment">Payment</button>
                                     <button type="button" class="btn btn-primary" @click="closedCashierModal">Close</button>
                                 </div>
+                            </div>
+                        </div>
+                    </b-modal>
+                    <b-modal ref="warning" hide-footer title="Warning">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Patient already paid.
                             </div>
                         </div>
                     </b-modal>
@@ -116,6 +122,7 @@
                 amountEntered: 0,
                 change: 0,
                 is_paid: 0,
+                payment: null,
                 form: {
                     price: 0,
                     typeOfCharge: null,
@@ -148,7 +155,11 @@
             },
 
             showCashierModal() {
-               this.$refs.myCashier.show();
+                if(this.payment.length > 0) {
+                    this.$refs.warning.show();
+                    return;
+                }
+                this.$refs.myCashier.show();
             },
 
             closedCashierModal() {
@@ -170,6 +181,7 @@
                 this.patient_record_id = event.value;
                 this.billing();
                 this.getTotalBill();
+                this.getPayment();
                 this.is_paid = event.is_paid;
                 // this.getPaymentStatus();
             },
@@ -266,6 +278,14 @@
             getChanged() {
                 this.change = this.amountEntered - this.totalBill;
             },
+
+            getPayment() {
+                axios.get('/api/payment/'+ this.patient_record_id)
+                .then(response => {
+                    this.payment = response.data;
+                    console.log(this.payment);
+                });
+            }
 
             // getPaymentStatus() {
             //     axios.get('/api/billing/status/'+ this.patient_record_id)

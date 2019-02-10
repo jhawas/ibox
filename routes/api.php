@@ -32,3 +32,5 @@ Route::get('billing/total/{patient_record_id}', 'API\BillingController@getTotalB
 Route::post('billing/payment', 'API\BillingController@storePayment');
 
 Route::get('billing/status/{patient_record_id}', 'API\BillingController@getPaymentStatus');
+
+Route::get('payment/{patient_record_id}', 'API\BillingController@getPayment');
