@@ -32,7 +32,7 @@
                 @foreach ($patientDiagnoses as $patientDiagnose)
                   <tr>
                       <td>{{ $patientDiagnose->id }}</td>
-                      <td>{{ $patientDiagnose->diagnose->code }}</td>
+                      <td>{{ $patientDiagnose->diagnose ? $patientDiagnose->diagnose->code : null }}</td>
                       <td>{{ $patientDiagnose->diagnoses }}</td>
                       <td>{{ $patientDiagnose->created_at->toFormattedDateString() }}</td>
                       <td>
