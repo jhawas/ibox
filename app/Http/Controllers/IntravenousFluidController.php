@@ -44,7 +44,9 @@ class IntravenousFluidController extends Controller
      */
     public function create()
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         return view('admin.intravenousFluids.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -97,7 +99,9 @@ class IntravenousFluidController extends Controller
      */
     public function edit(IntravenousFluid $intravenousFluid)
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         return view('admin.intravenousFluids.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,

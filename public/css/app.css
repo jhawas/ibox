@@ -19789,3 +19789,7 @@ be a descendant of the grid when it is being dragged.
   padding-bottom: 20px;
 }
 
+.record-id-container {
+  padding-bottom: 10px;
+}
+

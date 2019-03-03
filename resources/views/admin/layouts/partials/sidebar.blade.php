@@ -35,10 +35,20 @@
             </a>
         </li>
         <li>
+            <a class="treeview-item" href="{{ route('outPatients.index') }}">
+              <i class="icon fa fa-circle-o"></i> Out Patient
+            </a>
+        </li>
+        <li>
+            <a class="treeview-item" href="{{ route('inPatients.index') }}">
+              <i class="icon fa fa-circle-o"></i> In Patient
+            </a>
+        </li>
+        {{-- <li>
             <a class="treeview-item" href="{{ route('patientRecords.index') }}">
               <i class="icon fa fa-circle-o"></i> Records
             </a>
-        </li>
+        </li> --}}
         <li>
             <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
               <i class="icon fa fa-circle-o"></i> Laboratory

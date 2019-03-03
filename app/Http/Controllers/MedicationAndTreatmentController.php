@@ -44,7 +44,9 @@ class MedicationAndTreatmentController extends Controller
      */
     public function create()
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         return view('admin.medicationAndTreatments.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -93,7 +95,9 @@ class MedicationAndTreatmentController extends Controller
      */
     public function edit(MedicationAndTreatment $medicationAndTreatment)
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         return view('admin.medicationAndTreatments.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,

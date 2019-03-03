@@ -44,16 +44,10 @@
                   <?php $total = 0 ?>
                   <div class="record-container">
                       <div class="record-id-container">
-                          <h5>Record ID: {{ $record->id }}</h5>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Status: {{$record->recordType->code}}</li>
-                            <li class="list-group-item">Room: {{$record->room->code}}</li>
-                            <li class="list-group-item">Description/Details: {{$record->description}}</li>
-                            <li class="list-group-item">Date and Time: {{$record->created_at}}</li>
-                          </ul>
+                          <h5>{{ $record->created_at->toFormattedDateString() }}</h5>
                       </div>
                   </div> 
-                  <div>
+                  <div class="table-wrapper">
                     <h5>Diagnoses</h5>
                     <table class="table">
                       <thead>
@@ -67,7 +61,7 @@
                       <tbody>
                         @foreach ($record->diagnoses as $diagnose)
                           <tr>
-                              <td>{{ $diagnose->diagnose->code }}</td>
+                              <td>{{ $diagnose->diagnose ? $diagnose->diagnose->code : null }}</td>
                               <td>{{ $diagnose->diagnoses }}</td>
                               <td>{{ $diagnose->remarks }}</td>
                               <td>{{ $diagnose->created_at->toFormattedDateString() }}</td>
@@ -76,8 +70,65 @@
                       </tbody>
                     </table>
                   </div>
-              </div>
-              @endforeach
+                  <div class="table-wrapper">
+                    <h5>Vital Signs</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>BP</th>
+                          <th>T</th>
+                          <th>P</th>
+                          <th>R</th>
+                          <th>Total Intake</th>
+                          <th>Total Output</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->vitalSigns as $vitalSign)
+                          <tr>
+                              <td>{{ $vitalSign->id }}</td>
+                              <td>{{ $vitalSign->bp }}</td>
+                              <td>{{ $vitalSign->t }}</td>
+                              <td>{{ $vitalSign->p }}</td>
+                              <td>{{ $vitalSign->r }}</td>
+                              <td>{{ $vitalSign->total_intake }}</td>
+                              <td>{{ $vitalSign->total_output }}</td>
+                              <td>{{ $vitalSign->date }}</td>
+                              <td>{{ $vitalSign->time }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="table-wrapper">
+                    <h5>Laboratory</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Record ID</th>
+                          <th>Patient</th>
+                          <th>Laboratory</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->laboratory as $laboratoryTest)
+                          <tr>
+                              <td>{{ $laboratoryTest->id }}</td>
+                              <td>{{ $laboratoryTest->record->id }}</td>
+                              <td>{{ ucfirst($laboratoryTest->record->patient->first_name) . ' ' . ucfirst($laboratoryTest->record->patient->middle_name) . ' ' . ucfirst($laboratoryTest->record->patient->last_name) }}</td>
+                              <td>{{ strtoupper($laboratoryTest->laboratory->code) }}</td>
+                              <td>{{ $laboratoryTest->description }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                @endforeach
             </div>
           </div>
       </div>

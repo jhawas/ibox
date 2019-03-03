@@ -19,7 +19,7 @@ class BillingController extends Controller
 
     public function patientRecords()
     {
-        $patientRecords = PatientRecord::with(['patient', 'billings'])->get();
+        $patientRecords = PatientRecord::with(['patient', 'billings'])->where('discharged', 0)->get();
         return $patientRecords;
     }
 

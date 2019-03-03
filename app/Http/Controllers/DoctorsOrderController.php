@@ -44,7 +44,9 @@ class DoctorsOrderController extends Controller
      */
     public function create()
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         $doctors = User::all();
         return view('admin.doctorsOrders.create', [
             'page' => $this->page,
@@ -95,7 +97,9 @@ class DoctorsOrderController extends Controller
      */
     public function edit(DoctorsOrder $doctorsOrder)
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         $doctors = User::all();
         return view('admin.doctorsOrders.edit', [
             'page' => $this->page,

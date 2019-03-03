@@ -43,7 +43,9 @@ class NursesNoteController extends Controller
      */
     public function create()
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         return view('admin.nursesNotes.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -93,7 +95,9 @@ class NursesNoteController extends Controller
      */
     public function edit(NursesNote $nursesNote)
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         return view('admin.nursesNotes.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,

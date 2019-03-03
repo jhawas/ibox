@@ -43,7 +43,9 @@ class VitalSignController extends Controller
      */
     public function create()
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         return view('admin.vitalSigns.create', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
@@ -103,7 +105,9 @@ class VitalSignController extends Controller
      */
     public function edit(VitalSign $vitalSign)
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         return view('admin.vitalSigns.edit', [
             'page' => $this->page,
             'description' => $this->description . $this->page,

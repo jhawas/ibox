@@ -42,7 +42,7 @@
                         ucfirst($patientRecord->patient->middle_name) . ' ' . 
                         ucfirst($patientRecord->patient->last_name) }}</td>
                       <td>{{ $patientRecord->recordType->code }}</td>
-                      <td>{{ $patientRecord->room->code }}</td>
+                      <td>{{ $patientRecord->room ? $patientRecord->room->code : null }}</td>
                       <td>{{ $patientRecord->bed }}</td>
                       <td>{{ $patientRecord->addmitted_and_check_up_date . '/' . $patientRecord->addmitted_and_check_up_time }}</td>
                       <td>{{ $patientRecord->discharge_date . '/' . $patientRecord->discharge_time }}</td>

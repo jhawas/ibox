@@ -55,4 +55,8 @@ class PatientRecord extends Model
         return $this->belongsTo('App\User', 'attending_physician');
     }
 
+    public function laboratory() {
+        return $this->hasMany('App\LaboratoryTest');
+    }
+
 }

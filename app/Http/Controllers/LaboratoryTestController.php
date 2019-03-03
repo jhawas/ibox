@@ -57,7 +57,7 @@ class LaboratoryTestController extends Controller
     {
         $patientRecords = PatientRecord::with([
             'patient'
-        ])->get();
+        ])->where('discharged', 0)->get();
         // return $patientRecords;
         $typeOfTests = TypeOfLaboratory::all();
         return view('admin.laboratoryTests.create', [
@@ -112,7 +112,9 @@ class LaboratoryTestController extends Controller
      */
     public function edit(LaboratoryTest $laboratoryTest)
     {
-        $patientRecords = PatientRecord::all();
+        $patientRecords = PatientRecord::with([
+            'patient'
+        ])->where('discharged', 0)->get();
         $typeOfTests = TypeOfLaboratory::all();
         return view('admin.laboratoryTests.edit', [
             'page' => $this->page,
