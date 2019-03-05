@@ -15,6 +15,7 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
+            {{-- <patient-component> --}}
             <div class="controller-wrapper">
               <a href="{{ route('patients.create') }}" class="btn btn-primary">New</a>
                <a href="{{ route('patients.print') }}" target="_blank" class="btn btn-primary">Print Master List</a>

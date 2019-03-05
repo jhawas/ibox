@@ -13,7 +13,7 @@ class PatientController extends Controller
         $this->middleware(['api']);
     }
 
-    public function patients()
+    public function data()
     {
         $patients = Patient::all();
         return $patients;

@@ -37,7 +37,7 @@ Route::get('payment/{patient_record_id}', 'API\BillingController@getPayment');
 
 
 // patient
-Route::get('patients', 'API\PatientController@patients');
+Route::get('patients', 'API\PatientController@data');
 
 
 // vital signs
