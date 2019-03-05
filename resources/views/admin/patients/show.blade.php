@@ -174,6 +174,61 @@
                       </tbody>
                     </table>
                   </div>
+                  <div class="table-wrapper">
+                    <h5>Intravenous Fluid</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Solution</th>
+                          <th>Vol.</th>
+                          <th>GTSS</th>
+                          <th>Remarks</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->intravenousFluids as $intravenousFluid)
+                          <tr>
+                              <td>{{ $intravenousFluid->id }}</td>
+                              <td>{{ $intravenousFluid->date }}</td>
+                              <td>{{ $intravenousFluid->time }}</td>
+                              <td>{{ $intravenousFluid->kind_of_solution }}</td>
+                              <td>{{ $intravenousFluid->vol }}</td>
+                              <td>{{ $intravenousFluid->gtss }}</td>
+                              <td>{{ $intravenousFluid->remarks }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="table-wrapper">
+                    <h5>Medication And Treatment</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>                          <th>Medicine</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Remarks</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->medicationAndTreatments as $medicationAndTreatment)
+                          <tr>
+                              <td>{{ $medicationAndTreatment->id }}</td>
+                              <td>{{ $medicationAndTreatment->medicine }}</td>
+                              <td>{{ $medicationAndTreatment->date }}</td>
+                              <td>{{ $medicationAndTreatment->time }}</td>
+                              <td>{{ $medicationAndTreatment->remarks }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
                 @endforeach
             </div>
           </div>
