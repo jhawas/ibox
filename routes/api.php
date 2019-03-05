@@ -41,8 +41,15 @@ Route::get('patients', 'API\PatientController@patients');
 
 
 // vital signs
-Route::get('vitalSigns/{patient_record_id}', 'API\VitalSignController@vitalSigns');
+Route::get('vitalSigns/{patient_record_id}', 'API\VitalSignController@data');
 Route::delete('vitalSigns/{patient_record_id}', 'API\VitalSignController@delete');
-Route::post('vitalSigns/{patient_record_id}', 'API\VitalSignController@store');
+Route::post('vitalSigns', 'API\VitalSignController@store');
 Route::get('vitalSigns/{id}/edit', 'API\VitalSignController@edit');
 Route::put('vitalSigns/{id}', 'API\VitalSignController@update');
+
+// doctors orders
+Route::get('doctorsOrders/{patient_record_id}', 'API\DoctorsOrderController@data');
+Route::delete('doctorsOrders/{patient_record_id}', 'API\DoctorsOrderController@delete');
+Route::post('doctorsOrders', 'API\DoctorsOrderController@store');
+Route::get('doctorsOrders/{id}/edit', 'API\DoctorsOrderController@edit');
+Route::put('doctorsOrders/{id}', 'API\DoctorsOrderController@update');

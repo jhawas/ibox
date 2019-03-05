@@ -62,7 +62,7 @@
     <b-table
       show-empty
       stacked="md"
-      :items="vitalSigns"
+      :items="doctorsOrders"
       :fields="fields"
       :current-page="currentPage"
       :per-page="perPage"
@@ -73,9 +73,6 @@
       @filtered="onFiltered"
     >
       <template slot="actions" slot-scope="row">
-        <!-- <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-          Info modal
-        </b-button> -->
         <b-button size="sm" @click="row.toggleDetails">
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
@@ -104,74 +101,16 @@
                 {{row.item.time}}
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="2" label="BP" class="mb-0">
+            <b-form-group label-cols-sm="2" label="Progress Note" class="mb-0">
               <b-input-group>
-                {{row.item.bp}}
+                {{row.item.progress_note}}
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="2" label="T" class="mb-0">
+            <b-form-group label-cols-sm="2" label="Doctor's Orders" class="mb-0">
               <b-input-group>
-                {{row.item.t}}
+                {{row.item.doctors_orders}}
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="2" label="P" class="mb-0">
-              <b-input-group>
-                {{row.item.p}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="R" class="mb-0">
-              <b-input-group>
-                {{row.item.r}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Intake Oral" class="mb-0">
-              <b-input-group>
-                {{row.item.intake_oral}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="intake I.V." class="mb-0">
-              <b-input-group>
-                {{row.item.intake_iv}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Intake NG" class="mb-0">
-              <b-input-group>
-                {{row.item.intake_ng}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Total Intake" class="mb-0">
-              <b-input-group>
-                {{row.item.total_intake}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Output Urine" class="mb-0">
-              <b-input-group>
-                {{row.item.output_urine}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Output Stool" class="mb-0">
-              <b-input-group>
-                {{row.item.output_stool}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Output Emesis" class="mb-0">
-              <b-input-group>
-                {{row.item.output_emesis}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Output NG" class="mb-0">
-              <b-input-group>
-                {{row.item.output_ng}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Total Output" class="mb-0">
-              <b-input-group>
-                {{row.item.total_output}}
-              </b-input-group>
-            </b-form-group>
-          <!-- <ul>
-            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-          </ul> -->
         </b-card>
       </template>
     </b-table>
@@ -203,69 +142,34 @@
       <form @submit.stop.prevent="onSubmit">
         <b-form-group label-cols-sm="2" label="Date">
             <b-input-group>
-                <b-form-input type="date" placeholder="Enter Date" v-model="vitalSign.date" />
+                <b-form-input type="date" placeholder="Enter Date" v-model="doctorsOrder.date" />
             </b-input-group>
         </b-form-group>
         <b-form-group label-cols-sm="2" label="Time">
             <b-input-group>
-                <b-form-input type="time" placeholder="Enter Time" v-model="vitalSign.time" />
+                <b-form-input type="time" placeholder="Enter Time" v-model="doctorsOrder.time" />
             </b-input-group>
         </b-form-group>
-        <b-form-group label-cols-sm="2" label="BP">
+        <b-form-group label-cols-sm="2" label="Progress Note">
             <b-input-group>
-                <b-form-input type="text" placeholder="Enter BP" v-model="vitalSign.bp" />
+                <b-form-textarea
+                  id="textarea1"
+                  v-model="doctorsOrder.progress_note"
+                  placeholder="Enter Progress Note"
+                  rows="3"
+                  max-rows="6"
+                />
             </b-input-group>
         </b-form-group>
-        <b-form-group label-cols-sm="2" label="T">
+        <b-form-group label-cols-sm="2" label="Doctor's Orders">
             <b-input-group>
-                <b-form-input type="text" placeholder="Enter T" v-model="vitalSign.t" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="P">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter P" v-model="vitalSign.p" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="R">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter R" v-model="vitalSign.r" />
-            </b-input-group>
-        </b-form-group>
-        <legend>Intake</legend>
-        <b-form-group label-cols-sm="2" label="Oral">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter Oral" v-model="vitalSign.intake_oral" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="I.V.">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter I.V." v-model="vitalSign.intake_iv" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="NG">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter NG" v-model="vitalSign.intake_ng" />
-            </b-input-group>
-        </b-form-group>
-        <legend>Ouput</legend>
-        <b-form-group label-cols-sm="2" label="Urine">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter Urine" v-model="vitalSign.output_urine" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="Stool">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter Stool" v-model="vitalSign.output_stool" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="Emesis">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter Emesis" v-model="vitalSign.output_emesis" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="NG">
-            <b-input-group>
-                <b-form-input type="text" placeholder="Enter NG" v-model="vitalSign.output_ng" />
+                <b-form-textarea
+                  id="textarea1"
+                  v-model="doctorsOrder.doctors_orders"
+                  placeholder="Enter Progress Note"
+                  rows="3"
+                  max-rows="6"
+                />
             </b-input-group>
         </b-form-group>
       </form>
@@ -283,17 +187,16 @@
     data() {
       return {
         patients: [],
-        vitalSign: [],
-        vitalSigns: [],
+        doctorsOrder: [],
+        doctorsOrders: [],
         patient_record_id: null,
         selected_id: null,
         action: 'store' | 'update',
         fields: [
           { key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' },
-          { key: 'bp', label: 'BP', sortable: true, sortDirection: 'desc', class: 'text-center' },
-          { key: 't', label: 'T', sortable: true, sortDirection: 'desc', class: 'text-center' },
-          { key: 'p', label: 'P', sortable: true, sortDirection: 'desc', class: 'text-center' },
-          { key: 'r', label: 'R', sortable: true, sortDirection: 'desc', class: 'text-center' },
+          { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc', class: 'text-center' },
+          { key: 'progress_note', label: 'Progress Note', sortable: true, sortDirection: 'desc', class: 'text-center' },
+          { key: 'doctors_orders', label: 'Doctors Orders', sortable: true, sortDirection: 'desc', class: 'text-center' },
           { key: 'actions', label: 'Actions' }
         ],
         currentPage: 1,
@@ -321,11 +224,6 @@
       }
     },
     methods: {
-        info(item, index, button) {
-            this.modalInfo.title = `Row index: ${index}`
-            this.modalInfo.content = JSON.stringify(item, null, 2)
-            this.$root.$emit('bv::show::modal', 'modalInfo', button)
-        },
         resetModal() {
             this.modalInfo.title = ''
             this.modalInfo.content = ''
@@ -355,14 +253,14 @@
             } else {
               this.patient_record_id = null;
             }
-            this.getVitalSigns();
+            this.getDoctorsOrders();
         },
-        getVitalSigns() {
-            axios.get('/api/vitalSigns/'+this.patient_record_id)
+        getDoctorsOrders() {
+            axios.get('/api/doctorsOrders/'+this.patient_record_id)
             .then(response => {
-                this.vitalSigns = response.data;
-                this.totalRows = this.vitalSigns.length;
-                console.log(this.vitalSigns, this.totalRows);
+                this.doctorsOrders = response.data;
+                this.totalRows = this.doctorsOrders.length;
+                console.log(this.doctorsOrders, this.totalRows);
             });
         },
         showModalDelete(item, index, button) {
@@ -372,10 +270,10 @@
             this.selected_id = item.id;
         },
         onDelete() {
-            axios.delete('/api/vitalSigns/' + this.selected_id)
+            axios.delete('/api/doctorsOrders/' + this.selected_id)
             .then(response => {
                 if(response.data == 'success') {
-                    this.getVitalSigns();
+                    this.getDoctorsOrders();
                 }  
             })
             .catch (response => {
@@ -384,58 +282,40 @@
         },
         showModalForm() {
             this.action = 'store';
-            this.modalInfo.title = 'Vital Signs Form';
+            this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit(action) {
-            console.log('submit',this.vitalSign);
+            console.log('submit',this.doctorsOrder);
             if(action === 'store') {
-                axios.post('/api/vitalSigns', {
+                axios.post('/api/doctorsOrders', {
                     patient_record_id: this.patient_record_id,
-                    date: this.vitalSign.date,
-                    time: this.vitalSign.time,
-                    bp: this.vitalSign.bp,
-                    t: this.vitalSign.t,
-                    p: this.vitalSign.p,
-                    r: this.vitalSign.r,
-                    intake_oral: this.vitalSign.intake_oral,
-                    intake_ng: this.vitalSign.intake_ng,
-                    intake_iv: this.vitalSign.intake_iv,
-                    output_urine: this.vitalSign.output_urine,
-                    output_ng: this.vitalSign.output_ng,
-                    output_emesis: this.vitalSign.output_emesis,
-                    output_stool: this.vitalSign.output_stool,
+                    date: this.doctorsOrder.date,
+                    time: this.doctorsOrder.time,
+                    progress_note: this.doctorsOrder.progress_note,
+                    doctors_orders: this.doctorsOrder.doctors_orders,
                 })
                 .then(response => {
                     console.log(response.data);
                     if(response.data == 'success') {
-                        this.getVitalSigns();
+                        this.getDoctorsOrders();
                     }  
                 })
                 .catch (response => {
                     console.log(response);
                 });
             } else {
-                axios.put('/api/vitalSigns/' + this.selected_id, {
+                axios.put('/api/doctorsOrders/' + this.selected_id, {
                     patient_record_id: this.patient_record_id,
-                    date: this.vitalSign.date,
-                    time: this.vitalSign.time,
-                    bp: this.vitalSign.bp,
-                    t: this.vitalSign.t,
-                    p: this.vitalSign.p,
-                    r: this.vitalSign.r,
-                    intake_oral: this.vitalSign.intake_oral,
-                    intake_ng: this.vitalSign.intake_ng,
-                    intake_iv: this.vitalSign.intake_iv,
-                    output_urine: this.vitalSign.output_urine,
-                    output_ng: this.vitalSign.output_ng,
-                    output_emesis: this.vitalSign.output_emesis,
-                    output_stool: this.vitalSign.output_stool,
+                    date: this.doctorsOrder.date,
+                    time: this.doctorsOrder.time,
+                    progress_note: this.doctorsOrder.progress_note,
+                    doctors_orders: this.doctorsOrder.doctors_orders,
                 })
                 .then(response => {
                     console.log(response.data);
                     if(response.data == 'success') {
-                        this.getVitalSigns();
+                        this.getDoctorsOrders();
                     }  
                 })
                 .catch (response => {
@@ -446,11 +326,11 @@
         showModalEdit(item) {
             this.action = 'edit';
             this.selected_id = item.id;
-            axios.get('/api/vitalSigns/'+this.selected_id+'/edit')
+            axios.get('/api/doctorsOrders/'+this.selected_id+'/edit')
             .then(response => {
-                this.vitalSign = response.data;
+                this.doctorsOrder = response.data;
             });
-            this.modalInfo.title = 'Vital Signs Form';
+            this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');
         }
     }

@@ -13,7 +13,7 @@ class VitalSignController extends Controller
         $this->middleware(['api']);
     }
 
-    public function vitalSigns($patient_record_id = null)
+    public function data($patient_record_id = null)
     {
         $vitalSigns = VitalSign::with([
         	'record' => function($query) {
