@@ -89,86 +89,94 @@
 
       <template slot="row-details" slot-scope="row">
         <b-card>
-            <b-form-group label-cols-sm="2" label="Patient Record" class="mb-0">
-              <b-input-group>
-                {{row.item.record.patient.first_name + ' ' + row.item.record.patient.first_name}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Date" class="mb-0">
-              <b-input-group>
-                {{row.item.date}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Time" class="mb-0">
-              <b-input-group>
-                {{row.item.time}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="BP" class="mb-0">
-              <b-input-group>
-                {{row.item.bp}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="T" class="mb-0">
-              <b-input-group>
-                {{row.item.t}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="P" class="mb-0">
-              <b-input-group>
-                {{row.item.p}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="R" class="mb-0">
-              <b-input-group>
-                {{row.item.r}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Intake Oral" class="mb-0">
-              <b-input-group>
-                {{row.item.intake_oral}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="intake I.V." class="mb-0">
-              <b-input-group>
-                {{row.item.intake_iv}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Intake NG" class="mb-0">
-              <b-input-group>
-                {{row.item.intake_ng}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Total Intake" class="mb-0">
-              <b-input-group>
-                {{row.item.total_intake}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Output Urine" class="mb-0">
-              <b-input-group>
-                {{row.item.output_urine}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Output Stool" class="mb-0">
-              <b-input-group>
-                {{row.item.output_stool}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Output Emesis" class="mb-0">
-              <b-input-group>
-                {{row.item.output_emesis}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Output NG" class="mb-0">
-              <b-input-group>
-                {{row.item.output_ng}}
-              </b-input-group>
-            </b-form-group>
-            <b-form-group label-cols-sm="2" label="Total Output" class="mb-0">
-              <b-input-group>
-                {{row.item.total_output}}
-              </b-input-group>
-            </b-form-group>
+          <b-row>
+            <b-col md="6" class="my-1">
+                <b-form-group label-cols-sm="2" label="Patient Record" class="mb-0">
+                  <b-input-group>
+                    {{row.item.record.patient.first_name + ' ' + row.item.record.patient.first_name}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="Date" class="mb-0">
+                  <b-input-group>
+                    {{row.item.date}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="Time" class="mb-0">
+                  <b-input-group>
+                    {{row.item.time}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="BP" class="mb-0">
+                  <b-input-group>
+                    {{row.item.bp}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="T" class="mb-0">
+                  <b-input-group>
+                    {{row.item.t}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="P" class="mb-0">
+                  <b-input-group>
+                    {{row.item.p}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="R" class="mb-0">
+                  <b-input-group>
+                    {{row.item.r}}
+                  </b-input-group>
+                </b-form-group>
+            </b-col>
+            <b-col md="6" class="my-1">
+                <legend>Intake</legend>
+                <b-form-group label-cols-sm="2" label="Intake Oral" class="mb-0">
+                  <b-input-group>
+                    {{row.item.intake_oral}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="intake I.V." class="mb-0">
+                  <b-input-group>
+                    {{row.item.intake_iv}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="Intake NG" class="mb-0">
+                  <b-input-group>
+                    {{row.item.intake_ng}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="Total Intake" class="mb-0">
+                  <b-input-group>
+                    {{row.item.total_intake}}
+                  </b-input-group>
+                </b-form-group>
+                <legend>Output</legend>
+                <b-form-group label-cols-sm="2" label="Output Urine" class="mb-0">
+                  <b-input-group>
+                    {{row.item.output_urine}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="Output Stool" class="mb-0">
+                  <b-input-group>
+                    {{row.item.output_stool}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="Output Emesis" class="mb-0">
+                  <b-input-group>
+                    {{row.item.output_emesis}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="Output NG" class="mb-0">
+                  <b-input-group>
+                    {{row.item.output_ng}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="2" label="Total Output" class="mb-0">
+                  <b-input-group>
+                    {{row.item.total_output}}
+                  </b-input-group>
+                </b-form-group>
+            </b-col>
+          </b-row>
           <!-- <ul>
             <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
           </ul> -->
