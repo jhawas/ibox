@@ -282,12 +282,7 @@
     },
     data() {
       return {
-        patients: [
-            {
-                value: '',
-                label: ''
-            }
-        ],
+        patients: [],
         vitalSign: [],
         vitalSigns: [],
         patient_record_id: null,
@@ -353,8 +348,13 @@
             });
         },
         getPatientBy(event) {
-            console.log('selected',event.value);
-            this.patient_record_id = event.value ? event.value : 0;
+            if(event) {
+              console.log('selected',event.value);
+              this.patient_record_id = event.value;
+              
+            } else {
+              this.patient_record_id = null;
+            }
             this.getVitalSigns();
         },
         getVitalSigns() {
