@@ -53,3 +53,17 @@ Route::delete('doctorsOrders/{patient_record_id}', 'API\DoctorsOrderController@d
 Route::post('doctorsOrders', 'API\DoctorsOrderController@store');
 Route::get('doctorsOrders/{id}/edit', 'API\DoctorsOrderController@edit');
 Route::put('doctorsOrders/{id}', 'API\DoctorsOrderController@update');
+
+// nurses notes
+Route::get('nursesNotes/{patient_record_id}', 'API\NursesNoteController@data');
+Route::delete('nursesNotes/{patient_record_id}', 'API\NursesNoteController@delete');
+Route::post('nursesNotes', 'API\NursesNoteController@store');
+Route::get('nursesNotes/{id}/edit', 'API\NursesNoteController@edit');
+Route::put('nursesNotes/{id}', 'API\NursesNoteController@update');
+
+// Intravenous Fluid
+Route::get('intravenousFluids/{patient_record_id}', 'API\IntravenousFluidController@data');
+Route::delete('intravenousFluids/{patient_record_id}', 'API\IntravenousFluidController@delete');
+Route::post('intravenousFluids', 'API\IntravenousFluidController@store');
+Route::get('intravenousFluids/{id}/edit', 'API\IntravenousFluidController@edit');
+Route::put('intravenousFluids/{id}', 'API\IntravenousFluidController@update');

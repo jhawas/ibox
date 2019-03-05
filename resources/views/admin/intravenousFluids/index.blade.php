@@ -15,7 +15,8 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
-            <div class="controller-wrapper">
+            <intravenous-fluid-component />
+            {{-- <div class="controller-wrapper">
               <a href="{{ route('intravenousFluids.create') }}" class="btn btn-primary">New</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
@@ -63,7 +64,7 @@
                   </tr>
                 @endforeach
               </tbody>
-            </table>
+            </table> --}}
           </div>
       </div>
     </div>
