@@ -34,3 +34,15 @@ Route::post('billing/payment', 'API\BillingController@storePayment');
 Route::get('billing/status/{patient_record_id}', 'API\BillingController@getPaymentStatus');
 
 Route::get('payment/{patient_record_id}', 'API\BillingController@getPayment');
+
+
+// patient
+Route::get('patients', 'API\PatientController@patients');
+
+
+// vital signs
+Route::get('vitalSigns/{patient_record_id}', 'API\VitalSignController@vitalSigns');
+Route::delete('vitalSigns/{patient_record_id}', 'API\VitalSignController@delete');
+Route::post('vitalSigns/{patient_record_id}', 'API\VitalSignController@store');
+Route::get('vitalSigns/{id}/edit', 'API\VitalSignController@edit');
+Route::put('vitalSigns/{id}', 'API\VitalSignController@update');

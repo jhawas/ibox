@@ -19793,3 +19793,7 @@ be a descendant of the grid when it is being dragged.
   padding-bottom: 10px;
 }
 
+.v-select {
+  width: 100%;
+}
+
