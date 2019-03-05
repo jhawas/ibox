@@ -67,3 +67,10 @@ Route::delete('intravenousFluids/{patient_record_id}', 'API\IntravenousFluidCont
 Route::post('intravenousFluids', 'API\IntravenousFluidController@store');
 Route::get('intravenousFluids/{id}/edit', 'API\IntravenousFluidController@edit');
 Route::put('intravenousFluids/{id}', 'API\IntravenousFluidController@update');
+
+// Medication And Treatments
+Route::get('medicationAndTreatments/{patient_record_id}', 'API\MedicationAndTreatmentController@data');
+Route::delete('medicationAndTreatments/{patient_record_id}', 'API\MedicationAndTreatmentController@delete');
+Route::post('medicationAndTreatments', 'API\MedicationAndTreatmentController@store');
+Route::get('medicationAndTreatments/{id}/edit', 'API\MedicationAndTreatmentController@edit');
+Route::put('medicationAndTreatments/{id}', 'API\MedicationAndTreatmentController@update');
