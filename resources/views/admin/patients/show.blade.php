@@ -109,8 +109,6 @@
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Record ID</th>
-                          <th>Patient</th>
                           <th>Laboratory</th>
                           <th>Description</th>
                         </tr>
@@ -119,10 +117,58 @@
                         @foreach ($record->laboratory as $laboratoryTest)
                           <tr>
                               <td>{{ $laboratoryTest->id }}</td>
-                              <td>{{ $laboratoryTest->record->id }}</td>
-                              <td>{{ ucfirst($laboratoryTest->record->patient->first_name) . ' ' . ucfirst($laboratoryTest->record->patient->middle_name) . ' ' . ucfirst($laboratoryTest->record->patient->last_name) }}</td>
                               <td>{{ strtoupper($laboratoryTest->laboratory->code) }}</td>
                               <td>{{ $laboratoryTest->description }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="table-wrapper">
+                    <h5>Doctor's Order</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Progress Note</th>
+                          <th>Doctor's Orders</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->doctorsOrders as $doctorsOrder)
+                          <tr>
+                              <td>{{ $doctorsOrder->id }}</td>
+                              <td>{{ $doctorsOrder->date }}</td>
+                              <td>{{ $doctorsOrder->time }}</td>
+                              <td>{{ $doctorsOrder->progress_note }}</td>
+                              <td>{{ $doctorsOrder->doctors_orders }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="table-wrapper">
+                    <h5>Nurse Note</h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Focus</th>
+                          <th>Action Response</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($record->nursesNotes as $nursesNote)
+                          <tr>
+                              <td>{{ $nursesNote->id }}</td>
+                              <td>{{ $nursesNote->date }}</td>
+                              <td>{{ $nursesNote->time }}</td>
+                              <td>{{ $nursesNote->focus }}</td>
+                              <td>{{ $nursesNote->data_action_response }}</td>
                           </tr>
                         @endforeach
                       </tbody>
