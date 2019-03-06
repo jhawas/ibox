@@ -44,11 +44,11 @@
               <i class="icon fa fa-circle-o"></i> In Patient
             </a>
         </li>
-        {{-- <li>
-            <a class="treeview-item" href="{{ route('patientRecords.index') }}">
-              <i class="icon fa fa-circle-o"></i> Records
+        <li>
+            <a class="treeview-item" href="{{ route('patientDiagnoses.index') }}">
+              <i class="icon fa fa-circle-o"></i> Diagnoses
             </a>
-        </li> --}}
+        </li>
         <li>
             <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
               <i class="icon fa fa-circle-o"></i> Laboratory

@@ -149,7 +149,10 @@ Route::get('patientBillings/{patientRecord}/print', 'PatientBillingController@pr
 		->name('patientBillings.print');
 
 // patient diagnoses
-Route::get('patientDiagnoses/{patientRecord}', 'PatientDiagnoseController@index')
+// Route::get('patientDiagnoses/{patientRecord}', 'PatientDiagnoseController@index')
+// 		->name('patientDiagnoses.index');
+
+Route::get('patientDiagnoses', 'PatientDiagnoseController@index')
 		->name('patientDiagnoses.index');
 
 Route::get('patientDiagnoses/{patientRecord}/create', 'PatientDiagnoseController@create')

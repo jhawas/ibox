@@ -3,8 +3,9 @@
 @section('content')
     <div class="app-title">
       <div>
-        <h1><i class="fa fa-dashboard"></i> {{ $page . '-' . ucfirst($patientRecord->patient->first_name) . ' ' . ucfirst($patientRecord->patient->middle_name) . ' ' . ucfirst($patientRecord->patient->last_name) }}</h1>
-        <p>{{ $description }}</p>
+        <h1><i class="fa fa-dashboard"></i> {{ $page }}</p>
+        {{-- <h1><i class="fa fa-dashboard"></i> {{ $page . '-' . ucfirst($patientRecord->patient->first_name) . ' ' . ucfirst($patientRecord->patient->middle_name) . ' ' . ucfirst($patientRecord->patient->last_name) }}</h1>
+        <p>{{ $description }}</p> --}}
       </div>
       <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -15,7 +16,8 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
-            <div class="controller-wrapper">
+            <patient-diagnoses-component user_id={{Auth::user()->id}} />
+            {{-- <div class="controller-wrapper">
               <a href="{{ route('patientDiagnoses.create', $patientRecord) }}" class="btn btn-primary">New</a>
             </div>
             <table class="table table-hover table-bordered" id="datatable">
@@ -49,7 +51,7 @@
                   </tr>
                 @endforeach
               </tbody>
-            </table>
+            </table> --}}
           </div>
       </div>
     </div>

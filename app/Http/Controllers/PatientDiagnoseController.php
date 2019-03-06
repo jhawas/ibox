@@ -23,12 +23,7 @@ class PatientDiagnoseController extends Controller
     }
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(PatientRecord $patientRecord)
+    public function index()
     {
         $patientDiagnoses = PatientDiagnose::with([
             'diagnose',
@@ -38,15 +33,37 @@ class PatientDiagnoseController extends Controller
                     'room'
                 ]);
             }
-        ])->where('patient_record_id', $patientRecord->id)->get();
+        ])->get();
         // return $patientDiagnoses;
         return view('admin.patientDiagnoses.index', [
             'page' => $this->page,
             'description' => $this->description . $this->page,
-            'patientRecord' => $patientRecord,
-            'patientDiagnoses' => $patientDiagnoses
         ]);
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    // public function index(PatientRecord $patientRecord)
+    // {
+    //     $patientDiagnoses = PatientDiagnose::with([
+    //         'diagnose',
+    //         'record' => function($record) {
+    //             $record->with([
+    //                 'patient',
+    //                 'room'
+    //             ]);
+    //         }
+    //     ])->where('patient_record_id', $patientRecord->id)->get();
+    //     // return $patientDiagnoses;
+    //     return view('admin.patientDiagnoses.index', [
+    //         'page' => $this->page,
+    //         'description' => $this->description . $this->page,
+    //         'patientRecord' => $patientRecord,
+    //         'patientDiagnoses' => $patientDiagnoses
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.
