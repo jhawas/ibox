@@ -184,6 +184,9 @@
     components : {
         vSelect
     },
+
+    props: ['user_id'],
+
     data() {
       return {
         patients: [],
@@ -289,6 +292,7 @@
             console.log('submit',this.nursesNote);
             if(action === 'store') {
                 axios.post('/api/nursesNotes', {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.nursesNote.date,
                     time: this.nursesNote.time,
@@ -306,6 +310,7 @@
                 });
             } else {
                 axios.put('/api/nursesNotes/' + this.selected_id, {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.nursesNote.date,
                     time: this.nursesNote.time,

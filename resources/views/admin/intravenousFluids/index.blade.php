@@ -15,7 +15,7 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
-            <intravenous-fluid-component />
+            <intravenous-fluid-component user_id={{Auth::user()->id}} />
             {{-- <div class="controller-wrapper">
               <a href="{{ route('intravenousFluids.create') }}" class="btn btn-primary">New</a>
             </div>

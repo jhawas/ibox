@@ -42,6 +42,7 @@ class NursesNoteController extends Controller
         $nursesNote->time = $request->time;
         $nursesNote->focus = $request->focus;
         $nursesNote->data_action_response = $request->data_action_response;
+        $nursesNote->nurse_id = $request->user_id;
         $nursesNote->save();
         return 'success';
     }
@@ -53,6 +54,7 @@ class NursesNoteController extends Controller
         $nursesNote->time = $request->time;
         $nursesNote->focus = $request->focus;
         $nursesNote->data_action_response = $request->data_action_response;
+        $nursesNote->nurse_id = $request->user_id;
         $nursesNote->save();
         return 'success';
     }

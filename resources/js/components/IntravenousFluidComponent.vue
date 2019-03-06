@@ -226,6 +226,9 @@
     components : {
         vSelect
     },
+    
+    props: ['user_id'],
+
     data() {
       return {
         patients: [],
@@ -330,6 +333,7 @@
             console.log('submit',this.intravenousFluid);
             if(action === 'store') {
                 axios.post('/api/intravenousFluids', {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.intravenousFluid.date,
                     time: this.intravenousFluid.time,
@@ -350,6 +354,7 @@
                 });
             } else {
                 axios.put('/api/intravenousFluids/' + this.selected_id, {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.intravenousFluid.date,
                     time: this.intravenousFluid.time,

@@ -42,6 +42,7 @@ class DoctorsOrderController extends Controller
         $doctorsOrder->time = $request->time;
         $doctorsOrder->progress_note = $request->progress_note;
         $doctorsOrder->doctors_orders = $request->doctors_orders;
+        $doctorsOrder->physician_id = $request->user_id;
         $doctorsOrder->save();
         return 'success';
     }
@@ -53,6 +54,7 @@ class DoctorsOrderController extends Controller
         $doctorsOrder->time = $request->time;
         $doctorsOrder->progress_note = $request->progress_note;
         $doctorsOrder->doctors_orders = $request->doctors_orders;
+        $doctorsOrder->physician_id = $request->user_id;
         $doctorsOrder->save();
         return 'success';
     }

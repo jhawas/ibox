@@ -15,7 +15,7 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
-            <nurses-note-component />
+            <nurses-note-component user_id={{Auth::user()->id}} />
             {{-- <div class="controller-wrapper">
               <a href="{{ route('nursesNotes.create') }}" class="btn btn-primary">New</a>
             </div>

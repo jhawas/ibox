@@ -184,6 +184,9 @@
     components : {
         vSelect
     },
+
+    props: ['user_id'],
+
     data() {
       return {
         patients: [],
@@ -289,6 +292,7 @@
             console.log('submit',this.doctorsOrder);
             if(action === 'store') {
                 axios.post('/api/doctorsOrders', {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.doctorsOrder.date,
                     time: this.doctorsOrder.time,
@@ -306,6 +310,7 @@
                 });
             } else {
                 axios.put('/api/doctorsOrders/' + this.selected_id, {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.doctorsOrder.date,
                     time: this.doctorsOrder.time,

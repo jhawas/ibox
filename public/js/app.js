@@ -86145,6 +86145,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
     },
+
+    props: ['user_id'],
+
     data: function data() {
         return {
             patients: [],
@@ -86250,6 +86253,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('submit', this.doctorsOrder);
             if (action === 'store') {
                 axios.post('/api/doctorsOrders', {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.doctorsOrder.date,
                     time: this.doctorsOrder.time,
@@ -86265,6 +86269,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 axios.put('/api/doctorsOrders/' + this.selected_id, {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.doctorsOrder.date,
                     time: this.doctorsOrder.time,
@@ -87231,6 +87236,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
     },
+
+    props: ['user_id'],
+
     data: function data() {
         return {
             patients: [],
@@ -87336,6 +87344,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('submit', this.intravenousFluid);
             if (action === 'store') {
                 axios.post('/api/intravenousFluids', {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.intravenousFluid.date,
                     time: this.intravenousFluid.time,
@@ -87354,6 +87363,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 axios.put('/api/intravenousFluids/' + this.selected_id, {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.intravenousFluid.date,
                     time: this.intravenousFluid.time,
@@ -89587,6 +89597,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
     },
+
+    props: ['user_id'],
+
     data: function data() {
         return {
             patients: [],
@@ -89692,6 +89705,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('submit', this.nursesNote);
             if (action === 'store') {
                 axios.post('/api/nursesNotes', {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.nursesNote.date,
                     time: this.nursesNote.time,
@@ -89707,6 +89721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 axios.put('/api/nursesNotes/' + this.selected_id, {
+                    user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
                     date: this.nursesNote.date,
                     time: this.nursesNote.time,

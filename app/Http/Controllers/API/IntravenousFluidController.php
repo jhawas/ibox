@@ -45,7 +45,7 @@ class IntravenousFluidController extends Controller
         $intravenousFluid->vol = $request->vol;
         $intravenousFluid->gtss = $request->gtss;
         $intravenousFluid->remarks = $request->remarks;
-        // $intravenousFluid->nurse_id = \Auth::user()->id;
+        $intravenousFluid->nurse_id = $request->user_id;
         $intravenousFluid->save();
         return 'success';
     }
@@ -60,7 +60,7 @@ class IntravenousFluidController extends Controller
         $intravenousFluid->vol = $request->vol;
         $intravenousFluid->gtss = $request->gtss;
         $intravenousFluid->remarks = $request->remarks;
-        // $intravenousFluid->nurse_id = \Auth::user()->id;
+        $intravenousFluid->nurse_id = $request->user_id;
         $intravenousFluid->save();
         return 'success';
     }
