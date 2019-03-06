@@ -145,7 +145,12 @@
       <form @submit.stop.prevent="onSubmit">
         <b-form-group label-cols-sm="2" label="Diagnoses">
             <b-input-group>
-                <v-select v-model="selected" :options="diagnoses" :onChange="getDiagnosesBy"></v-select>
+                <v-select 
+                  ref="diagnoses"
+                  v-model="selected" 
+                  :options="diagnoses" 
+                  :onChange="getDiagnosesBy"
+                ></v-select>
             </b-input-group>
         </b-form-group>
         <b-form-group label-cols-sm="2" label="Diagnoses">
@@ -295,7 +300,7 @@
                 axios.post('/api/patientDiagnoses', {
                     user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
-                    diagnose_id: this.patientDiagnose.diagnose_id,
+                    diagnose_id: this.patientDiagnose.diagnose_id ? this.patientDiagnose.diagnose_id : this.selected.id,
                     diagnoses: this.patientDiagnose.diagnoses,
                     remarks: this.patientDiagnose.remarks,
                 })
@@ -312,7 +317,7 @@
                 axios.put('/api/patientDiagnoses/' + this.selected_id, {
                     user_id: this.user_id,
                     patient_record_id: this.patient_record_id,
-                    diagnose_id: this.patientDiagnose.diagnose_id,
+                    diagnose_id: this.patientDiagnose.diagnose_id ? this.patientDiagnose.diagnose_id : this.selected.id,
                     diagnoses: this.patientDiagnose.diagnoses,
                     remarks: this.patientDiagnose.remarks,
                 })
@@ -334,7 +339,7 @@
             .then(response => {
                 this.patientDiagnose = response.data;
                 this.selected = {
-                  id: response.data.diagnose.id,
+                  id: response.data.diagnose_id,
                   label: response.data.diagnose.code
                 };
             });
