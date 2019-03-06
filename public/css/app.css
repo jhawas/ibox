@@ -19797,3 +19797,11 @@ be a descendant of the grid when it is being dragged.
   width: 100%;
 }
 
+#modalHistory {
+  padding: 0 15px;
+}
+
+#modalHistory .modal-dialog {
+  max-width: 100%;
+}
+

@@ -90578,6 +90578,266 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -90589,9 +90849,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             patients: [],
             patient: [],
+            history: [],
             selected_id: null,
             action: 'store' | 'update',
             fields: [{ key: 'name', label: 'Name', sortable: true, sortDirection: 'desc' }, { key: 'sex', label: 'Sex', sortable: true, sortDirection: 'desc' }, { key: 'religion', label: 'Religion', sortable: true, sortDirection: 'desc' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
+            recordFields: [{ key: 'addmitted_and_check_up_date', label: 'Admiteed/Checkup', sortable: true, sortDirection: 'desc' }, { key: 'recordType', label: 'Status', sortable: true, sortDirection: 'desc' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
+            diagnosesFields: [{ key: 'diagnose', label: 'Name', sortable: true, sortDirection: 'desc' }, { key: 'diagnoses', label: 'Details', sortable: true, sortDirection: 'desc' }, { key: 'remarks', label: 'Remarks', sortable: true, sortDirection: 'desc' }],
+            laboratoryFields: [{ key: 'laboratory', label: 'Laboratory', sortable: true, sortDirection: 'desc' }, { key: 'description', label: 'Details', sortable: true, sortDirection: 'desc' }, { key: 'created_at', label: 'Datetime', sortable: true, sortDirection: 'desc' }],
+            vitalSignFields: [{ key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' }, { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' }, { key: 'bp', label: 'BP', sortable: true, sortDirection: 'desc' }, { key: 't', label: 'T', sortable: true, sortDirection: 'desc' }, { key: 'p', label: 'P', sortable: true, sortDirection: 'desc' }, { key: 'r', label: 'R', sortable: true, sortDirection: 'desc' }, { key: 'intake_oral', label: 'Intake Oral', sortable: true, sortDirection: 'desc' }, { key: 'intake_iv', label: 'Intake I.V.', sortable: true, sortDirection: 'desc' }, { key: 'intake_ng', label: 'Intake NG', sortable: true, sortDirection: 'desc' }, { key: 'total_intake', label: 'Total Intake', sortable: true, sortDirection: 'desc' }, { key: 'output_urine', label: 'Output Urine', sortable: true, sortDirection: 'desc' }, { key: 'output_stool', label: 'Output Stool', sortable: true, sortDirection: 'desc' }, { key: 'output_emesis', label: 'Output Emesis', sortable: true, sortDirection: 'desc' }, { key: 'output_ng', label: 'Output NG', sortable: true, sortDirection: 'desc' }, { key: 'total_output', label: 'Total Output', sortable: true, sortDirection: 'desc' }],
+            doctorsOrderFields: [{ key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' }, { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' }, { key: 'user', label: 'physician', sortable: true, sortDirection: 'desc' }, { key: 'progress_note', label: 'Progress Note', sortable: true, sortDirection: 'desc' }, { key: 'doctors_orders', label: "Doctor's Order", sortable: true, sortDirection: 'desc' }],
+            nursesNoteFields: [{ key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' }, { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' }, { key: 'focus', label: 'Focus', sortable: true, sortDirection: 'desc' }, { key: 'data_action_response', label: "Action Response", sortable: true, sortDirection: 'desc' }, { key: 'user', label: 'Nurse', sortable: true, sortDirection: 'desc' }],
+            intravenousFluidFields: [{ key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' }, { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' }, { key: 'bot_no', label: 'Bot No.', sortable: true, sortDirection: 'desc' }, { key: 'kind_of_solution', label: 'Kind Of Solution', sortable: true, sortDirection: 'desc' }, { key: 'vol', label: 'Vol.', sortable: true, sortDirection: 'desc' }, { key: 'gtss', label: 'GTSS', sortable: true, sortDirection: 'desc' }, { key: 'remarks', label: 'Remarks', sortable: true, sortDirection: 'desc' }, { key: 'user', label: 'Nurse', sortable: true, sortDirection: 'desc' }],
+            treatmentFields: [{ key: 'medicine', label: 'Medicine', sortable: true, sortDirection: 'desc' }, { key: 'remarks', label: 'Remarks', sortable: true, sortDirection: 'desc' }, { key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' }, { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' }],
             currentPage: 1,
             perPage: 5,
             totalRows: 1,
@@ -90639,7 +90908,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         showModalDelete: function showModalDelete(item, index, button) {
-            this.modalInfo.title = 'Record';
+            this.modalInfo.title = item.first_name + ' ' + item.last_name;
             this.modalInfo.content = 'Are you sure you want to delete?';
             this.$root.$emit('bv::show::modal', 'modalDelete', button);
             this.selected_id = item.id;
@@ -90657,7 +90926,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         showModalForm: function showModalForm() {
             this.action = 'store';
-            this.modalInfo.title = "Doctor's Order";
+            this.modalInfo.title = "Patient";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit: function onSubmit(action) {
@@ -90666,7 +90935,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('submit', this.patient);
             if (action === 'store') {
                 axios.post('/api/patients', {
-                    // code here
+                    first_name: this.patient.first_name,
+                    middle_name: this.patient.middle_name,
+                    last_name: this.patient.last_name,
+                    suffix: this.patient.suffix,
+                    birthdate: this.patient.birthdate,
+                    sex: this.patient.sex,
+                    religion: this.patient.religion,
+                    spouse: this.patient.spouse,
+                    spouse_address: this.patient.spouse_address,
+                    mother: this.patient.mother,
+                    father: this.patient.father,
+                    e_name: this.patient.e_name,
+                    e_contact: this.patient.e_contact,
+                    e_address: this.patient.e_address,
+                    civil_status: this.patient.civil_status
                 }).then(function (response) {
                     console.log(response.data);
                     if (response.data == 'success') {
@@ -90677,7 +90960,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 axios.put('/api/patients/' + this.selected_id, {
-                    // code here
+                    first_name: this.patient.first_name,
+                    middle_name: this.patient.middle_name,
+                    last_name: this.patient.last_name,
+                    suffix: this.patient.suffix,
+                    birthdate: this.patient.birthdate,
+                    sex: this.patient.sex,
+                    religion: this.patient.religion,
+                    spouse: this.patient.spouse,
+                    spouse_address: this.patient.spouse_address,
+                    mother: this.patient.mother,
+                    father: this.patient.father,
+                    e_name: this.patient.e_name,
+                    e_contact: this.patient.e_contact,
+                    e_address: this.patient.e_address,
+                    civil_status: this.patient.civil_status
                 }).then(function (response) {
                     console.log(response.data);
                     if (response.data == 'success') {
@@ -90696,8 +90993,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/api/patients/' + this.selected_id + '/edit').then(function (response) {
                 _this4.patient = response.data;
             });
-            this.modalInfo.title = "Doctor's Order";
+            this.modalInfo.title = "Patient";
             this.$root.$emit('bv::show::modal', 'modalForm');
+        },
+        showHistoryModal: function showHistoryModal(item) {
+            this.history = item;
+            this.modalInfo.title = "Medical History";
+            this.$root.$emit('bv::show::modal', 'modalHistory');
         }
     }
 });
@@ -91038,19 +91340,374 @@ var render = function() {
                   "b-card",
                   [
                     _c(
-                      "b-form-group",
-                      {
-                        staticClass: "mb-0",
-                        attrs: { "label-cols-sm": "2", label: "Date" }
-                      },
+                      "b-row",
                       [
-                        _c("b-input-group", [
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(row.item.date) +
-                              "\n            "
-                          )
-                        ])
+                        _c(
+                          "b-col",
+                          { staticClass: "my-1", attrs: { md: "6" } },
+                          [
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "First Name"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.first_name) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "Middle Name"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.middle_name) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "Last Name"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.last_name) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: { "label-cols-sm": "2", label: "Suffix" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.suffix) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "Birthdate"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.birthdate) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: { "label-cols-sm": "2", label: "Sex" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.sex) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "Religion"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.religion) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "Civil Status"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.civil_status) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-col",
+                          { staticClass: "my-1", attrs: { md: "6" } },
+                          [
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: { "label-cols-sm": "2", label: "Spouse" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.spouse) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "Spouse Address"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.spouse_address) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: { "label-cols-sm": "2", label: "Mother" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.mother) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: { "label-cols-sm": "2", label: "Father" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.father) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("legend", [_vm._v("Emergency")]),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: { "label-cols-sm": "2", label: "Name" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.e_name) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: { "label-cols-sm": "2", label: "Phone" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.e_contact) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "Address"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.e_address) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-row",
+                      [
+                        _c(
+                          "b-col",
+                          { staticClass: "my-1", attrs: { md: "12" } },
+                          [
+                            _c("b-table", {
+                              attrs: {
+                                items: row.item.records,
+                                fields: _vm.recordFields
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "recordType",
+                                  fn: function(row) {
+                                    return [
+                                      _vm._v(
+                                        "\n                      " +
+                                          _vm._s(row.item.record_type.code) +
+                                          "\n                  "
+                                      )
+                                    ]
+                                  }
+                                },
+                                {
+                                  key: "actions",
+                                  fn: function(row) {
+                                    return [
+                                      _c(
+                                        "b-button",
+                                        {
+                                          attrs: { size: "sm" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.showHistoryModal(row.item)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                        History\n                    "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
+                              ])
+                            })
+                          ],
+                          1
+                        )
                       ],
                       1
                     )
@@ -91109,6 +91766,213 @@ var render = function() {
       _c(
         "b-modal",
         {
+          attrs: {
+            id: "modalHistory",
+            title: _vm.modalInfo.title,
+            size: "lg",
+            "ok-only": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _c(
+            "div",
+            [
+              _c(
+                "b-tabs",
+                { attrs: { "content-class": "mt-3" } },
+                [
+                  _c(
+                    "b-tab",
+                    { attrs: { title: "Diagnoses", active: "" } },
+                    [
+                      _c("b-table", {
+                        attrs: {
+                          items: _vm.history.diagnoses,
+                          fields: _vm.diagnosesFields
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "diagnose",
+                            fn: function(row) {
+                              return [
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(row.item.diagnose.code) +
+                                    "\n                  "
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-tab",
+                    { attrs: { title: "Laboratory" } },
+                    [
+                      _c("b-table", {
+                        attrs: {
+                          items: _vm.history.laboratory,
+                          fields: _vm.laboratoryFields
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "laboratory",
+                            fn: function(row) {
+                              return [
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(row.item.laboratory.code) +
+                                    "\n                  "
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-tab",
+                    { attrs: { title: "Vital Sign" } },
+                    [
+                      _c("b-table", {
+                        attrs: {
+                          items: _vm.history.vital_signs,
+                          fields: _vm.vitalSignFields
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-tab",
+                    { attrs: { title: "Doctor's Order" } },
+                    [
+                      _c("b-table", {
+                        attrs: {
+                          items: _vm.history.doctors_orders,
+                          fields: _vm.doctorsOrderFields
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "user",
+                            fn: function(row) {
+                              return [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      row.item.user.first_name +
+                                        " " +
+                                        row.item.user.last_name
+                                    ) +
+                                    "\n              "
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-tab",
+                    { attrs: { title: "Nurse Note" } },
+                    [
+                      _c("b-table", {
+                        attrs: {
+                          items: _vm.history.nurses_notes,
+                          fields: _vm.nursesNoteFields
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "user",
+                            fn: function(row) {
+                              return [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      row.item.user.first_name +
+                                        " " +
+                                        row.item.user.last_name
+                                    ) +
+                                    "\n              "
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-tab",
+                    { attrs: { title: "Intravenous Fluid" } },
+                    [
+                      _c("b-table", {
+                        attrs: {
+                          items: _vm.history.intravenous_fluids,
+                          fields: _vm.intravenousFluidFields
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "user",
+                            fn: function(row) {
+                              return [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      row.item.user.first_name +
+                                        " " +
+                                        row.item.user.last_name
+                                    ) +
+                                    "\n              "
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-tab",
+                    { attrs: { title: "Medication & Treatment" } },
+                    [
+                      _c("b-table", {
+                        attrs: {
+                          items: _vm.history.medication_and_treatments,
+                          fields: _vm.treatmentFields
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
           attrs: { id: "modalForm", title: _vm.modalInfo.title, size: "lg" },
           on: {
             hide: _vm.resetModal,
@@ -91131,22 +91995,475 @@ var render = function() {
             },
             [
               _c(
-                "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "Date" } },
+                "b-row",
                 [
                   _c(
-                    "b-input-group",
+                    "b-col",
+                    { staticClass: "my-1", attrs: { md: "6" } },
                     [
-                      _c("b-form-input", {
-                        attrs: { type: "date", placeholder: "Enter Date" },
-                        model: {
-                          value: _vm.patient.date,
-                          callback: function($$v) {
-                            _vm.$set(_vm.patient, "date", $$v)
-                          },
-                          expression: "patient.date"
-                        }
-                      })
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: { "label-cols-sm": "2", label: "First Name" }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter First Name"
+                                },
+                                model: {
+                                  value: _vm.patient.first_name,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "first_name", $$v)
+                                  },
+                                  expression: "patient.first_name"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: { "label-cols-sm": "2", label: "Middle Name" }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Middle Name"
+                                },
+                                model: {
+                                  value: _vm.patient.middle_name,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "middle_name", $$v)
+                                  },
+                                  expression: "patient.middle_name"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Last Name" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Last Name"
+                                },
+                                model: {
+                                  value: _vm.patient.last_name,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "last_name", $$v)
+                                  },
+                                  expression: "patient.last_name"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Suffix" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Suffix"
+                                },
+                                model: {
+                                  value: _vm.patient.suffix,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "suffix", $$v)
+                                  },
+                                  expression: "patient.suffix"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Birthdate" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "date",
+                                  placeholder: "Enter Birthdate"
+                                },
+                                model: {
+                                  value: _vm.patient.birthdate,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "birthdate", $$v)
+                                  },
+                                  expression: "patient.birthdate"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Sex" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c(
+                                "b-form-select",
+                                {
+                                  staticClass: "mb-3",
+                                  model: {
+                                    value: _vm.patient.sex,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.patient, "sex", $$v)
+                                    },
+                                    expression: "patient.sex"
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "male" } }, [
+                                    _vm._v("Male")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "female" } }, [
+                                    _vm._v("Female")
+                                  ])
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Religion" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Religion"
+                                },
+                                model: {
+                                  value: _vm.patient.religion,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "religion", $$v)
+                                  },
+                                  expression: "patient.religion"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { label: "Civil Status" } },
+                        [
+                          _c(
+                            "b-form-radio",
+                            {
+                              attrs: { value: "single", name: "civil_status" },
+                              model: {
+                                value: _vm.patient.civil_status,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.patient, "civil_status", $$v)
+                                },
+                                expression: "patient.civil_status"
+                              }
+                            },
+                            [_vm._v("Single")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-radio",
+                            {
+                              attrs: { value: "married", name: "civil_status" },
+                              model: {
+                                value: _vm.patient.civil_status,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.patient, "civil_status", $$v)
+                                },
+                                expression: "patient.civil_status"
+                              }
+                            },
+                            [_vm._v("Married")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-radio",
+                            {
+                              attrs: {
+                                value: "windowed",
+                                name: "civil_status"
+                              },
+                              model: {
+                                value: _vm.patient.civil_status,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.patient, "civil_status", $$v)
+                                },
+                                expression: "patient.civil_status"
+                              }
+                            },
+                            [_vm._v("Widowed")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { staticClass: "my-1", attrs: { md: "6" } },
+                    [
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Spouse" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Spouse"
+                                },
+                                model: {
+                                  value: _vm.patient.spouse,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "spouse", $$v)
+                                  },
+                                  expression: "patient.spouse"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "2",
+                            label: "Spouse Address"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-textarea", {
+                                attrs: {
+                                  id: "textarea1",
+                                  placeholder: "Enter Address",
+                                  rows: "3",
+                                  "max-rows": "6"
+                                },
+                                model: {
+                                  value: _vm.patient.spouse_address,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "spouse_address", $$v)
+                                  },
+                                  expression: "patient.spouse_address"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Mother" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Mother"
+                                },
+                                model: {
+                                  value: _vm.patient.mother,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "mother", $$v)
+                                  },
+                                  expression: "patient.mother"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Father" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Father"
+                                },
+                                model: {
+                                  value: _vm.patient.father,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "father", $$v)
+                                  },
+                                  expression: "patient.father"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("legend", [_vm._v("Emergency Contact")]),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Name" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Name"
+                                },
+                                model: {
+                                  value: _vm.patient.e_name,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "e_name", $$v)
+                                  },
+                                  expression: "patient.e_name"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Phone" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Phone"
+                                },
+                                model: {
+                                  value: _vm.patient.e_contact,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "e_contact", $$v)
+                                  },
+                                  expression: "patient.e_contact"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Address" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-textarea", {
+                                attrs: {
+                                  id: "textarea1",
+                                  placeholder: "Enter Address",
+                                  rows: "3",
+                                  "max-rows": "6"
+                                },
+                                model: {
+                                  value: _vm.patient.e_address,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "e_address", $$v)
+                                  },
+                                  expression: "patient.e_address"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )

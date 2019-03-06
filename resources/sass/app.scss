@@ -209,3 +209,10 @@
 .v-select {
     width: 100%;
 }
+
+#modalHistory {
+    padding: 0 15px;
+    .modal-dialog {
+        max-width: 100%;
+    }
+}

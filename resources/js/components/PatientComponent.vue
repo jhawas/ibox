@@ -83,11 +83,105 @@
 
       <template slot="row-details" slot-scope="row">
         <b-card>
-            <b-form-group label-cols-sm="2" label="Date" class="mb-0">
-              <b-input-group>
-                {{row.item.date}}
-              </b-input-group>
-            </b-form-group>
+            <b-row>
+              <b-col md="6" class="my-1">
+                  <b-form-group label-cols-sm="2" label="First Name" class="mb-0">
+                    <b-input-group>
+                      {{row.item.first_name}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Middle Name" class="mb-0">
+                    <b-input-group>
+                      {{row.item.middle_name}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Last Name" class="mb-0">
+                    <b-input-group>
+                      {{row.item.last_name}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Suffix" class="mb-0">
+                    <b-input-group>
+                      {{row.item.suffix}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Birthdate" class="mb-0">
+                    <b-input-group>
+                      {{row.item.birthdate}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Sex" class="mb-0">
+                    <b-input-group>
+                      {{row.item.sex}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Religion" class="mb-0">
+                    <b-input-group>
+                      {{row.item.religion}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Civil Status" class="mb-0">
+                    <b-input-group>
+                      {{row.item.civil_status}}
+                    </b-input-group>
+                  </b-form-group>
+              </b-col>
+              <b-col md="6" class="my-1">
+                  <b-form-group label-cols-sm="2" label="Spouse" class="mb-0">
+                    <b-input-group>
+                      {{row.item.spouse}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Spouse Address" class="mb-0">
+                    <b-input-group>
+                      {{row.item.spouse_address}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Mother" class="mb-0">
+                    <b-input-group>
+                      {{row.item.mother}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Father" class="mb-0">
+                    <b-input-group>
+                      {{row.item.father}}
+                    </b-input-group>
+                  </b-form-group>
+                  <legend>Emergency</legend>
+                  <b-form-group label-cols-sm="2" label="Name" class="mb-0">
+                    <b-input-group>
+                      {{row.item.e_name}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Phone" class="mb-0">
+                    <b-input-group>
+                      {{row.item.e_contact}}
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Address" class="mb-0">
+                    <b-input-group>
+                      {{row.item.e_address}}
+                    </b-input-group>
+                  </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+                <b-col md="12" class="my-1">
+                    <b-table 
+                      :items="row.item.records" 
+                      :fields="recordFields"
+                    >
+                    <template slot="recordType" slot-scope="row">
+                        {{row.item.record_type.code}}
+                    </template>
+                    <template slot="actions" slot-scope="row">
+                      <b-button size="sm" @click="showHistoryModal(row.item)">
+                          History
+                      </b-button>
+                    </template>
+                  </b-table>
+                </b-col>
+            </b-row>
         </b-card>
       </template>
     </b-table>
@@ -110,6 +204,80 @@
       <pre>{{ modalInfo.content }}</pre>
     </b-modal>
     <b-modal 
+        id="modalHistory" 
+        @hide="resetModal" 
+        :title="modalInfo.title" 
+        size="lg"
+        ok-only
+    >
+        <div>
+          <b-tabs content-class="mt-3">
+            <b-tab title="Diagnoses" active>
+                <b-table 
+                  :items="history.diagnoses"
+                  :fields="diagnosesFields"
+                >
+                    <template slot="diagnose" slot-scope="row">
+                        {{row.item.diagnose.code}}
+                    </template>
+                </b-table>
+            </b-tab>
+            <b-tab title="Laboratory">
+                <b-table 
+                  :items="history.laboratory"
+                  :fields="laboratoryFields"
+                >
+                    <template slot="laboratory" slot-scope="row">
+                        {{row.item.laboratory.code}}
+                    </template>
+                </b-table>
+            </b-tab>
+            <b-tab title="Vital Sign">
+                <b-table 
+                  :items="history.vital_signs"
+                  :fields="vitalSignFields"
+                />
+            </b-tab>
+            <b-tab title="Doctor's Order">
+              <b-table 
+                :items="history.doctors_orders"
+                :fields="doctorsOrderFields"
+              >
+                <template slot="user" slot-scope="row">
+                    {{row.item.user.first_name + ' ' + row.item.user.last_name}}
+                </template>
+              </b-table>
+            </b-tab>
+            <b-tab title="Nurse Note">
+              <b-table 
+                :items="history.nurses_notes"
+                :fields="nursesNoteFields"
+              >
+                <template slot="user" slot-scope="row">
+                    {{row.item.user.first_name + ' ' + row.item.user.last_name}}
+                </template>
+              </b-table>
+            </b-tab>
+            <b-tab title="Intravenous Fluid">
+              <b-table 
+                :items="history.intravenous_fluids"
+                :fields="intravenousFluidFields"
+              >
+                <template slot="user" slot-scope="row">
+                    {{row.item.user.first_name + ' ' + row.item.user.last_name}}
+                </template>
+              </b-table>
+            </b-tab>
+            <b-tab title="Medication & Treatment">
+              <b-table 
+                :items="history.medication_and_treatments"
+                :fields="treatmentFields" 
+              />
+            </b-tab>
+          </b-tabs>
+        </div>
+    </b-modal>
+    <b-modal 
         id="modalForm" 
         @hide="resetModal" 
         :title="modalInfo.title" 
@@ -117,11 +285,103 @@
         size="lg"
     >
       <form @submit.stop.prevent="onSubmit">
-        <b-form-group label-cols-sm="2" label="Date">
-            <b-input-group>
-                <b-form-input type="date" placeholder="Enter Date" v-model="patient.date" />
-            </b-input-group>
-        </b-form-group>
+        <b-row>
+          <b-col md="6" class="my-1">
+            <b-form-group label-cols-sm="2" label="First Name">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter First Name" v-model="patient.first_name" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Middle Name">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Middle Name" v-model="patient.middle_name" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Last Name">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Last Name" v-model="patient.last_name" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Suffix">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Suffix" v-model="patient.suffix" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Birthdate">
+                <b-input-group>
+                    <b-form-input type="date" placeholder="Enter Birthdate" v-model="patient.birthdate" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Sex">
+                <b-input-group>
+                    <b-form-select v-model="patient.sex" class="mb-3">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </b-form-select>
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Religion">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Religion" v-model="patient.religion" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label="Civil Status">
+              <b-form-radio value="single" v-model="patient.civil_status" name="civil_status">Single</b-form-radio>
+              <b-form-radio value="married" v-model="patient.civil_status" name="civil_status">Married</b-form-radio>
+              <b-form-radio value="windowed" v-model="patient.civil_status" name="civil_status">Widowed</b-form-radio>
+            </b-form-group>
+          </b-col>
+          <b-col md="6" class="my-1">
+            <b-form-group label-cols-sm="2" label="Spouse">
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Spouse" v-model="patient.spouse" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Spouse Address">
+              <b-input-group>
+                  <b-form-textarea
+                    id="textarea1"
+                    v-model="patient.spouse_address"
+                    placeholder="Enter Address"
+                    rows="3"
+                    max-rows="6"
+                  />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Mother">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Mother" v-model="patient.mother" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Father">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Father" v-model="patient.father" />
+                </b-input-group>
+            </b-form-group>
+            <legend>Emergency Contact</legend>
+            <b-form-group label-cols-sm="2" label="Name">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Name" v-model="patient.e_name" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Phone">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Phone" v-model="patient.e_contact" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Address">
+              <b-input-group>
+                  <b-form-textarea
+                    id="textarea1"
+                    v-model="patient.e_address"
+                    placeholder="Enter Address"
+                    rows="3"
+                    max-rows="6"
+                  />
+              </b-input-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
       </form>
     </b-modal>
   </b-container>
@@ -138,6 +398,7 @@
       return {
         patients: [],
         patient: [],
+        history: [],
         selected_id: null,
         action: 'store' | 'update',
         fields: [
@@ -145,6 +406,68 @@
           { key: 'sex', label: 'Sex', sortable: true, sortDirection: 'desc' },
           { key: 'religion', label: 'Religion', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: 'Actions', class: 'text-right' }
+        ],
+        recordFields: [
+          { key: 'addmitted_and_check_up_date', label: 'Admiteed/Checkup', sortable: true, sortDirection: 'desc' },
+          { key: 'recordType', label: 'Status', sortable: true, sortDirection: 'desc' },
+          { key: 'actions', label: 'Actions', class: 'text-right' }
+        ],
+        diagnosesFields: [
+          { key: 'diagnose', label: 'Name', sortable: true, sortDirection: 'desc' },
+          { key: 'diagnoses', label: 'Details', sortable: true, sortDirection: 'desc' },
+          { key: 'remarks', label: 'Remarks', sortable: true, sortDirection: 'desc' },
+        ],
+        laboratoryFields: [
+          { key: 'laboratory', label: 'Laboratory', sortable: true, sortDirection: 'desc' },
+          { key: 'description', label: 'Details', sortable: true, sortDirection: 'desc' },
+          { key: 'created_at', label: 'Datetime', sortable: true, sortDirection: 'desc' },
+        ],
+        vitalSignFields: [
+          { key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' },
+          { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' },
+          { key: 'bp', label: 'BP', sortable: true, sortDirection: 'desc' },
+          { key: 't', label: 'T', sortable: true, sortDirection: 'desc' },
+          { key: 'p', label: 'P', sortable: true, sortDirection: 'desc' },
+          { key: 'r', label: 'R', sortable: true, sortDirection: 'desc' },
+          { key: 'intake_oral', label: 'Intake Oral', sortable: true, sortDirection: 'desc' },
+          { key: 'intake_iv', label: 'Intake I.V.', sortable: true, sortDirection: 'desc' },
+          { key: 'intake_ng', label: 'Intake NG', sortable: true, sortDirection: 'desc' },
+          { key: 'total_intake', label: 'Total Intake', sortable: true, sortDirection: 'desc' },
+          { key: 'output_urine', label: 'Output Urine', sortable: true, sortDirection: 'desc' },
+          { key: 'output_stool', label: 'Output Stool', sortable: true, sortDirection: 'desc' },
+          { key: 'output_emesis', label: 'Output Emesis', sortable: true, sortDirection: 'desc' },
+          { key: 'output_ng', label: 'Output NG', sortable: true, sortDirection: 'desc' },
+          { key: 'total_output', label: 'Total Output', sortable: true, sortDirection: 'desc' },
+        ],
+        doctorsOrderFields: [
+          { key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' },
+          { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' },
+          { key: 'user', label: 'physician', sortable: true, sortDirection: 'desc' },
+          { key: 'progress_note', label: 'Progress Note', sortable: true, sortDirection: 'desc' },
+          { key: 'doctors_orders', label: "Doctor's Order", sortable: true, sortDirection: 'desc' },
+        ],
+        nursesNoteFields: [
+          { key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' },
+          { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' },
+          { key: 'focus', label: 'Focus', sortable: true, sortDirection: 'desc' },
+          { key: 'data_action_response', label: "Action Response", sortable: true, sortDirection: 'desc' },
+          { key: 'user', label: 'Nurse', sortable: true, sortDirection: 'desc' },
+        ],
+        intravenousFluidFields: [
+          { key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' },
+          { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' },
+          { key: 'bot_no', label: 'Bot No.', sortable: true, sortDirection: 'desc' },
+          { key: 'kind_of_solution', label: 'Kind Of Solution', sortable: true, sortDirection: 'desc' },
+          { key: 'vol', label: 'Vol.', sortable: true, sortDirection: 'desc' },
+          { key: 'gtss', label: 'GTSS', sortable: true, sortDirection: 'desc' },
+          { key: 'remarks', label: 'Remarks', sortable: true, sortDirection: 'desc' },
+          { key: 'user', label: 'Nurse', sortable: true, sortDirection: 'desc' },
+        ],
+        treatmentFields: [
+          { key: 'medicine', label: 'Medicine', sortable: true, sortDirection: 'desc' },
+          { key: 'remarks', label: 'Remarks', sortable: true, sortDirection: 'desc' },
+          { key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' },
+          { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc' },
         ],
         currentPage: 1,
         perPage: 5,
@@ -191,7 +514,7 @@
             });
         },
         showModalDelete(item, index, button) {
-            this.modalInfo.title = 'Record';
+            this.modalInfo.title = item.first_name + ' ' + item.last_name;
             this.modalInfo.content = 'Are you sure you want to delete?';
             this.$root.$emit('bv::show::modal', 'modalDelete', button);
             this.selected_id = item.id;
@@ -209,14 +532,28 @@
         },
         showModalForm() {
             this.action = 'store';
-            this.modalInfo.title = "Doctor's Order";
+            this.modalInfo.title = "Patient";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit(action) {
             console.log('submit',this.patient);
             if(action === 'store') {
                 axios.post('/api/patients', {
-                  // code here
+                    first_name: this.patient.first_name,
+                    middle_name: this.patient.middle_name,
+                    last_name: this.patient.last_name,
+                    suffix: this.patient.suffix,
+                    birthdate: this.patient.birthdate,
+                    sex: this.patient.sex,
+                    religion: this.patient.religion,
+                    spouse: this.patient.spouse,
+                    spouse_address: this.patient.spouse_address,
+                    mother: this.patient.mother,
+                    father: this.patient.father,
+                    e_name: this.patient.e_name,
+                    e_contact: this.patient.e_contact,
+                    e_address: this.patient.e_address,
+                    civil_status: this.patient.civil_status,
                 })
                 .then(response => {
                     console.log(response.data);
@@ -229,7 +566,21 @@
                 });
             } else {
                 axios.put('/api/patients/' + this.selected_id, {
-                  // code here
+                    first_name: this.patient.first_name,
+                    middle_name: this.patient.middle_name,
+                    last_name: this.patient.last_name,
+                    suffix: this.patient.suffix,
+                    birthdate: this.patient.birthdate,
+                    sex: this.patient.sex,
+                    religion: this.patient.religion,
+                    spouse: this.patient.spouse,
+                    spouse_address: this.patient.spouse_address,
+                    mother: this.patient.mother,
+                    father: this.patient.father,
+                    e_name: this.patient.e_name,
+                    e_contact: this.patient.e_contact,
+                    e_address: this.patient.e_address,
+                    civil_status: this.patient.civil_status,
                 })
                 .then(response => {
                     console.log(response.data);
@@ -249,8 +600,13 @@
             .then(response => {
                 this.patient = response.data;
             });
-            this.modalInfo.title = "Doctor's Order";
+            this.modalInfo.title = "Patient";
             this.$root.$emit('bv::show::modal', 'modalForm');
+        },
+        showHistoryModal(item) {
+            this.history = item;
+            this.modalInfo.title = "Medical History";
+            this.$root.$emit('bv::show::modal', 'modalHistory');
         }
     }
   }

@@ -38,6 +38,10 @@ Route::get('payment/{patient_record_id}', 'API\BillingController@getPayment');
 
 // patient
 Route::get('patients', 'API\PatientController@data');
+Route::delete('patients/{id}', 'API\PatientController@delete');
+Route::post('patients', 'API\PatientController@store');
+Route::get('patients/{id}/edit', 'API\PatientController@edit');
+Route::put('patients/{id}', 'API\PatientController@update');
 
 
 // vital signs
