@@ -24,7 +24,7 @@
                   <th>ID</th>
                   <th>Patient</th>
                   <th>Amitted</th>
-                  <th>Diagnoses</th>
+                  {{-- <th>Diagnoses</th> --}}
                   <th>Action</th>
                 </tr>
               </thead>
@@ -37,11 +37,11 @@
                         ucfirst($outPatient->patient->middle_name) . ' ' . 
                         ucfirst($outPatient->patient->last_name) }}</td>
                       <td>{{ $outPatient->addmitted_and_check_up_date . '/' . $outPatient->addmitted_and_check_up_time }}</td>
-                      <td>
+                      {{-- <td>
                         <a href="{{ route('patientDiagnoses.index', $outPatient) }}">
                           Diagnoses
                         </a>
-                      </td>
+                      </td> --}}
                       <td>
                         <a href="{{ route('outPatients.show', $outPatient) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>

@@ -28,7 +28,7 @@
                   <th>Amitted</th>
                   <th>Discharge</th>
                   <th>Disposition</th>
-                  <th>Diagnoses</th>
+                  {{-- <th>Diagnoses</th> --}}
                   <th>Action</th>
                 </tr>
               </thead>
@@ -45,11 +45,11 @@
                       <td>{{ $inPatient->addmitted_and_check_up_date . '/' . $inPatient->addmitted_and_check_up_time }}</td>
                       <td>{{ $inPatient->discharge_date . '/' . $inPatient->discharge_time }}</td>
                       <td>{{$inPatient->disposition ? $inPatient->disposition->code : null}}</td>
-                      <td>
+                      {{-- <td>
                         <a href="{{ route('patientDiagnoses.index', $inPatient) }}">
                           Diagnoses
                         </a>
-                      </td>
+                      </td> --}}
                       <td>
                         <a href="{{ route('inPatients.show', $inPatient) }}" class="btn btn-primary">
                           <i class="fa fa-eye"></i>
