@@ -167,16 +167,17 @@
             </b-row>
             <b-row>
                 <b-col md="12" class="my-1">
-                    <b-table 
-                      :items="row.item.records" 
-                      :fields="recordFields"
-                    >
+                  <legend>Medical History</legend>
+                  <b-table 
+                    :items="row.item.records" 
+                    :fields="recordFields"
+                  >
                     <template slot="recordType" slot-scope="row">
                         {{row.item.record_type.code}}
                     </template>
                     <template slot="actions" slot-scope="row">
                       <b-button size="sm" @click="showHistoryModal(row.item)">
-                          History
+                          Details
                       </b-button>
                     </template>
                   </b-table>

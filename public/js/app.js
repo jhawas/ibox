@@ -90853,6 +90853,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -91677,6 +91678,8 @@ var render = function() {
                           "b-col",
                           { staticClass: "my-1", attrs: { md: "12" } },
                           [
+                            _c("legend", [_vm._v("Medical History")]),
+                            _vm._v(" "),
                             _c("b-table", {
                               attrs: {
                                 items: row.item.records,
@@ -91711,7 +91714,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                        History\n                    "
+                                            "\n                        Details\n                    "
                                           )
                                         ]
                                       )
