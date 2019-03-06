@@ -285,6 +285,7 @@
         },
         showModalForm() {
             this.action = 'store';
+            this.doctorsOrder = [];
             this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },

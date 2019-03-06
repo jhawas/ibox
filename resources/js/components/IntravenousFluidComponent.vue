@@ -326,6 +326,7 @@
         },
         showModalForm() {
             this.action = 'store';
+            this.intravenousFluid = [];
             this.modalInfo.title = "Intravenous Fluid";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },

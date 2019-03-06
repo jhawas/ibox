@@ -392,6 +392,7 @@
         },
         showModalForm() {
             this.action = 'store';
+            this.vitalSign = [];
             this.modalInfo.title = 'Vital Signs Form';
             this.$root.$emit('bv::show::modal', 'modalForm');
         },

@@ -534,6 +534,7 @@
         showModalForm() {
             this.action = 'store';
             this.modalInfo.title = "Patient";
+            this.patient = [];
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit(action) {

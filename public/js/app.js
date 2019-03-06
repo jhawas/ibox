@@ -86244,6 +86244,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         showModalForm: function showModalForm() {
             this.action = 'store';
+            this.doctorsOrder = [];
             this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
@@ -87335,6 +87336,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         showModalForm: function showModalForm() {
             this.action = 'store';
+            this.intravenousFluid = [];
             this.modalInfo.title = "Intravenous Fluid";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
@@ -88597,6 +88599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         showModalForm: function showModalForm() {
             this.action = 'store';
+            this.medicationAndTreatment = [];
             this.modalInfo.title = "Intravenous Fluid";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
@@ -89696,6 +89699,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         showModalForm: function showModalForm() {
             this.action = 'store';
+            this.nursesNote = [];
             this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
@@ -90943,6 +90947,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showModalForm: function showModalForm() {
             this.action = 'store';
             this.modalInfo.title = "Patient";
+            this.patient = [];
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit: function onSubmit(action) {
@@ -92953,6 +92958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         showModalForm: function showModalForm() {
             this.action = 'store';
+            this.vitalSign = [];
             this.modalInfo.title = 'Vital Signs Form';
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
