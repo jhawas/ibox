@@ -120,6 +120,11 @@
                       {{row.item.religion}}
                     </b-input-group>
                   </b-form-group>
+                  <b-form-group label-cols-sm="2" label="Address" class="mb-0">
+                    <b-input-group>
+                      {{row.item.address}}
+                    </b-input-group>
+                  </b-form-group>
                   <b-form-group label-cols-sm="2" label="Civil Status" class="mb-0">
                     <b-input-group>
                       {{row.item.civil_status}}
@@ -324,6 +329,11 @@
             <b-form-group label-cols-sm="2" label="Religion">
                 <b-input-group>
                     <b-form-input type="text" placeholder="Enter Religion" v-model="patient.religion" />
+                </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="2" label="Address">
+                <b-input-group>
+                    <b-form-input type="text" placeholder="Enter Address" v-model="patient.address" />
                 </b-input-group>
             </b-form-group>
             <b-form-group label="Civil Status">
@@ -554,6 +564,7 @@
                     birthdate: this.patient.birthdate,
                     sex: this.patient.sex,
                     religion: this.patient.religion,
+                    address: this.patient.address,
                     spouse: this.patient.spouse,
                     spouse_address: this.patient.spouse_address,
                     mother: this.patient.mother,
@@ -586,6 +597,7 @@
                     birthdate: this.patient.birthdate,
                     sex: this.patient.sex,
                     religion: this.patient.religion,
+                    address: this.patient.address,
                     spouse: this.patient.spouse,
                     spouse_address: this.patient.spouse_address,
                     mother: this.patient.mother,

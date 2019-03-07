@@ -90891,6 +90891,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -90998,6 +91008,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     birthdate: this.patient.birthdate,
                     sex: this.patient.sex,
                     religion: this.patient.religion,
+                    address: this.patient.address,
                     spouse: this.patient.spouse,
                     spouse_address: this.patient.spouse_address,
                     mother: this.patient.mother,
@@ -91024,6 +91035,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     birthdate: this.patient.birthdate,
                     sex: this.patient.sex,
                     religion: this.patient.religion,
+                    address: this.patient.address,
                     spouse: this.patient.spouse,
                     spouse_address: this.patient.spouse_address,
                     mother: this.patient.mother,
@@ -91538,6 +91550,27 @@ var render = function() {
                                   _vm._v(
                                     "\n                    " +
                                       _vm._s(row.item.religion) +
+                                      "\n                  "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mb-0",
+                                attrs: {
+                                  "label-cols-sm": "2",
+                                  label: "Address"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(row.item.address) +
                                       "\n                  "
                                   )
                                 ])
@@ -92254,6 +92287,33 @@ var render = function() {
                                     _vm.$set(_vm.patient, "religion", $$v)
                                   },
                                   expression: "patient.religion"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "2", label: "Address" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Address"
+                                },
+                                model: {
+                                  value: _vm.patient.address,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.patient, "address", $$v)
+                                  },
+                                  expression: "patient.address"
                                 }
                               })
                             ],

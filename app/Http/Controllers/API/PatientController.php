@@ -62,6 +62,7 @@ class PatientController extends Controller
         $patient->birthdate = $request->birthdate;
         $patient->sex = $request->sex;
         $patient->religion = $request->religion;
+        $patient->address = $request->address;
         $patient->spouse = $request->spouse;
         $patient->spouse_address = $request->spouse_address;
         $patient->mother = $request->mother;
@@ -83,6 +84,7 @@ class PatientController extends Controller
         $patient->birthdate = $request->birthdate;
         $patient->sex = $request->sex;
         $patient->religion = $request->religion;
+        $patient->address = $request->address;
         $patient->spouse = $request->spouse;
         $patient->spouse_address = $request->spouse_address;
         $patient->mother = $request->mother;
