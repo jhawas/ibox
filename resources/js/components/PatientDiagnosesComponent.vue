@@ -193,7 +193,13 @@
     data() {
       return {
         patients: [],
-        patientDiagnose: [],
+        patientDiagnose: {
+            user_id: null,
+            patient_record_id: null,
+            diagnose_id: null,
+            diagnoses: '',
+            remarks: '',
+        },
         patientDiagnoses: [],
         diagnoses: [],
         patient_record_id: null,
@@ -290,7 +296,13 @@
         },
         showModalForm() {
             this.action = 'store';
-            this.patientDiagnose = [];
+            this.patientDiagnose = {
+              user_id: null,
+              patient_record_id: null,
+              diagnose_id: null,
+              diagnoses: '',
+              remarks: '',
+            };
             this.modalInfo.title = "Patient Diagnoses";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
@@ -338,6 +350,7 @@
             axios.get('/api/patientDiagnoses/'+this.selected_id+'/edit')
             .then(response => {
                 this.patientDiagnose = response.data;
+                this.patientDiagnose.diagnose_id = response.data.diagnose_id;
                 this.selected = {
                   id: response.data.diagnose_id,
                   label: response.data.diagnose.code
@@ -359,7 +372,8 @@
         getDiagnosesBy(event) {
             if(event) {
               console.log('selected',event.value);
-              this.patientDiagnose.diagnose_id = event.value;              
+              this.patientDiagnose.diagnose_id = event.value;
+              this.patientDiagnose.diagnoses = event.label;              
             } else {
               this.patientDiagnose.diagnose_id = null;
             }

@@ -126,6 +126,8 @@ Route::resource('inPatients', 'InPatientController');
 
 Route::resource('outPatients', 'OutPatientController');
 
+Route::resource('payments', 'PaymentController');
+
 // billing
 Route::get('patientBillings/{patientRecord}', 'PatientBillingController@index')
 		->name('patientBillings.index');

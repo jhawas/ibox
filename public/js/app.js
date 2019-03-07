@@ -85100,6 +85100,7 @@ var map = {
 	"./components/NursesNoteComponent.vue": 240,
 	"./components/PatientComponent.vue": 243,
 	"./components/PatientDiagnosesComponent.vue": 246,
+	"./components/PaymentComponent.vue": 266,
 	"./components/VitalSignComponent.vue": 249
 };
 function webpackContext(req) {
@@ -92763,7 +92764,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             patients: [],
-            patientDiagnose: [],
+            patientDiagnose: {
+                user_id: null,
+                patient_record_id: null,
+                diagnose_id: null,
+                diagnoses: '',
+                remarks: ''
+            },
             patientDiagnoses: [],
             diagnoses: [],
             patient_record_id: null,
@@ -92859,7 +92866,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         showModalForm: function showModalForm() {
             this.action = 'store';
-            this.patientDiagnose = [];
+            this.patientDiagnose = {
+                user_id: null,
+                patient_record_id: null,
+                diagnose_id: null,
+                diagnoses: '',
+                remarks: ''
+            };
             this.modalInfo.title = "Patient Diagnoses";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
@@ -92906,6 +92919,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selected_id = item.id;
             axios.get('/api/patientDiagnoses/' + this.selected_id + '/edit').then(function (response) {
                 _this5.patientDiagnose = response.data;
+                _this5.patientDiagnose.diagnose_id = response.data.diagnose_id;
                 _this5.selected = {
                     id: response.data.diagnose_id,
                     label: response.data.diagnose.code
@@ -92931,6 +92945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (event) {
                 console.log('selected', event.value);
                 this.patientDiagnose.diagnose_id = event.value;
+                this.patientDiagnose.diagnoses = event.label;
             } else {
                 this.patientDiagnose.diagnose_id = null;
             }
@@ -101077,6 +101092,431 @@ S2.define('jquery.select2',[
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(11)
+/* script */
+var __vue_script__ = __webpack_require__(267)
+/* template */
+var __vue_template__ = __webpack_require__(268)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/PaymentComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4f61e082", Component.options)
+  } else {
+    hotAPI.reload("data-v-4f61e082", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 267 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
+    },
+
+    props: ['user_id'],
+
+    data: function data() {
+        return {
+            patients: [],
+            patient: [],
+            selected_id: null,
+            action: 'store' | 'update'
+        };
+    },
+    mounted: function mounted() {
+        this.getPatients();
+    },
+
+    computed: {},
+    methods: {
+        getPatients: function getPatients() {
+            var _this = this;
+
+            axios.get('/api/patients').then(function (response) {
+                console.log(response);
+                _this.patients = response.data.map(function (patient) {
+                    return {
+                        value: patient.id,
+                        label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name
+                    };
+                });
+            });
+        },
+        getPatientBy: function getPatientBy(event) {
+            if (event) {
+                console.log('selected', event.value);
+                this.patient.id = event.value;
+            } else {
+                this.patient.id = null;
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 268 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c("b-col", { staticClass: "my-1", attrs: { md: "12" } }, [
+            _c(
+              "div",
+              [
+                _c(
+                  "b-card",
+                  { attrs: { "no-body": "" } },
+                  [
+                    _c(
+                      "b-tabs",
+                      { attrs: { card: "" } },
+                      [
+                        _c(
+                          "b-tab",
+                          { attrs: { title: "Cashier", active: "" } },
+                          [
+                            _c(
+                              "b-row",
+                              [
+                                _c(
+                                  "b-col",
+                                  { attrs: { md: "6" } },
+                                  [
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "Patient Record"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "b-input-group",
+                                          [
+                                            _c("v-select", {
+                                              attrs: {
+                                                options: _vm.patients,
+                                                onChange: _vm.getPatientBy
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "Receipt No."
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "b-input-group",
+                                          [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                type: "text",
+                                                placeholder: "Enter Receipt"
+                                              },
+                                              model: {
+                                                value: _vm.patient.receipt,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.patient,
+                                                    "receipt",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "patient.receipt"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "2",
+                                          label: "Time"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "b-input-group",
+                                          [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                type: "text",
+                                                placeholder: "Total Amount",
+                                                disable: ""
+                                              },
+                                              model: {
+                                                value: _vm.patient.total_amout,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.patient,
+                                                    "total_amout",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "patient.total_amout"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "2",
+                                          label: "Amount"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "b-input-group",
+                                          [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                type: "text",
+                                                placeholder: "Enter Amount"
+                                              },
+                                              model: {
+                                                value: _vm.patient.total_amout,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.patient,
+                                                    "total_amout",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "patient.total_amout"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "2",
+                                          label: "Change"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "b-input-group",
+                                          [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                type: "text",
+                                                placeholder: "Enter Change"
+                                              },
+                                              model: {
+                                                value: _vm.patient.total_amout,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.patient,
+                                                    "total_amout",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "patient.total_amout"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "b-col",
+                                  { staticClass: "my-1", attrs: { md: "6" } },
+                                  [
+                                    _vm._v(
+                                      "\n                        213\n                    "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("b-tab", { attrs: { title: "Payments" } })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4f61e082", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
