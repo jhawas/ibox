@@ -92936,7 +92936,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this6.diagnoses = response.data.map(function (diagnoses) {
                     return {
                         value: diagnoses.id,
-                        label: diagnoses.code
+                        label: diagnoses.code,
+                        description: diagnoses.description
                     };
                 });
             });
@@ -92945,9 +92946,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (event) {
                 console.log('selected', event.value);
                 this.patientDiagnose.diagnose_id = event.value;
-                this.patientDiagnose.diagnoses = event.label;
+                this.patientDiagnose.diagnoses = event.description;
             } else {
                 this.patientDiagnose.diagnose_id = null;
+                this.patientDiagnose.diagnoses = null;
             }
         }
     }

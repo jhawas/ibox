@@ -365,7 +365,8 @@
                 console.log(response);
                 this.diagnoses = response.data.map( (diagnoses) => ({ 
                     value: diagnoses.id, 
-                    label: diagnoses.code
+                    label: diagnoses.code,
+                    description: diagnoses.description,
                 }));
             });
         },
@@ -373,9 +374,10 @@
             if(event) {
               console.log('selected',event.value);
               this.patientDiagnose.diagnose_id = event.value;
-              this.patientDiagnose.diagnoses = event.label;              
+              this.patientDiagnose.diagnoses = event.description;              
             } else {
               this.patientDiagnose.diagnose_id = null;
+              this.patientDiagnose.diagnoses = null;   
             }
         },
     }
