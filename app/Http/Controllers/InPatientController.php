@@ -12,6 +12,7 @@ use App\User;
 use App\Disposition;
 use App\Result;
 use App\PhilhealthMembership;
+use App\VitalSign;
 use Illuminate\Http\Request;
 
 class InPatientController extends Controller
@@ -122,6 +123,17 @@ class InPatientController extends Controller
         $patientDiagnose->remarks = $request->remarks;
         $patientDiagnose->save();
 
+        $vitalSign = new VitalSign;
+        $vitalSign->patient_record_id = $patientRecord->id;
+        $vitalSign->date = $request->admitted_checkup_date;
+        $vitalSign->time = $request->admitted_checkup_time;
+        $vitalSign->bp = $request->blood_pressure;
+        $vitalSign->t = $request->temperature;
+        $vitalSign->p = $request->pulse_rate;
+        $vitalSign->r = $request->pulse_rate;
+        $vitalSign->save();
+
+
         return redirect()->route('inPatients.index');
     }
 
@@ -186,6 +198,16 @@ class InPatientController extends Controller
         $patientDiagnose->diagnoses = $request->diagnoses_description;
         $patientDiagnose->remarks = $request->remarks;
         $patientDiagnose->save();
+
+        $vitalSign = VitalSign::where('patient_record_id', $inPatient->id)->first();
+        $vitalSign->patient_record_id = $patientRecord->id;
+        $vitalSign->date = $request->admitted_checkup_date;
+        $vitalSign->time = $request->admitted_checkup_time;
+        $vitalSign->bp = $request->blood_pressure;
+        $vitalSign->t = $request->temperature;
+        $vitalSign->p = $request->pulse_rate;
+        $vitalSign->r = $request->pulse_rate;
+        $vitalSign->save();
 
         // patient record
         $discharged = $request->discharged == 'on' ? true : false;
