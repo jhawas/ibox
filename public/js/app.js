@@ -91340,7 +91340,7 @@ var render = function() {
               return [
                 _vm._v(
                   "\n        " +
-                    _vm._s(row.item.first_name + " " + row.item.first_name) +
+                    _vm._s(row.item.first_name + " " + row.item.last_name) +
                     "\n    "
                 )
               ]

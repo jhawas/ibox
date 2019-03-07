@@ -66,7 +66,7 @@
       @filtered="onFiltered"
     >
       <template slot="name" slot-scope="row">
-          {{row.item.first_name + ' ' + row.item.first_name}}
+          {{row.item.first_name + ' ' + row.item.last_name}}
       </template>
 
       <template slot="actions" slot-scope="row">
