@@ -106,6 +106,7 @@
 
 <script>
     import vSelect from 'vue-select';
+    import Swal from 'sweetalert2';
     export default {
         components : {
             vSelect
@@ -211,6 +212,11 @@
                         this.billing();
                         this.getTotalBill();
                         this.$refs.myModalRef.hide();
+                        Swal.fire(
+                          'Message',
+                          'Succesfully Added.',
+                          'success'
+                        );
                     }  
                 })
                 .catch (response => {
@@ -238,6 +244,11 @@
                 .then(response => {
                     if(response.data == 'success') {
                         this.billing();
+                        Swal.fire(
+                          'Message',
+                          'Succesfully Removed.',
+                          'success'
+                        );
                     }  
                 })
                 .catch (response => {
@@ -268,6 +279,11 @@
                     if(response.data == 'success') {
                         // this.getPaymentStatus();
                         this.closedCashierModal();
+                        Swal.fire(
+                          'Message',
+                          'Succesfully Saved.',
+                          'success'
+                        );
                     }  
                 })
                 .catch (response => {

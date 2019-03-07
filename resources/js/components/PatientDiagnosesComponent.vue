@@ -182,6 +182,7 @@
 
 <script>
     import vSelect from 'vue-select';
+    import Swal from 'sweetalert2'
 
   export default {
     components : {
@@ -288,6 +289,11 @@
             .then(response => {
                 if(response.data == 'success') {
                     this.getPatientDiagnoses();
+                    Swal.fire(
+                      'Message',
+                      'Succesfully Deleted.',
+                      'success'
+                    );
                 }  
             })
             .catch (response => {
@@ -320,6 +326,11 @@
                     console.log(response.data);
                     if(response.data == 'success') {
                         this.getPatientDiagnoses();
+                        Swal.fire(
+                          'Message',
+                          'Succesfully Saved.',
+                          'success'
+                        );
                     }  
                 })
                 .catch (response => {
@@ -337,6 +348,11 @@
                     console.log(response.data);
                     if(response.data == 'success') {
                         this.getPatientDiagnoses();
+                        Swal.fire(
+                          'Message',
+                          'Succesfully Updated.',
+                          'success'
+                        );
                     }  
                 })
                 .catch (response => {
@@ -353,7 +369,8 @@
                 this.patientDiagnose.diagnose_id = response.data.diagnose_id;
                 this.selected = {
                   id: response.data.diagnose_id,
-                  label: response.data.diagnose.code
+                  label: response.data.diagnose.code,
+                  description: response.data.diagnose.description
                 };
             });
             this.modalInfo.title = "Patient Diagnoses";

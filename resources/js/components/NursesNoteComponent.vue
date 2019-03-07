@@ -179,7 +179,7 @@
 
 <script>
     import vSelect from 'vue-select';
-
+    import Swal from 'sweetalert2';
   export default {
     components : {
         vSelect
@@ -277,6 +277,11 @@
             .then(response => {
                 if(response.data == 'success') {
                     this.getNursesNotes();
+                    Swal.fire(
+                      'Message',
+                      'Succesfully Deleted.',
+                      'success'
+                    );
                 }  
             })
             .catch (response => {
@@ -304,6 +309,11 @@
                     console.log(response.data);
                     if(response.data == 'success') {
                         this.getNursesNotes();
+                        Swal.fire(
+                          'Message',
+                          'Succesfully Saved.',
+                          'success'
+                        );
                     }  
                 })
                 .catch (response => {
@@ -322,6 +332,11 @@
                     console.log(response.data);
                     if(response.data == 'success') {
                         this.getNursesNotes();
+                        Swal.fire(
+                          'Message',
+                          'Succesfully Updated.',
+                          'success'
+                        );
                     }  
                 })
                 .catch (response => {
