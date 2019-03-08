@@ -87947,13 +87947,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getPatientRecordID: function getPatientRecordID(event) {
             if (event) {
                 this.patient_record_id = event.value;
-                this.billing();
-                this.getTotalBill();
-                this.getPayment();
-                this.is_paid = event.is_paid;
             } else {
                 this.patient_record_id = null;
             }
+            this.billing();
+            this.getTotalBill();
+            this.getPayment();
+            this.is_paid = event.is_paid;
             // this.getPaymentStatus();
         },
         billing: function billing() {
