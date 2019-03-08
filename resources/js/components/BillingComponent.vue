@@ -8,9 +8,21 @@
                         <div class="col-md-8 control-container">
                             <div class="control">
                                 <v-select :options="patientRecord" :onChange="getPatientRecordID"></v-select>
-                                <button type="button" class="btn btn-primary" @click="showModal" :disabled="!patient_record_id">Add Bill</button>
-                                <button type="button" class="btn btn-primary" @click="printUrl" :disabled="!patient_record_id">Print</button>
-                                <button type="button" class="btn btn-primary" @click="showCashierModal" :disabled="!patient_record_id" >Payment</button>
+                                <b-button 
+                                    class="btn btn-primary" 
+                                    :disabled="!patient_record_id" 
+                                    @click="showModal"
+                                >Add Bill</b-button>
+                                <b-button 
+                                    class="btn btn-primary" 
+                                    :disabled="!patient_record_id" 
+                                    @click="printUrl"
+                                >Print</b-button>
+                                <b-button 
+                                    class="btn btn-primary" 
+                                    :disabled="!patient_record_id" 
+                                    @click="showCashierModal"
+                                >Payment</b-button>
                             </div>
                         </div>
                         <div class="col-md-4 total-bill-container">
@@ -139,7 +151,7 @@
         },
 
         computed: {
-
+            
         },
 
         watch: {
@@ -179,11 +191,15 @@
             },
 
             getPatientRecordID(event) {
-                this.patient_record_id = event.value;
-                this.billing();
-                this.getTotalBill();
-                this.getPayment();
-                this.is_paid = event.is_paid;
+                if(event) {
+                    this.patient_record_id = event.value;
+                    this.billing();
+                    this.getTotalBill();
+                    this.getPayment();
+                    this.is_paid = event.is_paid;
+                } else {
+                    this.patient_record_id = null;
+                }
                 // this.getPaymentStatus();
             },
 
@@ -236,7 +252,12 @@
                 });
             },
             getChargeID(event) {
-                this.form = event;
+                if(event) {
+                    this.form = event;
+                    this.form.quantity = 1;
+                } else {
+                    this.form = {};
+                }
                 console.log(this.form);
             },
             removeBilling(id) {

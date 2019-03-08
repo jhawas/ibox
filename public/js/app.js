@@ -87864,6 +87864,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -87933,11 +87945,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         getPatientRecordID: function getPatientRecordID(event) {
-            this.patient_record_id = event.value;
-            this.billing();
-            this.getTotalBill();
-            this.getPayment();
-            this.is_paid = event.is_paid;
+            if (event) {
+                this.patient_record_id = event.value;
+                this.billing();
+                this.getTotalBill();
+                this.getPayment();
+                this.is_paid = event.is_paid;
+            } else {
+                this.patient_record_id = null;
+            }
             // this.getPaymentStatus();
         },
         billing: function billing() {
@@ -87988,7 +88004,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         getChargeID: function getChargeID(event) {
-            this.form = event;
+            if (event) {
+                this.form = event;
+                this.form.quantity = 1;
+            } else {
+                this.form = {};
+            }
             console.log(this.form);
         },
         removeBilling: function removeBilling(id) {
@@ -88086,39 +88107,30 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c(
-                      "button",
+                      "b-button",
                       {
                         staticClass: "btn btn-primary",
-                        attrs: {
-                          type: "button",
-                          disabled: !_vm.patient_record_id
-                        },
+                        attrs: { disabled: !_vm.patient_record_id },
                         on: { click: _vm.showModal }
                       },
                       [_vm._v("Add Bill")]
                     ),
                     _vm._v(" "),
                     _c(
-                      "button",
+                      "b-button",
                       {
                         staticClass: "btn btn-primary",
-                        attrs: {
-                          type: "button",
-                          disabled: !_vm.patient_record_id
-                        },
+                        attrs: { disabled: !_vm.patient_record_id },
                         on: { click: _vm.printUrl }
                       },
                       [_vm._v("Print")]
                     ),
                     _vm._v(" "),
                     _c(
-                      "button",
+                      "b-button",
                       {
                         staticClass: "btn btn-primary",
-                        attrs: {
-                          type: "button",
-                          disabled: !_vm.patient_record_id
-                        },
+                        attrs: { disabled: !_vm.patient_record_id },
                         on: { click: _vm.showCashierModal }
                       },
                       [_vm._v("Payment")]
