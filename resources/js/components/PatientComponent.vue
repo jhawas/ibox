@@ -71,108 +71,108 @@
 
       <template slot="actions" slot-scope="row">
         <b-button size="sm" @click="row.toggleDetails">
-          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+            {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
         <b-button size="sm" @click="showModalEdit(row.item)">
             Edit
         </b-button>
-        <b-button size="sm" @click="showModalDelete(row.item, row.index, $event.target)">
+        <!-- <b-button size="sm" @click="showModalDelete(row.item, row.index, $event.target)">
             Delete
-        </b-button>
+        </b-button> -->
       </template>
-
       <template slot="row-details" slot-scope="row">
         <b-card>
-            <b-row>
-              <b-col md="6" class="my-1">
-                  <b-form-group label-cols-sm="2" label="First Name" class="mb-0">
-                    <b-input-group>
-                      {{row.item.first_name}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Middle Name" class="mb-0">
-                    <b-input-group>
-                      {{row.item.middle_name}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Last Name" class="mb-0">
-                    <b-input-group>
-                      {{row.item.last_name}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Suffix" class="mb-0">
-                    <b-input-group>
-                      {{row.item.suffix}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Birthdate" class="mb-0">
-                    <b-input-group>
-                      {{row.item.birthdate}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Sex" class="mb-0">
-                    <b-input-group>
-                      {{row.item.sex}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Religion" class="mb-0">
-                    <b-input-group>
-                      {{row.item.religion}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Address" class="mb-0">
-                    <b-input-group>
-                      {{row.item.address}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Civil Status" class="mb-0">
-                    <b-input-group>
-                      {{row.item.civil_status}}
-                    </b-input-group>
-                  </b-form-group>
-              </b-col>
-              <b-col md="6" class="my-1">
-                  <b-form-group label-cols-sm="2" label="Spouse" class="mb-0">
-                    <b-input-group>
-                      {{row.item.spouse}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Spouse Address" class="mb-0">
-                    <b-input-group>
-                      {{row.item.spouse_address}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Mother" class="mb-0">
-                    <b-input-group>
-                      {{row.item.mother}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Father" class="mb-0">
-                    <b-input-group>
-                      {{row.item.father}}
-                    </b-input-group>
-                  </b-form-group>
-                  <legend>Emergency</legend>
-                  <b-form-group label-cols-sm="2" label="Name" class="mb-0">
-                    <b-input-group>
-                      {{row.item.e_name}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Phone" class="mb-0">
-                    <b-input-group>
-                      {{row.item.e_contact}}
-                    </b-input-group>
-                  </b-form-group>
-                  <b-form-group label-cols-sm="2" label="Address" class="mb-0">
-                    <b-input-group>
-                      {{row.item.e_address}}
-                    </b-input-group>
-                  </b-form-group>
-              </b-col>
-            </b-row>
-            <b-row>
-                <b-col md="12" class="my-1">
-                  <legend>Medical History</legend>
+            <b-tabs content-class="mt-3">
+              <b-tab title="Information" active>
+                <b-row>
+                  <b-col md="6" class="my-1">
+                    <b-form-group label-cols-sm="2" label="First Name" class="mb-0">
+                      <b-input-group>
+                        {{row.item.first_name}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Middle Name" class="mb-0">
+                      <b-input-group>
+                        {{row.item.middle_name}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Last Name" class="mb-0">
+                      <b-input-group>
+                        {{row.item.last_name}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Suffix" class="mb-0">
+                      <b-input-group>
+                        {{row.item.suffix}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Birthdate" class="mb-0">
+                      <b-input-group>
+                        {{row.item.birthdate}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Sex" class="mb-0">
+                      <b-input-group>
+                        {{row.item.sex}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Religion" class="mb-0">
+                      <b-input-group>
+                        {{row.item.religion}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Address" class="mb-0">
+                      <b-input-group>
+                        {{row.item.address}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Civil Status" class="mb-0">
+                      <b-input-group>
+                        {{row.item.civil_status}}
+                      </b-input-group>
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" class="my-1">
+                    <b-form-group label-cols-sm="2" label="Spouse" class="mb-0">
+                      <b-input-group>
+                        {{row.item.spouse}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Spouse Address" class="mb-0">
+                      <b-input-group>
+                        {{row.item.spouse_address}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Mother" class="mb-0">
+                      <b-input-group>
+                        {{row.item.mother}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Father" class="mb-0">
+                      <b-input-group>
+                        {{row.item.father}}
+                      </b-input-group>
+                    </b-form-group>
+                    <legend>Emergency</legend>
+                    <b-form-group label-cols-sm="2" label="Name" class="mb-0">
+                      <b-input-group>
+                        {{row.item.e_name}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Phone" class="mb-0">
+                      <b-input-group>
+                        {{row.item.e_contact}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Address" class="mb-0">
+                      <b-input-group>
+                        {{row.item.e_address}}
+                      </b-input-group>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
+              </b-tab>
+              <b-tab title="History">
                   <b-table 
                     :items="row.item.records" 
                     :fields="recordFields"
@@ -186,8 +186,8 @@
                       </b-button>
                     </template>
                   </b-table>
-                </b-col>
-            </b-row>
+              </b-tab>
+            </b-tabs>
         </b-card>
       </template>
     </b-table>
@@ -235,6 +235,9 @@
                 >
                     <template slot="laboratory" slot-scope="row">
                         {{row.item.laboratory.code}}
+                    </template>
+                    <template slot="image" slot-scope="row">
+                        <img :src="replaceUrl(row.item.image)" class="laboratoryImage" />
                     </template>
                 </b-table>
             </b-tab>
@@ -432,6 +435,7 @@
         laboratoryFields: [
           { key: 'laboratory', label: 'Laboratory', sortable: true, sortDirection: 'desc' },
           { key: 'description', label: 'Details', sortable: true, sortDirection: 'desc' },
+          { key: 'image', label: 'Image', sortable: true, sortDirection: 'desc' },
           { key: 'created_at', label: 'Datetime', sortable: true, sortDirection: 'desc' },
         ],
         vitalSignFields: [
@@ -637,7 +641,10 @@
             this.history = item;
             this.modalInfo.title = "Medical History";
             this.$root.$emit('bv::show::modal', 'modalHistory');
-        }
+        },
+        replaceUrl(url) {
+            return url.replace("public", "storage");
+        },
     }
   }
 </script>
