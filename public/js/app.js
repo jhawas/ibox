@@ -93498,6 +93498,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -93670,6 +93675,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         replaceUrl: function replaceUrl(url) {
             return url.replace("public", "storage");
+        },
+        printUrl: function printUrl() {
+            window.open('patients/patients/print', '_blank');
         }
     }
 });
@@ -93702,6 +93710,27 @@ var render = function() {
                 [
                   _c("b-button", { on: { click: _vm.showModalForm } }, [
                     _vm._v("New")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Master List" }
+                },
+                [
+                  _c("b-button", { on: { click: _vm.printUrl } }, [
+                    _vm._v("Print")
                   ])
                 ],
                 1

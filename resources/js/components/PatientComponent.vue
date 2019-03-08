@@ -7,6 +7,11 @@
                 <b-button @click="showModalForm">New</b-button>
             </b-form-group>
         </b-col>
+        <b-col md="6" class="my-1">
+            <b-form-group label-cols-sm="3" label="Master List" class="mb-0">
+                <b-button @click="printUrl">Print</b-button>
+            </b-form-group>
+        </b-col>
     </b-row>
     <b-row>
       <b-col md="6" class="my-1">
@@ -644,6 +649,9 @@
         },
         replaceUrl(url) {
             return url.replace("public", "storage");
+        },
+        printUrl() {
+            window.open('patients/patients/print', '_blank');
         },
     }
   }
