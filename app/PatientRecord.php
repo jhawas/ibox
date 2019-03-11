@@ -55,6 +55,14 @@ class PatientRecord extends Model
         return $this->belongsTo('App\User', 'attending_physician');
     }
 
+    public function admit_checkup_by() {
+        return $this->belongsTo('App\User', 'admitted_and_check_up_by');
+    }
+
+    public function discharged_by() {
+        return $this->belongsTo('App\User', 'discharge_by');
+    }
+
     public function laboratory() {
         return $this->hasMany('App\LaboratoryTest');
     }

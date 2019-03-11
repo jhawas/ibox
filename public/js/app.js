@@ -27057,12 +27057,12 @@ window._ = __webpack_require__(91);
  */
 
 try {
-    window.Popper = __webpack_require__(41).default;
-    window.$ = window.jQuery = __webpack_require__(19);
+  window.Popper = __webpack_require__(41).default;
+  window.$ = window.jQuery = __webpack_require__(19);
 
-    __webpack_require__(93);
+  __webpack_require__(93);
 
-    __webpack_require__(94)(window, $);
+  __webpack_require__(94)(window, $);
 } catch (e) {}
 
 /**
@@ -27084,9 +27084,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -87683,6 +87683,7 @@ var map = {
 	"./components/PatientComponent.vue": 244,
 	"./components/PatientDiagnosesComponent.vue": 247,
 	"./components/PaymentComponent.vue": 250,
+	"./components/RecordComponent.vue": 272,
 	"./components/VitalSignComponent.vue": 253
 };
 function webpackContext(req) {
@@ -104269,6 +104270,1446 @@ S2.define('jquery.select2',[
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(10)
+/* script */
+var __vue_script__ = __webpack_require__(273)
+/* template */
+var __vue_template__ = __webpack_require__(274)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/RecordComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b3011bde", Component.options)
+  } else {
+    hotAPI.reload("data-v-b3011bde", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 273 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
+    },
+
+    props: ['user_id'],
+
+    data: function data() {
+        return {
+            record: {},
+            records: [],
+            selected_id: null,
+            action: 'store' | 'update',
+            fields: [{ key: 'patient', label: 'Patient', sortable: true, sortDirection: 'desc' }, { key: 'patient-type', label: 'Type Of Patient', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'addmitted_and_check_up_date', label: 'Date', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'addmitted_and_check_up_time', label: 'Time', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'room', label: 'Room', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
+            currentPage: 1,
+            perPage: 5,
+            totalRows: 1,
+            pageOptions: [5, 10, 15],
+            sortBy: null,
+            sortDesc: false,
+            sortDirection: 'asc',
+            filter: null,
+            modalInfo: { title: '', content: '' },
+            patientOptions: [{ text: 'All', value: 0 }, { text: 'Out Patient', value: 1 }, { text: 'In Patient', value: 2 }],
+            patientType: 0
+        };
+    },
+    mounted: function mounted() {
+        this.getRecords();
+    },
+
+    computed: {
+        sortOptions: function sortOptions() {
+            // Create an options list from our fields
+            return this.fields.filter(function (f) {
+                return f.sortable;
+            }).map(function (f) {
+                return { text: f.label, value: f.key };
+            });
+        }
+    },
+    methods: {
+        resetModal: function resetModal() {
+            this.modalInfo.title = '';
+            this.modalInfo.content = '';
+            this.selected_id = null;
+        },
+        onFiltered: function onFiltered(filteredItems) {
+            // Trigger pagination to update the number of buttons/pages due to filtering
+            console.log('filter', filteredItems);
+            this.totalRows = filteredItems.length;
+            this.currentPage = 1;
+        },
+        getRecords: function getRecords() {
+            var _this = this;
+
+            axios.get(this.getUrl()).then(function (response) {
+                _this.records = response.data;
+                _this.totalRows = _this.records.length;
+                console.log(_this.records, _this.totalRows);
+            });
+        },
+        getSelectedPatientType: function getSelectedPatientType(event) {
+            this.patientType = event;
+            this.getRecords();
+        },
+        showModalDelete: function showModalDelete(item, index, button) {
+            this.modalInfo.title = 'Record';
+            this.modalInfo.content = 'Are you sure you want to delete?';
+            this.$root.$emit('bv::show::modal', 'modalDelete', button);
+            this.selected_id = item.id;
+        },
+        onDelete: function onDelete() {
+            var _this2 = this;
+
+            axios.delete('/api/records/' + this.selected_id).then(function (response) {
+                if (response.data == 'success') {
+                    _this2.getRecords();
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Deleted.', 'success');
+                }
+            }).catch(function (response) {
+                console.log(response);
+            });
+        },
+        showModalForm: function showModalForm() {
+            this.action = 'store';
+            this.record = {};
+            this.modalInfo.title = "Record";
+            this.$root.$emit('bv::show::modal', 'modalForm');
+        },
+        onSubmit: function onSubmit(action) {
+            var _this3 = this;
+
+            console.log('submit', this.record);
+            if (action === 'store') {
+                axios.post('/api/records', {
+                    // code here
+                }).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'success') {
+                        _this3.getRecords();
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
+                    }
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            } else {
+                axios.put('/api/records/' + this.selected_id, {
+                    // code here
+                }).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'success') {
+                        _this3.getRecords();
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Updated.', 'success');
+                    }
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            }
+        },
+        showModalEdit: function showModalEdit(item) {
+            var _this4 = this;
+
+            this.action = 'edit';
+            this.selected_id = item.id;
+            axios.get('/api/records/' + this.selected_id + '/edit').then(function (response) {
+                _this4.record = response.data;
+            });
+            this.modalInfo.title = "Record";
+            this.$root.$emit('bv::show::modal', 'modalForm');
+        },
+        getUrl: function getUrl() {
+
+            if (this.patientType == 0) {
+                return '/api/records';
+            } else {
+                return '/api/records/' + this.patientType;
+            }
+        },
+        showMedication: function showMedication(item) {
+            this.modalInfo.title = "Medication";
+            this.$root.$emit('bv::show::modal', 'modalMedication');
+        }
+    }
+});
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Record" }
+                },
+                [
+                  _c("b-button", { on: { click: _vm.showModalForm } }, [
+                    _vm._v("New")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Type of Patient" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.patientOptions },
+                    on: { change: _vm.getSelectedPatientType },
+                    model: {
+                      value: _vm.patientType,
+                      callback: function($$v) {
+                        _vm.patientType = $$v
+                      },
+                      expression: "patientType"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Filter" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Type to Search" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Clear")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Sort" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { options: _vm.sortOptions },
+                          model: {
+                            value: _vm.sortBy,
+                            callback: function($$v) {
+                              _vm.sortBy = $$v
+                            },
+                            expression: "sortBy"
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { slot: "first" },
+                              domProps: { value: null },
+                              slot: "first"
+                            },
+                            [_vm._v("-- none --")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append", disabled: !_vm.sortBy },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDesc,
+                            callback: function($$v) {
+                              _vm.sortDesc = $$v
+                            },
+                            expression: "sortDesc"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: false } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: true } }, [
+                            _vm._v("Desc")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Sort direction" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append" },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDirection,
+                            callback: function($$v) {
+                              _vm.sortDirection = $$v
+                            },
+                            expression: "sortDirection"
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "asc" } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "desc" } }, [
+                            _vm._v("Desc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "last" } }, [
+                            _vm._v("Last")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Per page" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.records,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc,
+          "sort-direction": _vm.sortDirection
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "patient",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      row.item.patient.first_name +
+                        " " +
+                        row.item.patient.last_name
+                    ) +
+                    "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "patient-type",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " + _vm._s(row.item.record_type.code) + "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "room",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(row.item.room ? row.item.room.code : null) +
+                    "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-button",
+                  { attrs: { size: "sm" }, on: { click: row.toggleDetails } },
+                  [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(row.detailsShowing ? "Hide" : "Show") +
+                        " Details\n      "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showMedication(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Medication\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalEdit(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Edit\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalDelete(row.item, row.index, $event.target)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Delete\n      ")]
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-card",
+                  [
+                    _c(
+                      "b-row",
+                      [
+                        _c(
+                          "b-col",
+                          { attrs: { md: "6" } },
+                          [
+                            _c("legend", [_vm._v("Information")]),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Patient"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.patient.first_name +
+                                          " " +
+                                          row.item.patient.middle_name +
+                                          " " +
+                                          row.item.patient.last_name
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Type Of Patient"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.record_type.code) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Attending Physician"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.physician.suffix +
+                                          " " +
+                                          row.item.physician.first_name +
+                                          " " +
+                                          row.item.physician.last_name
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Height" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.height) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Weight" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.weight) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Blood Pressure"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.blood_pressure) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Pulse Rate"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.pulse_rate) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Temperature"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.temperature) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-col",
+                          { attrs: { md: "6" } },
+                          [
+                            _c("legend", [
+                              _vm._v(
+                                _vm._s(
+                                  row.item.record_type.id == 1
+                                    ? "Checkup"
+                                    : "Admitted"
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              { attrs: { "label-cols-sm": "3", label: "By" } },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.admit_checkup_by.suffix +
+                                          " " +
+                                          row.item.admit_checkup_by.first_name +
+                                          " " +
+                                          row.item.admit_checkup_by.last_name
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Date" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.addmitted_and_check_up_date
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Time" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.addmitted_and_check_up_time
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            row.item.record_type.id == 2
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c("legend", [_vm._v("Discharged")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "By"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item.admit_checkup_by
+                                                  .suffix +
+                                                  " " +
+                                                  row.item.admit_checkup_by
+                                                    .first_name +
+                                                  " " +
+                                                  row.item.admit_checkup_by
+                                                    .last_name
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "Date"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item
+                                                  .addmitted_and_check_up_time
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "Time"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item
+                                                  .addmitted_and_check_up_time
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c("b-pagination", {
+                staticClass: "my-0",
+                attrs: { "total-rows": _vm.totalRows, "per-page": _vm.perPage },
+                model: {
+                  value: _vm.currentPage,
+                  callback: function($$v) {
+                    _vm.currentPage = $$v
+                  },
+                  expression: "currentPage"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalInfo", title: _vm.modalInfo.title, "ok-only": "" },
+          on: { hide: _vm.resetModal }
+        },
+        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalDelete", title: _vm.modalInfo.title },
+          on: { hide: _vm.resetModal, ok: _vm.onDelete }
+        },
+        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modalMedication",
+            title: _vm.modalInfo.title,
+            size: "lg",
+            "ok-only": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [_vm._v("\n      test\n  ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalForm", title: _vm.modalInfo.title, size: "lg" },
+          on: {
+            hide: _vm.resetModal,
+            ok: function($event) {
+              _vm.onSubmit(_vm.action)
+            }
+          }
+        },
+        [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.stopPropagation()
+                  $event.preventDefault()
+                  return _vm.onSubmit($event)
+                }
+              }
+            },
+            [
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Date" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { type: "date", placeholder: "Enter Date" },
+                        model: {
+                          value: _vm.record.date,
+                          callback: function($$v) {
+                            _vm.$set(_vm.record, "date", $$v)
+                          },
+                          expression: "record.date"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Time" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { type: "time", placeholder: "Enter Time" },
+                        model: {
+                          value: _vm.record.time,
+                          callback: function($$v) {
+                            _vm.$set(_vm.record, "time", $$v)
+                          },
+                          expression: "record.time"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Progress Note" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-textarea", {
+                        attrs: {
+                          id: "textarea1",
+                          placeholder: "Enter Progress Note",
+                          rows: "3",
+                          "max-rows": "6"
+                        },
+                        model: {
+                          value: _vm.record.progress_note,
+                          callback: function($$v) {
+                            _vm.$set(_vm.record, "progress_note", $$v)
+                          },
+                          expression: "record.progress_note"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Doctor's Orders" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-textarea", {
+                        attrs: {
+                          id: "textarea1",
+                          placeholder: "Enter Progress Note",
+                          rows: "3",
+                          "max-rows": "6"
+                        },
+                        model: {
+                          value: _vm.record.doctors_orders,
+                          callback: function($$v) {
+                            _vm.$set(_vm.record, "doctors_orders", $$v)
+                          },
+                          expression: "record.doctors_orders"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b3011bde", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

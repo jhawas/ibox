@@ -35,6 +35,11 @@
             </a>
         </li>
         <li>
+            <a class="treeview-item" href="{{ route('patientRecords.index') }}">
+              <i class="icon fa fa-circle-o"></i> In & Out Patient
+            </a>
+        </li>
+        <li>
             <a class="treeview-item" href="{{ route('outPatients.index') }}">
               <i class="icon fa fa-circle-o"></i> Out Patient
             </a>

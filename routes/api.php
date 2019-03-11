@@ -93,3 +93,33 @@ Route::delete('diagnoses/{id}', 'API\DiagnosesController@delete');
 Route::post('diagnoses', 'API\DiagnosesController@store');
 Route::get('diagnoses/{id}/edit', 'API\DiagnosesController@edit');
 Route::put('diagnoses/{id}', 'API\DiagnosesController@update');
+
+
+// results
+Route::get('results', 'API\ResultController@data');
+Route::delete('results/{id}', 'API\ResultController@delete');
+Route::post('results', 'API\ResultController@store');
+Route::get('results/{id}/edit', 'API\ResultController@edit');
+Route::put('results/{id}', 'API\ResultController@update');
+
+// philhealth membership
+Route::get('philhealthMemberShip', 'API\PhilhealthMemberShipController@data');
+Route::delete('philhealthMemberShip/{id}', 'API\PhilhealthMemberShipController@delete');
+Route::post('philhealthMemberShip', 'API\PhilhealthMemberShipController@store');
+Route::get('philhealthMemberShip/{id}/edit', 'API\PhilhealthMemberShipController@edit');
+Route::put('philhealthMemberShip/{id}', 'API\PhilhealthMemberShipController@update');
+
+// disposition
+Route::get('dispositions', 'API\DispositionController@data');
+Route::delete('dispositions/{id}', 'API\DispositionController@delete');
+Route::post('dispositions', 'API\DispositionController@store');
+Route::get('dispositions/{id}/edit', 'API\DispositionController@edit');
+Route::put('dispositions/{id}', 'API\DispositionController@update');
+
+// records
+Route::get('records', 'API\RecordController@data');
+Route::get('records/{type_of_record_id}', 'API\RecordController@dataByRecordType');
+Route::delete('records/{id}', 'API\RecordController@delete');
+Route::post('records', 'API\RecordController@store');
+Route::get('records/{id}/edit', 'API\RecordController@edit');
+Route::put('records/{id}', 'API\RecordController@update');
