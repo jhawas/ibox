@@ -94,7 +94,6 @@ Route::post('diagnoses', 'API\DiagnosesController@store');
 Route::get('diagnoses/{id}/edit', 'API\DiagnosesController@edit');
 Route::put('diagnoses/{id}', 'API\DiagnosesController@update');
 
-
 // results
 Route::get('results', 'API\ResultController@data');
 Route::delete('results/{id}', 'API\ResultController@delete');
@@ -123,3 +122,12 @@ Route::delete('records/{id}', 'API\RecordController@delete');
 Route::post('records', 'API\RecordController@store');
 Route::get('records/{id}/edit', 'API\RecordController@edit');
 Route::put('records/{id}', 'API\RecordController@update');
+
+//type of charge
+Route::get('typeOfCharges', 'API\TypeOfChargeController@data');
+Route::get('typeOfChargesDataWithNoParent', 'API\TypeOfChargeController@dataWithNoParent');
+Route::delete('typeOfCharges/{id}', 'API\TypeOfChargeController@delete');
+Route::post('typeOfCharges', 'API\TypeOfChargeController@store');
+Route::get('typeOfCharges/{id}/edit', 'API\TypeOfChargeController@edit');
+Route::put('typeOfCharges/{id}', 'API\TypeOfChargeController@update');
+
