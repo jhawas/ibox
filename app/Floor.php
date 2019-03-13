@@ -15,4 +15,8 @@ class Floor extends Model
         'code', 'description',
     ];
 
+    public function rooms() {
+        return $this->hasMany('App\Room');
+    }
+
 }

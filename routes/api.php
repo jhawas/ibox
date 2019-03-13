@@ -138,3 +138,27 @@ Route::post('typeOfCharges', 'API\TypeOfChargeController@store');
 Route::get('typeOfCharges/{id}/edit', 'API\TypeOfChargeController@edit');
 Route::put('typeOfCharges/{id}', 'API\TypeOfChargeController@update');
 
+//room
+Route::get('rooms', 'API\RoomController@data');
+Route::delete('rooms/{id}', 'API\RoomController@delete');
+Route::post('rooms', 'API\RoomController@store');
+Route::get('rooms/{id}/edit', 'API\RoomController@edit');
+Route::put('rooms/{id}', 'API\RoomController@update');
+
+//room
+Route::get('floors', 'API\FloorController@data');
+Route::delete('floors/{id}', 'API\FloorController@delete');
+Route::post('floors', 'API\FloorController@store');
+Route::get('floors/{id}/edit', 'API\FloorController@edit');
+Route::put('floors/{id}', 'API\FloorController@update');
+
+//users
+Route::get('users', 'API\UserController@data');
+Route::delete('users/{id}', 'API\UserController@delete');
+Route::post('users', 'API\UserController@store');
+Route::get('users/{id}/edit', 'API\UserController@edit');
+Route::put('users/{id}', 'API\UserController@update');
+
+//users
+Route::get('typeOfRecords', 'API\TypeOfRecordController@data');
+

@@ -237,45 +237,198 @@
         </b-tabs>
     </b-modal>
     <b-modal 
-        id="modalForm" 
+        id="modalRecordForm" 
         @hide="resetModal" 
         :title="modalInfo.title" 
         @ok="onSubmit(action)"
         size="lg"
     >
       <form @submit.stop.prevent="onSubmit">
-        <b-form-group label-cols-sm="2" label="Date">
-            <b-input-group>
-                <b-form-input type="date" placeholder="Enter Date" v-model="record.date" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="Time">
-            <b-input-group>
-                <b-form-input type="time" placeholder="Enter Time" v-model="record.time" />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="Progress Note">
-            <b-input-group>
+        <b-row>
+          <b-col md="6">
+            <b-form-group label-cols-sm="3" label="Patient">
+              <b-input-group>
+                <v-select :options="patients" v-model="record.patient"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Status">
+              <b-input-group>
+                <v-select :options="typeOfRecords" v-model="record.typeOfRecord"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group 
+              label-cols-sm="3" 
+              label="Floor" 
+              v-if="record.typeOfRecord && record.typeOfRecord.value == 2"
+            >
+              <b-input-group>
+                <v-select :options="floors" v-model="record.floor"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group 
+              label-cols-sm="3" 
+              label="Room" 
+              v-if="record.floor && record.typeOfRecord && record.typeOfRecord.value == 2"
+            >
+              <b-input-group>
+                <v-select :options="rooms" v-model="record.room"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group 
+              label-cols-sm="3" 
+              label="Bed"
+              v-if="record.typeOfRecord && record.typeOfRecord.value == 2"
+            >
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Bed" v-model="record.bed" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Weight">
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Weight" v-model="record.weight" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Height">
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Height" v-model="record.height" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Temperature">
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Temperature" v-model="record.temperature" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Blood Pressure">
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Blood Pressure" v-model="record.blood_pressure" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Pulse Rate">
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Pulse Rate" v-model="record.pulse_rate" />
+              </b-input-group>
+            </b-form-group>
+            <legend>Additional Information</legend>
+            <b-form-group label-cols-sm="3" label="Philhealth Membership">
+              <b-input-group>
+                  <v-select :options="philhealthMemberShips" v-model="record.philhealthMemberShip"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Sponsor" v-if="record.philhealthMemberShip && record.philhealthMemberShip.value === 5">
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Sponsor" v-model="record.sponsor" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Disposition">
+              <b-input-group>
+                  <v-select :options="dispositions" v-model="record.disposition"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Result">
+              <b-input-group>
+                  <v-select :options="results" v-model="record.result"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Attending Physician">
+              <b-input-group>
+                  <v-select :options="doctors" v-model="record.attending_physician"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Chart Completed By">
+              <b-input-group>
+                  <v-select :options="doctors" v-model="record.completed_by"></v-select>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
+          <b-col md="6">
+            <div v-if="record.typeOfRecord && record.typeOfRecord.value == 2">
+              <b-form-group label-cols-sm="3" label="Chief Complaints">
+                <b-input-group>
+                  <b-form-textarea
+                    id="textarea1"
+                    v-model="record.chief_complaints"
+                    placeholder="Enter Chief Complaints"
+                    rows="3"
+                    max-rows="6"
+                  />
+                </b-input-group>
+              </b-form-group>
+              <b-form-group label-cols-sm="3" label="Brief History">
+                <b-input-group>
+                  <b-form-textarea
+                    id="textarea1"
+                    v-model="record.brief_history"
+                    placeholder="Enter Brief History"
+                    rows="3"
+                    max-rows="6"
+                  />
+                </b-input-group>
+              </b-form-group>
+            </div>
+            <legend>{{record.typeOfRecord && record.typeOfRecord.value == 2 ? "Admission" : "Checkup"}}</legend>
+            <b-form-group label-cols-sm="3" label="Doctor">
+              <b-input-group>
+                  <v-select :options="doctors" v-model="record.addmission_doctor"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Date">
+              <b-input-group>
+                  <b-form-input type="date" placeholder="Enter Date" v-model="record.addmission_date" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Time">
+              <b-input-group>
+                  <b-form-input type="time" placeholder="Enter Time" v-model="record.addmission_time" />
+              </b-input-group>
+            </b-form-group>
+            <div v-if="record.typeOfRecord && record.typeOfRecord.value == 2">
+              <legend>Discharged</legend>
+              <b-form-group label-cols-sm="3" label="Doctor">
+                <b-input-group>
+                    <v-select :options="doctors" v-model="record.discharged_doctor"></v-select>
+                </b-input-group>
+              </b-form-group>
+              <b-form-group label-cols-sm="3" label="Date">
+                <b-input-group>
+                    <b-form-input type="date" placeholder="Enter Date" v-model="record.discharged_date" />
+                </b-input-group>
+              </b-form-group>
+              <b-form-group label-cols-sm="3" label="Time">
+                <b-input-group>
+                    <b-form-input type="time" placeholder="Enter Time" v-model="record.discharged_time" />
+                </b-input-group>
+              </b-form-group>
+            </div>
+            <legend>Initial Diagnoses</legend>
+            <b-form-group label-cols-sm="3" label="Diagnoses Code">
+              <b-input-group>
+                  <v-select :options="diagnoses" v-model="record.diagnose"></v-select>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Diagnoses">
+              <b-input-group>
                 <b-form-textarea
                   id="textarea1"
-                  v-model="record.progress_note"
-                  placeholder="Enter Progress Note"
+                  v-model="diagnose_name"
+                  placeholder="Enter Diagnoses"
                   rows="3"
                   max-rows="6"
                 />
-            </b-input-group>
-        </b-form-group>
-        <b-form-group label-cols-sm="2" label="Doctor's Orders">
-            <b-input-group>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Remarks">
+              <b-input-group>
                 <b-form-textarea
                   id="textarea1"
-                  v-model="record.doctors_orders"
-                  placeholder="Enter Progress Note"
+                  v-model="record.remarks"
+                  placeholder="Enter Remarks"
                   rows="3"
                   max-rows="6"
                 />
-            </b-input-group>
-        </b-form-group>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
       </form>
     </b-modal>
   </b-container>
@@ -296,6 +449,15 @@
       return {
         record: {},
         records: [],
+        patients: [],
+        floors: [],
+        rooms: [],
+        philhealthMemberShips: [],
+        dispositions: [],
+        results: [],
+        doctors: [],
+        diagnoses: [],
+        typeOfRecords: [],
         selected_id: null,
         action: 'store' | 'update',
         fields: [
@@ -325,6 +487,15 @@
     },
     mounted() {
         this.getRecords();
+        this.getPatients();
+        this.getFloors();
+        this.getRooms();
+        this.getPhilhealthMemberShip();
+        this.getResults();
+        this.getDispositions();
+        this.getDoctors();
+        this.getDiagnoses();
+        this.getTypeOfRecords();
     },
     computed: {
       sortOptions() {
@@ -334,6 +505,9 @@
           .map(f => {
             return { text: f.label, value: f.key }
           })
+      },
+      diagnose_name: function() {
+          return (this.record.diagnose ? this.record.diagnose.data.description : null);
       }
     },
     methods: {
@@ -386,7 +560,7 @@
             this.action = 'store';
             this.record = {};
             this.modalInfo.title = "Record";
-            this.$root.$emit('bv::show::modal', 'modalForm');
+            this.$root.$emit('bv::show::modal', 'modalRecordForm');
         },
         onSubmit(action) {
             console.log('submit',this.record);
@@ -436,7 +610,7 @@
                 this.record = response.data;
             });
             this.modalInfo.title = "Record";
-            this.$root.$emit('bv::show::modal', 'modalForm');
+            this.$root.$emit('bv::show::modal', 'modalRecordForm');
         },
         getUrl() {
 
@@ -450,7 +624,92 @@
             this.selected_id = item.id;
             this.modalInfo.title = "Medication";
             this.$root.$emit('bv::show::modal', 'modalMedication');
-        }
+        },
+
+        // modal entry
+        getPatients() {
+          axios.get('/api/patients')
+          .then(response => {
+              this.patients = response.data.map((patient) => ({ 
+                  value: patient.id, 
+                  label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name,
+              }));
+          });
+        },
+        getFloors() {
+          axios.get('/api/floors')
+          .then(response => {
+              this.floors = response.data.map((floor) => ({ 
+                  value: floor.id, 
+                  label: floor.code
+              }));
+          });
+        },
+        getRooms() {
+          axios.get('/api/rooms')
+          .then(response => {
+              this.rooms = response.data.map((room) => ({ 
+                  value: room.id, 
+                  label: room.code
+              }));
+          });
+        },
+        getPhilhealthMemberShip() {
+          axios.get('/api/philhealthMemberShip')
+          .then(response => {
+              this.philhealthMemberShips = response.data.map((philhealthMemberShip) => ({ 
+                  value: philhealthMemberShip.id, 
+                  label: philhealthMemberShip.code
+              }));
+          });
+        },
+        getDispositions() {
+          axios.get('/api/dispositions')
+          .then(response => {
+              this.dispositions = response.data.map((disposition) => ({ 
+                  value: disposition.id, 
+                  label: disposition.code
+              }));
+          });
+        },
+        getResults() {
+          axios.get('/api/results')
+          .then(response => {
+              this.results = response.data.map((result) => ({ 
+                  value: result.id, 
+                  label: result.code
+              }));
+          });
+        },
+        getDoctors() {
+          axios.get('/api/users')
+          .then(response => {
+              console.log('user',response.data);
+              this.doctors = response.data.map((user) => ({ 
+                  value: user.id, 
+                  label: user.first_name + ' ' + user.middle_name + ' ' + user.last_name,
+              }));
+          });
+        },
+        getDiagnoses() {
+          axios.get('/api/diagnoses')
+          .then(response => {
+              this.diagnoses = response.data.map((diagnose) => ({ 
+                  value: diagnose.id, 
+                  label: diagnose.code,
+                  data: diagnose
+              }));
+          });
+        },
+        getTypeOfRecords() {
+          axios.get('/api/typeOfRecords')
+          .then(response => {
+              this.typeOfRecords = response.data.map((type) => ({ 
+                  value: type.id, 
+                  label: type.code,
+              }));
+          });
+        },
     }
   }
 </script>
