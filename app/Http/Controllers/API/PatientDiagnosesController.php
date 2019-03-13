@@ -22,7 +22,7 @@ class PatientDiagnosesController extends Controller
         	'diagnose'
         ])->where('patient_record_id', $patient_record_id)
         	->get();
-        return $patientDiagnoses;
+        return response()->json($patientDiagnoses);
     }
 
     public function delete($id = null) {

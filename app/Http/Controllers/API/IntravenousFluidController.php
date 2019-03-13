@@ -18,7 +18,8 @@ class IntravenousFluidController extends Controller
         $intravenousFluids = IntravenousFluid::with([
         	'record' => function($query) {
         		$query->with(['patient']);
-        	}
+        	},
+            'user'
         ])->where('patient_record_id', $patient_record_id)
         	->get();
         return $intravenousFluids;

@@ -18,7 +18,8 @@ class NursesNoteController extends Controller
         $nursesNotes = NursesNote::with([
         	'record' => function($query) {
         		$query->with(['patient']);
-        	}
+        	},
+            'user'
         ])->where('patient_record_id', $patient_record_id)
         	->get();
         return $nursesNotes;

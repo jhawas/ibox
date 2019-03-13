@@ -217,6 +217,13 @@
     }
 }
 
+#modalMedication {
+    padding: 0 15px;
+    .modal-dialog {
+        max-width: 100%;
+    }
+}
+
 .laboratoryImage {
     width: 100%;
 }

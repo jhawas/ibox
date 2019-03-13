@@ -192,7 +192,7 @@ class OutPatientController extends Controller
         $patientDiagnose->save();
 
         $vitalSign = VitalSign::where('patient_record_id', $inPatient->id)->first();
-        $vitalSign->patient_record_id = $patientRecord->id;
+        $vitalSign->patient_record_id = $outPatient->id;
         $vitalSign->date = $request->admitted_checkup_date;
         $vitalSign->time = $request->admitted_checkup_time;
         $vitalSign->bp = $request->blood_pressure;

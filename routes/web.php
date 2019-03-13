@@ -176,3 +176,5 @@ Route::delete('patientDiagnoses/{patientRecord}/{patientDiagnose}', 'PatientDiag
 
 Route::get('print/{patient_record_id}/billing', 'PrintController@printBilling')
 		->name('print.printBilling');
+
+Route::resource('records', 'RecordController');

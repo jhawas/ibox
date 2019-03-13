@@ -212,7 +212,29 @@
       size="lg" 
       ok-only
     >
-        test
+        <b-tabs content-class="mt-3">
+              <b-tab title="Diagnoses" active>
+                    <diagnoses-table-component :patient_record_id="selected_id" />
+              </b-tab>
+              <b-tab title="Laboratory">
+                    <laboratory-table-component :patient_record_id="selected_id" />
+              </b-tab>
+              <b-tab title="Vital Sign">
+                    <vital-sign-table-component :patient_record_id="selected_id" />
+              </b-tab>
+              <b-tab title="Doctor's Order">
+                    <doctors-order-table-component :patient_record_id="selected_id" />
+              </b-tab>
+              <b-tab title="Nurse Note">
+                    <nurses-note-table-component :patient_record_id="selected_id" />
+              </b-tab>
+              <b-tab title="Intravenous Fuid">
+                    <intravenous-fluid-table-component :patient_record_id="selected_id" />
+              </b-tab>
+              <b-tab title="Medication & Treatment">
+                    <medication-and-treatment-table-component :patient_record_id="selected_id" />
+              </b-tab>
+        </b-tabs>
     </b-modal>
     <b-modal 
         id="modalForm" 
@@ -425,6 +447,7 @@
             }
         },
         showMedication(item) {
+            this.selected_id = item.id;
             this.modalInfo.title = "Medication";
             this.$root.$emit('bv::show::modal', 'modalMedication');
         }

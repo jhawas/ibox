@@ -19805,6 +19805,14 @@ be a descendant of the grid when it is being dragged.
   max-width: 100%;
 }
 
+#modalMedication {
+  padding: 0 15px;
+}
+
+#modalMedication .modal-dialog {
+  max-width: 100%;
+}
+
 .laboratoryImage {
   width: 100%;
 }

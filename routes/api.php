@@ -87,6 +87,13 @@ Route::post('patientDiagnoses', 'API\PatientDiagnosesController@store');
 Route::get('patientDiagnoses/{id}/edit', 'API\PatientDiagnosesController@edit');
 Route::put('patientDiagnoses/{id}', 'API\PatientDiagnosesController@update');
 
+// patient laboratory
+Route::get('patientLaboratories/{patient_record_id}', 'API\PatientLaboratoryController@data');
+Route::delete('patientLaboratories/{patient_record_id}', 'API\PatientLaboratoryController@delete');
+Route::post('patientLaboratories', 'API\PatientLaboratoryController@store');
+Route::get('patientLaboratories/{id}/edit', 'API\PatientLaboratoryController@edit');
+Route::put('patientLaboratories/{id}', 'API\PatientLaboratoryController@update');
+
 //diagnoses
 Route::get('diagnoses', 'API\DiagnosesController@data');
 Route::delete('diagnoses/{id}', 'API\DiagnosesController@delete');
