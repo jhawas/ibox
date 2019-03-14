@@ -100840,6 +100840,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             results: [],
             doctors: [],
             diagnoses: [],
+            type_of_record: null,
             typeOfRecords: [],
             selected_id: null,
             action: 'store' | 'update',
@@ -101239,6 +101240,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     };
                 });
             });
+        },
+        getTypeOfRecordBy: function getTypeOfRecordBy(event) {
+            if (event) {
+                this.record.typeOfRecord = event;
+                this.type_of_record = event.value;
+            }
         }
     }
 });
@@ -101576,7 +101583,13 @@ var render = function() {
               return [
                 _vm._v(
                   "\n        " +
-                    _vm._s(row.item.room ? row.item.room.code : null) +
+                    _vm._s(
+                      row.item.record_type.id == 2
+                        ? row.item.room
+                          ? row.item.room.code
+                          : null
+                        : null
+                    ) +
                     "\n    "
                 )
               ]
@@ -102241,7 +102254,10 @@ var render = function() {
                             "b-input-group",
                             [
                               _c("v-select", {
-                                attrs: { options: _vm.typeOfRecords },
+                                attrs: {
+                                  options: _vm.typeOfRecords,
+                                  onChange: _vm.getTypeOfRecordBy
+                                },
                                 model: {
                                   value: _vm.record.typeOfRecord,
                                   callback: function($$v) {
@@ -102257,8 +102273,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _vm.record.typeOfRecord &&
-                      _vm.record.typeOfRecord.value == 2
+                      _vm.type_of_record && _vm.type_of_record == 2
                         ? _c(
                             "b-form-group",
                             { attrs: { "label-cols-sm": "3", label: "Floor" } },
@@ -102285,8 +102300,8 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       _vm.record.floor &&
-                      _vm.record.typeOfRecord &&
-                      _vm.record.typeOfRecord.value == 2
+                      _vm.type_of_record &&
+                      _vm.type_of_record == 2
                         ? _c(
                             "b-form-group",
                             { attrs: { "label-cols-sm": "3", label: "Room" } },
@@ -102312,8 +102327,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm.record.typeOfRecord &&
-                      _vm.record.typeOfRecord.value == 2
+                      _vm.type_of_record && _vm.type_of_record == 2
                         ? _c(
                             "b-form-group",
                             { attrs: { "label-cols-sm": "3", label: "Bed" } },
@@ -102757,8 +102771,7 @@ var render = function() {
                       _c("legend", [
                         _vm._v(
                           _vm._s(
-                            _vm.record.typeOfRecord &&
-                              _vm.record.typeOfRecord.value == 2
+                            _vm.type_of_record && _vm.type_of_record == 2
                               ? "Admission"
                               : "Checkup"
                           )
@@ -102847,8 +102860,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _vm.record.typeOfRecord &&
-                      _vm.record.typeOfRecord.value == 2
+                      _vm.type_of_record && _vm.type_of_record == 2
                         ? _c(
                             "div",
                             [

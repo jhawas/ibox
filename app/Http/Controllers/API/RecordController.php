@@ -40,6 +40,11 @@ class RecordController extends Controller
             'physician',
             'admit_checkup_by',
             'discharged_by',
+            'floor',
+            'philhealthMembership',
+            'result',
+            'disposition',
+            'chart_completed_by',
             'room' => function($query) {
                 $query->with([
                     'room_type'

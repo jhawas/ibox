@@ -83,7 +83,7 @@
       </template>
 
       <template slot="room" slot-scope="row">
-          {{ row.item.room ? row.item.room.code : null}}
+          {{ row.item.record_type.id == 2 ? row.item.room ? row.item.room.code : null : null}}
       </template>
 
       <template slot="actions" slot-scope="row">
@@ -262,13 +262,13 @@
             </b-form-group>
             <b-form-group label-cols-sm="3" label="Status">
               <b-input-group>
-                <v-select :options="typeOfRecords" v-model="record.typeOfRecord"></v-select>
+                <v-select :options="typeOfRecords" v-model="record.typeOfRecord" :onChange="getTypeOfRecordBy"></v-select>
               </b-input-group>
             </b-form-group>
             <b-form-group 
               label-cols-sm="3" 
               label="Floor" 
-              v-if="record.typeOfRecord && record.typeOfRecord.value == 2"
+              v-if="type_of_record && type_of_record == 2"
             >
               <b-input-group>
                 <v-select :options="floors" v-model="record.floor"></v-select>
@@ -277,7 +277,7 @@
             <b-form-group 
               label-cols-sm="3" 
               label="Room" 
-              v-if="record.floor && record.typeOfRecord && record.typeOfRecord.value == 2"
+              v-if="record.floor && type_of_record && type_of_record == 2"
             >
               <b-input-group>
                 <v-select :options="rooms" v-model="record.room"></v-select>
@@ -286,7 +286,7 @@
             <b-form-group 
               label-cols-sm="3" 
               label="Bed"
-              v-if="record.typeOfRecord && record.typeOfRecord.value == 2"
+              v-if="type_of_record && type_of_record == 2"
             >
               <b-input-group>
                   <b-form-input type="text" placeholder="Enter Bed" v-model="record.bed" />
@@ -374,7 +374,7 @@
                 </b-input-group>
               </b-form-group>
             </div>
-            <legend>{{record.typeOfRecord && record.typeOfRecord.value == 2 ? "Admission" : "Checkup"}}</legend>
+            <legend>{{type_of_record && type_of_record == 2 ? "Admission" : "Checkup"}}</legend>
             <b-form-group label-cols-sm="3" label="Doctor">
               <b-input-group>
                   <v-select :options="doctors" v-model="record.addmission_doctor"></v-select>
@@ -390,7 +390,7 @@
                   <b-form-input type="time" placeholder="Enter Time" v-model="record.addmission_time" />
               </b-input-group>
             </b-form-group>
-            <div v-if="record.typeOfRecord && record.typeOfRecord.value == 2">
+            <div v-if="type_of_record && type_of_record == 2">
               <legend>Discharged</legend>
               <b-form-group label-cols-sm="3" label="Doctor">
                 <b-input-group>
@@ -476,6 +476,7 @@
         results: [],
         doctors: [],
         diagnoses: [],
+        type_of_record: null,
         typeOfRecords: [],
         selected_id: null,
         action: 'store' | 'update',
@@ -869,6 +870,12 @@
               }));
           });
         },
+        getTypeOfRecordBy(event) {
+            if(event) {
+                this.record.typeOfRecord = event;
+                this.type_of_record = event.value;
+            }
+        }
     }
   }
 </script>
