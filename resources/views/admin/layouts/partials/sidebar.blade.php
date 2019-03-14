@@ -39,7 +39,7 @@
               <i class="icon fa fa-circle-o"></i> In & Out Patient
             </a>
         </li>
-        <li>
+        {{-- <li>
             <a class="treeview-item" href="{{ route('outPatients.index') }}">
               <i class="icon fa fa-circle-o"></i> Out Patient
             </a>
@@ -48,7 +48,7 @@
             <a class="treeview-item" href="{{ route('inPatients.index') }}">
               <i class="icon fa fa-circle-o"></i> In Patient
             </a>
-        </li>
+        </li> --}}
         <li>
             <a class="treeview-item" href="{{ route('patientDiagnoses.index') }}">
               <i class="icon fa fa-circle-o"></i> Diagnoses
@@ -182,12 +182,12 @@
         <span class="app-menu__label">Billing & Payment</span>
       </a>
     </li>
-    <li>
+    {{-- <li>
       <a class="app-menu__item" href="{{ route('payments.index') }}">
         <i class="app-menu__icon fa fa-dashboard"></i>
         <span class="app-menu__label">Cashier</span>
       </a>
-    </li>
+    </li> --}}
     {{-- <li>
       <a class="app-menu__item" href="{{ route('cashiers.selection') }}">
         <i class="app-menu__icon fa fa-dashboard"></i>

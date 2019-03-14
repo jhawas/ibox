@@ -18,6 +18,18 @@ class PatientRecord extends Model
     	return $this->belongsTo('App\Room', 'room_id');
     }
 
+    public function floor() {
+        return $this->belongsTo('App\Floor', 'floor_id');
+    }
+
+    public function philhealthMembership() {
+        return $this->belongsTo('App\PhilhealthMembership', 'philhealth_membership_id');
+    }
+
+    public function result() {
+        return $this->belongsTo('App\Result', 'result_id');
+    }
+
     public function disposition() {
         return $this->belongsTo('App\Disposition', 'disposition_id');
     }
@@ -61,6 +73,10 @@ class PatientRecord extends Model
 
     public function discharged_by() {
         return $this->belongsTo('App\User', 'discharge_by');
+    }
+
+    public function chart_completed_by() {
+        return $this->belongsTo('App\User', 'chart_completed_by');
     }
 
     public function laboratory() {

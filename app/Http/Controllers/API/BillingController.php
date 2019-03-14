@@ -78,7 +78,7 @@ class BillingController extends Controller
         $payment->save();
 
         $patientRecord = PatientRecord::where('id', $request->patient_record_id)->first();
-        $patientRecord->is_paid = 1;
+        // $patientRecord->discharged = 1;
         $patientRecord->save();
 
         return 'success';

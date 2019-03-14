@@ -40,6 +40,9 @@ class CreatePatientRecordsTable extends Migration
             $table->integer('chart_completed_by')->unsigned()->nullable();
             $table->foreign('chart_completed_by')->references('id')->on('users')->onDelete('cascade');
 
+            $table->integer('floor_id')->unsigned()->nullable();
+            $table->foreign('floor_id')->references('id')->on('floors')->onDelete('cascade');
+
             $table->integer('room_id')->unsigned()->nullable();
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
 
@@ -61,12 +64,14 @@ class CreatePatientRecordsTable extends Migration
             $table->string('blood_pressure')->nullable();
             $table->string('pulse_rate')->nullable();
 
-            $table->boolean('discharged')->default(0);
+            $table->string('chief_complaints')->nullable();
+
+            $table->string('brief_history')->nullable();
 
             $table->integer('trans_user_id')->unsigned()->nullable();
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->boolean('is_paid')->default(0);
+            $table->boolean('discharged')->default(0);
             $table->timestamps();
         });
     }

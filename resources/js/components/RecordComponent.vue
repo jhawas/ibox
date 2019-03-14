@@ -118,7 +118,7 @@
                 </b-form-group>
                 <b-form-group label-cols-sm="3" label="Attending Physician">
                   <b-input-group>
-                    {{row.item.physician.suffix + ' ' + row.item.physician.first_name + ' ' + row.item.physician.last_name}}
+                    {{row.item.physician ? row.item.physician.first_name + ' ' + row.item.physician.last_name : null}}
                   </b-input-group>
                 </b-form-group>
                 <b-form-group label-cols-sm="3" label="Height">
@@ -146,12 +146,22 @@
                     {{row.item.temperature}}
                   </b-input-group>
                 </b-form-group>
+                <b-form-group label-cols-sm="3" label="Brief History">
+                  <b-input-group>
+                    {{row.item.brief_history}}
+                  </b-input-group>
+                </b-form-group>
+                <b-form-group label-cols-sm="3" label="Chief Complaints">
+                  <b-input-group>
+                    {{row.item.chief_complaints}}
+                  </b-input-group>
+                </b-form-group>
               </b-col>
               <b-col md="6">
                 <legend>{{row.item.record_type.id == 1 ? 'Checkup' : 'Admitted'}}</legend>
                 <b-form-group label-cols-sm="3" label="By">
                   <b-input-group>
-                    {{row.item.admit_checkup_by.suffix + ' ' + row.item.admit_checkup_by.first_name + ' ' + row.item.admit_checkup_by.last_name}}
+                    {{row.item.admit_checkup_by ? row.item.admit_checkup_by.first_name + ' ' + row.item.admit_checkup_by.last_name : null}}
                   </b-input-group>
                 </b-form-group>
                 <b-form-group label-cols-sm="3" label="Date">
@@ -168,7 +178,7 @@
                   <legend>Discharged</legend>
                   <b-form-group label-cols-sm="3" label="By">
                     <b-input-group>
-                      {{row.item.admit_checkup_by.suffix + ' ' + row.item.admit_checkup_by.first_name + ' ' + row.item.admit_checkup_by.last_name}}
+                      {{row.item.admit_checkup_by ? row.item.admit_checkup_by.first_name + ' ' + row.item.admit_checkup_by.last_name : null}}
                     </b-input-group>
                   </b-form-group>
                   <b-form-group label-cols-sm="3" label="Date">
@@ -240,7 +250,6 @@
         id="modalRecordForm" 
         @hide="resetModal" 
         :title="modalInfo.title" 
-        @ok="onSubmit(action)"
         size="lg"
     >
       <form @submit.stop.prevent="onSubmit">
@@ -341,7 +350,7 @@
             </b-form-group>
           </b-col>
           <b-col md="6">
-            <div v-if="record.typeOfRecord && record.typeOfRecord.value == 2">
+            <div>
               <b-form-group label-cols-sm="3" label="Chief Complaints">
                 <b-input-group>
                   <b-form-textarea
@@ -406,16 +415,10 @@
               </b-input-group>
             </b-form-group>
             <b-form-group label-cols-sm="3" label="Diagnoses">
-              <b-input-group>
-                <b-form-textarea
-                  id="textarea1"
-                  v-model="diagnose_name"
-                  placeholder="Enter Diagnoses"
-                  rows="3"
-                  max-rows="6"
-                />
-              </b-input-group>
-            </b-form-group>
+                <b-input-group>
+                    <b-form-input disabled type="text" placeholder="Enter Diagnoses" v-model="diagnose_name" />
+                </b-input-group>
+              </b-form-group>
             <b-form-group label-cols-sm="3" label="Remarks">
               <b-input-group>
                 <b-form-textarea
@@ -427,9 +430,25 @@
                 />
               </b-input-group>
             </b-form-group>
+            <legend>Patient Status</legend>
+            <div>
+                <b-form-checkbox
+                  id="checkbox1"
+                  name="checkbox1"
+                  v-model="record.discharged"
+                  :value="1"
+                  :unchecked-value="0"
+                >
+                  Discharged
+                </b-form-checkbox>
+            </div>
           </b-col>
         </b-row>
       </form>
+      <div slot="modal-footer">
+        <b-button @click="hideModal">Cancel</b-button>
+        <b-button variant="primary" @click="onSubmit(action)" :disabled="!(record && record.patient && record.typeOfRecord)">Save</b-button>
+      </div>
     </b-modal>
   </b-container>
 </template>
@@ -507,7 +526,9 @@
           })
       },
       diagnose_name: function() {
-          return (this.record.diagnose ? this.record.diagnose.data.description : null);
+          var description = this.record.diagnose ? this.record.diagnose.data.description : null;
+          this.record.diagnoses_description = description;
+          return description;
       }
     },
     methods: {
@@ -566,10 +587,37 @@
             console.log('submit',this.record);
             if(action === 'store') {
                 axios.post('/api/records', {
-                  // code here
+                    addmission_date: this.record.addmission_date,
+                    addmission_doctor: this.record.addmission_doctor ? this.record.addmission_doctor.value : null,
+                    addmission_time: this.record.addmission_time,
+                    attending_physician: this.record.attending_physician ? this.record.attending_physician.value : null,
+                    bed: this.record.bed,
+                    blood_pressure: this.record.blood_pressure,
+                    brief_history: this.record.brief_history,
+                    chief_complaints: this.record.chief_complaints,
+                    completed_by: this.record.completed_by ? this.record.completed_by.value : null,
+                    diagnose: this.record.diagnose ? this.record.diagnose.value : null,
+                    diagnoses_description: this.record.diagnoses_description,
+                    discharged_date: this.record.discharged_date,
+                    discharged_doctor: this.record.discharged_doctor ? this.record.discharged_doctor.value : null,
+                    discharged_time: this.record.discharged_time,
+                    disposition: this.record.disposition ? this.record.disposition.value : null,
+                    floor: this.record.floor ? this.record.floor.value : null,
+                    height: this.record.height,
+                    patient: this.record.patient.value,
+                    philhealthMemberShip: this.record.philhealthMemberShip ? this.record.philhealthMemberShip.value : null,
+                    pulse_rate: this.record.pulse_rate,
+                    remarks: this.record.remarks,
+                    result: this.record.result ? this.record.result.value : null,
+                    room: this.record.room ? this.record.room.value : null,
+                    sponsor: this.record.sponsor,
+                    temperature: this.record.temperature,
+                    typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
+                    weight: this.record.weight,
+                    discharged: this.record.discharged,
                 })
                 .then(response => {
-                    console.log(response.data);
+                    console.log('return', response.data);
                     if(response.data == 'success') {
                         this.getRecords();
                         Swal.fire(
@@ -577,6 +625,7 @@
                           'Succesfully Saved.',
                           'success'
                         );
+                        this.$root.$emit('bv::hide::modal', 'modalRecordForm');
                     }  
                 })
                 .catch (response => {
@@ -584,7 +633,34 @@
                 });
             } else {
                 axios.put('/api/records/' + this.selected_id, {
-                    // code here
+                    addmission_date: this.record.addmission_date,
+                    addmission_doctor: this.record.addmission_doctor ? this.record.addmission_doctor.value : null,
+                    addmission_time: this.record.addmission_time,
+                    attending_physician: this.record.attending_physician ? this.record.attending_physician.value : null,
+                    bed: this.record.bed,
+                    blood_pressure: this.record.blood_pressure,
+                    brief_history: this.record.brief_history,
+                    chief_complaints: this.record.chief_complaints,
+                    completed_by: this.record.completed_by ? this.record.completed_by.value : null,
+                    diagnose: this.record.diagnose ? this.record.diagnose.value : null,
+                    diagnoses_description: this.record.diagnoses_description,
+                    discharged_date: this.record.discharged_date,
+                    discharged_doctor: this.record.discharged_doctor ? this.record.discharged_doctor.value : null,
+                    discharged_time: this.record.discharged_time,
+                    disposition: this.record.disposition ? this.record.disposition.value : null,
+                    floor: this.record.floor ? this.record.floor.value : null,
+                    height: this.record.height,
+                    patient: this.record.patient.value,
+                    philhealthMemberShip: this.record.philhealthMemberShip ? this.record.philhealthMemberShip.value : null,
+                    pulse_rate: this.record.pulse_rate,
+                    remarks: this.record.remarks,
+                    result: this.record.result ? this.record.result.value : null,
+                    room: this.record.room ? this.record.room.value : null,
+                    sponsor: this.record.sponsor,
+                    temperature: this.record.temperature,
+                    typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
+                    weight: this.record.weight,
+                    discharged: this.record.discharged,
                 })
                 .then(response => {
                     console.log(response.data);
@@ -595,6 +671,7 @@
                           'Succesfully Updated.',
                           'success'
                         );
+                        this.$root.$emit('bv::hide::modal', 'modalRecordForm');
                     }  
                 })
                 .catch (response => {
@@ -602,15 +679,98 @@
                 });
             }
         },
+        hideModal() {
+          this.$root.$emit('bv::hide::modal', 'modalRecordForm');
+        },
         showModalEdit(item) {
             this.action = 'edit';
             this.selected_id = item.id;
             axios.get('/api/records/'+this.selected_id+'/edit')
             .then(response => {
+                console.log('edit', response.data);
                 this.record = response.data;
+                this.record.addmission_date = response.data.addmitted_and_check_up_date;
+                this.record.addmission_time = response.data.addmitted_and_check_up_time;
+                this.record.discharged_date = response.data.discharge_date;
+                this.record.discharged_time = response.data.discharge_time;
+                this.record.discharged = response.data.discharged;
+                if(response.data.record_type) {
+                  this.record.typeOfRecord = {
+                    label: response.data.record_type.code,
+                    value: response.data.record_type.id,
+                  };
+                }
+                if(response.data.patient) {
+                  this.record.patient = {
+                    label: response.data.patient.first_name + ' ' + response.data.patient.middle_name + ' ' + response.data.patient.last_name,
+                    value: response.data.patient.id,
+                  };
+                }
+                if(response.data.floor) {
+                  this.record.floor = {
+                    label: response.data.floor.code,
+                    value: response.data.floor.id,
+                  }
+                }
+                if(response.data.room) {
+                  this.record.room = {
+                    label: response.data.room.code,
+                    value: response.data.room.id,
+                  }
+                }
+                if(response.data.philhealth_membership) {
+                  this.record.philhealthMemberShip = {
+                    label: response.data.philhealth_membership.code,
+                    value: response.data.philhealth_membership.id,
+                  }
+                }
+                if(response.data.disposition) {
+                  this.record.disposition = {
+                    label: response.data.disposition.code,
+                    value: response.data.disposition.id,
+                  }
+                }
+                if(response.data.result) {
+                  this.record.result = {
+                    label: response.data.result.code,
+                    value: response.data.result.id,
+                  }
+                }
+                if(response.data.physician) {
+                  this.record.attending_physician = {
+                    label: response.data.physician.first_name + ' ' + response.data.physician.middle_name + ' ' + response.data.physician.last_name,
+                    value: response.data.physician.id,
+                  }
+                }
+                if(response.data.chart_completed_by) {
+                  this.record.completed_by = {
+                    label: response.data.chart_completed_by.first_name + ' ' + response.data.chart_completed_by.middle_name + ' ' + response.data.chart_completed_by.last_name,
+                    value: response.data.chart_completed_by.id,
+                  }
+                }
+                if(response.data.admit_checkup_by) {
+                  this.record.addmission_doctor = {
+                    label: response.data.admit_checkup_by.first_name + ' ' + response.data.admit_checkup_by.middle_name + ' ' + response.data.admit_checkup_by.last_name,
+                    value: response.data.admit_checkup_by.id,
+                  }
+                }
+                if(response.data.discharged_by) {
+                  this.record.discharged_doctor = {
+                    label: response.data.discharged_by.first_name + ' ' + response.data.discharged_by.middle_name + ' ' + response.data.discharged_by.last_name,
+                    value: response.data.discharged_by.id,
+                  }
+                }
+                if(response.data.initial_diagnoses) {
+                  this.record.remarks = response.data.initial_diagnoses.remarks;
+                  this.record.diagnose = {
+                    label: response.data.initial_diagnoses.diagnose.code,
+                    value: response.data.initial_diagnoses.diagnose_id,
+                    data: response.data.initial_diagnoses.diagnose,
+                  }
+                }
+                this.modalInfo.title = "Record";
+                this.$root.$emit('bv::show::modal', 'modalRecordForm');
             });
-            this.modalInfo.title = "Record";
-            this.$root.$emit('bv::show::modal', 'modalRecordForm');
         },
         getUrl() {
 
@@ -684,7 +844,6 @@
         getDoctors() {
           axios.get('/api/users')
           .then(response => {
-              console.log('user',response.data);
               this.doctors = response.data.map((user) => ({ 
                   value: user.id, 
                   label: user.first_name + ' ' + user.middle_name + ' ' + user.last_name,
