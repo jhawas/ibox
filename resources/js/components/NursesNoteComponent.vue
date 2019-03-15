@@ -291,7 +291,7 @@
         showModalForm() {
             this.action = 'store';
             this.nursesNote = [];
-            this.modalInfo.title = "Doctor's Order";
+            this.modalInfo.title = "Nurses Note";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit(action) {
@@ -351,7 +351,7 @@
             .then(response => {
                 this.nursesNote = response.data;
             });
-            this.modalInfo.title = "Doctor's Order";
+            this.modalInfo.title = "Nurses Note";
             this.$root.$emit('bv::show::modal', 'modalForm');
         }
     }

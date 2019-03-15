@@ -93380,7 +93380,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showModalForm: function showModalForm() {
             this.action = 'store';
             this.medicationAndTreatment = [];
-            this.modalInfo.title = "Intravenous Fluid";
+            this.modalInfo.title = "Medication And Treatment";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit: function onSubmit(action) {
@@ -93429,7 +93429,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/api/medicationAndTreatments/' + this.selected_id + '/edit').then(function (response) {
                 _this5.medicationAndTreatment = response.data;
             });
-            this.modalInfo.title = "Intravenous Fluid";
+            this.modalInfo.title = "Medication And Treatment";
             this.$root.$emit('bv::show::modal', 'modalForm');
         }
     }
@@ -95000,7 +95000,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showModalForm: function showModalForm() {
             this.action = 'store';
             this.nursesNote = [];
-            this.modalInfo.title = "Doctor's Order";
+            this.modalInfo.title = "Nurses Note";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit: function onSubmit(action) {
@@ -95051,7 +95051,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/api/nursesNotes/' + this.selected_id + '/edit').then(function (response) {
                 _this5.nursesNote = response.data;
             });
-            this.modalInfo.title = "Doctor's Order";
+            this.modalInfo.title = "Nurses Note";
             this.$root.$emit('bv::show::modal', 'modalForm');
         }
     }
@@ -102288,32 +102288,6 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _vm.type_of_record && _vm.type_of_record == 2
-                        ? _c(
-                            "b-form-group",
-                            { attrs: { "label-cols-sm": "3", label: "Floor" } },
-                            [
-                              _c(
-                                "b-input-group",
-                                [
-                                  _c("v-select", {
-                                    attrs: { options: _vm.floors },
-                                    model: {
-                                      value: _vm.record.floor,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.record, "floor", $$v)
-                                      },
-                                      expression: "record.floor"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
                       _vm.record.floor &&
                       _vm.type_of_record &&
                       _vm.type_of_record == 2
@@ -102373,7 +102347,9 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Weight" } },
+                        {
+                          attrs: { "label-cols-sm": "3", label: "Weight (kg)" }
+                        },
                         [
                           _c(
                             "b-input-group",
@@ -102400,7 +102376,9 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Height" } },
+                        {
+                          attrs: { "label-cols-sm": "3", label: "Height (cm)" }
+                        },
                         [
                           _c(
                             "b-input-group",
@@ -103658,7 +103636,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showModalForm: function showModalForm() {
             this.action = 'store';
             this.vitalSign = [];
-            this.modalInfo.title = 'Vital Signs Form';
+            this.modalInfo.title = 'Vital Sign';
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit: function onSubmit(action) {
@@ -103725,7 +103703,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/api/vitalSigns/' + this.selected_id + '/edit').then(function (response) {
                 _this5.vitalSign = response.data;
             });
-            this.modalInfo.title = 'Vital Signs Form';
+            this.modalInfo.title = 'Vital Sign';
             this.$root.$emit('bv::show::modal', 'modalForm');
         }
     }

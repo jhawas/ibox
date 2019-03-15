@@ -265,7 +265,7 @@
                 <v-select :options="typeOfRecords" v-model="record.typeOfRecord" :onChange="getTypeOfRecordBy"></v-select>
               </b-input-group>
             </b-form-group>
-            <b-form-group 
+            <!-- <b-form-group 
               label-cols-sm="3" 
               label="Floor" 
               v-if="type_of_record && type_of_record == 2"
@@ -273,7 +273,7 @@
               <b-input-group>
                 <v-select :options="floors" v-model="record.floor"></v-select>
               </b-input-group>
-            </b-form-group>
+            </b-form-group> -->
             <b-form-group 
               label-cols-sm="3" 
               label="Room" 
@@ -292,12 +292,12 @@
                   <b-form-input type="text" placeholder="Enter Bed" v-model="record.bed" />
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Weight">
+            <b-form-group label-cols-sm="3" label="Weight (kg)">
               <b-input-group>
                   <b-form-input type="text" placeholder="Enter Weight" v-model="record.weight" />
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Height">
+            <b-form-group label-cols-sm="3" label="Height (cm)">
               <b-input-group>
                   <b-form-input type="text" placeholder="Enter Height" v-model="record.height" />
               </b-input-group>

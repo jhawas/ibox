@@ -290,7 +290,7 @@
         showModalForm() {
             this.action = 'store';
             this.medicationAndTreatment = [];
-            this.modalInfo.title = "Intravenous Fluid";
+            this.modalInfo.title = "Medication And Treatment";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit(action) {
@@ -348,7 +348,7 @@
             .then(response => {
                 this.medicationAndTreatment = response.data;
             });
-            this.modalInfo.title = "Intravenous Fluid";
+            this.modalInfo.title = "Medication And Treatment";
             this.$root.$emit('bv::show::modal', 'modalForm');
         }
     }
