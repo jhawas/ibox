@@ -101958,7 +101958,8 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            row.item.record_type.id == 2
+                            row.item.record_type.id == 2 &&
+                            row.item.admit_checkup_by
                               ? _c(
                                   "div",
                                   [

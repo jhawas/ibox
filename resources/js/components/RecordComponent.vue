@@ -174,7 +174,7 @@
                     {{row.item.addmitted_and_check_up_time}}
                   </b-input-group>
                 </b-form-group>
-                <div v-if="row.item.record_type.id == 2">
+                <div v-if="row.item.record_type.id == 2 && row.item.admit_checkup_by">
                   <legend>Discharged</legend>
                   <b-form-group label-cols-sm="3" label="By">
                     <b-input-group>
