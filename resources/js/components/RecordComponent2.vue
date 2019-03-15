@@ -254,7 +254,7 @@
     >
       <form @submit.stop.prevent="onSubmit">
         <b-row>
-          <b-col :md="user_role == 1 || user_role == 2 || user_role == 3 ? 6 : 12">
+          <b-col md="6">
             <b-form-group label-cols-sm="3" label="Patient">
               <b-input-group>
                 <v-select :options="patients" v-model="record.patient"></v-select>
@@ -328,28 +328,28 @@
                   <b-form-input type="text" placeholder="Enter Sponsor" v-model="record.sponsor" />
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Disposition" v-if="action == 'edit'">
+            <b-form-group label-cols-sm="3" label="Disposition">
               <b-input-group>
                   <v-select :options="dispositions" v-model="record.disposition"></v-select>
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Result" v-if="action == 'edit'">
+            <b-form-group label-cols-sm="3" label="Result">
               <b-input-group>
                   <v-select :options="results" v-model="record.result"></v-select>
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Attending Physician" v-if="action == 'edit'">
+            <b-form-group label-cols-sm="3" label="Attending Physician">
               <b-input-group>
                   <v-select :options="doctors" v-model="record.attending_physician"></v-select>
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Chart Completed By" v-if="action == 'edit'">
+            <b-form-group label-cols-sm="3" label="Chart Completed By">
               <b-input-group>
                   <v-select :options="doctors" v-model="record.completed_by"></v-select>
               </b-input-group>
             </b-form-group>
           </b-col>
-          <b-col md="6" v-if="user_role == 1 || user_role == 2 || user_role == 3">
+          <b-col md="6">
             <div>
               <b-form-group label-cols-sm="3" label="Chief Complaints">
                 <b-input-group>
@@ -390,7 +390,7 @@
                   <b-form-input type="time" placeholder="Enter Time" v-model="record.addmission_time" />
               </b-input-group>
             </b-form-group>
-            <div v-if="action == 'edit' && type_of_record && type_of_record == 2">
+            <div v-if="type_of_record && type_of_record == 2">
               <legend>Discharged</legend>
               <b-form-group label-cols-sm="3" label="Doctor">
                 <b-input-group>
@@ -462,7 +462,7 @@
         vSelect
     },
 
-    props: ['user_id', 'record_type', 'user_role'],
+    props: ['user_id'],
 
     data() {
       return {
@@ -502,7 +502,7 @@
             { text: 'Out Patient', value: 1 },
             { text: 'In Patient', value: 2 },
         ],
-        patientType: this.record_type,
+        patientType: 0,
       }
     },
     mounted() {

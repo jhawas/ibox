@@ -15,7 +15,11 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
-            <record-component user_id={{Auth::user()->id}} />
+              <record-component 
+                record_type={{$type_of_patient}} 
+                user_id={{Auth::user()->id}}
+                user_role={{Auth::user()->user_role->role->id}}
+              />
           </div>
       </div>
     </div>

@@ -19813,14 +19813,6 @@ be a descendant of the grid when it is being dragged.
   max-width: 100%;
 }
 
-#modalRecordForm {
-  padding: 0 15px;
-}
-
-#modalRecordForm .modal-dialog {
-  max-width: 80%;
-}
-
 .laboratoryImage {
   width: 100%;
 }

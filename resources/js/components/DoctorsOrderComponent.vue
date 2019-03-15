@@ -11,7 +11,10 @@
         </b-col>
         <b-col md="6" class="my-1">
             <b-form-group label-cols-sm="3" label="Add" class="mb-0">
-                <b-button @click="showModalForm" :disabled="patient_record_id ? false : true">New</b-button>
+                <b-button 
+                  @click="showModalForm" 
+                  :disabled="!patient_record_id || user_role == 5"
+                >New</b-button>
             </b-form-group>
         </b-col>
     </b-row>
@@ -76,10 +79,10 @@
         <b-button size="sm" @click="row.toggleDetails">
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
-        <b-button size="sm" @click="showModalEdit(row.item)">
+        <b-button :disabled="user_role == 5" size="sm" @click="showModalEdit(row.item)">
             Edit
         </b-button>
-        <b-button size="sm" @click="showModalDelete(row.item, row.index, $event.target)">
+        <b-button :disabled="user_role == 5" size="sm" @click="showModalDelete(row.item, row.index, $event.target)">
             Delete
         </b-button>
       </template>
@@ -186,7 +189,7 @@
         vSelect
     },
 
-    props: ['user_id'],
+    props: ['user_id', 'user_role'],
 
     data() {
       return {

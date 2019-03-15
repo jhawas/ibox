@@ -29,11 +29,13 @@
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
       <ul class="treeview-menu">
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 4 || Auth::user()->user_role->role->id == 5)
         <li>
             <a class="treeview-item" href="{{ route('patients.index') }}">
               <i class="icon fa fa-circle-o"></i> Patient Information
             </a>
         </li>
+        @endif
         <li>
             <a class="treeview-item" href="{{ route('records.index') }}">
               <i class="icon fa fa-circle-o"></i> In & Out Patient
@@ -49,36 +51,48 @@
               <i class="icon fa fa-circle-o"></i> In Patient
             </a>
         </li> --}}
-        <li>
-            <a class="treeview-item" href="{{ route('patientDiagnoses.index') }}">
-              <i class="icon fa fa-circle-o"></i> Diagnoses
-            </a>
-        </li>
-        <li>
-            <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
-              <i class="icon fa fa-circle-o"></i> Laboratory
-            </a>
-        </li>
-        <li>
-            <a class="treeview-item" href="{{ route('vitalSigns.index') }}">
-              <i class="icon fa fa-circle-o"></i> Vital Sign
-            </a>
-        </li>
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3)
+          <li>
+              <a class="treeview-item" href="{{ route('patientDiagnoses.index') }}">
+                <i class="icon fa fa-circle-o"></i> Diagnoses
+              </a>
+          </li>
+        @endif
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3)
+          <li>
+              <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
+                <i class="icon fa fa-circle-o"></i> Laboratory
+              </a>
+          </li>
+        @endif
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3 || Auth::user()->user_role->role->id == 5)
+          <li>
+              <a class="treeview-item" href="{{ route('vitalSigns.index') }}">
+                <i class="icon fa fa-circle-o"></i> Vital Sign
+              </a>
+          </li>
+        @endif
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3 || Auth::user()->user_role->role->id == 5)
         <li>
             <a class="treeview-item" href="{{ route('doctorsOrders.index') }}">
               <i class="icon fa fa-circle-o"></i> Doctor's Order
             </a>
         </li>
+        @endif
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 5)
         <li>
             <a class="treeview-item" href="{{ route('nursesNotes.index') }}">
               <i class="icon fa fa-circle-o"></i> Nurse Note
             </a>
         </li>
+        @endif
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 5 || Auth::user()->user_role->role->id == 4)
         <li>
             <a class="treeview-item" href="{{ route('intravenousFluids.index') }}">
               <i class="icon fa fa-circle-o"></i> Intravenous Fluids
             </a>
         </li>
+        @endif
         <li>
             <a class="treeview-item" href="{{ route('medicationAndTreatments.index') }}">
               <i class="icon fa fa-circle-o"></i> Medication & Treatment
@@ -176,12 +190,18 @@
       </ul>
     </li>
     @endif
+    @if(
+      Auth::user()->user_role->role->id == 1 || 
+      Auth::user()->user_role->role->id == 2 ||
+      Auth::user()->user_role->role->id == 4
+    )
     <li>
       <a class="app-menu__item" href="{{ route('billing.index') }}">
         <i class="app-menu__icon fa fa-dashboard"></i>
         <span class="app-menu__label">Billing & Payment</span>
       </a>
     </li>
+    @endif
     {{-- <li>
       <a class="app-menu__item" href="{{ route('payments.index') }}">
         <i class="app-menu__icon fa fa-dashboard"></i>

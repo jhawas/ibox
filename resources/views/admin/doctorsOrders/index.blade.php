@@ -15,7 +15,10 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
-            <doctors-order-component user_id={{Auth::user()->id}} />
+            <doctors-order-component 
+              user_role={{Auth::user()->user_role->role->id}} 
+              user_id={{Auth::user()->id}} 
+            />
             {{-- <div class="controller-wrapper">
               <a href="{{ route('doctorsOrders.create') }}" class="btn btn-primary">New</a>
             </div>

@@ -44172,12 +44172,12 @@ window._ = __webpack_require__(14);
  */
 
 try {
-  window.Popper = __webpack_require__(42).default;
-  window.$ = window.jQuery = __webpack_require__(20);
+    window.Popper = __webpack_require__(42).default;
+    window.$ = window.jQuery = __webpack_require__(20);
 
-  __webpack_require__(93);
+    __webpack_require__(93);
 
-  __webpack_require__(94)(window, $);
+    __webpack_require__(94)(window, $);
 } catch (e) {}
 
 /**
@@ -44199,9 +44199,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -87690,6 +87690,7 @@ var map = {
 	"./components/PatientDiagnosesComponent.vue": 265,
 	"./components/PaymentComponent.vue": 268,
 	"./components/RecordComponent.vue": 271,
+	"./components/RecordComponent2.vue": 294,
 	"./components/VitalSignComponent.vue": 274,
 	"./components/VitalSignTableComponent.vue": 277
 };
@@ -89287,6 +89288,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -89296,7 +89300,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
     },
 
-    props: ['user_id'],
+    props: ['user_id', 'user_role'],
 
     data: function data() {
         return {
@@ -89512,7 +89516,9 @@ var render = function() {
                   _c(
                     "b-button",
                     {
-                      attrs: { disabled: _vm.patient_record_id ? false : true },
+                      attrs: {
+                        disabled: !_vm.patient_record_id || _vm.user_role == 5
+                      },
                       on: { click: _vm.showModalForm }
                     },
                     [_vm._v("New")]
@@ -89779,7 +89785,7 @@ var render = function() {
                 _c(
                   "b-button",
                   {
-                    attrs: { size: "sm" },
+                    attrs: { disabled: _vm.user_role == 5, size: "sm" },
                     on: {
                       click: function($event) {
                         _vm.showModalEdit(row.item)
@@ -89792,7 +89798,7 @@ var render = function() {
                 _c(
                   "b-button",
                   {
-                    attrs: { size: "sm" },
+                    attrs: { disabled: _vm.user_role == 5, size: "sm" },
                     on: {
                       click: function($event) {
                         _vm.showModalDelete(row.item, row.index, $event.target)
@@ -100826,7 +100832,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
     },
 
-    props: ['user_id'],
+    props: ['user_id', 'record_type', 'user_role'],
 
     data: function data() {
         return {
@@ -100855,7 +100861,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             filter: null,
             modalInfo: { title: '', content: '' },
             patientOptions: [{ text: 'All', value: 0 }, { text: 'Out Patient', value: 1 }, { text: 'In Patient', value: 2 }],
-            patientType: 0
+            patientType: this.record_type
         };
     },
     mounted: function mounted() {
@@ -102220,7 +102226,16 @@ var render = function() {
                 [
                   _c(
                     "b-col",
-                    { attrs: { md: "6" } },
+                    {
+                      attrs: {
+                        md:
+                          _vm.user_role == 1 ||
+                          _vm.user_role == 2 ||
+                          _vm.user_role == 3
+                            ? 6
+                            : 12
+                      }
+                    },
                     [
                       _c(
                         "b-form-group",
@@ -102567,157 +102582,470 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: { "label-cols-sm": "3", label: "Disposition" }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.dispositions },
-                                model: {
-                                  value: _vm.record.disposition,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "disposition", $$v)
-                                  },
-                                  expression: "record.disposition"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Result" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.results },
-                                model: {
-                                  value: _vm.record.result,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "result", $$v)
-                                  },
-                                  expression: "record.result"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            "label-cols-sm": "3",
-                            label: "Attending Physician"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.doctors },
-                                model: {
-                                  value: _vm.record.attending_physician,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.record,
-                                      "attending_physician",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "record.attending_physician"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            "label-cols-sm": "3",
-                            label: "Chart Completed By"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.doctors },
-                                model: {
-                                  value: _vm.record.completed_by,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "completed_by", $$v)
-                                  },
-                                  expression: "record.completed_by"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { attrs: { md: "6" } },
-                    [
-                      _c(
-                        "div",
-                        [
-                          _c(
+                      _vm.action == "edit"
+                        ? _c(
                             "b-form-group",
                             {
                               attrs: {
                                 "label-cols-sm": "3",
-                                label: "Chief Complaints"
+                                label: "Disposition"
                               }
                             },
                             [
                               _c(
                                 "b-input-group",
                                 [
-                                  _c("b-form-textarea", {
-                                    attrs: {
-                                      id: "textarea1",
-                                      placeholder: "Enter Chief Complaints",
-                                      rows: "3",
-                                      "max-rows": "6"
-                                    },
+                                  _c("v-select", {
+                                    attrs: { options: _vm.dispositions },
                                     model: {
-                                      value: _vm.record.chief_complaints,
+                                      value: _vm.record.disposition,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "disposition", $$v)
+                                      },
+                                      expression: "record.disposition"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.action == "edit"
+                        ? _c(
+                            "b-form-group",
+                            {
+                              attrs: { "label-cols-sm": "3", label: "Result" }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.results },
+                                    model: {
+                                      value: _vm.record.result,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "result", $$v)
+                                      },
+                                      expression: "record.result"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.action == "edit"
+                        ? _c(
+                            "b-form-group",
+                            {
+                              attrs: {
+                                "label-cols-sm": "3",
+                                label: "Attending Physician"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.doctors },
+                                    model: {
+                                      value: _vm.record.attending_physician,
                                       callback: function($$v) {
                                         _vm.$set(
                                           _vm.record,
-                                          "chief_complaints",
+                                          "attending_physician",
                                           $$v
                                         )
                                       },
-                                      expression: "record.chief_complaints"
+                                      expression: "record.attending_physician"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.action == "edit"
+                        ? _c(
+                            "b-form-group",
+                            {
+                              attrs: {
+                                "label-cols-sm": "3",
+                                label: "Chart Completed By"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.doctors },
+                                    model: {
+                                      value: _vm.record.completed_by,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.record,
+                                          "completed_by",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "record.completed_by"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.user_role == 1 || _vm.user_role == 2 || _vm.user_role == 3
+                    ? _c(
+                        "b-col",
+                        { attrs: { md: "6" } },
+                        [
+                          _c(
+                            "div",
+                            [
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: {
+                                    "label-cols-sm": "3",
+                                    label: "Chief Complaints"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("b-form-textarea", {
+                                        attrs: {
+                                          id: "textarea1",
+                                          placeholder: "Enter Chief Complaints",
+                                          rows: "3",
+                                          "max-rows": "6"
+                                        },
+                                        model: {
+                                          value: _vm.record.chief_complaints,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.record,
+                                              "chief_complaints",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "record.chief_complaints"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: {
+                                    "label-cols-sm": "3",
+                                    label: "Brief History"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("b-form-textarea", {
+                                        attrs: {
+                                          id: "textarea1",
+                                          placeholder: "Enter Brief History",
+                                          rows: "3",
+                                          "max-rows": "6"
+                                        },
+                                        model: {
+                                          value: _vm.record.brief_history,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.record,
+                                              "brief_history",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "record.brief_history"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("legend", [
+                            _vm._v(
+                              _vm._s(
+                                _vm.type_of_record && _vm.type_of_record == 2
+                                  ? "Admission"
+                                  : "Checkup"
+                              )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            {
+                              attrs: { "label-cols-sm": "3", label: "Doctor" }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.doctors },
+                                    model: {
+                                      value: _vm.record.addmission_doctor,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.record,
+                                          "addmission_doctor",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "record.addmission_doctor"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            { attrs: { "label-cols-sm": "3", label: "Date" } },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      type: "date",
+                                      placeholder: "Enter Date"
+                                    },
+                                    model: {
+                                      value: _vm.record.addmission_date,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.record,
+                                          "addmission_date",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "record.addmission_date"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            { attrs: { "label-cols-sm": "3", label: "Time" } },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      type: "time",
+                                      placeholder: "Enter Time"
+                                    },
+                                    model: {
+                                      value: _vm.record.addmission_time,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.record,
+                                          "addmission_time",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "record.addmission_time"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _vm.action == "edit" &&
+                          _vm.type_of_record &&
+                          _vm.type_of_record == 2
+                            ? _c(
+                                "div",
+                                [
+                                  _c("legend", [_vm._v("Discharged")]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-form-group",
+                                    {
+                                      attrs: {
+                                        "label-cols-sm": "3",
+                                        label: "Doctor"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "b-input-group",
+                                        [
+                                          _c("v-select", {
+                                            attrs: { options: _vm.doctors },
+                                            model: {
+                                              value:
+                                                _vm.record.discharged_doctor,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.record,
+                                                  "discharged_doctor",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "record.discharged_doctor"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-form-group",
+                                    {
+                                      attrs: {
+                                        "label-cols-sm": "3",
+                                        label: "Date"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "b-input-group",
+                                        [
+                                          _c("b-form-input", {
+                                            attrs: {
+                                              type: "date",
+                                              placeholder: "Enter Date"
+                                            },
+                                            model: {
+                                              value: _vm.record.discharged_date,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.record,
+                                                  "discharged_date",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "record.discharged_date"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-form-group",
+                                    {
+                                      attrs: {
+                                        "label-cols-sm": "3",
+                                        label: "Time"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "b-input-group",
+                                        [
+                                          _c("b-form-input", {
+                                            attrs: {
+                                              type: "time",
+                                              placeholder: "Enter Time"
+                                            },
+                                            model: {
+                                              value: _vm.record.discharged_time,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.record,
+                                                  "discharged_time",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "record.discharged_time"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("legend", [_vm._v("Initial Diagnoses")]),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            {
+                              attrs: {
+                                "label-cols-sm": "3",
+                                label: "Diagnoses Code"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.diagnoses },
+                                    model: {
+                                      value: _vm.record.diagnose,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "diagnose", $$v)
+                                      },
+                                      expression: "record.diagnose"
                                     }
                                   })
                                 ],
@@ -102732,8 +103060,38 @@ var render = function() {
                             {
                               attrs: {
                                 "label-cols-sm": "3",
-                                label: "Brief History"
+                                label: "Diagnoses"
                               }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      disabled: "",
+                                      type: "text",
+                                      placeholder: "Enter Diagnoses"
+                                    },
+                                    model: {
+                                      value: _vm.diagnose_name,
+                                      callback: function($$v) {
+                                        _vm.diagnose_name = $$v
+                                      },
+                                      expression: "diagnose_name"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            {
+                              attrs: { "label-cols-sm": "3", label: "Remarks" }
                             },
                             [
                               _c(
@@ -102742,20 +103100,16 @@ var render = function() {
                                   _c("b-form-textarea", {
                                     attrs: {
                                       id: "textarea1",
-                                      placeholder: "Enter Brief History",
+                                      placeholder: "Enter Remarks",
                                       rows: "3",
                                       "max-rows": "6"
                                     },
                                     model: {
-                                      value: _vm.record.brief_history,
+                                      value: _vm.record.remarks,
                                       callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.record,
-                                          "brief_history",
-                                          $$v
-                                        )
+                                        _vm.$set(_vm.record, "remarks", $$v)
                                       },
-                                      expression: "record.brief_history"
+                                      expression: "record.remarks"
                                     }
                                   })
                                 ],
@@ -102763,334 +103117,43 @@ var render = function() {
                               )
                             ],
                             1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("legend", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.type_of_record && _vm.type_of_record == 2
-                              ? "Admission"
-                              : "Checkup"
-                          )
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Doctor" } },
-                        [
+                          ),
+                          _vm._v(" "),
+                          _c("legend", [_vm._v("Patient Status")]),
+                          _vm._v(" "),
                           _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.doctors },
-                                model: {
-                                  value: _vm.record.addmission_doctor,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.record,
-                                      "addmission_doctor",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "record.addmission_doctor"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Date" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "date",
-                                  placeholder: "Enter Date"
-                                },
-                                model: {
-                                  value: _vm.record.addmission_date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "addmission_date", $$v)
-                                  },
-                                  expression: "record.addmission_date"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Time" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "time",
-                                  placeholder: "Enter Time"
-                                },
-                                model: {
-                                  value: _vm.record.addmission_time,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "addmission_time", $$v)
-                                  },
-                                  expression: "record.addmission_time"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _vm.type_of_record && _vm.type_of_record == 2
-                        ? _c(
                             "div",
                             [
-                              _c("legend", [_vm._v("Discharged")]),
-                              _vm._v(" "),
                               _c(
-                                "b-form-group",
+                                "b-form-checkbox",
                                 {
                                   attrs: {
-                                    "label-cols-sm": "3",
-                                    label: "Doctor"
+                                    id: "checkbox1",
+                                    name: "checkbox1",
+                                    value: 1,
+                                    "unchecked-value": 0
+                                  },
+                                  model: {
+                                    value: _vm.record.discharged,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.record, "discharged", $$v)
+                                    },
+                                    expression: "record.discharged"
                                   }
                                 },
                                 [
-                                  _c(
-                                    "b-input-group",
-                                    [
-                                      _c("v-select", {
-                                        attrs: { options: _vm.doctors },
-                                        model: {
-                                          value: _vm.record.discharged_doctor,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.record,
-                                              "discharged_doctor",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "record.discharged_doctor"
-                                        }
-                                      })
-                                    ],
-                                    1
+                                  _vm._v(
+                                    "\n                Discharged\n              "
                                   )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "b-form-group",
-                                {
-                                  attrs: { "label-cols-sm": "3", label: "Date" }
-                                },
-                                [
-                                  _c(
-                                    "b-input-group",
-                                    [
-                                      _c("b-form-input", {
-                                        attrs: {
-                                          type: "date",
-                                          placeholder: "Enter Date"
-                                        },
-                                        model: {
-                                          value: _vm.record.discharged_date,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.record,
-                                              "discharged_date",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "record.discharged_date"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "b-form-group",
-                                {
-                                  attrs: { "label-cols-sm": "3", label: "Time" }
-                                },
-                                [
-                                  _c(
-                                    "b-input-group",
-                                    [
-                                      _c("b-form-input", {
-                                        attrs: {
-                                          type: "time",
-                                          placeholder: "Enter Time"
-                                        },
-                                        model: {
-                                          value: _vm.record.discharged_time,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.record,
-                                              "discharged_time",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "record.discharged_time"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
+                                ]
                               )
                             ],
                             1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("legend", [_vm._v("Initial Diagnoses")]),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            "label-cols-sm": "3",
-                            label: "Diagnoses Code"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.diagnoses },
-                                model: {
-                                  value: _vm.record.diagnose,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "diagnose", $$v)
-                                  },
-                                  expression: "record.diagnose"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Diagnoses" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  disabled: "",
-                                  type: "text",
-                                  placeholder: "Enter Diagnoses"
-                                },
-                                model: {
-                                  value: _vm.diagnose_name,
-                                  callback: function($$v) {
-                                    _vm.diagnose_name = $$v
-                                  },
-                                  expression: "diagnose_name"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Remarks" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-textarea", {
-                                attrs: {
-                                  id: "textarea1",
-                                  placeholder: "Enter Remarks",
-                                  rows: "3",
-                                  "max-rows": "6"
-                                },
-                                model: {
-                                  value: _vm.record.remarks,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "remarks", $$v)
-                                  },
-                                  expression: "record.remarks"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("legend", [_vm._v("Patient Status")]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        [
-                          _c(
-                            "b-form-checkbox",
-                            {
-                              attrs: {
-                                id: "checkbox1",
-                                name: "checkbox1",
-                                value: 1,
-                                "unchecked-value": 0
-                              },
-                              model: {
-                                value: _vm.record.discharged,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.record, "discharged", $$v)
-                                },
-                                expression: "record.discharged"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                Discharged\n              "
-                              )
-                            ]
                           )
                         ],
                         1
                       )
-                    ],
-                    1
-                  )
+                    : _vm._e()
                 ],
                 1
               )
@@ -111179,6 +111242,2857 @@ S2.define('jquery.select2',[
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(295)
+/* template */
+var __vue_template__ = __webpack_require__(296)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/RecordComponent2.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-29867971", Component.options)
+  } else {
+    hotAPI.reload("data-v-29867971", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 295 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
+    },
+
+    props: ['user_id'],
+
+    data: function data() {
+        return {
+            record: {},
+            records: [],
+            patients: [],
+            floors: [],
+            rooms: [],
+            philhealthMemberShips: [],
+            dispositions: [],
+            results: [],
+            doctors: [],
+            diagnoses: [],
+            type_of_record: null,
+            typeOfRecords: [],
+            selected_id: null,
+            action: 'store' | 'update',
+            fields: [{ key: 'patient', label: 'Patient', sortable: true, sortDirection: 'desc' }, { key: 'patient-type', label: 'Type Of Patient', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'addmitted_and_check_up_date', label: 'Date', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'addmitted_and_check_up_time', label: 'Time', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'room', label: 'Room', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
+            currentPage: 1,
+            perPage: 5,
+            totalRows: 1,
+            pageOptions: [5, 10, 15],
+            sortBy: null,
+            sortDesc: false,
+            sortDirection: 'asc',
+            filter: null,
+            modalInfo: { title: '', content: '' },
+            patientOptions: [{ text: 'All', value: 0 }, { text: 'Out Patient', value: 1 }, { text: 'In Patient', value: 2 }],
+            patientType: 0
+        };
+    },
+    mounted: function mounted() {
+        this.getRecords();
+        this.getPatients();
+        this.getFloors();
+        this.getRooms();
+        this.getPhilhealthMemberShip();
+        this.getResults();
+        this.getDispositions();
+        this.getDoctors();
+        this.getDiagnoses();
+        this.getTypeOfRecords();
+    },
+
+    computed: {
+        sortOptions: function sortOptions() {
+            // Create an options list from our fields
+            return this.fields.filter(function (f) {
+                return f.sortable;
+            }).map(function (f) {
+                return { text: f.label, value: f.key };
+            });
+        },
+
+        diagnose_name: function diagnose_name() {
+            var description = this.record.diagnose ? this.record.diagnose.data.description : null;
+            this.record.diagnoses_description = description;
+            return description;
+        }
+    },
+    methods: {
+        resetModal: function resetModal() {
+            this.modalInfo.title = '';
+            this.modalInfo.content = '';
+            this.selected_id = null;
+        },
+        onFiltered: function onFiltered(filteredItems) {
+            // Trigger pagination to update the number of buttons/pages due to filtering
+            console.log('filter', filteredItems);
+            this.totalRows = filteredItems.length;
+            this.currentPage = 1;
+        },
+        getRecords: function getRecords() {
+            var _this = this;
+
+            axios.get(this.getUrl()).then(function (response) {
+                _this.records = response.data;
+                _this.totalRows = _this.records.length;
+                console.log(_this.records, _this.totalRows);
+            });
+        },
+        getSelectedPatientType: function getSelectedPatientType(event) {
+            this.patientType = event;
+            this.getRecords();
+        },
+        showModalDelete: function showModalDelete(item, index, button) {
+            this.modalInfo.title = 'Record';
+            this.modalInfo.content = 'Are you sure you want to delete?';
+            this.$root.$emit('bv::show::modal', 'modalDelete', button);
+            this.selected_id = item.id;
+        },
+        onDelete: function onDelete() {
+            var _this2 = this;
+
+            axios.delete('/api/records/' + this.selected_id).then(function (response) {
+                if (response.data == 'success') {
+                    _this2.getRecords();
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Deleted.', 'success');
+                }
+            }).catch(function (response) {
+                console.log(response);
+            });
+        },
+        showModalForm: function showModalForm() {
+            this.action = 'store';
+            this.record = {};
+            this.modalInfo.title = "Record";
+            this.$root.$emit('bv::show::modal', 'modalRecordForm');
+        },
+        onSubmit: function onSubmit(action) {
+            var _this3 = this;
+
+            console.log('submit', this.record);
+            if (action === 'store') {
+                axios.post('/api/records', {
+                    addmission_date: this.record.addmission_date,
+                    addmission_doctor: this.record.addmission_doctor ? this.record.addmission_doctor.value : null,
+                    addmission_time: this.record.addmission_time,
+                    attending_physician: this.record.attending_physician ? this.record.attending_physician.value : null,
+                    bed: this.record.bed,
+                    blood_pressure: this.record.blood_pressure,
+                    brief_history: this.record.brief_history,
+                    chief_complaints: this.record.chief_complaints,
+                    completed_by: this.record.completed_by ? this.record.completed_by.value : null,
+                    diagnose: this.record.diagnose ? this.record.diagnose.value : null,
+                    diagnoses_description: this.record.diagnoses_description,
+                    discharged_date: this.record.discharged_date,
+                    discharged_doctor: this.record.discharged_doctor ? this.record.discharged_doctor.value : null,
+                    discharged_time: this.record.discharged_time,
+                    disposition: this.record.disposition ? this.record.disposition.value : null,
+                    floor: this.record.floor ? this.record.floor.value : null,
+                    height: this.record.height,
+                    patient: this.record.patient.value,
+                    philhealthMemberShip: this.record.philhealthMemberShip ? this.record.philhealthMemberShip.value : null,
+                    pulse_rate: this.record.pulse_rate,
+                    remarks: this.record.remarks,
+                    result: this.record.result ? this.record.result.value : null,
+                    room: this.record.room ? this.record.room.value : null,
+                    sponsor: this.record.sponsor,
+                    temperature: this.record.temperature,
+                    typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
+                    weight: this.record.weight,
+                    discharged: this.record.discharged
+                }).then(function (response) {
+                    console.log('return', response.data);
+                    if (response.data == 'success') {
+                        _this3.getRecords();
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
+                        _this3.$root.$emit('bv::hide::modal', 'modalRecordForm');
+                    }
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            } else {
+                axios.put('/api/records/' + this.selected_id, {
+                    addmission_date: this.record.addmission_date,
+                    addmission_doctor: this.record.addmission_doctor ? this.record.addmission_doctor.value : null,
+                    addmission_time: this.record.addmission_time,
+                    attending_physician: this.record.attending_physician ? this.record.attending_physician.value : null,
+                    bed: this.record.bed,
+                    blood_pressure: this.record.blood_pressure,
+                    brief_history: this.record.brief_history,
+                    chief_complaints: this.record.chief_complaints,
+                    completed_by: this.record.completed_by ? this.record.completed_by.value : null,
+                    diagnose: this.record.diagnose ? this.record.diagnose.value : null,
+                    diagnoses_description: this.record.diagnoses_description,
+                    discharged_date: this.record.discharged_date,
+                    discharged_doctor: this.record.discharged_doctor ? this.record.discharged_doctor.value : null,
+                    discharged_time: this.record.discharged_time,
+                    disposition: this.record.disposition ? this.record.disposition.value : null,
+                    floor: this.record.floor ? this.record.floor.value : null,
+                    height: this.record.height,
+                    patient: this.record.patient.value,
+                    philhealthMemberShip: this.record.philhealthMemberShip ? this.record.philhealthMemberShip.value : null,
+                    pulse_rate: this.record.pulse_rate,
+                    remarks: this.record.remarks,
+                    result: this.record.result ? this.record.result.value : null,
+                    room: this.record.room ? this.record.room.value : null,
+                    sponsor: this.record.sponsor,
+                    temperature: this.record.temperature,
+                    typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
+                    weight: this.record.weight,
+                    discharged: this.record.discharged
+                }).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'success') {
+                        _this3.getRecords();
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Updated.', 'success');
+                        _this3.$root.$emit('bv::hide::modal', 'modalRecordForm');
+                    }
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            }
+        },
+        hideModal: function hideModal() {
+            this.$root.$emit('bv::hide::modal', 'modalRecordForm');
+        },
+        showModalEdit: function showModalEdit(item) {
+            var _this4 = this;
+
+            this.action = 'edit';
+            this.selected_id = item.id;
+            axios.get('/api/records/' + this.selected_id + '/edit').then(function (response) {
+                console.log('edit', response.data);
+                _this4.record = response.data;
+                _this4.record.addmission_date = response.data.addmitted_and_check_up_date;
+                _this4.record.addmission_time = response.data.addmitted_and_check_up_time;
+                _this4.record.discharged_date = response.data.discharge_date;
+                _this4.record.discharged_time = response.data.discharge_time;
+                _this4.record.discharged = response.data.discharged;
+                if (response.data.record_type) {
+                    _this4.record.typeOfRecord = {
+                        label: response.data.record_type.code,
+                        value: response.data.record_type.id
+                    };
+                }
+                if (response.data.patient) {
+                    _this4.record.patient = {
+                        label: response.data.patient.first_name + ' ' + response.data.patient.middle_name + ' ' + response.data.patient.last_name,
+                        value: response.data.patient.id
+                    };
+                }
+                if (response.data.floor) {
+                    _this4.record.floor = {
+                        label: response.data.floor.code,
+                        value: response.data.floor.id
+                    };
+                }
+                if (response.data.room) {
+                    _this4.record.room = {
+                        label: response.data.room.code,
+                        value: response.data.room.id
+                    };
+                }
+                if (response.data.philhealth_membership) {
+                    _this4.record.philhealthMemberShip = {
+                        label: response.data.philhealth_membership.code,
+                        value: response.data.philhealth_membership.id
+                    };
+                }
+                if (response.data.disposition) {
+                    _this4.record.disposition = {
+                        label: response.data.disposition.code,
+                        value: response.data.disposition.id
+                    };
+                }
+                if (response.data.result) {
+                    _this4.record.result = {
+                        label: response.data.result.code,
+                        value: response.data.result.id
+                    };
+                }
+                if (response.data.physician) {
+                    _this4.record.attending_physician = {
+                        label: response.data.physician.first_name + ' ' + response.data.physician.middle_name + ' ' + response.data.physician.last_name,
+                        value: response.data.physician.id
+                    };
+                }
+                if (response.data.chart_completed_by) {
+                    _this4.record.completed_by = {
+                        label: response.data.chart_completed_by.first_name + ' ' + response.data.chart_completed_by.middle_name + ' ' + response.data.chart_completed_by.last_name,
+                        value: response.data.chart_completed_by.id
+                    };
+                }
+                if (response.data.admit_checkup_by) {
+                    _this4.record.addmission_doctor = {
+                        label: response.data.admit_checkup_by.first_name + ' ' + response.data.admit_checkup_by.middle_name + ' ' + response.data.admit_checkup_by.last_name,
+                        value: response.data.admit_checkup_by.id
+                    };
+                }
+                if (response.data.discharged_by) {
+                    _this4.record.discharged_doctor = {
+                        label: response.data.discharged_by.first_name + ' ' + response.data.discharged_by.middle_name + ' ' + response.data.discharged_by.last_name,
+                        value: response.data.discharged_by.id
+                    };
+                }
+                if (response.data.initial_diagnoses) {
+                    _this4.record.remarks = response.data.initial_diagnoses.remarks;
+                    _this4.record.diagnose = {
+                        label: response.data.initial_diagnoses.diagnose.code,
+                        value: response.data.initial_diagnoses.diagnose_id,
+                        data: response.data.initial_diagnoses.diagnose
+                    };
+                }
+                _this4.modalInfo.title = "Record";
+                _this4.$root.$emit('bv::show::modal', 'modalRecordForm');
+            });
+        },
+        getUrl: function getUrl() {
+
+            if (this.patientType == 0) {
+                return '/api/records';
+            } else {
+                return '/api/records/' + this.patientType;
+            }
+        },
+        showMedication: function showMedication(item) {
+            this.selected_id = item.id;
+            this.modalInfo.title = "Medication";
+            this.$root.$emit('bv::show::modal', 'modalMedication');
+        },
+
+
+        // modal entry
+        getPatients: function getPatients() {
+            var _this5 = this;
+
+            axios.get('/api/patients').then(function (response) {
+                _this5.patients = response.data.map(function (patient) {
+                    return {
+                        value: patient.id,
+                        label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name
+                    };
+                });
+            });
+        },
+        getFloors: function getFloors() {
+            var _this6 = this;
+
+            axios.get('/api/floors').then(function (response) {
+                _this6.floors = response.data.map(function (floor) {
+                    return {
+                        value: floor.id,
+                        label: floor.code
+                    };
+                });
+            });
+        },
+        getRooms: function getRooms() {
+            var _this7 = this;
+
+            axios.get('/api/rooms').then(function (response) {
+                _this7.rooms = response.data.map(function (room) {
+                    return {
+                        value: room.id,
+                        label: room.code
+                    };
+                });
+            });
+        },
+        getPhilhealthMemberShip: function getPhilhealthMemberShip() {
+            var _this8 = this;
+
+            axios.get('/api/philhealthMemberShip').then(function (response) {
+                _this8.philhealthMemberShips = response.data.map(function (philhealthMemberShip) {
+                    return {
+                        value: philhealthMemberShip.id,
+                        label: philhealthMemberShip.code
+                    };
+                });
+            });
+        },
+        getDispositions: function getDispositions() {
+            var _this9 = this;
+
+            axios.get('/api/dispositions').then(function (response) {
+                _this9.dispositions = response.data.map(function (disposition) {
+                    return {
+                        value: disposition.id,
+                        label: disposition.code
+                    };
+                });
+            });
+        },
+        getResults: function getResults() {
+            var _this10 = this;
+
+            axios.get('/api/results').then(function (response) {
+                _this10.results = response.data.map(function (result) {
+                    return {
+                        value: result.id,
+                        label: result.code
+                    };
+                });
+            });
+        },
+        getDoctors: function getDoctors() {
+            var _this11 = this;
+
+            axios.get('/api/users').then(function (response) {
+                _this11.doctors = response.data.map(function (user) {
+                    return {
+                        value: user.id,
+                        label: user.first_name + ' ' + user.middle_name + ' ' + user.last_name
+                    };
+                });
+            });
+        },
+        getDiagnoses: function getDiagnoses() {
+            var _this12 = this;
+
+            axios.get('/api/diagnoses').then(function (response) {
+                _this12.diagnoses = response.data.map(function (diagnose) {
+                    return {
+                        value: diagnose.id,
+                        label: diagnose.code,
+                        data: diagnose
+                    };
+                });
+            });
+        },
+        getTypeOfRecords: function getTypeOfRecords() {
+            var _this13 = this;
+
+            axios.get('/api/typeOfRecords').then(function (response) {
+                _this13.typeOfRecords = response.data.map(function (type) {
+                    return {
+                        value: type.id,
+                        label: type.code
+                    };
+                });
+            });
+        },
+        getTypeOfRecordBy: function getTypeOfRecordBy(event) {
+            if (event) {
+                this.record.typeOfRecord = event;
+                this.type_of_record = event.value;
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 296 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Record" }
+                },
+                [
+                  _c("b-button", { on: { click: _vm.showModalForm } }, [
+                    _vm._v("New")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Type of Patient" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.patientOptions },
+                    on: { change: _vm.getSelectedPatientType },
+                    model: {
+                      value: _vm.patientType,
+                      callback: function($$v) {
+                        _vm.patientType = $$v
+                      },
+                      expression: "patientType"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Filter" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Type to Search" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Clear")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Sort" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { options: _vm.sortOptions },
+                          model: {
+                            value: _vm.sortBy,
+                            callback: function($$v) {
+                              _vm.sortBy = $$v
+                            },
+                            expression: "sortBy"
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { slot: "first" },
+                              domProps: { value: null },
+                              slot: "first"
+                            },
+                            [_vm._v("-- none --")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append", disabled: !_vm.sortBy },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDesc,
+                            callback: function($$v) {
+                              _vm.sortDesc = $$v
+                            },
+                            expression: "sortDesc"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: false } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: true } }, [
+                            _vm._v("Desc")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Sort direction" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append" },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDirection,
+                            callback: function($$v) {
+                              _vm.sortDirection = $$v
+                            },
+                            expression: "sortDirection"
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "asc" } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "desc" } }, [
+                            _vm._v("Desc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "last" } }, [
+                            _vm._v("Last")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Per page" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.records,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc,
+          "sort-direction": _vm.sortDirection
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "patient",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      row.item.patient.first_name +
+                        " " +
+                        row.item.patient.last_name
+                    ) +
+                    "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "patient-type",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " + _vm._s(row.item.record_type.code) + "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "room",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      row.item.record_type.id == 2
+                        ? row.item.room
+                          ? row.item.room.code
+                          : null
+                        : null
+                    ) +
+                    "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-button",
+                  { attrs: { size: "sm" }, on: { click: row.toggleDetails } },
+                  [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(row.detailsShowing ? "Hide" : "Show") +
+                        " Details\n      "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showMedication(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Medication\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalEdit(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Edit\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalDelete(row.item, row.index, $event.target)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Delete\n      ")]
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-card",
+                  [
+                    _c(
+                      "b-row",
+                      [
+                        _c(
+                          "b-col",
+                          { attrs: { md: "6" } },
+                          [
+                            _c("legend", [_vm._v("Information")]),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Patient"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.patient.first_name +
+                                          " " +
+                                          row.item.patient.middle_name +
+                                          " " +
+                                          row.item.patient.last_name
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Type Of Patient"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.record_type.code) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Attending Physician"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.physician
+                                          ? row.item.physician.first_name +
+                                              " " +
+                                              row.item.physician.last_name
+                                          : null
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Height" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.height) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Weight" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.weight) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Blood Pressure"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.blood_pressure) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Pulse Rate"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.pulse_rate) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Temperature"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.temperature) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Brief History"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.brief_history) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Chief Complaints"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.chief_complaints) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-col",
+                          { attrs: { md: "6" } },
+                          [
+                            _c("legend", [
+                              _vm._v(
+                                _vm._s(
+                                  row.item.record_type.id == 1
+                                    ? "Checkup"
+                                    : "Admitted"
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              { attrs: { "label-cols-sm": "3", label: "By" } },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.admit_checkup_by
+                                          ? row.item.admit_checkup_by
+                                              .first_name +
+                                              " " +
+                                              row.item.admit_checkup_by
+                                                .last_name
+                                          : null
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Date" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.addmitted_and_check_up_date
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Time" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.addmitted_and_check_up_time
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            row.item.record_type.id == 2
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c("legend", [_vm._v("Discharged")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "By"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item.admit_checkup_by
+                                                  ? row.item.admit_checkup_by
+                                                      .first_name +
+                                                      " " +
+                                                      row.item.admit_checkup_by
+                                                        .last_name
+                                                  : null
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "Date"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item
+                                                  .addmitted_and_check_up_time
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "Time"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item
+                                                  .addmitted_and_check_up_time
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c("b-pagination", {
+                staticClass: "my-0",
+                attrs: { "total-rows": _vm.totalRows, "per-page": _vm.perPage },
+                model: {
+                  value: _vm.currentPage,
+                  callback: function($$v) {
+                    _vm.currentPage = $$v
+                  },
+                  expression: "currentPage"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalInfo", title: _vm.modalInfo.title, "ok-only": "" },
+          on: { hide: _vm.resetModal }
+        },
+        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalDelete", title: _vm.modalInfo.title },
+          on: { hide: _vm.resetModal, ok: _vm.onDelete }
+        },
+        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modalMedication",
+            title: _vm.modalInfo.title,
+            size: "lg",
+            "ok-only": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _c(
+            "b-tabs",
+            { attrs: { "content-class": "mt-3" } },
+            [
+              _c(
+                "b-tab",
+                { attrs: { title: "Diagnoses", active: "" } },
+                [
+                  _c("diagnoses-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Laboratory" } },
+                [
+                  _c("laboratory-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Vital Sign" } },
+                [
+                  _c("vital-sign-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Doctor's Order" } },
+                [
+                  _c("doctors-order-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Nurse Note" } },
+                [
+                  _c("nurses-note-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Intravenous Fuid" } },
+                [
+                  _c("intravenous-fluid-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Medication & Treatment" } },
+                [
+                  _c("medication-and-treatment-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modalRecordForm",
+            title: _vm.modalInfo.title,
+            size: "lg"
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.stopPropagation()
+                  $event.preventDefault()
+                  return _vm.onSubmit($event)
+                }
+              }
+            },
+            [
+              _c(
+                "b-row",
+                [
+                  _c(
+                    "b-col",
+                    { attrs: { md: "6" } },
+                    [
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Patient" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.patients },
+                                model: {
+                                  value: _vm.record.patient,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "patient", $$v)
+                                  },
+                                  expression: "record.patient"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Status" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  options: _vm.typeOfRecords,
+                                  onChange: _vm.getTypeOfRecordBy
+                                },
+                                model: {
+                                  value: _vm.record.typeOfRecord,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "typeOfRecord", $$v)
+                                  },
+                                  expression: "record.typeOfRecord"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.type_of_record && _vm.type_of_record == 2
+                        ? _c(
+                            "b-form-group",
+                            { attrs: { "label-cols-sm": "3", label: "Floor" } },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.floors },
+                                    model: {
+                                      value: _vm.record.floor,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "floor", $$v)
+                                      },
+                                      expression: "record.floor"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.record.floor &&
+                      _vm.type_of_record &&
+                      _vm.type_of_record == 2
+                        ? _c(
+                            "b-form-group",
+                            { attrs: { "label-cols-sm": "3", label: "Room" } },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.rooms },
+                                    model: {
+                                      value: _vm.record.room,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "room", $$v)
+                                      },
+                                      expression: "record.room"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.type_of_record && _vm.type_of_record == 2
+                        ? _c(
+                            "b-form-group",
+                            { attrs: { "label-cols-sm": "3", label: "Bed" } },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Enter Bed"
+                                    },
+                                    model: {
+                                      value: _vm.record.bed,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "bed", $$v)
+                                      },
+                                      expression: "record.bed"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Weight" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Weight"
+                                },
+                                model: {
+                                  value: _vm.record.weight,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "weight", $$v)
+                                  },
+                                  expression: "record.weight"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Height" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Height"
+                                },
+                                model: {
+                                  value: _vm.record.height,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "height", $$v)
+                                  },
+                                  expression: "record.height"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: { "label-cols-sm": "3", label: "Temperature" }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Temperature"
+                                },
+                                model: {
+                                  value: _vm.record.temperature,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "temperature", $$v)
+                                  },
+                                  expression: "record.temperature"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Blood Pressure"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Blood Pressure"
+                                },
+                                model: {
+                                  value: _vm.record.blood_pressure,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "blood_pressure", $$v)
+                                  },
+                                  expression: "record.blood_pressure"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: { "label-cols-sm": "3", label: "Pulse Rate" }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Pulse Rate"
+                                },
+                                model: {
+                                  value: _vm.record.pulse_rate,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "pulse_rate", $$v)
+                                  },
+                                  expression: "record.pulse_rate"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("legend", [_vm._v("Additional Information")]),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Philhealth Membership"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.philhealthMemberShips },
+                                model: {
+                                  value: _vm.record.philhealthMemberShip,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.record,
+                                      "philhealthMemberShip",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "record.philhealthMemberShip"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.record.philhealthMemberShip &&
+                      _vm.record.philhealthMemberShip.value === 5
+                        ? _c(
+                            "b-form-group",
+                            {
+                              attrs: { "label-cols-sm": "3", label: "Sponsor" }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Enter Sponsor"
+                                    },
+                                    model: {
+                                      value: _vm.record.sponsor,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "sponsor", $$v)
+                                      },
+                                      expression: "record.sponsor"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: { "label-cols-sm": "3", label: "Disposition" }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.dispositions },
+                                model: {
+                                  value: _vm.record.disposition,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "disposition", $$v)
+                                  },
+                                  expression: "record.disposition"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Result" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.results },
+                                model: {
+                                  value: _vm.record.result,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "result", $$v)
+                                  },
+                                  expression: "record.result"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Attending Physician"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.doctors },
+                                model: {
+                                  value: _vm.record.attending_physician,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.record,
+                                      "attending_physician",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "record.attending_physician"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Chart Completed By"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.doctors },
+                                model: {
+                                  value: _vm.record.completed_by,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "completed_by", $$v)
+                                  },
+                                  expression: "record.completed_by"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { attrs: { md: "6" } },
+                    [
+                      _c(
+                        "div",
+                        [
+                          _c(
+                            "b-form-group",
+                            {
+                              attrs: {
+                                "label-cols-sm": "3",
+                                label: "Chief Complaints"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-textarea", {
+                                    attrs: {
+                                      id: "textarea1",
+                                      placeholder: "Enter Chief Complaints",
+                                      rows: "3",
+                                      "max-rows": "6"
+                                    },
+                                    model: {
+                                      value: _vm.record.chief_complaints,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.record,
+                                          "chief_complaints",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "record.chief_complaints"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            {
+                              attrs: {
+                                "label-cols-sm": "3",
+                                label: "Brief History"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-textarea", {
+                                    attrs: {
+                                      id: "textarea1",
+                                      placeholder: "Enter Brief History",
+                                      rows: "3",
+                                      "max-rows": "6"
+                                    },
+                                    model: {
+                                      value: _vm.record.brief_history,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.record,
+                                          "brief_history",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "record.brief_history"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("legend", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.type_of_record && _vm.type_of_record == 2
+                              ? "Admission"
+                              : "Checkup"
+                          )
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Doctor" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.doctors },
+                                model: {
+                                  value: _vm.record.addmission_doctor,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.record,
+                                      "addmission_doctor",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "record.addmission_doctor"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Date" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "date",
+                                  placeholder: "Enter Date"
+                                },
+                                model: {
+                                  value: _vm.record.addmission_date,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "addmission_date", $$v)
+                                  },
+                                  expression: "record.addmission_date"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Time" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "time",
+                                  placeholder: "Enter Time"
+                                },
+                                model: {
+                                  value: _vm.record.addmission_time,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "addmission_time", $$v)
+                                  },
+                                  expression: "record.addmission_time"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.type_of_record && _vm.type_of_record == 2
+                        ? _c(
+                            "div",
+                            [
+                              _c("legend", [_vm._v("Discharged")]),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: {
+                                    "label-cols-sm": "3",
+                                    label: "Doctor"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("v-select", {
+                                        attrs: { options: _vm.doctors },
+                                        model: {
+                                          value: _vm.record.discharged_doctor,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.record,
+                                              "discharged_doctor",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "record.discharged_doctor"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: { "label-cols-sm": "3", label: "Date" }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("b-form-input", {
+                                        attrs: {
+                                          type: "date",
+                                          placeholder: "Enter Date"
+                                        },
+                                        model: {
+                                          value: _vm.record.discharged_date,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.record,
+                                              "discharged_date",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "record.discharged_date"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: { "label-cols-sm": "3", label: "Time" }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("b-form-input", {
+                                        attrs: {
+                                          type: "time",
+                                          placeholder: "Enter Time"
+                                        },
+                                        model: {
+                                          value: _vm.record.discharged_time,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.record,
+                                              "discharged_time",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "record.discharged_time"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("legend", [_vm._v("Initial Diagnoses")]),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Diagnoses Code"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.diagnoses },
+                                model: {
+                                  value: _vm.record.diagnose,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "diagnose", $$v)
+                                  },
+                                  expression: "record.diagnose"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Diagnoses" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  disabled: "",
+                                  type: "text",
+                                  placeholder: "Enter Diagnoses"
+                                },
+                                model: {
+                                  value: _vm.diagnose_name,
+                                  callback: function($$v) {
+                                    _vm.diagnose_name = $$v
+                                  },
+                                  expression: "diagnose_name"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Remarks" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-textarea", {
+                                attrs: {
+                                  id: "textarea1",
+                                  placeholder: "Enter Remarks",
+                                  rows: "3",
+                                  "max-rows": "6"
+                                },
+                                model: {
+                                  value: _vm.record.remarks,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "remarks", $$v)
+                                  },
+                                  expression: "record.remarks"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("legend", [_vm._v("Patient Status")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        [
+                          _c(
+                            "b-form-checkbox",
+                            {
+                              attrs: {
+                                id: "checkbox1",
+                                name: "checkbox1",
+                                value: 1,
+                                "unchecked-value": 0
+                              },
+                              model: {
+                                value: _vm.record.discharged,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.record, "discharged", $$v)
+                                },
+                                expression: "record.discharged"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                Discharged\n              "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { attrs: { slot: "modal-footer" }, slot: "modal-footer" },
+            [
+              _c("b-button", { on: { click: _vm.hideModal } }, [
+                _vm._v("Cancel")
+              ]),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  attrs: {
+                    variant: "primary",
+                    disabled: !(
+                      _vm.record &&
+                      _vm.record.patient &&
+                      _vm.record.typeOfRecord
+                    )
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.onSubmit(_vm.action)
+                    }
+                  }
+                },
+                [_vm._v("Save")]
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-29867971", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
