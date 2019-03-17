@@ -23,7 +23,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
-                  {{-- <th>Floor</th> --}}
+                  <th>Floor</th>
                   <th>Room Type</th>
                   <th>capacity</th>
                   <th>Occupied</th>
@@ -36,7 +36,7 @@
                   <tr>
                       <td>{{ $room->id }}</td>
                       <td>{{ $room->code }}</td>
-                      {{-- <td>{{ $room->floor->code }}</td> --}}
+                      <td>{{ $room->floor->code }}</td>
                       <td>{{ $room->room_type->code }}</td>
                       <td>{{ $room->capacity }}</td>
                       <td>{{ $room->records->count() }}</td>
