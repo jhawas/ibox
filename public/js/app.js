@@ -102289,9 +102289,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _vm.record.floor &&
-                      _vm.type_of_record &&
-                      _vm.type_of_record == 2
+                      _vm.type_of_record && _vm.type_of_record == 2
                         ? _c(
                             "b-form-group",
                             { attrs: { "label-cols-sm": "3", label: "Room" } },

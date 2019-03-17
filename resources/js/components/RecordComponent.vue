@@ -277,7 +277,7 @@
             <b-form-group 
               label-cols-sm="3" 
               label="Room" 
-              v-if="record.floor && type_of_record && type_of_record == 2"
+              v-if="type_of_record && type_of_record == 2"
             >
               <b-input-group>
                 <v-select :options="rooms" v-model="record.room"></v-select>
