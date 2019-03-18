@@ -26,6 +26,7 @@
                   <th>Username</th>
                   <th>Email</th>
                   <th>Role</th>
+                  <th>Contact No.</th>
                   <th>specialty</th>
                   <th>Action</th>
                 </tr>
@@ -38,6 +39,7 @@
                       <td>{{ $user->username }}</td>
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->user_role->role->name }}</td>
+                      <td>{{ $user->contact_no }}</td>
                       <td>{{ $user->specialty }}</td>
                       <td>
                         <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-primary">

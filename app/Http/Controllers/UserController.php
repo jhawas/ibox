@@ -73,6 +73,7 @@ class UserController extends Controller
         $user->birthdate = $request->birthdate;
         $user->sex = $request->sex;
         $user->specialty = $request->specialty;
+        $user->contact_no = $request->contact_no;
         $user->save();
         $user->user_role()->save($user_role);
 
@@ -130,6 +131,7 @@ class UserController extends Controller
         $user->birthdate = $request->birthdate;
         $user->sex = $request->sex;
         $user->specialty = $request->specialty;
+        $user->contact_no = $request->contact_no;
         $user->user_role()->update(['role_id' => $request->role]);
         $user->save();
         return redirect()->route('users.index');

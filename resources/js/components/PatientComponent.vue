@@ -74,6 +74,10 @@
           {{row.item.first_name + ' ' + row.item.last_name}}
       </template>
 
+      <template slot="age" slot-scope="row">
+          {{getAge(row.item.birthdate)}}
+      </template>
+
       <template slot="actions" slot-scope="row">
         <b-button size="sm" @click="row.toggleDetails">
             {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
@@ -114,6 +118,11 @@
                     <b-form-group label-cols-sm="2" label="Birthdate" class="mb-0">
                       <b-input-group>
                         {{row.item.birthdate}}
+                      </b-input-group>
+                    </b-form-group>
+                    <b-form-group label-cols-sm="2" label="Age" class="mb-0">
+                      <b-input-group>
+                        {{getAge(row.item.birthdate) + getAge(row.item.birthdate) > 1 ? 'years' : 'year' + ' old'}}
                       </b-input-group>
                     </b-form-group>
                     <b-form-group label-cols-sm="2" label="Sex" class="mb-0">
@@ -409,6 +418,7 @@
 <script>
     import vSelect from 'vue-select';
     import Swal from 'sweetalert2';
+    import moment from 'moment';
 
   export default {
     components : {
@@ -423,6 +433,7 @@
         action: 'store' | 'update',
         fields: [
           { key: 'name', label: 'Name', sortable: true, sortDirection: 'desc' },
+          { key: 'age', label: 'Age', sortable: true, sortDirection: 'desc' },
           { key: 'sex', label: 'Sex', sortable: true, sortDirection: 'desc' },
           { key: 'religion', label: 'Religion', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: 'Actions', class: 'text-right' }
@@ -653,6 +664,9 @@
         printUrl() {
             window.open('patients/patients/print', '_blank');
         },
+        getAge(date) {
+          return moment().diff(date, 'years', false);
+        }
     }
   }
 </script>

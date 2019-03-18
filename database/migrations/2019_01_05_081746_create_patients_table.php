@@ -33,6 +33,8 @@ class CreatePatientsTable extends Migration
             $table->string('mother')->nullable();
             $table->string('spouse')->nullable();
             $table->string('spouse_address')->nullable();
+            $table->string('contact_no')->nullable();
+            
             // emergency contact
             $table->string('e_name_id')->nullable();
             $table->string('e_name')->nullable();

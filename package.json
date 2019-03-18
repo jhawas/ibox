@@ -23,6 +23,7 @@
         "bootstrap-vue": "^2.0.0-rc.11",
         "datatables.net-bs": "^1.10.19",
         "font-awesome": "^4.7.0",
+        "moment": "^2.24.0",
         "popper": "^1.0.1",
         "select2": "^4.0.6-rc.1",
         "sweetalert2": "^8.2.6",

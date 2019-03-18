@@ -125,6 +125,15 @@
                             @endif
                           </div>
                           <div class="form-group">
+                            <label class="control-label">Contact No.</label>
+                            <input name="contact_no" class="form-control{{ $errors->has('contact_no') ? ' is-invalid' : '' }}" value="{{$user->contact_no}}" type="text" placeholder="Enter Contact No.">
+                            @if ($errors->has('contact_no'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('contact_no') }}</strong>
+                                </span>
+                            @endif
+                          </div>
+                          <div class="form-group">
                             <label class="control-label">Password</label>
                             <input name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" placeholder="Enter Password">
                             @if ($errors->has('password'))
