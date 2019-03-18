@@ -143,7 +143,7 @@
         size="lg"
     >
       <form @submit.stop.prevent="onSubmit">
-        <b-form-group label-cols-sm="2" label="Diagnoses">
+        <b-form-group label-cols-sm="2" label="Code">
             <b-input-group>
                 <v-select 
                   ref="diagnoses"
@@ -155,12 +155,11 @@
         </b-form-group>
         <b-form-group label-cols-sm="2" label="Diagnoses">
             <b-input-group>
-                <b-form-textarea
-                  id="textarea1"
+                <b-form-input 
+                  type="text" 
+                  placeholder="Enter Diagnoses Code" 
                   v-model="patientDiagnose.diagnoses"
-                  placeholder="Enter Diagnoses"
-                  rows="3"
-                  max-rows="6"
+                  disabled
                 />
             </b-input-group>
         </b-form-group>
@@ -384,6 +383,7 @@
                     value: diagnoses.id, 
                     label: diagnoses.code,
                     description: diagnoses.description,
+                    codename: diagnoses.code,
                 }));
             });
         },
@@ -391,10 +391,12 @@
             if(event) {
               console.log('selected',event.value);
               this.patientDiagnose.diagnose_id = event.value;
-              this.patientDiagnose.diagnoses = event.description;              
+              this.patientDiagnose.diagnoses = event.description;     
+              this.patientDiagnose.codename = event.codename;              
             } else {
               this.patientDiagnose.diagnose_id = null;
               this.patientDiagnose.diagnoses = null;   
+              this.patientDiagnose.codename = null;
             }
         },
     }

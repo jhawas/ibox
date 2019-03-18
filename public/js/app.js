@@ -98711,7 +98711,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -98903,7 +98902,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return {
                         value: diagnoses.id,
                         label: diagnoses.code,
-                        description: diagnoses.description
+                        description: diagnoses.description,
+                        codename: diagnoses.code
                     };
                 });
             });
@@ -98913,9 +98913,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log('selected', event.value);
                 this.patientDiagnose.diagnose_id = event.value;
                 this.patientDiagnose.diagnoses = event.description;
+                this.patientDiagnose.codename = event.codename;
             } else {
                 this.patientDiagnose.diagnose_id = null;
                 this.patientDiagnose.diagnoses = null;
+                this.patientDiagnose.codename = null;
             }
         }
     }
@@ -99466,7 +99468,7 @@ var render = function() {
             [
               _c(
                 "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "Diagnoses" } },
+                { attrs: { "label-cols-sm": "2", label: "Code" } },
                 [
                   _c(
                     "b-input-group",
@@ -99499,12 +99501,11 @@ var render = function() {
                   _c(
                     "b-input-group",
                     [
-                      _c("b-form-textarea", {
+                      _c("b-form-input", {
                         attrs: {
-                          id: "textarea1",
-                          placeholder: "Enter Diagnoses",
-                          rows: "3",
-                          "max-rows": "6"
+                          type: "text",
+                          placeholder: "Enter Diagnoses Code",
+                          disabled: ""
                         },
                         model: {
                           value: _vm.patientDiagnose.diagnoses,
