@@ -764,7 +764,7 @@
                 if(response.data.initial_diagnoses) {
                   this.record.remarks = response.data.initial_diagnoses.remarks;
                   this.record.diagnose = {
-                    label: response.data.initial_diagnoses.diagnose.code,
+                    label: response.data.initial_diagnoses.diagnose.description,
                     value: response.data.initial_diagnoses.diagnose_id,
                     data: response.data.initial_diagnoses.diagnose,
                   }
