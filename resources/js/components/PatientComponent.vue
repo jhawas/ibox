@@ -122,7 +122,7 @@
                     </b-form-group>
                     <b-form-group label-cols-sm="2" label="Age" class="mb-0">
                       <b-input-group>
-                        {{getAge(row.item.birthdate) + getAge(row.item.birthdate) > 1 ? 'years' : 'year' + ' old'}}
+                        {{getAge(row.item.birthdate)}}
                       </b-input-group>
                     </b-form-group>
                     <b-form-group label-cols-sm="2" label="Sex" class="mb-0">

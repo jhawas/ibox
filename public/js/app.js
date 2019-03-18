@@ -97396,13 +97396,7 @@ var render = function() {
                                           _vm._v(
                                             "\n                      " +
                                               _vm._s(
-                                                _vm.getAge(row.item.birthdate) +
-                                                  _vm.getAge(
-                                                    row.item.birthdate
-                                                  ) >
-                                                  1
-                                                  ? "years"
-                                                  : "year" + " old"
+                                                _vm.getAge(row.item.birthdate)
                                               ) +
                                               "\n                    "
                                           )
