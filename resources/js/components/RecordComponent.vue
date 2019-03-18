@@ -409,12 +409,12 @@
               </b-form-group>
             </div>
             <legend>Initial Diagnoses</legend>
-            <b-form-group label-cols-sm="3" label="Diagnoses Code">
+            <b-form-group label-cols-sm="3" label="Diagnoses">
               <b-input-group>
                   <v-select :options="diagnoses" v-model="record.diagnose"></v-select>
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Diagnoses">
+            <b-form-group label-cols-sm="3" label="Code">
                 <b-input-group>
                     <b-form-input disabled type="text" placeholder="Enter Diagnoses" v-model="diagnose_name" />
                 </b-input-group>
@@ -527,9 +527,9 @@
           })
       },
       diagnose_name: function() {
-          var description = this.record.diagnose ? this.record.diagnose.data.description : null;
-          this.record.diagnoses_description = description;
-          return description;
+          var code = this.record.diagnose ? this.record.diagnose.data.code : null;
+          this.record.diagnoses_description = this.record.diagnose ? this.record.diagnose.data.description : null;
+          return code;
       }
     },
     methods: {
@@ -856,7 +856,7 @@
           .then(response => {
               this.diagnoses = response.data.map((diagnose) => ({ 
                   value: diagnose.id, 
-                  label: diagnose.code,
+                  label: diagnose.description,
                   data: diagnose
               }));
           });

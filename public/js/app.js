@@ -812,6 +812,14 @@ module.exports = function normalizeComponent (
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
+!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueSelect=e():t.VueSelect=e()}(this,function(){return function(t){function e(o){if(n[o])return n[o].exports;var r=n[o]={exports:{},id:o,loaded:!1};return t[o].call(r.exports,r,r.exports,e),r.loaded=!0,r.exports}var n={};return e.m=t,e.c=n,e.p="/",e(0)}([function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0}),e.mixins=e.VueSelect=void 0;var r=n(85),i=o(r),s=n(42),a=o(s);e.default=i.default,e.VueSelect=i.default,e.mixins=a.default},function(t,e){var n=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=n)},function(t,e){var n=t.exports={version:"2.5.3"};"number"==typeof __e&&(__e=n)},function(t,e,n){t.exports=!n(9)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,e){var n={}.hasOwnProperty;t.exports=function(t,e){return n.call(t,e)}},function(t,e,n){var o=n(11),r=n(33),i=n(25),s=Object.defineProperty;e.f=n(3)?Object.defineProperty:function(t,e,n){if(o(t),e=i(e,!0),o(n),r)try{return s(t,e,n)}catch(t){}if("get"in n||"set"in n)throw TypeError("Accessors not supported!");return"value"in n&&(t[e]=n.value),t}},function(t,e,n){var o=n(5),r=n(14);t.exports=n(3)?function(t,e,n){return o.f(t,e,r(1,n))}:function(t,e,n){return t[e]=n,t}},function(t,e,n){var o=n(61),r=n(16);t.exports=function(t){return o(r(t))}},function(t,e,n){var o=n(23)("wks"),r=n(15),i=n(1).Symbol,s="function"==typeof i,a=t.exports=function(t){return o[t]||(o[t]=s&&i[t]||(s?i:r)("Symbol."+t))};a.store=o},function(t,e){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e,n){var o=n(10);t.exports=function(t){if(!o(t))throw TypeError(t+" is not an object!");return t}},function(t,e,n){var o=n(1),r=n(2),i=n(58),s=n(6),a="prototype",u=function(t,e,n){var l,c,f,p=t&u.F,d=t&u.G,h=t&u.S,b=t&u.P,v=t&u.B,g=t&u.W,y=d?r:r[e]||(r[e]={}),m=y[a],x=d?o:h?o[e]:(o[e]||{})[a];d&&(n=e);for(l in n)c=!p&&x&&void 0!==x[l],c&&l in y||(f=c?x[l]:n[l],y[l]=d&&"function"!=typeof x[l]?n[l]:v&&c?i(f,o):g&&x[l]==f?function(t){var e=function(e,n,o){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(e);case 2:return new t(e,n)}return new t(e,n,o)}return t.apply(this,arguments)};return e[a]=t[a],e}(f):b&&"function"==typeof f?i(Function.call,f):f,b&&((y.virtual||(y.virtual={}))[l]=f,t&u.R&&m&&!m[l]&&s(m,l,f)))};u.F=1,u.G=2,u.S=4,u.P=8,u.B=16,u.W=32,u.U=64,u.R=128,t.exports=u},function(t,e,n){var o=n(38),r=n(17);t.exports=Object.keys||function(t){return o(t,r)}},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e){var n=0,o=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++n+o).toString(36))}},function(t,e){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,e){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,e){t.exports={}},function(t,e){t.exports=!0},function(t,e){e.f={}.propertyIsEnumerable},function(t,e,n){var o=n(5).f,r=n(4),i=n(8)("toStringTag");t.exports=function(t,e,n){t&&!r(t=n?t:t.prototype,i)&&o(t,i,{configurable:!0,value:e})}},function(t,e,n){var o=n(23)("keys"),r=n(15);t.exports=function(t){return o[t]||(o[t]=r(t))}},function(t,e,n){var o=n(1),r="__core-js_shared__",i=o[r]||(o[r]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,e){var n=Math.ceil,o=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?o:n)(t)}},function(t,e,n){var o=n(10);t.exports=function(t,e){if(!o(t))return t;var n,r;if(e&&"function"==typeof(n=t.toString)&&!o(r=n.call(t)))return r;if("function"==typeof(n=t.valueOf)&&!o(r=n.call(t)))return r;if(!e&&"function"==typeof(n=t.toString)&&!o(r=n.call(t)))return r;throw TypeError("Can't convert object to primitive value")}},function(t,e,n){var o=n(1),r=n(2),i=n(19),s=n(27),a=n(5).f;t.exports=function(t){var e=r.Symbol||(r.Symbol=i?{}:o.Symbol||{});"_"==t.charAt(0)||t in e||a(e,t,{value:s.f(t)})}},function(t,e,n){e.f=n(8)},function(t,e){"use strict";t.exports={props:{loading:{type:Boolean,default:!1},onSearch:{type:Function,default:function(t,e){}}},data:function(){return{mutableLoading:!1}},watch:{search:function(){this.search.length>0&&(this.onSearch(this.search,this.toggleLoading),this.$emit("search",this.search,this.toggleLoading))},loading:function(t){this.mutableLoading=t}},methods:{toggleLoading:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return null==t?this.mutableLoading=!this.mutableLoading:this.mutableLoading=t}}}},function(t,e){"use strict";t.exports={watch:{typeAheadPointer:function(){this.maybeAdjustScroll()}},methods:{maybeAdjustScroll:function(){var t=this.pixelsToPointerTop(),e=this.pixelsToPointerBottom();return t<=this.viewport().top?this.scrollTo(t):e>=this.viewport().bottom?this.scrollTo(this.viewport().top+this.pointerHeight()):void 0},pixelsToPointerTop:function t(){var t=0;if(this.$refs.dropdownMenu)for(var e=0;e<this.typeAheadPointer;e++)t+=this.$refs.dropdownMenu.children[e].offsetHeight;return t},pixelsToPointerBottom:function(){return this.pixelsToPointerTop()+this.pointerHeight()},pointerHeight:function(){var t=!!this.$refs.dropdownMenu&&this.$refs.dropdownMenu.children[this.typeAheadPointer];return t?t.offsetHeight:0},viewport:function(){return{top:this.$refs.dropdownMenu?this.$refs.dropdownMenu.scrollTop:0,bottom:this.$refs.dropdownMenu?this.$refs.dropdownMenu.offsetHeight+this.$refs.dropdownMenu.scrollTop:0}},scrollTo:function(t){return this.$refs.dropdownMenu?this.$refs.dropdownMenu.scrollTop=t:null}}}},function(t,e){"use strict";t.exports={data:function(){return{typeAheadPointer:-1}},watch:{filteredOptions:function(){this.typeAheadPointer=0}},methods:{typeAheadUp:function(){this.typeAheadPointer>0&&(this.typeAheadPointer--,this.maybeAdjustScroll&&this.maybeAdjustScroll())},typeAheadDown:function(){this.typeAheadPointer<this.filteredOptions.length-1&&(this.typeAheadPointer++,this.maybeAdjustScroll&&this.maybeAdjustScroll())},typeAheadSelect:function(){this.filteredOptions[this.typeAheadPointer]?this.select(this.filteredOptions[this.typeAheadPointer]):this.taggable&&this.search.length&&this.select(this.search),this.clearSearchOnSelect&&(this.search="")}}}},function(t,e){var n={}.toString;t.exports=function(t){return n.call(t).slice(8,-1)}},function(t,e,n){var o=n(10),r=n(1).document,i=o(r)&&o(r.createElement);t.exports=function(t){return i?r.createElement(t):{}}},function(t,e,n){t.exports=!n(3)&&!n(9)(function(){return 7!=Object.defineProperty(n(32)("div"),"a",{get:function(){return 7}}).a})},function(t,e,n){"use strict";var o=n(19),r=n(12),i=n(39),s=n(6),a=n(4),u=n(18),l=n(63),c=n(21),f=n(69),p=n(8)("iterator"),d=!([].keys&&"next"in[].keys()),h="@@iterator",b="keys",v="values",g=function(){return this};t.exports=function(t,e,n,y,m,x,w){l(n,e,y);var S,O,_,j=function(t){if(!d&&t in C)return C[t];switch(t){case b:return function(){return new n(this,t)};case v:return function(){return new n(this,t)}}return function(){return new n(this,t)}},k=e+" Iterator",P=m==v,A=!1,C=t.prototype,M=C[p]||C[h]||m&&C[m],L=!d&&M||j(m),T=m?P?j("entries"):L:void 0,E="Array"==e?C.entries||M:M;if(E&&(_=f(E.call(new t)),_!==Object.prototype&&_.next&&(c(_,k,!0),o||a(_,p)||s(_,p,g))),P&&M&&M.name!==v&&(A=!0,L=function(){return M.call(this)}),o&&!w||!d&&!A&&C[p]||s(C,p,L),u[e]=L,u[k]=g,m)if(S={values:P?L:j(v),keys:x?L:j(b),entries:T},w)for(O in S)O in C||i(C,O,S[O]);else r(r.P+r.F*(d||A),e,S);return S}},function(t,e,n){var o=n(11),r=n(66),i=n(17),s=n(22)("IE_PROTO"),a=function(){},u="prototype",l=function(){var t,e=n(32)("iframe"),o=i.length,r="<",s=">";for(e.style.display="none",n(60).appendChild(e),e.src="javascript:",t=e.contentWindow.document,t.open(),t.write(r+"script"+s+"document.F=Object"+r+"/script"+s),t.close(),l=t.F;o--;)delete l[u][i[o]];return l()};t.exports=Object.create||function(t,e){var n;return null!==t?(a[u]=o(t),n=new a,a[u]=null,n[s]=t):n=l(),void 0===e?n:r(n,e)}},function(t,e,n){var o=n(38),r=n(17).concat("length","prototype");e.f=Object.getOwnPropertyNames||function(t){return o(t,r)}},function(t,e){e.f=Object.getOwnPropertySymbols},function(t,e,n){var o=n(4),r=n(7),i=n(57)(!1),s=n(22)("IE_PROTO");t.exports=function(t,e){var n,a=r(t),u=0,l=[];for(n in a)n!=s&&o(a,n)&&l.push(n);for(;e.length>u;)o(a,n=e[u++])&&(~i(l,n)||l.push(n));return l}},function(t,e,n){t.exports=n(6)},function(t,e,n){var o=n(16);t.exports=function(t){return Object(o(t))}},function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var r=n(45),i=o(r),s=n(48),a=o(s),u=n(43),l=o(u),c=n(49),f=o(c),p=n(29),d=o(p),h=n(30),b=o(h),v=n(28),g=o(v);e.default={mixins:[d.default,b.default,g.default],props:{value:{default:null},options:{type:Array,default:function(){return[]}},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},maxHeight:{type:String,default:"400px"},searchable:{type:Boolean,default:!0},multiple:{type:Boolean,default:!1},placeholder:{type:String,default:""},transition:{type:String,default:"fade"},clearSearchOnSelect:{type:Boolean,default:!0},closeOnSelect:{type:Boolean,default:!0},label:{type:String,default:"label"},index:{type:String,default:null},getOptionLabel:{type:Function,default:function(t){return this.index&&(t=this.findOptionByIndexValue(t)),"object"===("undefined"==typeof t?"undefined":(0,f.default)(t))?t.hasOwnProperty(this.label)?t[this.label]:console.warn('[vue-select warn]: Label key "option.'+this.label+'" does not'+(" exist in options object "+(0,l.default)(t)+".\n")+"http://sagalbot.github.io/vue-select/#ex-labels"):t}},onChange:{type:Function,default:function(t){this.$emit("input",t)}},onTab:{type:Function,default:function(){this.selectOnTab&&this.typeAheadSelect()}},taggable:{type:Boolean,default:!1},tabindex:{type:Number,default:null},pushTags:{type:Boolean,default:!1},filterable:{type:Boolean,default:!0},filterBy:{type:Function,default:function(t,e,n){return(e||"").toLowerCase().indexOf(n.toLowerCase())>-1}},filter:{type:Function,default:function(t,e){var n=this;return t.filter(function(t){var o=n.getOptionLabel(t);return"number"==typeof o&&(o=o.toString()),n.filterBy(t,o,e)})}},createOption:{type:Function,default:function(t){return"object"===(0,f.default)(this.mutableOptions[0])&&(t=(0,a.default)({},this.label,t)),this.$emit("option:created",t),t}},resetOnOptionsChange:{type:Boolean,default:!1},noDrop:{type:Boolean,default:!1},inputId:{type:String},dir:{type:String,default:"auto"},selectOnTab:{type:Boolean,default:!1}},data:function(){return{search:"",open:!1,mutableValue:null,mutableOptions:[]}},watch:{value:function(t){this.mutableValue=t},mutableValue:function(t,e){this.multiple?this.onChange?this.onChange(t):null:this.onChange&&t!==e?this.onChange(t):null},options:function(t){this.mutableOptions=t},mutableOptions:function(){!this.taggable&&this.resetOnOptionsChange&&(this.mutableValue=this.multiple?[]:null)},multiple:function(t){this.mutableValue=t?[]:null}},created:function(){this.mutableValue=this.value,this.mutableOptions=this.options.slice(0),this.mutableLoading=this.loading,this.$on("option:created",this.maybePushTag)},methods:{select:function(t){if(!this.isOptionSelected(t)){if(this.taggable&&!this.optionExists(t)&&(t=this.createOption(t)),this.index){if(!t.hasOwnProperty(this.index))return console.warn('[vue-select warn]: Index key "option.'+this.index+'" does not'+(" exist in options object "+(0,l.default)(t)+"."));t=t[this.index]}this.multiple&&!this.mutableValue?this.mutableValue=[t]:this.multiple?this.mutableValue.push(t):this.mutableValue=t}this.onAfterSelect(t)},deselect:function(t){var e=this;if(this.multiple){var n=-1;this.mutableValue.forEach(function(o){(o===t||e.index&&o===t[e.index]||"object"===("undefined"==typeof o?"undefined":(0,f.default)(o))&&o[e.label]===t[e.label])&&(n=o)});var o=this.mutableValue.indexOf(n);this.mutableValue.splice(o,1)}else this.mutableValue=null},clearSelection:function(){this.mutableValue=this.multiple?[]:null},onAfterSelect:function(t){this.closeOnSelect&&(this.open=!this.open,this.$refs.search.blur()),this.clearSearchOnSelect&&(this.search="")},toggleDropdown:function(t){(t.target===this.$refs.openIndicator||t.target===this.$refs.search||t.target===this.$refs.toggle||t.target.classList.contains("selected-tag")||t.target===this.$el)&&(this.open?this.$refs.search.blur():this.disabled||(this.open=!0,this.$refs.search.focus()))},isOptionSelected:function(t){var e=this,n=!1;return this.valueAsArray.forEach(function(o){"object"===("undefined"==typeof o?"undefined":(0,f.default)(o))?n=e.optionObjectComparator(o,t):o!==t&&o!==t[e.index]||(n=!0)}),n},optionObjectComparator:function(t,e){return!(!this.index||t!==e[this.index])||(t[this.label]===e[this.label]||t[this.label]===e||!(!this.index||t[this.index]!==e[this.index]))},findOptionByIndexValue:function(t){var e=this;return this.options.forEach(function(n){(0,l.default)(n[e.index])===(0,l.default)(t)&&(t=n)}),t},onEscape:function(){this.search.length?this.search="":this.$refs.search.blur()},onSearchBlur:function(){this.mousedown&&!this.searching?this.mousedown=!1:(this.clearSearchOnBlur&&(this.search=""),this.open=!1,this.$emit("search:blur"))},onSearchFocus:function(){this.open=!0,this.$emit("search:focus")},maybeDeleteValue:function(){if(!this.$refs.search.value.length&&this.mutableValue)return this.multiple?this.mutableValue.pop():this.mutableValue=null},optionExists:function(t){var e=this,n=!1;return this.mutableOptions.forEach(function(o){"object"===("undefined"==typeof o?"undefined":(0,f.default)(o))&&o[e.label]===t?n=!0:o===t&&(n=!0)}),n},maybePushTag:function(t){this.pushTags&&this.mutableOptions.push(t)},onMousedown:function(){this.mousedown=!0}},computed:{dropdownClasses:function(){return{open:this.dropdownOpen,single:!this.multiple,searching:this.searching,searchable:this.searchable,unsearchable:!this.searchable,loading:this.mutableLoading,rtl:"rtl"===this.dir,disabled:this.disabled}},clearSearchOnBlur:function(){return this.clearSearchOnSelect&&!this.multiple},searching:function(){return!!this.search},dropdownOpen:function(){return!this.noDrop&&(this.open&&!this.mutableLoading)},searchPlaceholder:function(){if(this.isValueEmpty&&this.placeholder)return this.placeholder},filteredOptions:function(){if(!this.filterable&&!this.taggable)return this.mutableOptions.slice();var t=this.search.length?this.filter(this.mutableOptions,this.search,this):this.mutableOptions;return this.taggable&&this.search.length&&!this.optionExists(this.search)&&t.unshift(this.search),t},isValueEmpty:function(){return!this.mutableValue||("object"===(0,f.default)(this.mutableValue)?!(0,i.default)(this.mutableValue).length:!this.valueAsArray.length)},valueAsArray:function(){return this.multiple&&this.mutableValue?this.mutableValue:this.mutableValue?[].concat(this.mutableValue):[]},showClearButton:function(){return!this.multiple&&this.clearable&&!this.open&&null!=this.mutableValue}}}},function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var r=n(28),i=o(r),s=n(30),a=o(s),u=n(29),l=o(u);e.default={ajax:i.default,pointer:a.default,pointerScroll:l.default}},function(t,e,n){t.exports={default:n(50),__esModule:!0}},function(t,e,n){t.exports={default:n(51),__esModule:!0}},function(t,e,n){t.exports={default:n(52),__esModule:!0}},function(t,e,n){t.exports={default:n(53),__esModule:!0}},function(t,e,n){t.exports={default:n(54),__esModule:!0}},function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}e.__esModule=!0;var r=n(44),i=o(r);e.default=function(t,e,n){return e in t?(0,i.default)(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}},function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}e.__esModule=!0;var r=n(47),i=o(r),s=n(46),a=o(s),u="function"==typeof a.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof a.default&&t.constructor===a.default&&t!==a.default.prototype?"symbol":typeof t};e.default="function"==typeof a.default&&"symbol"===u(i.default)?function(t){return"undefined"==typeof t?"undefined":u(t)}:function(t){return t&&"function"==typeof a.default&&t.constructor===a.default&&t!==a.default.prototype?"symbol":"undefined"==typeof t?"undefined":u(t)}},function(t,e,n){var o=n(2),r=o.JSON||(o.JSON={stringify:JSON.stringify});t.exports=function(t){return r.stringify.apply(r,arguments)}},function(t,e,n){n(75);var o=n(2).Object;t.exports=function(t,e,n){return o.defineProperty(t,e,n)}},function(t,e,n){n(76),t.exports=n(2).Object.keys},function(t,e,n){n(79),n(77),n(80),n(81),t.exports=n(2).Symbol},function(t,e,n){n(78),n(82),t.exports=n(27).f("iterator")},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,e){t.exports=function(){}},function(t,e,n){var o=n(7),r=n(73),i=n(72);t.exports=function(t){return function(e,n,s){var a,u=o(e),l=r(u.length),c=i(s,l);if(t&&n!=n){for(;l>c;)if(a=u[c++],a!=a)return!0}else for(;l>c;c++)if((t||c in u)&&u[c]===n)return t||c||0;return!t&&-1}}},function(t,e,n){var o=n(55);t.exports=function(t,e,n){if(o(t),void 0===e)return t;switch(n){case 1:return function(n){return t.call(e,n)};case 2:return function(n,o){return t.call(e,n,o)};case 3:return function(n,o,r){return t.call(e,n,o,r)}}return function(){return t.apply(e,arguments)}}},function(t,e,n){var o=n(13),r=n(37),i=n(20);t.exports=function(t){var e=o(t),n=r.f;if(n)for(var s,a=n(t),u=i.f,l=0;a.length>l;)u.call(t,s=a[l++])&&e.push(s);return e}},function(t,e,n){var o=n(1).document;t.exports=o&&o.documentElement},function(t,e,n){var o=n(31);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==o(t)?t.split(""):Object(t)}},function(t,e,n){var o=n(31);t.exports=Array.isArray||function(t){return"Array"==o(t)}},function(t,e,n){"use strict";var o=n(35),r=n(14),i=n(21),s={};n(6)(s,n(8)("iterator"),function(){return this}),t.exports=function(t,e,n){t.prototype=o(s,{next:r(1,n)}),i(t,e+" Iterator")}},function(t,e){t.exports=function(t,e){return{value:e,done:!!t}}},function(t,e,n){var o=n(15)("meta"),r=n(10),i=n(4),s=n(5).f,a=0,u=Object.isExtensible||function(){return!0},l=!n(9)(function(){return u(Object.preventExtensions({}))}),c=function(t){s(t,o,{value:{i:"O"+ ++a,w:{}}})},f=function(t,e){if(!r(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,o)){if(!u(t))return"F";if(!e)return"E";c(t)}return t[o].i},p=function(t,e){if(!i(t,o)){if(!u(t))return!0;if(!e)return!1;c(t)}return t[o].w},d=function(t){return l&&h.NEED&&u(t)&&!i(t,o)&&c(t),t},h=t.exports={KEY:o,NEED:!1,fastKey:f,getWeak:p,onFreeze:d}},function(t,e,n){var o=n(5),r=n(11),i=n(13);t.exports=n(3)?Object.defineProperties:function(t,e){r(t);for(var n,s=i(e),a=s.length,u=0;a>u;)o.f(t,n=s[u++],e[n]);return t}},function(t,e,n){var o=n(20),r=n(14),i=n(7),s=n(25),a=n(4),u=n(33),l=Object.getOwnPropertyDescriptor;e.f=n(3)?l:function(t,e){if(t=i(t),e=s(e,!0),u)try{return l(t,e)}catch(t){}if(a(t,e))return r(!o.f.call(t,e),t[e])}},function(t,e,n){var o=n(7),r=n(36).f,i={}.toString,s="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],a=function(t){try{return r(t)}catch(t){return s.slice()}};t.exports.f=function(t){return s&&"[object Window]"==i.call(t)?a(t):r(o(t))}},function(t,e,n){var o=n(4),r=n(40),i=n(22)("IE_PROTO"),s=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=r(t),o(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?s:null}},function(t,e,n){var o=n(12),r=n(2),i=n(9);t.exports=function(t,e){var n=(r.Object||{})[t]||Object[t],s={};s[t]=e(n),o(o.S+o.F*i(function(){n(1)}),"Object",s)}},function(t,e,n){var o=n(24),r=n(16);t.exports=function(t){return function(e,n){var i,s,a=String(r(e)),u=o(n),l=a.length;return u<0||u>=l?t?"":void 0:(i=a.charCodeAt(u),i<55296||i>56319||u+1===l||(s=a.charCodeAt(u+1))<56320||s>57343?t?a.charAt(u):i:t?a.slice(u,u+2):(i-55296<<10)+(s-56320)+65536)}}},function(t,e,n){var o=n(24),r=Math.max,i=Math.min;t.exports=function(t,e){return t=o(t),t<0?r(t+e,0):i(t,e)}},function(t,e,n){var o=n(24),r=Math.min;t.exports=function(t){return t>0?r(o(t),9007199254740991):0}},function(t,e,n){"use strict";var o=n(56),r=n(64),i=n(18),s=n(7);t.exports=n(34)(Array,"Array",function(t,e){this._t=s(t),this._i=0,this._k=e},function(){var t=this._t,e=this._k,n=this._i++;return!t||n>=t.length?(this._t=void 0,r(1)):"keys"==e?r(0,n):"values"==e?r(0,t[n]):r(0,[n,t[n]])},"values"),i.Arguments=i.Array,o("keys"),o("values"),o("entries")},function(t,e,n){var o=n(12);o(o.S+o.F*!n(3),"Object",{defineProperty:n(5).f})},function(t,e,n){var o=n(40),r=n(13);n(70)("keys",function(){return function(t){return r(o(t))}})},function(t,e){},function(t,e,n){"use strict";var o=n(71)(!0);n(34)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,e=this._t,n=this._i;return n>=e.length?{value:void 0,done:!0}:(t=o(e,n),this._i+=t.length,{value:t,done:!1})})},function(t,e,n){"use strict";var o=n(1),r=n(4),i=n(3),s=n(12),a=n(39),u=n(65).KEY,l=n(9),c=n(23),f=n(21),p=n(15),d=n(8),h=n(27),b=n(26),v=n(59),g=n(62),y=n(11),m=n(10),x=n(7),w=n(25),S=n(14),O=n(35),_=n(68),j=n(67),k=n(5),P=n(13),A=j.f,C=k.f,M=_.f,L=o.Symbol,T=o.JSON,E=T&&T.stringify,V="prototype",B=d("_hidden"),F=d("toPrimitive"),N={}.propertyIsEnumerable,$=c("symbol-registry"),D=c("symbols"),I=c("op-symbols"),R=Object[V],z="function"==typeof L,H=o.QObject,G=!H||!H[V]||!H[V].findChild,J=i&&l(function(){return 7!=O(C({},"a",{get:function(){return C(this,"a",{value:7}).a}})).a})?function(t,e,n){var o=A(R,e);o&&delete R[e],C(t,e,n),o&&t!==R&&C(R,e,o)}:C,U=function(t){var e=D[t]=O(L[V]);return e._k=t,e},W=z&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},K=function(t,e,n){return t===R&&K(I,e,n),y(t),e=w(e,!0),y(n),r(D,e)?(n.enumerable?(r(t,B)&&t[B][e]&&(t[B][e]=!1),n=O(n,{enumerable:S(0,!1)})):(r(t,B)||C(t,B,S(1,{})),t[B][e]=!0),J(t,e,n)):C(t,e,n)},Y=function(t,e){y(t);for(var n,o=v(e=x(e)),r=0,i=o.length;i>r;)K(t,n=o[r++],e[n]);return t},q=function(t,e){return void 0===e?O(t):Y(O(t),e)},Q=function(t){var e=N.call(this,t=w(t,!0));return!(this===R&&r(D,t)&&!r(I,t))&&(!(e||!r(this,t)||!r(D,t)||r(this,B)&&this[B][t])||e)},Z=function(t,e){if(t=x(t),e=w(e,!0),t!==R||!r(D,e)||r(I,e)){var n=A(t,e);return!n||!r(D,e)||r(t,B)&&t[B][e]||(n.enumerable=!0),n}},X=function(t){for(var e,n=M(x(t)),o=[],i=0;n.length>i;)r(D,e=n[i++])||e==B||e==u||o.push(e);return o},tt=function(t){for(var e,n=t===R,o=M(n?I:x(t)),i=[],s=0;o.length>s;)!r(D,e=o[s++])||n&&!r(R,e)||i.push(D[e]);return i};z||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),e=function(n){this===R&&e.call(I,n),r(this,B)&&r(this[B],t)&&(this[B][t]=!1),J(this,t,S(1,n))};return i&&G&&J(R,t,{configurable:!0,set:e}),U(t)},a(L[V],"toString",function(){return this._k}),j.f=Z,k.f=K,n(36).f=_.f=X,n(20).f=Q,n(37).f=tt,i&&!n(19)&&a(R,"propertyIsEnumerable",Q,!0),h.f=function(t){return U(d(t))}),s(s.G+s.W+s.F*!z,{Symbol:L});for(var et="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),nt=0;et.length>nt;)d(et[nt++]);for(var ot=P(d.store),rt=0;ot.length>rt;)b(ot[rt++]);s(s.S+s.F*!z,"Symbol",{for:function(t){return r($,t+="")?$[t]:$[t]=L(t)},keyFor:function(t){if(!W(t))throw TypeError(t+" is not a symbol!");for(var e in $)if($[e]===t)return e},useSetter:function(){G=!0},useSimple:function(){G=!1}}),s(s.S+s.F*!z,"Object",{create:q,defineProperty:K,defineProperties:Y,getOwnPropertyDescriptor:Z,getOwnPropertyNames:X,getOwnPropertySymbols:tt}),T&&s(s.S+s.F*(!z||l(function(){var t=L();return"[null]"!=E([t])||"{}"!=E({a:t})||"{}"!=E(Object(t))})),"JSON",{stringify:function(t){for(var e,n,o=[t],r=1;arguments.length>r;)o.push(arguments[r++]);if(n=e=o[1],(m(e)||void 0!==t)&&!W(t))return g(e)||(e=function(t,e){if("function"==typeof n&&(e=n.call(this,t,e)),!W(e))return e}),o[1]=e,E.apply(T,o)}}),L[V][F]||n(6)(L[V],F,L[V].valueOf),f(L,"Symbol"),f(Math,"Math",!0),f(o.JSON,"JSON",!0)},function(t,e,n){n(26)("asyncIterator")},function(t,e,n){n(26)("observable")},function(t,e,n){n(74);for(var o=n(1),r=n(6),i=n(18),s=n(8)("toStringTag"),a="CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,TextTrackList,TouchList".split(","),u=0;u<a.length;u++){var l=a[u],c=o[l],f=c&&c.prototype;f&&!f[s]&&r(f,s,l),i[l]=i.Array}},function(t,e,n){e=t.exports=n(84)(),e.push([t.id,'.v-select{position:relative;font-family:inherit}.v-select,.v-select *{box-sizing:border-box}.v-select[dir=rtl] .vs__actions{padding:0 3px 0 6px}.v-select[dir=rtl] .dropdown-toggle .clear{margin-left:6px;margin-right:0}.v-select[dir=rtl] .selected-tag .close{margin-left:0;margin-right:2px}.v-select[dir=rtl] .dropdown-menu{text-align:right}.v-select .open-indicator{display:flex;align-items:center;cursor:pointer;pointer-events:all;opacity:1;width:12px}.v-select .open-indicator,.v-select .open-indicator:before{transition:all .15s cubic-bezier(1,-.115,.975,.855);transition-timing-function:cubic-bezier(1,-.115,.975,.855)}.v-select .open-indicator:before{border-color:rgba(60,60,60,.5);border-style:solid;border-width:3px 3px 0 0;content:"";display:inline-block;height:10px;width:10px;vertical-align:text-top;transform:rotate(133deg);box-sizing:inherit}.v-select.open .open-indicator:before{transform:rotate(315deg)}.v-select.loading .open-indicator{opacity:0}.v-select .dropdown-toggle{-webkit-appearance:none;-moz-appearance:none;appearance:none;display:flex;padding:0 0 4px;background:none;border:1px solid rgba(60,60,60,.26);border-radius:4px;white-space:normal}.v-select .vs__selected-options{display:flex;flex-basis:100%;flex-grow:1;flex-wrap:wrap;padding:0 2px;position:relative}.v-select .vs__actions{display:flex;align-items:stretch;padding:0 6px 0 3px}.v-select .dropdown-toggle .clear{font-size:23px;font-weight:700;line-height:1;color:rgba(60,60,60,.5);padding:0;border:0;background-color:transparent;cursor:pointer;margin-right:6px}.v-select.searchable .dropdown-toggle{cursor:text}.v-select.unsearchable .dropdown-toggle{cursor:pointer}.v-select.open .dropdown-toggle{border-bottom-color:transparent;border-bottom-left-radius:0;border-bottom-right-radius:0}.v-select .dropdown-menu{display:block;position:absolute;top:100%;left:0;z-index:1000;min-width:160px;padding:5px 0;margin:0;width:100%;overflow-y:scroll;border:1px solid rgba(0,0,0,.26);box-shadow:0 3px 6px 0 rgba(0,0,0,.15);border-top:none;border-radius:0 0 4px 4px;text-align:left;list-style:none;background:#fff}.v-select .no-options{text-align:center}.v-select .selected-tag{display:flex;align-items:center;background-color:#f0f0f0;border:1px solid #ccc;border-radius:4px;color:#333;line-height:1.42857143;margin:4px 2px 0;padding:0 .25em;transition:opacity .25s}.v-select.single .selected-tag{background-color:transparent;border-color:transparent}.v-select.single.open .selected-tag{position:absolute;opacity:.4}.v-select.single.searching .selected-tag{display:none}.v-select .selected-tag .close{margin-left:2px;font-size:1.25em;appearance:none;padding:0;cursor:pointer;background:0 0;border:0;font-weight:700;line-height:1;color:#000;text-shadow:0 1px 0 #fff;filter:alpha(opacity=20);opacity:.2}.v-select.single.searching:not(.open):not(.loading) input[type=search]{opacity:.2}.v-select input[type=search]::-webkit-search-cancel-button,.v-select input[type=search]::-webkit-search-decoration,.v-select input[type=search]::-webkit-search-results-button,.v-select input[type=search]::-webkit-search-results-decoration{display:none}.v-select input[type=search]::-ms-clear{display:none}.v-select input[type=search],.v-select input[type=search]:focus{appearance:none;-webkit-appearance:none;-moz-appearance:none;line-height:1.42857143;font-size:1em;display:inline-block;border:1px solid transparent;border-left:none;outline:none;margin:4px 0 0;padding:0 7px;max-width:100%;background:none;box-shadow:none;flex-grow:1;width:0}.v-select.unsearchable input[type=search]{opacity:0}.v-select.unsearchable input[type=search]:hover{cursor:pointer}.v-select li{line-height:1.42857143}.v-select li>a{display:block;padding:3px 20px;clear:both;color:#333;white-space:nowrap}.v-select li:hover{cursor:pointer}.v-select .dropdown-menu .active>a{color:#333;background:rgba(50,50,50,.1)}.v-select .dropdown-menu>.highlight>a{background:#5897fb;color:#fff}.v-select .highlight:not(:last-child){margin-bottom:0}.v-select .spinner{align-self:center;opacity:0;font-size:5px;text-indent:-9999em;overflow:hidden;border-top:.9em solid hsla(0,0%,39%,.1);border-right:.9em solid hsla(0,0%,39%,.1);border-bottom:.9em solid hsla(0,0%,39%,.1);border-left:.9em solid rgba(60,60,60,.45);transform:translateZ(0);animation:vSelectSpinner 1.1s infinite linear;transition:opacity .1s}.v-select .spinner,.v-select .spinner:after{border-radius:50%;width:5em;height:5em}.v-select.disabled .dropdown-toggle,.v-select.disabled .dropdown-toggle .clear,.v-select.disabled .dropdown-toggle input,.v-select.disabled .open-indicator,.v-select.disabled .selected-tag .close{cursor:not-allowed;background-color:#f8f8f8}.v-select.loading .spinner{opacity:1}@-webkit-keyframes vSelectSpinner{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes vSelectSpinner{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.fade-enter-active,.fade-leave-active{transition:opacity .15s cubic-bezier(1,.5,.8,1)}.fade-enter,.fade-leave-to{opacity:0}',""])},function(t,e){t.exports=function(){var t=[];return t.toString=function(){for(var t=[],e=0;e<this.length;e++){var n=this[e];n[2]?t.push("@media "+n[2]+"{"+n[1]+"}"):t.push(n[1])}return t.join("")},t.i=function(e,n){"string"==typeof e&&(e=[[null,e,""]]);for(var o={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(o[i]=!0)}for(r=0;r<e.length;r++){var s=e[r];"number"==typeof s[0]&&o[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),t.push(s))}},t}},function(t,e,n){n(89);var o=n(86)(n(41),n(87),null,null);t.exports=o.exports},function(t,e){t.exports=function(t,e,n,o){var r,i=t=t||{},s=typeof t.default;"object"!==s&&"function"!==s||(r=t,i=t.default);var a="function"==typeof i?i.options:i;if(e&&(a.render=e.render,a.staticRenderFns=e.staticRenderFns),n&&(a._scopeId=n),o){var u=a.computed||(a.computed={});Object.keys(o).forEach(function(t){var e=o[t];u[t]=function(){return e}})}return{esModule:r,exports:i,options:a}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"dropdown v-select",class:t.dropdownClasses,attrs:{dir:t.dir}},[n("div",{ref:"toggle",staticClass:"dropdown-toggle",on:{mousedown:function(e){e.preventDefault(),t.toggleDropdown(e)}}},[n("div",{ref:"selectedOptions",staticClass:"vs__selected-options"},[t._l(t.valueAsArray,function(e){return t._t("selected-option-container",[n("span",{key:e.index,staticClass:"selected-tag"},[t._t("selected-option",[t._v("\n            "+t._s(t.getOptionLabel(e))+"\n          ")],null,"object"==typeof e?e:(o={},
+o[t.label]=e,o)),t._v(" "),t.multiple?n("button",{staticClass:"close",attrs:{disabled:t.disabled,type:"button","aria-label":"Remove option"},on:{click:function(n){t.deselect(e)}}},[n("span",{attrs:{"aria-hidden":"true"}},[t._v("×")])]):t._e()],2)],{option:"object"==typeof e?e:(r={},r[t.label]=e,r),deselect:t.deselect,multiple:t.multiple,disabled:t.disabled});var o,r}),t._v(" "),n("input",{directives:[{name:"model",rawName:"v-model",value:t.search,expression:"search"}],ref:"search",staticClass:"form-control",attrs:{type:"search",autocomplete:"off",disabled:t.disabled,placeholder:t.searchPlaceholder,tabindex:t.tabindex,readonly:!t.searchable,id:t.inputId,role:"combobox","aria-expanded":t.dropdownOpen,"aria-label":"Search for option"},domProps:{value:t.search},on:{keydown:[function(e){return"button"in e||!t._k(e.keyCode,"delete",[8,46],e.key)?void t.maybeDeleteValue(e):null},function(e){return"button"in e||!t._k(e.keyCode,"up",38,e.key)?(e.preventDefault(),void t.typeAheadUp(e)):null},function(e){return"button"in e||!t._k(e.keyCode,"down",40,e.key)?(e.preventDefault(),void t.typeAheadDown(e)):null},function(e){return"button"in e||!t._k(e.keyCode,"enter",13,e.key)?(e.preventDefault(),void t.typeAheadSelect(e)):null},function(e){return"button"in e||!t._k(e.keyCode,"tab",9,e.key)?void t.onTab(e):null}],keyup:function(e){return"button"in e||!t._k(e.keyCode,"esc",27,e.key)?void t.onEscape(e):null},blur:t.onSearchBlur,focus:t.onSearchFocus,input:function(e){e.target.composing||(t.search=e.target.value)}}})],2),t._v(" "),n("div",{staticClass:"vs__actions"},[n("button",{directives:[{name:"show",rawName:"v-show",value:t.showClearButton,expression:"showClearButton"}],staticClass:"clear",attrs:{disabled:t.disabled,type:"button",title:"Clear selection"},on:{click:t.clearSelection}},[n("span",{attrs:{"aria-hidden":"true"}},[t._v("×")])]),t._v(" "),t.noDrop?t._e():n("i",{ref:"openIndicator",staticClass:"open-indicator",attrs:{role:"presentation"}}),t._v(" "),t._t("spinner",[n("div",{directives:[{name:"show",rawName:"v-show",value:t.mutableLoading,expression:"mutableLoading"}],staticClass:"spinner"},[t._v("Loading...")])])],2)]),t._v(" "),n("transition",{attrs:{name:t.transition}},[t.dropdownOpen?n("ul",{ref:"dropdownMenu",staticClass:"dropdown-menu",style:{"max-height":t.maxHeight},attrs:{role:"listbox"},on:{mousedown:t.onMousedown}},[t._l(t.filteredOptions,function(e,o){return n("li",{key:o,class:{active:t.isOptionSelected(e),highlight:o===t.typeAheadPointer},attrs:{role:"option"},on:{mouseover:function(e){t.typeAheadPointer=o}}},[n("a",{on:{mousedown:function(n){n.preventDefault(),n.stopPropagation(),t.select(e)}}},[t._t("option",[t._v("\n          "+t._s(t.getOptionLabel(e))+"\n        ")],null,"object"==typeof e?e:(r={},r[t.label]=e,r))],2)]);var r}),t._v(" "),t.filteredOptions.length?t._e():n("li",{staticClass:"no-options"},[t._t("no-options",[t._v("Sorry, no matching options.")])],2)],2):t._e()])],1)},staticRenderFns:[]}},function(t,e,n){function o(t,e){for(var n=0;n<t.length;n++){var o=t[n],r=f[o.id];if(r){r.refs++;for(var i=0;i<r.parts.length;i++)r.parts[i](o.parts[i]);for(;i<o.parts.length;i++)r.parts.push(u(o.parts[i],e))}else{for(var s=[],i=0;i<o.parts.length;i++)s.push(u(o.parts[i],e));f[o.id]={id:o.id,refs:1,parts:s}}}}function r(t){for(var e=[],n={},o=0;o<t.length;o++){var r=t[o],i=r[0],s=r[1],a=r[2],u=r[3],l={css:s,media:a,sourceMap:u};n[i]?n[i].parts.push(l):e.push(n[i]={id:i,parts:[l]})}return e}function i(t,e){var n=h(),o=g[g.length-1];if("top"===t.insertAt)o?o.nextSibling?n.insertBefore(e,o.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),g.push(e);else{if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(e)}}function s(t){t.parentNode.removeChild(t);var e=g.indexOf(t);e>=0&&g.splice(e,1)}function a(t){var e=document.createElement("style");return e.type="text/css",i(t,e),e}function u(t,e){var n,o,r;if(e.singleton){var i=v++;n=b||(b=a(e)),o=l.bind(null,n,i,!1),r=l.bind(null,n,i,!0)}else n=a(e),o=c.bind(null,n),r=function(){s(n)};return o(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;o(t=e)}else r()}}function l(t,e,n,o){var r=n?"":o.css;if(t.styleSheet)t.styleSheet.cssText=y(e,r);else{var i=document.createTextNode(r),s=t.childNodes;s[e]&&t.removeChild(s[e]),s.length?t.insertBefore(i,s[e]):t.appendChild(i)}}function c(t,e){var n=e.css,o=e.media,r=e.sourceMap;if(o&&t.setAttribute("media",o),r&&(n+="\n/*# sourceURL="+r.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */"),t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}var f={},p=function(t){var e;return function(){return"undefined"==typeof e&&(e=t.apply(this,arguments)),e}},d=p(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),h=p(function(){return document.head||document.getElementsByTagName("head")[0]}),b=null,v=0,g=[];t.exports=function(t,e){e=e||{},"undefined"==typeof e.singleton&&(e.singleton=d()),"undefined"==typeof e.insertAt&&(e.insertAt="bottom");var n=r(t);return o(n,e),function(t){for(var i=[],s=0;s<n.length;s++){var a=n[s],u=f[a.id];u.refs--,i.push(u)}if(t){var l=r(t);o(l,e)}for(var s=0;s<i.length;s++){var u=i[s];if(0===u.refs){for(var c=0;c<u.parts.length;c++)u.parts[c]();delete f[u.id]}}}};var y=function(){var t=[];return function(e,n){return t[e]=n,t.filter(Boolean).join("\n")}}()},function(t,e,n){var o=n(83);"string"==typeof o&&(o=[[t.id,o,""]]);n(88)(o,{});o.locals&&(t.exports=o.locals)}])});
+//# sourceMappingURL=vue-select.js.map
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -867,14 +875,6 @@ var _default = {
   }
 };
 exports.default = _default;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueSelect=e():t.VueSelect=e()}(this,function(){return function(t){function e(o){if(n[o])return n[o].exports;var r=n[o]={exports:{},id:o,loaded:!1};return t[o].call(r.exports,r,r.exports,e),r.loaded=!0,r.exports}var n={};return e.m=t,e.c=n,e.p="/",e(0)}([function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0}),e.mixins=e.VueSelect=void 0;var r=n(85),i=o(r),s=n(42),a=o(s);e.default=i.default,e.VueSelect=i.default,e.mixins=a.default},function(t,e){var n=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=n)},function(t,e){var n=t.exports={version:"2.5.3"};"number"==typeof __e&&(__e=n)},function(t,e,n){t.exports=!n(9)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,e){var n={}.hasOwnProperty;t.exports=function(t,e){return n.call(t,e)}},function(t,e,n){var o=n(11),r=n(33),i=n(25),s=Object.defineProperty;e.f=n(3)?Object.defineProperty:function(t,e,n){if(o(t),e=i(e,!0),o(n),r)try{return s(t,e,n)}catch(t){}if("get"in n||"set"in n)throw TypeError("Accessors not supported!");return"value"in n&&(t[e]=n.value),t}},function(t,e,n){var o=n(5),r=n(14);t.exports=n(3)?function(t,e,n){return o.f(t,e,r(1,n))}:function(t,e,n){return t[e]=n,t}},function(t,e,n){var o=n(61),r=n(16);t.exports=function(t){return o(r(t))}},function(t,e,n){var o=n(23)("wks"),r=n(15),i=n(1).Symbol,s="function"==typeof i,a=t.exports=function(t){return o[t]||(o[t]=s&&i[t]||(s?i:r)("Symbol."+t))};a.store=o},function(t,e){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e,n){var o=n(10);t.exports=function(t){if(!o(t))throw TypeError(t+" is not an object!");return t}},function(t,e,n){var o=n(1),r=n(2),i=n(58),s=n(6),a="prototype",u=function(t,e,n){var l,c,f,p=t&u.F,d=t&u.G,h=t&u.S,b=t&u.P,v=t&u.B,g=t&u.W,y=d?r:r[e]||(r[e]={}),m=y[a],x=d?o:h?o[e]:(o[e]||{})[a];d&&(n=e);for(l in n)c=!p&&x&&void 0!==x[l],c&&l in y||(f=c?x[l]:n[l],y[l]=d&&"function"!=typeof x[l]?n[l]:v&&c?i(f,o):g&&x[l]==f?function(t){var e=function(e,n,o){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(e);case 2:return new t(e,n)}return new t(e,n,o)}return t.apply(this,arguments)};return e[a]=t[a],e}(f):b&&"function"==typeof f?i(Function.call,f):f,b&&((y.virtual||(y.virtual={}))[l]=f,t&u.R&&m&&!m[l]&&s(m,l,f)))};u.F=1,u.G=2,u.S=4,u.P=8,u.B=16,u.W=32,u.U=64,u.R=128,t.exports=u},function(t,e,n){var o=n(38),r=n(17);t.exports=Object.keys||function(t){return o(t,r)}},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e){var n=0,o=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++n+o).toString(36))}},function(t,e){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,e){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,e){t.exports={}},function(t,e){t.exports=!0},function(t,e){e.f={}.propertyIsEnumerable},function(t,e,n){var o=n(5).f,r=n(4),i=n(8)("toStringTag");t.exports=function(t,e,n){t&&!r(t=n?t:t.prototype,i)&&o(t,i,{configurable:!0,value:e})}},function(t,e,n){var o=n(23)("keys"),r=n(15);t.exports=function(t){return o[t]||(o[t]=r(t))}},function(t,e,n){var o=n(1),r="__core-js_shared__",i=o[r]||(o[r]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,e){var n=Math.ceil,o=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?o:n)(t)}},function(t,e,n){var o=n(10);t.exports=function(t,e){if(!o(t))return t;var n,r;if(e&&"function"==typeof(n=t.toString)&&!o(r=n.call(t)))return r;if("function"==typeof(n=t.valueOf)&&!o(r=n.call(t)))return r;if(!e&&"function"==typeof(n=t.toString)&&!o(r=n.call(t)))return r;throw TypeError("Can't convert object to primitive value")}},function(t,e,n){var o=n(1),r=n(2),i=n(19),s=n(27),a=n(5).f;t.exports=function(t){var e=r.Symbol||(r.Symbol=i?{}:o.Symbol||{});"_"==t.charAt(0)||t in e||a(e,t,{value:s.f(t)})}},function(t,e,n){e.f=n(8)},function(t,e){"use strict";t.exports={props:{loading:{type:Boolean,default:!1},onSearch:{type:Function,default:function(t,e){}}},data:function(){return{mutableLoading:!1}},watch:{search:function(){this.search.length>0&&(this.onSearch(this.search,this.toggleLoading),this.$emit("search",this.search,this.toggleLoading))},loading:function(t){this.mutableLoading=t}},methods:{toggleLoading:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return null==t?this.mutableLoading=!this.mutableLoading:this.mutableLoading=t}}}},function(t,e){"use strict";t.exports={watch:{typeAheadPointer:function(){this.maybeAdjustScroll()}},methods:{maybeAdjustScroll:function(){var t=this.pixelsToPointerTop(),e=this.pixelsToPointerBottom();return t<=this.viewport().top?this.scrollTo(t):e>=this.viewport().bottom?this.scrollTo(this.viewport().top+this.pointerHeight()):void 0},pixelsToPointerTop:function t(){var t=0;if(this.$refs.dropdownMenu)for(var e=0;e<this.typeAheadPointer;e++)t+=this.$refs.dropdownMenu.children[e].offsetHeight;return t},pixelsToPointerBottom:function(){return this.pixelsToPointerTop()+this.pointerHeight()},pointerHeight:function(){var t=!!this.$refs.dropdownMenu&&this.$refs.dropdownMenu.children[this.typeAheadPointer];return t?t.offsetHeight:0},viewport:function(){return{top:this.$refs.dropdownMenu?this.$refs.dropdownMenu.scrollTop:0,bottom:this.$refs.dropdownMenu?this.$refs.dropdownMenu.offsetHeight+this.$refs.dropdownMenu.scrollTop:0}},scrollTo:function(t){return this.$refs.dropdownMenu?this.$refs.dropdownMenu.scrollTop=t:null}}}},function(t,e){"use strict";t.exports={data:function(){return{typeAheadPointer:-1}},watch:{filteredOptions:function(){this.typeAheadPointer=0}},methods:{typeAheadUp:function(){this.typeAheadPointer>0&&(this.typeAheadPointer--,this.maybeAdjustScroll&&this.maybeAdjustScroll())},typeAheadDown:function(){this.typeAheadPointer<this.filteredOptions.length-1&&(this.typeAheadPointer++,this.maybeAdjustScroll&&this.maybeAdjustScroll())},typeAheadSelect:function(){this.filteredOptions[this.typeAheadPointer]?this.select(this.filteredOptions[this.typeAheadPointer]):this.taggable&&this.search.length&&this.select(this.search),this.clearSearchOnSelect&&(this.search="")}}}},function(t,e){var n={}.toString;t.exports=function(t){return n.call(t).slice(8,-1)}},function(t,e,n){var o=n(10),r=n(1).document,i=o(r)&&o(r.createElement);t.exports=function(t){return i?r.createElement(t):{}}},function(t,e,n){t.exports=!n(3)&&!n(9)(function(){return 7!=Object.defineProperty(n(32)("div"),"a",{get:function(){return 7}}).a})},function(t,e,n){"use strict";var o=n(19),r=n(12),i=n(39),s=n(6),a=n(4),u=n(18),l=n(63),c=n(21),f=n(69),p=n(8)("iterator"),d=!([].keys&&"next"in[].keys()),h="@@iterator",b="keys",v="values",g=function(){return this};t.exports=function(t,e,n,y,m,x,w){l(n,e,y);var S,O,_,j=function(t){if(!d&&t in C)return C[t];switch(t){case b:return function(){return new n(this,t)};case v:return function(){return new n(this,t)}}return function(){return new n(this,t)}},k=e+" Iterator",P=m==v,A=!1,C=t.prototype,M=C[p]||C[h]||m&&C[m],L=!d&&M||j(m),T=m?P?j("entries"):L:void 0,E="Array"==e?C.entries||M:M;if(E&&(_=f(E.call(new t)),_!==Object.prototype&&_.next&&(c(_,k,!0),o||a(_,p)||s(_,p,g))),P&&M&&M.name!==v&&(A=!0,L=function(){return M.call(this)}),o&&!w||!d&&!A&&C[p]||s(C,p,L),u[e]=L,u[k]=g,m)if(S={values:P?L:j(v),keys:x?L:j(b),entries:T},w)for(O in S)O in C||i(C,O,S[O]);else r(r.P+r.F*(d||A),e,S);return S}},function(t,e,n){var o=n(11),r=n(66),i=n(17),s=n(22)("IE_PROTO"),a=function(){},u="prototype",l=function(){var t,e=n(32)("iframe"),o=i.length,r="<",s=">";for(e.style.display="none",n(60).appendChild(e),e.src="javascript:",t=e.contentWindow.document,t.open(),t.write(r+"script"+s+"document.F=Object"+r+"/script"+s),t.close(),l=t.F;o--;)delete l[u][i[o]];return l()};t.exports=Object.create||function(t,e){var n;return null!==t?(a[u]=o(t),n=new a,a[u]=null,n[s]=t):n=l(),void 0===e?n:r(n,e)}},function(t,e,n){var o=n(38),r=n(17).concat("length","prototype");e.f=Object.getOwnPropertyNames||function(t){return o(t,r)}},function(t,e){e.f=Object.getOwnPropertySymbols},function(t,e,n){var o=n(4),r=n(7),i=n(57)(!1),s=n(22)("IE_PROTO");t.exports=function(t,e){var n,a=r(t),u=0,l=[];for(n in a)n!=s&&o(a,n)&&l.push(n);for(;e.length>u;)o(a,n=e[u++])&&(~i(l,n)||l.push(n));return l}},function(t,e,n){t.exports=n(6)},function(t,e,n){var o=n(16);t.exports=function(t){return Object(o(t))}},function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var r=n(45),i=o(r),s=n(48),a=o(s),u=n(43),l=o(u),c=n(49),f=o(c),p=n(29),d=o(p),h=n(30),b=o(h),v=n(28),g=o(v);e.default={mixins:[d.default,b.default,g.default],props:{value:{default:null},options:{type:Array,default:function(){return[]}},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},maxHeight:{type:String,default:"400px"},searchable:{type:Boolean,default:!0},multiple:{type:Boolean,default:!1},placeholder:{type:String,default:""},transition:{type:String,default:"fade"},clearSearchOnSelect:{type:Boolean,default:!0},closeOnSelect:{type:Boolean,default:!0},label:{type:String,default:"label"},index:{type:String,default:null},getOptionLabel:{type:Function,default:function(t){return this.index&&(t=this.findOptionByIndexValue(t)),"object"===("undefined"==typeof t?"undefined":(0,f.default)(t))?t.hasOwnProperty(this.label)?t[this.label]:console.warn('[vue-select warn]: Label key "option.'+this.label+'" does not'+(" exist in options object "+(0,l.default)(t)+".\n")+"http://sagalbot.github.io/vue-select/#ex-labels"):t}},onChange:{type:Function,default:function(t){this.$emit("input",t)}},onTab:{type:Function,default:function(){this.selectOnTab&&this.typeAheadSelect()}},taggable:{type:Boolean,default:!1},tabindex:{type:Number,default:null},pushTags:{type:Boolean,default:!1},filterable:{type:Boolean,default:!0},filterBy:{type:Function,default:function(t,e,n){return(e||"").toLowerCase().indexOf(n.toLowerCase())>-1}},filter:{type:Function,default:function(t,e){var n=this;return t.filter(function(t){var o=n.getOptionLabel(t);return"number"==typeof o&&(o=o.toString()),n.filterBy(t,o,e)})}},createOption:{type:Function,default:function(t){return"object"===(0,f.default)(this.mutableOptions[0])&&(t=(0,a.default)({},this.label,t)),this.$emit("option:created",t),t}},resetOnOptionsChange:{type:Boolean,default:!1},noDrop:{type:Boolean,default:!1},inputId:{type:String},dir:{type:String,default:"auto"},selectOnTab:{type:Boolean,default:!1}},data:function(){return{search:"",open:!1,mutableValue:null,mutableOptions:[]}},watch:{value:function(t){this.mutableValue=t},mutableValue:function(t,e){this.multiple?this.onChange?this.onChange(t):null:this.onChange&&t!==e?this.onChange(t):null},options:function(t){this.mutableOptions=t},mutableOptions:function(){!this.taggable&&this.resetOnOptionsChange&&(this.mutableValue=this.multiple?[]:null)},multiple:function(t){this.mutableValue=t?[]:null}},created:function(){this.mutableValue=this.value,this.mutableOptions=this.options.slice(0),this.mutableLoading=this.loading,this.$on("option:created",this.maybePushTag)},methods:{select:function(t){if(!this.isOptionSelected(t)){if(this.taggable&&!this.optionExists(t)&&(t=this.createOption(t)),this.index){if(!t.hasOwnProperty(this.index))return console.warn('[vue-select warn]: Index key "option.'+this.index+'" does not'+(" exist in options object "+(0,l.default)(t)+"."));t=t[this.index]}this.multiple&&!this.mutableValue?this.mutableValue=[t]:this.multiple?this.mutableValue.push(t):this.mutableValue=t}this.onAfterSelect(t)},deselect:function(t){var e=this;if(this.multiple){var n=-1;this.mutableValue.forEach(function(o){(o===t||e.index&&o===t[e.index]||"object"===("undefined"==typeof o?"undefined":(0,f.default)(o))&&o[e.label]===t[e.label])&&(n=o)});var o=this.mutableValue.indexOf(n);this.mutableValue.splice(o,1)}else this.mutableValue=null},clearSelection:function(){this.mutableValue=this.multiple?[]:null},onAfterSelect:function(t){this.closeOnSelect&&(this.open=!this.open,this.$refs.search.blur()),this.clearSearchOnSelect&&(this.search="")},toggleDropdown:function(t){(t.target===this.$refs.openIndicator||t.target===this.$refs.search||t.target===this.$refs.toggle||t.target.classList.contains("selected-tag")||t.target===this.$el)&&(this.open?this.$refs.search.blur():this.disabled||(this.open=!0,this.$refs.search.focus()))},isOptionSelected:function(t){var e=this,n=!1;return this.valueAsArray.forEach(function(o){"object"===("undefined"==typeof o?"undefined":(0,f.default)(o))?n=e.optionObjectComparator(o,t):o!==t&&o!==t[e.index]||(n=!0)}),n},optionObjectComparator:function(t,e){return!(!this.index||t!==e[this.index])||(t[this.label]===e[this.label]||t[this.label]===e||!(!this.index||t[this.index]!==e[this.index]))},findOptionByIndexValue:function(t){var e=this;return this.options.forEach(function(n){(0,l.default)(n[e.index])===(0,l.default)(t)&&(t=n)}),t},onEscape:function(){this.search.length?this.search="":this.$refs.search.blur()},onSearchBlur:function(){this.mousedown&&!this.searching?this.mousedown=!1:(this.clearSearchOnBlur&&(this.search=""),this.open=!1,this.$emit("search:blur"))},onSearchFocus:function(){this.open=!0,this.$emit("search:focus")},maybeDeleteValue:function(){if(!this.$refs.search.value.length&&this.mutableValue)return this.multiple?this.mutableValue.pop():this.mutableValue=null},optionExists:function(t){var e=this,n=!1;return this.mutableOptions.forEach(function(o){"object"===("undefined"==typeof o?"undefined":(0,f.default)(o))&&o[e.label]===t?n=!0:o===t&&(n=!0)}),n},maybePushTag:function(t){this.pushTags&&this.mutableOptions.push(t)},onMousedown:function(){this.mousedown=!0}},computed:{dropdownClasses:function(){return{open:this.dropdownOpen,single:!this.multiple,searching:this.searching,searchable:this.searchable,unsearchable:!this.searchable,loading:this.mutableLoading,rtl:"rtl"===this.dir,disabled:this.disabled}},clearSearchOnBlur:function(){return this.clearSearchOnSelect&&!this.multiple},searching:function(){return!!this.search},dropdownOpen:function(){return!this.noDrop&&(this.open&&!this.mutableLoading)},searchPlaceholder:function(){if(this.isValueEmpty&&this.placeholder)return this.placeholder},filteredOptions:function(){if(!this.filterable&&!this.taggable)return this.mutableOptions.slice();var t=this.search.length?this.filter(this.mutableOptions,this.search,this):this.mutableOptions;return this.taggable&&this.search.length&&!this.optionExists(this.search)&&t.unshift(this.search),t},isValueEmpty:function(){return!this.mutableValue||("object"===(0,f.default)(this.mutableValue)?!(0,i.default)(this.mutableValue).length:!this.valueAsArray.length)},valueAsArray:function(){return this.multiple&&this.mutableValue?this.mutableValue:this.mutableValue?[].concat(this.mutableValue):[]},showClearButton:function(){return!this.multiple&&this.clearable&&!this.open&&null!=this.mutableValue}}}},function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var r=n(28),i=o(r),s=n(30),a=o(s),u=n(29),l=o(u);e.default={ajax:i.default,pointer:a.default,pointerScroll:l.default}},function(t,e,n){t.exports={default:n(50),__esModule:!0}},function(t,e,n){t.exports={default:n(51),__esModule:!0}},function(t,e,n){t.exports={default:n(52),__esModule:!0}},function(t,e,n){t.exports={default:n(53),__esModule:!0}},function(t,e,n){t.exports={default:n(54),__esModule:!0}},function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}e.__esModule=!0;var r=n(44),i=o(r);e.default=function(t,e,n){return e in t?(0,i.default)(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}},function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}e.__esModule=!0;var r=n(47),i=o(r),s=n(46),a=o(s),u="function"==typeof a.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof a.default&&t.constructor===a.default&&t!==a.default.prototype?"symbol":typeof t};e.default="function"==typeof a.default&&"symbol"===u(i.default)?function(t){return"undefined"==typeof t?"undefined":u(t)}:function(t){return t&&"function"==typeof a.default&&t.constructor===a.default&&t!==a.default.prototype?"symbol":"undefined"==typeof t?"undefined":u(t)}},function(t,e,n){var o=n(2),r=o.JSON||(o.JSON={stringify:JSON.stringify});t.exports=function(t){return r.stringify.apply(r,arguments)}},function(t,e,n){n(75);var o=n(2).Object;t.exports=function(t,e,n){return o.defineProperty(t,e,n)}},function(t,e,n){n(76),t.exports=n(2).Object.keys},function(t,e,n){n(79),n(77),n(80),n(81),t.exports=n(2).Symbol},function(t,e,n){n(78),n(82),t.exports=n(27).f("iterator")},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,e){t.exports=function(){}},function(t,e,n){var o=n(7),r=n(73),i=n(72);t.exports=function(t){return function(e,n,s){var a,u=o(e),l=r(u.length),c=i(s,l);if(t&&n!=n){for(;l>c;)if(a=u[c++],a!=a)return!0}else for(;l>c;c++)if((t||c in u)&&u[c]===n)return t||c||0;return!t&&-1}}},function(t,e,n){var o=n(55);t.exports=function(t,e,n){if(o(t),void 0===e)return t;switch(n){case 1:return function(n){return t.call(e,n)};case 2:return function(n,o){return t.call(e,n,o)};case 3:return function(n,o,r){return t.call(e,n,o,r)}}return function(){return t.apply(e,arguments)}}},function(t,e,n){var o=n(13),r=n(37),i=n(20);t.exports=function(t){var e=o(t),n=r.f;if(n)for(var s,a=n(t),u=i.f,l=0;a.length>l;)u.call(t,s=a[l++])&&e.push(s);return e}},function(t,e,n){var o=n(1).document;t.exports=o&&o.documentElement},function(t,e,n){var o=n(31);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==o(t)?t.split(""):Object(t)}},function(t,e,n){var o=n(31);t.exports=Array.isArray||function(t){return"Array"==o(t)}},function(t,e,n){"use strict";var o=n(35),r=n(14),i=n(21),s={};n(6)(s,n(8)("iterator"),function(){return this}),t.exports=function(t,e,n){t.prototype=o(s,{next:r(1,n)}),i(t,e+" Iterator")}},function(t,e){t.exports=function(t,e){return{value:e,done:!!t}}},function(t,e,n){var o=n(15)("meta"),r=n(10),i=n(4),s=n(5).f,a=0,u=Object.isExtensible||function(){return!0},l=!n(9)(function(){return u(Object.preventExtensions({}))}),c=function(t){s(t,o,{value:{i:"O"+ ++a,w:{}}})},f=function(t,e){if(!r(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,o)){if(!u(t))return"F";if(!e)return"E";c(t)}return t[o].i},p=function(t,e){if(!i(t,o)){if(!u(t))return!0;if(!e)return!1;c(t)}return t[o].w},d=function(t){return l&&h.NEED&&u(t)&&!i(t,o)&&c(t),t},h=t.exports={KEY:o,NEED:!1,fastKey:f,getWeak:p,onFreeze:d}},function(t,e,n){var o=n(5),r=n(11),i=n(13);t.exports=n(3)?Object.defineProperties:function(t,e){r(t);for(var n,s=i(e),a=s.length,u=0;a>u;)o.f(t,n=s[u++],e[n]);return t}},function(t,e,n){var o=n(20),r=n(14),i=n(7),s=n(25),a=n(4),u=n(33),l=Object.getOwnPropertyDescriptor;e.f=n(3)?l:function(t,e){if(t=i(t),e=s(e,!0),u)try{return l(t,e)}catch(t){}if(a(t,e))return r(!o.f.call(t,e),t[e])}},function(t,e,n){var o=n(7),r=n(36).f,i={}.toString,s="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],a=function(t){try{return r(t)}catch(t){return s.slice()}};t.exports.f=function(t){return s&&"[object Window]"==i.call(t)?a(t):r(o(t))}},function(t,e,n){var o=n(4),r=n(40),i=n(22)("IE_PROTO"),s=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=r(t),o(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?s:null}},function(t,e,n){var o=n(12),r=n(2),i=n(9);t.exports=function(t,e){var n=(r.Object||{})[t]||Object[t],s={};s[t]=e(n),o(o.S+o.F*i(function(){n(1)}),"Object",s)}},function(t,e,n){var o=n(24),r=n(16);t.exports=function(t){return function(e,n){var i,s,a=String(r(e)),u=o(n),l=a.length;return u<0||u>=l?t?"":void 0:(i=a.charCodeAt(u),i<55296||i>56319||u+1===l||(s=a.charCodeAt(u+1))<56320||s>57343?t?a.charAt(u):i:t?a.slice(u,u+2):(i-55296<<10)+(s-56320)+65536)}}},function(t,e,n){var o=n(24),r=Math.max,i=Math.min;t.exports=function(t,e){return t=o(t),t<0?r(t+e,0):i(t,e)}},function(t,e,n){var o=n(24),r=Math.min;t.exports=function(t){return t>0?r(o(t),9007199254740991):0}},function(t,e,n){"use strict";var o=n(56),r=n(64),i=n(18),s=n(7);t.exports=n(34)(Array,"Array",function(t,e){this._t=s(t),this._i=0,this._k=e},function(){var t=this._t,e=this._k,n=this._i++;return!t||n>=t.length?(this._t=void 0,r(1)):"keys"==e?r(0,n):"values"==e?r(0,t[n]):r(0,[n,t[n]])},"values"),i.Arguments=i.Array,o("keys"),o("values"),o("entries")},function(t,e,n){var o=n(12);o(o.S+o.F*!n(3),"Object",{defineProperty:n(5).f})},function(t,e,n){var o=n(40),r=n(13);n(70)("keys",function(){return function(t){return r(o(t))}})},function(t,e){},function(t,e,n){"use strict";var o=n(71)(!0);n(34)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,e=this._t,n=this._i;return n>=e.length?{value:void 0,done:!0}:(t=o(e,n),this._i+=t.length,{value:t,done:!1})})},function(t,e,n){"use strict";var o=n(1),r=n(4),i=n(3),s=n(12),a=n(39),u=n(65).KEY,l=n(9),c=n(23),f=n(21),p=n(15),d=n(8),h=n(27),b=n(26),v=n(59),g=n(62),y=n(11),m=n(10),x=n(7),w=n(25),S=n(14),O=n(35),_=n(68),j=n(67),k=n(5),P=n(13),A=j.f,C=k.f,M=_.f,L=o.Symbol,T=o.JSON,E=T&&T.stringify,V="prototype",B=d("_hidden"),F=d("toPrimitive"),N={}.propertyIsEnumerable,$=c("symbol-registry"),D=c("symbols"),I=c("op-symbols"),R=Object[V],z="function"==typeof L,H=o.QObject,G=!H||!H[V]||!H[V].findChild,J=i&&l(function(){return 7!=O(C({},"a",{get:function(){return C(this,"a",{value:7}).a}})).a})?function(t,e,n){var o=A(R,e);o&&delete R[e],C(t,e,n),o&&t!==R&&C(R,e,o)}:C,U=function(t){var e=D[t]=O(L[V]);return e._k=t,e},W=z&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},K=function(t,e,n){return t===R&&K(I,e,n),y(t),e=w(e,!0),y(n),r(D,e)?(n.enumerable?(r(t,B)&&t[B][e]&&(t[B][e]=!1),n=O(n,{enumerable:S(0,!1)})):(r(t,B)||C(t,B,S(1,{})),t[B][e]=!0),J(t,e,n)):C(t,e,n)},Y=function(t,e){y(t);for(var n,o=v(e=x(e)),r=0,i=o.length;i>r;)K(t,n=o[r++],e[n]);return t},q=function(t,e){return void 0===e?O(t):Y(O(t),e)},Q=function(t){var e=N.call(this,t=w(t,!0));return!(this===R&&r(D,t)&&!r(I,t))&&(!(e||!r(this,t)||!r(D,t)||r(this,B)&&this[B][t])||e)},Z=function(t,e){if(t=x(t),e=w(e,!0),t!==R||!r(D,e)||r(I,e)){var n=A(t,e);return!n||!r(D,e)||r(t,B)&&t[B][e]||(n.enumerable=!0),n}},X=function(t){for(var e,n=M(x(t)),o=[],i=0;n.length>i;)r(D,e=n[i++])||e==B||e==u||o.push(e);return o},tt=function(t){for(var e,n=t===R,o=M(n?I:x(t)),i=[],s=0;o.length>s;)!r(D,e=o[s++])||n&&!r(R,e)||i.push(D[e]);return i};z||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),e=function(n){this===R&&e.call(I,n),r(this,B)&&r(this[B],t)&&(this[B][t]=!1),J(this,t,S(1,n))};return i&&G&&J(R,t,{configurable:!0,set:e}),U(t)},a(L[V],"toString",function(){return this._k}),j.f=Z,k.f=K,n(36).f=_.f=X,n(20).f=Q,n(37).f=tt,i&&!n(19)&&a(R,"propertyIsEnumerable",Q,!0),h.f=function(t){return U(d(t))}),s(s.G+s.W+s.F*!z,{Symbol:L});for(var et="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),nt=0;et.length>nt;)d(et[nt++]);for(var ot=P(d.store),rt=0;ot.length>rt;)b(ot[rt++]);s(s.S+s.F*!z,"Symbol",{for:function(t){return r($,t+="")?$[t]:$[t]=L(t)},keyFor:function(t){if(!W(t))throw TypeError(t+" is not a symbol!");for(var e in $)if($[e]===t)return e},useSetter:function(){G=!0},useSimple:function(){G=!1}}),s(s.S+s.F*!z,"Object",{create:q,defineProperty:K,defineProperties:Y,getOwnPropertyDescriptor:Z,getOwnPropertyNames:X,getOwnPropertySymbols:tt}),T&&s(s.S+s.F*(!z||l(function(){var t=L();return"[null]"!=E([t])||"{}"!=E({a:t})||"{}"!=E(Object(t))})),"JSON",{stringify:function(t){for(var e,n,o=[t],r=1;arguments.length>r;)o.push(arguments[r++]);if(n=e=o[1],(m(e)||void 0!==t)&&!W(t))return g(e)||(e=function(t,e){if("function"==typeof n&&(e=n.call(this,t,e)),!W(e))return e}),o[1]=e,E.apply(T,o)}}),L[V][F]||n(6)(L[V],F,L[V].valueOf),f(L,"Symbol"),f(Math,"Math",!0),f(o.JSON,"JSON",!0)},function(t,e,n){n(26)("asyncIterator")},function(t,e,n){n(26)("observable")},function(t,e,n){n(74);for(var o=n(1),r=n(6),i=n(18),s=n(8)("toStringTag"),a="CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,TextTrackList,TouchList".split(","),u=0;u<a.length;u++){var l=a[u],c=o[l],f=c&&c.prototype;f&&!f[s]&&r(f,s,l),i[l]=i.Array}},function(t,e,n){e=t.exports=n(84)(),e.push([t.id,'.v-select{position:relative;font-family:inherit}.v-select,.v-select *{box-sizing:border-box}.v-select[dir=rtl] .vs__actions{padding:0 3px 0 6px}.v-select[dir=rtl] .dropdown-toggle .clear{margin-left:6px;margin-right:0}.v-select[dir=rtl] .selected-tag .close{margin-left:0;margin-right:2px}.v-select[dir=rtl] .dropdown-menu{text-align:right}.v-select .open-indicator{display:flex;align-items:center;cursor:pointer;pointer-events:all;opacity:1;width:12px}.v-select .open-indicator,.v-select .open-indicator:before{transition:all .15s cubic-bezier(1,-.115,.975,.855);transition-timing-function:cubic-bezier(1,-.115,.975,.855)}.v-select .open-indicator:before{border-color:rgba(60,60,60,.5);border-style:solid;border-width:3px 3px 0 0;content:"";display:inline-block;height:10px;width:10px;vertical-align:text-top;transform:rotate(133deg);box-sizing:inherit}.v-select.open .open-indicator:before{transform:rotate(315deg)}.v-select.loading .open-indicator{opacity:0}.v-select .dropdown-toggle{-webkit-appearance:none;-moz-appearance:none;appearance:none;display:flex;padding:0 0 4px;background:none;border:1px solid rgba(60,60,60,.26);border-radius:4px;white-space:normal}.v-select .vs__selected-options{display:flex;flex-basis:100%;flex-grow:1;flex-wrap:wrap;padding:0 2px;position:relative}.v-select .vs__actions{display:flex;align-items:stretch;padding:0 6px 0 3px}.v-select .dropdown-toggle .clear{font-size:23px;font-weight:700;line-height:1;color:rgba(60,60,60,.5);padding:0;border:0;background-color:transparent;cursor:pointer;margin-right:6px}.v-select.searchable .dropdown-toggle{cursor:text}.v-select.unsearchable .dropdown-toggle{cursor:pointer}.v-select.open .dropdown-toggle{border-bottom-color:transparent;border-bottom-left-radius:0;border-bottom-right-radius:0}.v-select .dropdown-menu{display:block;position:absolute;top:100%;left:0;z-index:1000;min-width:160px;padding:5px 0;margin:0;width:100%;overflow-y:scroll;border:1px solid rgba(0,0,0,.26);box-shadow:0 3px 6px 0 rgba(0,0,0,.15);border-top:none;border-radius:0 0 4px 4px;text-align:left;list-style:none;background:#fff}.v-select .no-options{text-align:center}.v-select .selected-tag{display:flex;align-items:center;background-color:#f0f0f0;border:1px solid #ccc;border-radius:4px;color:#333;line-height:1.42857143;margin:4px 2px 0;padding:0 .25em;transition:opacity .25s}.v-select.single .selected-tag{background-color:transparent;border-color:transparent}.v-select.single.open .selected-tag{position:absolute;opacity:.4}.v-select.single.searching .selected-tag{display:none}.v-select .selected-tag .close{margin-left:2px;font-size:1.25em;appearance:none;padding:0;cursor:pointer;background:0 0;border:0;font-weight:700;line-height:1;color:#000;text-shadow:0 1px 0 #fff;filter:alpha(opacity=20);opacity:.2}.v-select.single.searching:not(.open):not(.loading) input[type=search]{opacity:.2}.v-select input[type=search]::-webkit-search-cancel-button,.v-select input[type=search]::-webkit-search-decoration,.v-select input[type=search]::-webkit-search-results-button,.v-select input[type=search]::-webkit-search-results-decoration{display:none}.v-select input[type=search]::-ms-clear{display:none}.v-select input[type=search],.v-select input[type=search]:focus{appearance:none;-webkit-appearance:none;-moz-appearance:none;line-height:1.42857143;font-size:1em;display:inline-block;border:1px solid transparent;border-left:none;outline:none;margin:4px 0 0;padding:0 7px;max-width:100%;background:none;box-shadow:none;flex-grow:1;width:0}.v-select.unsearchable input[type=search]{opacity:0}.v-select.unsearchable input[type=search]:hover{cursor:pointer}.v-select li{line-height:1.42857143}.v-select li>a{display:block;padding:3px 20px;clear:both;color:#333;white-space:nowrap}.v-select li:hover{cursor:pointer}.v-select .dropdown-menu .active>a{color:#333;background:rgba(50,50,50,.1)}.v-select .dropdown-menu>.highlight>a{background:#5897fb;color:#fff}.v-select .highlight:not(:last-child){margin-bottom:0}.v-select .spinner{align-self:center;opacity:0;font-size:5px;text-indent:-9999em;overflow:hidden;border-top:.9em solid hsla(0,0%,39%,.1);border-right:.9em solid hsla(0,0%,39%,.1);border-bottom:.9em solid hsla(0,0%,39%,.1);border-left:.9em solid rgba(60,60,60,.45);transform:translateZ(0);animation:vSelectSpinner 1.1s infinite linear;transition:opacity .1s}.v-select .spinner,.v-select .spinner:after{border-radius:50%;width:5em;height:5em}.v-select.disabled .dropdown-toggle,.v-select.disabled .dropdown-toggle .clear,.v-select.disabled .dropdown-toggle input,.v-select.disabled .open-indicator,.v-select.disabled .selected-tag .close{cursor:not-allowed;background-color:#f8f8f8}.v-select.loading .spinner{opacity:1}@-webkit-keyframes vSelectSpinner{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes vSelectSpinner{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}.fade-enter-active,.fade-leave-active{transition:opacity .15s cubic-bezier(1,.5,.8,1)}.fade-enter,.fade-leave-to{opacity:0}',""])},function(t,e){t.exports=function(){var t=[];return t.toString=function(){for(var t=[],e=0;e<this.length;e++){var n=this[e];n[2]?t.push("@media "+n[2]+"{"+n[1]+"}"):t.push(n[1])}return t.join("")},t.i=function(e,n){"string"==typeof e&&(e=[[null,e,""]]);for(var o={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(o[i]=!0)}for(r=0;r<e.length;r++){var s=e[r];"number"==typeof s[0]&&o[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),t.push(s))}},t}},function(t,e,n){n(89);var o=n(86)(n(41),n(87),null,null);t.exports=o.exports},function(t,e){t.exports=function(t,e,n,o){var r,i=t=t||{},s=typeof t.default;"object"!==s&&"function"!==s||(r=t,i=t.default);var a="function"==typeof i?i.options:i;if(e&&(a.render=e.render,a.staticRenderFns=e.staticRenderFns),n&&(a._scopeId=n),o){var u=a.computed||(a.computed={});Object.keys(o).forEach(function(t){var e=o[t];u[t]=function(){return e}})}return{esModule:r,exports:i,options:a}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"dropdown v-select",class:t.dropdownClasses,attrs:{dir:t.dir}},[n("div",{ref:"toggle",staticClass:"dropdown-toggle",on:{mousedown:function(e){e.preventDefault(),t.toggleDropdown(e)}}},[n("div",{ref:"selectedOptions",staticClass:"vs__selected-options"},[t._l(t.valueAsArray,function(e){return t._t("selected-option-container",[n("span",{key:e.index,staticClass:"selected-tag"},[t._t("selected-option",[t._v("\n            "+t._s(t.getOptionLabel(e))+"\n          ")],null,"object"==typeof e?e:(o={},
-o[t.label]=e,o)),t._v(" "),t.multiple?n("button",{staticClass:"close",attrs:{disabled:t.disabled,type:"button","aria-label":"Remove option"},on:{click:function(n){t.deselect(e)}}},[n("span",{attrs:{"aria-hidden":"true"}},[t._v("×")])]):t._e()],2)],{option:"object"==typeof e?e:(r={},r[t.label]=e,r),deselect:t.deselect,multiple:t.multiple,disabled:t.disabled});var o,r}),t._v(" "),n("input",{directives:[{name:"model",rawName:"v-model",value:t.search,expression:"search"}],ref:"search",staticClass:"form-control",attrs:{type:"search",autocomplete:"off",disabled:t.disabled,placeholder:t.searchPlaceholder,tabindex:t.tabindex,readonly:!t.searchable,id:t.inputId,role:"combobox","aria-expanded":t.dropdownOpen,"aria-label":"Search for option"},domProps:{value:t.search},on:{keydown:[function(e){return"button"in e||!t._k(e.keyCode,"delete",[8,46],e.key)?void t.maybeDeleteValue(e):null},function(e){return"button"in e||!t._k(e.keyCode,"up",38,e.key)?(e.preventDefault(),void t.typeAheadUp(e)):null},function(e){return"button"in e||!t._k(e.keyCode,"down",40,e.key)?(e.preventDefault(),void t.typeAheadDown(e)):null},function(e){return"button"in e||!t._k(e.keyCode,"enter",13,e.key)?(e.preventDefault(),void t.typeAheadSelect(e)):null},function(e){return"button"in e||!t._k(e.keyCode,"tab",9,e.key)?void t.onTab(e):null}],keyup:function(e){return"button"in e||!t._k(e.keyCode,"esc",27,e.key)?void t.onEscape(e):null},blur:t.onSearchBlur,focus:t.onSearchFocus,input:function(e){e.target.composing||(t.search=e.target.value)}}})],2),t._v(" "),n("div",{staticClass:"vs__actions"},[n("button",{directives:[{name:"show",rawName:"v-show",value:t.showClearButton,expression:"showClearButton"}],staticClass:"clear",attrs:{disabled:t.disabled,type:"button",title:"Clear selection"},on:{click:t.clearSelection}},[n("span",{attrs:{"aria-hidden":"true"}},[t._v("×")])]),t._v(" "),t.noDrop?t._e():n("i",{ref:"openIndicator",staticClass:"open-indicator",attrs:{role:"presentation"}}),t._v(" "),t._t("spinner",[n("div",{directives:[{name:"show",rawName:"v-show",value:t.mutableLoading,expression:"mutableLoading"}],staticClass:"spinner"},[t._v("Loading...")])])],2)]),t._v(" "),n("transition",{attrs:{name:t.transition}},[t.dropdownOpen?n("ul",{ref:"dropdownMenu",staticClass:"dropdown-menu",style:{"max-height":t.maxHeight},attrs:{role:"listbox"},on:{mousedown:t.onMousedown}},[t._l(t.filteredOptions,function(e,o){return n("li",{key:o,class:{active:t.isOptionSelected(e),highlight:o===t.typeAheadPointer},attrs:{role:"option"},on:{mouseover:function(e){t.typeAheadPointer=o}}},[n("a",{on:{mousedown:function(n){n.preventDefault(),n.stopPropagation(),t.select(e)}}},[t._t("option",[t._v("\n          "+t._s(t.getOptionLabel(e))+"\n        ")],null,"object"==typeof e?e:(r={},r[t.label]=e,r))],2)]);var r}),t._v(" "),t.filteredOptions.length?t._e():n("li",{staticClass:"no-options"},[t._t("no-options",[t._v("Sorry, no matching options.")])],2)],2):t._e()])],1)},staticRenderFns:[]}},function(t,e,n){function o(t,e){for(var n=0;n<t.length;n++){var o=t[n],r=f[o.id];if(r){r.refs++;for(var i=0;i<r.parts.length;i++)r.parts[i](o.parts[i]);for(;i<o.parts.length;i++)r.parts.push(u(o.parts[i],e))}else{for(var s=[],i=0;i<o.parts.length;i++)s.push(u(o.parts[i],e));f[o.id]={id:o.id,refs:1,parts:s}}}}function r(t){for(var e=[],n={},o=0;o<t.length;o++){var r=t[o],i=r[0],s=r[1],a=r[2],u=r[3],l={css:s,media:a,sourceMap:u};n[i]?n[i].parts.push(l):e.push(n[i]={id:i,parts:[l]})}return e}function i(t,e){var n=h(),o=g[g.length-1];if("top"===t.insertAt)o?o.nextSibling?n.insertBefore(e,o.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),g.push(e);else{if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(e)}}function s(t){t.parentNode.removeChild(t);var e=g.indexOf(t);e>=0&&g.splice(e,1)}function a(t){var e=document.createElement("style");return e.type="text/css",i(t,e),e}function u(t,e){var n,o,r;if(e.singleton){var i=v++;n=b||(b=a(e)),o=l.bind(null,n,i,!1),r=l.bind(null,n,i,!0)}else n=a(e),o=c.bind(null,n),r=function(){s(n)};return o(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;o(t=e)}else r()}}function l(t,e,n,o){var r=n?"":o.css;if(t.styleSheet)t.styleSheet.cssText=y(e,r);else{var i=document.createTextNode(r),s=t.childNodes;s[e]&&t.removeChild(s[e]),s.length?t.insertBefore(i,s[e]):t.appendChild(i)}}function c(t,e){var n=e.css,o=e.media,r=e.sourceMap;if(o&&t.setAttribute("media",o),r&&(n+="\n/*# sourceURL="+r.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */"),t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}var f={},p=function(t){var e;return function(){return"undefined"==typeof e&&(e=t.apply(this,arguments)),e}},d=p(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),h=p(function(){return document.head||document.getElementsByTagName("head")[0]}),b=null,v=0,g=[];t.exports=function(t,e){e=e||{},"undefined"==typeof e.singleton&&(e.singleton=d()),"undefined"==typeof e.insertAt&&(e.insertAt="bottom");var n=r(t);return o(n,e),function(t){for(var i=[],s=0;s<n.length;s++){var a=n[s],u=f[a.id];u.refs--,i.push(u)}if(t){var l=r(t);o(l,e)}for(var s=0;s<i.length;s++){var u=i[s];if(0===u.refs){for(var c=0;c<u.parts.length;c++)u.parts[c]();delete f[u.id]}}}};var y=function(){var t=[];return function(e,n){return t[e]=n,t.filter(Boolean).join("\n")}}()},function(t,e,n){var o=n(83);"string"==typeof o&&(o=[[t.id,o,""]]);n(88)(o,{});o.locals&&(t.exports=o.locals)}])});
-//# sourceMappingURL=vue-select.js.map
 
 /***/ }),
 /* 7 */
@@ -1617,63 +1617,6 @@ exports.default = _default;
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.default = void 0;
-
-/* Form control contextual state class computation
- *
- * Returned class is either 'is-valid' or 'is-invalid' based on the 'state' prop
- * state can be one of five values:
- *  - true or 'valid' for is-valid
- *  - false or 'invalid' for is-invalid
- *  - null (or empty string) for no contextual state
- */
-// @vue/component
-var _default = {
-  props: {
-    state: {
-      // true/'valid', false/'invalid', '',null
-      // The order must be String first, then Boolean!
-      type: [String, Boolean],
-      default: null
-    }
-  },
-  computed: {
-    computedState: function computedState() {
-      var state = this.state;
-
-      if (state === '') {
-        return null;
-      } else if (state === true || state === 'valid') {
-        return true;
-      } else if (state === false || state === 'invalid') {
-        return false;
-      }
-
-      return null;
-    },
-    stateClass: function stateClass() {
-      var state = this.computedState;
-
-      if (state === true) {
-        return 'is-valid';
-      } else if (state === false) {
-        return 'is-invalid';
-      }
-
-      return null;
-    }
-  }
-};
-exports.default = _default;
-
-/***/ }),
-/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -4253,6 +4196,63 @@ return Swal;
 if (typeof window !== 'undefined' && window.Sweetalert2){  window.swal = window.sweetAlert = window.Swal = window.SweetAlert = window.Sweetalert2}
 
 "undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,"@-webkit-keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-shown{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{flex-direction:column;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast{flex-direction:row;align-items:center;width:auto;padding:.625em;box-shadow:0 0 .625em #d9d9d9;overflow-y:hidden}.swal2-popup.swal2-toast .swal2-header{flex-direction:row}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:initial;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon-text{font-size:2em;font-weight:700;line-height:1em}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{height:auto;margin:0 .3125em}.swal2-popup.swal2-toast .swal2-styled{margin:0 .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 .0625em #fff,0 0 0 .125em rgba(50,100,150,.4)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:2em;height:2.8125em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.25em;left:-.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:2em 2em;transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;-webkit-transform-origin:0 2em;transform-origin:0 2em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:showSweetToast .5s;animation:showSweetToast .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:hideSweetToast .2s forwards;animation:hideSweetToast .2s forwards}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:animate-toast-success-tip .75s;animation:animate-toast-success-tip .75s}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:animate-toast-success-long .75s;animation:animate-toast-success-long .75s}@-webkit-keyframes showSweetToast{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg);opacity:0}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg);opacity:.5}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg);opacity:.7}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0);opacity:1}}@keyframes showSweetToast{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg);opacity:0}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg);opacity:.5}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg);opacity:.7}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0);opacity:1}}@-webkit-keyframes hideSweetToast{0%{opacity:1}33%{opacity:.5}100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@keyframes hideSweetToast{0%{opacity:1}33%{opacity:.5}100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes animate-toast-success-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes animate-toast-success-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes animate-toast-success-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes animate-toast-success-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-shown{top:auto;right:auto;bottom:auto;left:auto;background-color:transparent}body.swal2-no-backdrop .swal2-shown>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-shown.swal2-top{top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-top-left,body.swal2-no-backdrop .swal2-shown.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-top-end,body.swal2-no-backdrop .swal2-shown.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-shown.swal2-center{top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-left,body.swal2-no-backdrop .swal2-shown.swal2-center-start{top:50%;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-end,body.swal2-no-backdrop .swal2-shown.swal2-center-right{top:50%;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom{bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom-left,body.swal2-no-backdrop .swal2-shown.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-bottom-end,body.swal2-no-backdrop .swal2-shown.swal2-bottom-right{right:0;bottom:0}.swal2-container{display:flex;position:fixed;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:10px;background-color:transparent;z-index:1060;overflow-x:hidden;-webkit-overflow-scrolling:touch}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{margin-top:auto}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-container.swal2-fade{transition:background-color .1s}.swal2-container.swal2-shown{background-color:rgba(0,0,0,.4)}.swal2-popup{display:none;position:relative;flex-direction:column;justify-content:center;width:32em;max-width:100%;padding:1.25em;border-radius:.3125em;background:#fff;font-family:inherit;font-size:1rem;box-sizing:border-box}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-popup .swal2-header{display:flex;flex-direction:column;align-items:center}.swal2-popup .swal2-title{display:block;position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-popup .swal2-actions{flex-wrap:wrap;align-items:center;justify-content:center;margin:1.25em auto 0;z-index:1}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-popup .swal2-actions.swal2-loading .swal2-styled.swal2-confirm{width:2.5em;height:2.5em;margin:.46875em;padding:0;border:.25em solid transparent;border-radius:100%;border-color:transparent;background-color:transparent!important;color:transparent;cursor:default;box-sizing:border-box;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-popup .swal2-actions.swal2-loading .swal2-styled.swal2-cancel{margin-right:30px;margin-left:30px}.swal2-popup .swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{display:inline-block;width:15px;height:15px;margin-left:5px;border:3px solid #999;border-radius:50%;border-right-color:transparent;box-shadow:1px 1px 1px #fff;content:'';-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal}.swal2-popup .swal2-styled{margin:.3125em;padding:.625em 2em;font-weight:500;box-shadow:none}.swal2-popup .swal2-styled:not([disabled]){cursor:pointer}.swal2-popup .swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#3085d6;color:#fff;font-size:1.0625em}.swal2-popup .swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#aaa;color:#fff;font-size:1.0625em}.swal2-popup .swal2-styled:focus{outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(50,100,150,.4)}.swal2-popup .swal2-styled::-moz-focus-inner{border:0}.swal2-popup .swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-popup .swal2-image{max-width:100%;margin:1.25em auto}.swal2-popup .swal2-close{position:absolute;top:0;right:0;justify-content:center;width:1.2em;height:1.2em;padding:0;transition:color .1s ease-out;border:none;border-radius:0;outline:initial;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer;overflow:hidden}.swal2-popup .swal2-close:hover{-webkit-transform:none;transform:none;color:#f27474}.swal2-popup>.swal2-checkbox,.swal2-popup>.swal2-file,.swal2-popup>.swal2-input,.swal2-popup>.swal2-radio,.swal2-popup>.swal2-select,.swal2-popup>.swal2-textarea{display:none}.swal2-popup .swal2-content{justify-content:center;margin:0;padding:0;color:#545454;font-size:1.125em;font-weight:300;line-height:normal;z-index:1;word-wrap:break-word}.swal2-popup #swal2-content{text-align:center}.swal2-popup .swal2-checkbox,.swal2-popup .swal2-file,.swal2-popup .swal2-input,.swal2-popup .swal2-radio,.swal2-popup .swal2-select,.swal2-popup .swal2-textarea{margin:1em auto}.swal2-popup .swal2-file,.swal2-popup .swal2-input,.swal2-popup .swal2-textarea{width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;font-size:1.125em;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);box-sizing:border-box}.swal2-popup .swal2-file.swal2-inputerror,.swal2-popup .swal2-input.swal2-inputerror,.swal2-popup .swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-popup .swal2-file:focus,.swal2-popup .swal2-input:focus,.swal2-popup .swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 3px #c4e6f5}.swal2-popup .swal2-file::-webkit-input-placeholder,.swal2-popup .swal2-input::-webkit-input-placeholder,.swal2-popup .swal2-textarea::-webkit-input-placeholder{color:#ccc}.swal2-popup .swal2-file:-ms-input-placeholder,.swal2-popup .swal2-input:-ms-input-placeholder,.swal2-popup .swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-popup .swal2-file::-ms-input-placeholder,.swal2-popup .swal2-input::-ms-input-placeholder,.swal2-popup .swal2-textarea::-ms-input-placeholder{color:#ccc}.swal2-popup .swal2-file::placeholder,.swal2-popup .swal2-input::placeholder,.swal2-popup .swal2-textarea::placeholder{color:#ccc}.swal2-popup .swal2-range{margin:1em auto;background:inherit}.swal2-popup .swal2-range input{width:80%}.swal2-popup .swal2-range output{width:20%;font-weight:600;text-align:center}.swal2-popup .swal2-range input,.swal2-popup .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-popup .swal2-input{height:2.625em;padding:0 .75em}.swal2-popup .swal2-input[type=number]{max-width:10em}.swal2-popup .swal2-file{background:inherit;font-size:1.125em}.swal2-popup .swal2-textarea{height:6.75em;padding:.75em}.swal2-popup .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:#545454;font-size:1.125em}.swal2-popup .swal2-checkbox,.swal2-popup .swal2-radio{align-items:center;justify-content:center;background:inherit}.swal2-popup .swal2-checkbox label,.swal2-popup .swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-popup .swal2-checkbox input,.swal2-popup .swal2-radio input{margin:0 .4em}.swal2-popup .swal2-validation-message{display:none;align-items:center;justify-content:center;padding:.625em;background:#f0f0f0;color:#666;font-size:1em;font-weight:300;overflow:hidden}.swal2-popup .swal2-validation-message::before{display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center;content:'!';zoom:normal}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-moz-document url-prefix(){.swal2-close:focus{outline:2px solid rgba(50,100,150,.4)}}.swal2-icon{position:relative;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;line-height:5em;cursor:default;box-sizing:content-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;zoom:normal}.swal2-icon-text{font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:3.75em 3.75em;transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 3.75em;transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;top:-.25em;left:-.25em;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%;z-index:2;box-sizing:content-box}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;top:.5em;left:1.625em;width:.4375em;height:5.625em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);z-index:1}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;height:.3125em;border-radius:.125em;background-color:#a5dc86;z-index:2}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.875em;width:1.5625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-progress-steps{align-items:center;margin:0 0 1.25em;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{width:2em;height:2em;border-radius:2em;background:#3085d6;color:#fff;line-height:2em;text-align:center;z-index:20}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#3085d6}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{width:2.5em;height:.4em;margin:0 -1px;background:#3085d6;z-index:10}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-show.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-hide.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-animate-success-icon .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-animate-error-icon{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-animate-error-icon .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}@-webkit-keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:initial!important}}");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = void 0;
+
+/* Form control contextual state class computation
+ *
+ * Returned class is either 'is-valid' or 'is-invalid' based on the 'state' prop
+ * state can be one of five values:
+ *  - true or 'valid' for is-valid
+ *  - false or 'invalid' for is-invalid
+ *  - null (or empty string) for no contextual state
+ */
+// @vue/component
+var _default = {
+  props: {
+    state: {
+      // true/'valid', false/'invalid', '',null
+      // The order must be String first, then Boolean!
+      type: [String, Boolean],
+      default: null
+    }
+  },
+  computed: {
+    computedState: function computedState() {
+      var state = this.state;
+
+      if (state === '') {
+        return null;
+      } else if (state === true || state === 'valid') {
+        return true;
+      } else if (state === false || state === 'invalid') {
+        return false;
+      }
+
+      return null;
+    },
+    stateClass: function stateClass() {
+      var state = this.computedState;
+
+      if (state === true) {
+        return 'is-valid';
+      } else if (state === false) {
+        return 'is-invalid';
+      }
+
+      return null;
+    }
+  }
+};
+exports.default = _default;
 
 /***/ }),
 /* 14 */
@@ -41642,7 +41642,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _formRadioCheck = __webpack_require__(71);
 
@@ -41650,7 +41650,7 @@ var _form = __webpack_require__(15);
 
 var _formSize = __webpack_require__(18);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _array = __webpack_require__(3);
 
@@ -42136,11 +42136,11 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _form = __webpack_require__(15);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _formSize = __webpack_require__(18);
 
@@ -44078,7 +44078,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(90);
-module.exports = __webpack_require__(281);
+module.exports = __webpack_require__(284);
 
 
 /***/ }),
@@ -44089,7 +44089,7 @@ module.exports = __webpack_require__(281);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2__ = __webpack_require__(283);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_select2__);
 
 /**
@@ -44172,12 +44172,12 @@ window._ = __webpack_require__(14);
  */
 
 try {
-    window.Popper = __webpack_require__(42).default;
-    window.$ = window.jQuery = __webpack_require__(20);
+  window.Popper = __webpack_require__(42).default;
+  window.$ = window.jQuery = __webpack_require__(20);
 
-    __webpack_require__(93);
+  __webpack_require__(93);
 
-    __webpack_require__(94)(window, $);
+  __webpack_require__(94)(window, $);
 } catch (e) {}
 
 /**
@@ -44199,9 +44199,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -77283,7 +77283,7 @@ var _dom = __webpack_require__(2);
 
 var _env = __webpack_require__(23);
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 // Slide directional classes
 var DIRECTION = {
@@ -77938,7 +77938,7 @@ exports.default = void 0;
 
 var _img = __webpack_require__(35);
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _env = __webpack_require__(23);
 
@@ -78523,7 +78523,7 @@ exports.default = void 0;
 
 var _html = __webpack_require__(7);
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _dropdown = __webpack_require__(66);
 
@@ -79251,9 +79251,9 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _upperFirst = __webpack_require__(34);
 
@@ -79751,7 +79751,7 @@ function _default(arr, val) {
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _form = __webpack_require__(15);
 
@@ -79761,7 +79761,7 @@ var _formRadioCheckGroup = __webpack_require__(72);
 
 var _formSize = __webpack_require__(18);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _formCheckbox = __webpack_require__(70);
 
@@ -79841,7 +79841,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _form = __webpack_require__(15);
 
@@ -79851,7 +79851,7 @@ var _formRadioCheckGroup = __webpack_require__(72);
 
 var _formSize = __webpack_require__(18);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _formRadio = __webpack_require__(73);
 
@@ -79922,13 +79922,13 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _form = __webpack_require__(15);
 
 var _formSize = __webpack_require__(18);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _formText = __webpack_require__(74);
 
@@ -80109,13 +80109,13 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _form = __webpack_require__(15);
 
 var _formSize = __webpack_require__(18);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _formText = __webpack_require__(74);
 
@@ -80319,11 +80319,11 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _form = __webpack_require__(15);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _formCustom = __webpack_require__(77);
 
@@ -80661,7 +80661,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _formOptions = __webpack_require__(40);
 
@@ -80669,7 +80669,7 @@ var _form = __webpack_require__(15);
 
 var _formSize = __webpack_require__(18);
 
-var _formState = __webpack_require__(12);
+var _formState = __webpack_require__(13);
 
 var _formCustom = __webpack_require__(77);
 
@@ -81564,7 +81564,7 @@ var _button = __webpack_require__(31);
 
 var _buttonClose = __webpack_require__(30);
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _listenOnRoot = __webpack_require__(27);
 
@@ -82845,7 +82845,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _dropdown = __webpack_require__(66);
 
@@ -84085,7 +84085,7 @@ var _html = __webpack_require__(7);
 
 var _dom = __webpack_require__(2);
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 var _listenOnRoot = __webpack_require__(27);
 
@@ -85875,7 +85875,7 @@ var _keyCodes = __webpack_require__(17);
 
 var _observeDom = __webpack_require__(21);
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -86410,7 +86410,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _id = __webpack_require__(5);
+var _id = __webpack_require__(6);
 
 // @vue/component
 var _default2 = {
@@ -87690,9 +87690,9 @@ var map = {
 	"./components/PatientDiagnosesComponent.vue": 265,
 	"./components/PaymentComponent.vue": 268,
 	"./components/RecordComponent.vue": 271,
-	"./components/RecordComponent2.vue": 294,
-	"./components/VitalSignComponent.vue": 274,
-	"./components/VitalSignTableComponent.vue": 277
+	"./components/RecordComponent2.vue": 274,
+	"./components/VitalSignComponent.vue": 277,
+	"./components/VitalSignTableComponent.vue": 280
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -87763,9 +87763,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -88568,7 +88568,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
@@ -89105,9 +89105,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -90166,7 +90166,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
@@ -90699,9 +90699,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -92011,7 +92011,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
@@ -92544,7 +92544,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
@@ -93089,9 +93089,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -94194,7 +94194,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
@@ -94709,9 +94709,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -95768,7 +95768,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
@@ -96301,9 +96301,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -98526,9 +98526,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -99621,7 +99621,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 //
 //
@@ -100364,9 +100364,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -100888,9 +100888,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         diagnose_name: function diagnose_name() {
-            var description = this.record.diagnose ? this.record.diagnose.data.description : null;
-            this.record.diagnoses_description = description;
-            return description;
+            var code = this.record.diagnose ? this.record.diagnose.data.code : null;
+            this.record.diagnoses_description = this.record.diagnose ? this.record.diagnose.data.description : null;
+            return code;
         }
     },
     methods: {
@@ -101229,7 +101229,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this12.diagnoses = response.data.map(function (diagnose) {
                     return {
                         value: diagnose.id,
-                        label: diagnose.code,
+                        label: diagnose.description,
                         data: diagnose
                     };
                 });
@@ -103008,7 +103008,7 @@ var render = function() {
                             {
                               attrs: {
                                 "label-cols-sm": "3",
-                                label: "Diagnoses Code"
+                                label: "Diagnoses"
                               }
                             },
                             [
@@ -103034,12 +103034,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "b-form-group",
-                            {
-                              attrs: {
-                                "label-cols-sm": "3",
-                                label: "Diagnoses"
-                              }
-                            },
+                            { attrs: { "label-cols-sm": "3", label: "Code" } },
                             [
                               _c(
                                 "b-input-group",
@@ -103210,6 +103205,2845 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/js/components/RecordComponent2.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-29867971", Component.options)
+  } else {
+    hotAPI.reload("data-v-29867971", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 275 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
+    },
+
+    props: ['user_id'],
+
+    data: function data() {
+        return {
+            record: {},
+            records: [],
+            patients: [],
+            floors: [],
+            rooms: [],
+            philhealthMemberShips: [],
+            dispositions: [],
+            results: [],
+            doctors: [],
+            diagnoses: [],
+            type_of_record: null,
+            typeOfRecords: [],
+            selected_id: null,
+            action: 'store' | 'update',
+            fields: [{ key: 'patient', label: 'Patient', sortable: true, sortDirection: 'desc' }, { key: 'patient-type', label: 'Type Of Patient', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'addmitted_and_check_up_date', label: 'Date', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'addmitted_and_check_up_time', label: 'Time', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'room', label: 'Room', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
+            currentPage: 1,
+            perPage: 5,
+            totalRows: 1,
+            pageOptions: [5, 10, 15],
+            sortBy: null,
+            sortDesc: false,
+            sortDirection: 'asc',
+            filter: null,
+            modalInfo: { title: '', content: '' },
+            patientOptions: [{ text: 'All', value: 0 }, { text: 'Out Patient', value: 1 }, { text: 'In Patient', value: 2 }],
+            patientType: 0
+        };
+    },
+    mounted: function mounted() {
+        this.getRecords();
+        this.getPatients();
+        this.getFloors();
+        this.getRooms();
+        this.getPhilhealthMemberShip();
+        this.getResults();
+        this.getDispositions();
+        this.getDoctors();
+        this.getDiagnoses();
+        this.getTypeOfRecords();
+    },
+
+    computed: {
+        sortOptions: function sortOptions() {
+            // Create an options list from our fields
+            return this.fields.filter(function (f) {
+                return f.sortable;
+            }).map(function (f) {
+                return { text: f.label, value: f.key };
+            });
+        },
+
+        diagnose_name: function diagnose_name() {
+            var description = this.record.diagnose ? this.record.diagnose.data.description : null;
+            this.record.diagnoses_description = description;
+            return description;
+        }
+    },
+    methods: {
+        resetModal: function resetModal() {
+            this.modalInfo.title = '';
+            this.modalInfo.content = '';
+            this.selected_id = null;
+        },
+        onFiltered: function onFiltered(filteredItems) {
+            // Trigger pagination to update the number of buttons/pages due to filtering
+            console.log('filter', filteredItems);
+            this.totalRows = filteredItems.length;
+            this.currentPage = 1;
+        },
+        getRecords: function getRecords() {
+            var _this = this;
+
+            axios.get(this.getUrl()).then(function (response) {
+                _this.records = response.data;
+                _this.totalRows = _this.records.length;
+                console.log(_this.records, _this.totalRows);
+            });
+        },
+        getSelectedPatientType: function getSelectedPatientType(event) {
+            this.patientType = event;
+            this.getRecords();
+        },
+        showModalDelete: function showModalDelete(item, index, button) {
+            this.modalInfo.title = 'Record';
+            this.modalInfo.content = 'Are you sure you want to delete?';
+            this.$root.$emit('bv::show::modal', 'modalDelete', button);
+            this.selected_id = item.id;
+        },
+        onDelete: function onDelete() {
+            var _this2 = this;
+
+            axios.delete('/api/records/' + this.selected_id).then(function (response) {
+                if (response.data == 'success') {
+                    _this2.getRecords();
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Deleted.', 'success');
+                }
+            }).catch(function (response) {
+                console.log(response);
+            });
+        },
+        showModalForm: function showModalForm() {
+            this.action = 'store';
+            this.record = {};
+            this.modalInfo.title = "Record";
+            this.$root.$emit('bv::show::modal', 'modalRecordForm');
+        },
+        onSubmit: function onSubmit(action) {
+            var _this3 = this;
+
+            console.log('submit', this.record);
+            if (action === 'store') {
+                axios.post('/api/records', {
+                    addmission_date: this.record.addmission_date,
+                    addmission_doctor: this.record.addmission_doctor ? this.record.addmission_doctor.value : null,
+                    addmission_time: this.record.addmission_time,
+                    attending_physician: this.record.attending_physician ? this.record.attending_physician.value : null,
+                    bed: this.record.bed,
+                    blood_pressure: this.record.blood_pressure,
+                    brief_history: this.record.brief_history,
+                    chief_complaints: this.record.chief_complaints,
+                    completed_by: this.record.completed_by ? this.record.completed_by.value : null,
+                    diagnose: this.record.diagnose ? this.record.diagnose.value : null,
+                    diagnoses_description: this.record.diagnoses_description,
+                    discharged_date: this.record.discharged_date,
+                    discharged_doctor: this.record.discharged_doctor ? this.record.discharged_doctor.value : null,
+                    discharged_time: this.record.discharged_time,
+                    disposition: this.record.disposition ? this.record.disposition.value : null,
+                    floor: this.record.floor ? this.record.floor.value : null,
+                    height: this.record.height,
+                    patient: this.record.patient.value,
+                    philhealthMemberShip: this.record.philhealthMemberShip ? this.record.philhealthMemberShip.value : null,
+                    pulse_rate: this.record.pulse_rate,
+                    remarks: this.record.remarks,
+                    result: this.record.result ? this.record.result.value : null,
+                    room: this.record.room ? this.record.room.value : null,
+                    sponsor: this.record.sponsor,
+                    temperature: this.record.temperature,
+                    typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
+                    weight: this.record.weight,
+                    discharged: this.record.discharged
+                }).then(function (response) {
+                    console.log('return', response.data);
+                    if (response.data == 'success') {
+                        _this3.getRecords();
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
+                        _this3.$root.$emit('bv::hide::modal', 'modalRecordForm');
+                    }
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            } else {
+                axios.put('/api/records/' + this.selected_id, {
+                    addmission_date: this.record.addmission_date,
+                    addmission_doctor: this.record.addmission_doctor ? this.record.addmission_doctor.value : null,
+                    addmission_time: this.record.addmission_time,
+                    attending_physician: this.record.attending_physician ? this.record.attending_physician.value : null,
+                    bed: this.record.bed,
+                    blood_pressure: this.record.blood_pressure,
+                    brief_history: this.record.brief_history,
+                    chief_complaints: this.record.chief_complaints,
+                    completed_by: this.record.completed_by ? this.record.completed_by.value : null,
+                    diagnose: this.record.diagnose ? this.record.diagnose.value : null,
+                    diagnoses_description: this.record.diagnoses_description,
+                    discharged_date: this.record.discharged_date,
+                    discharged_doctor: this.record.discharged_doctor ? this.record.discharged_doctor.value : null,
+                    discharged_time: this.record.discharged_time,
+                    disposition: this.record.disposition ? this.record.disposition.value : null,
+                    floor: this.record.floor ? this.record.floor.value : null,
+                    height: this.record.height,
+                    patient: this.record.patient.value,
+                    philhealthMemberShip: this.record.philhealthMemberShip ? this.record.philhealthMemberShip.value : null,
+                    pulse_rate: this.record.pulse_rate,
+                    remarks: this.record.remarks,
+                    result: this.record.result ? this.record.result.value : null,
+                    room: this.record.room ? this.record.room.value : null,
+                    sponsor: this.record.sponsor,
+                    temperature: this.record.temperature,
+                    typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
+                    weight: this.record.weight,
+                    discharged: this.record.discharged
+                }).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'success') {
+                        _this3.getRecords();
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Updated.', 'success');
+                        _this3.$root.$emit('bv::hide::modal', 'modalRecordForm');
+                    }
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            }
+        },
+        hideModal: function hideModal() {
+            this.$root.$emit('bv::hide::modal', 'modalRecordForm');
+        },
+        showModalEdit: function showModalEdit(item) {
+            var _this4 = this;
+
+            this.action = 'edit';
+            this.selected_id = item.id;
+            axios.get('/api/records/' + this.selected_id + '/edit').then(function (response) {
+                console.log('edit', response.data);
+                _this4.record = response.data;
+                _this4.record.addmission_date = response.data.addmitted_and_check_up_date;
+                _this4.record.addmission_time = response.data.addmitted_and_check_up_time;
+                _this4.record.discharged_date = response.data.discharge_date;
+                _this4.record.discharged_time = response.data.discharge_time;
+                _this4.record.discharged = response.data.discharged;
+                if (response.data.record_type) {
+                    _this4.record.typeOfRecord = {
+                        label: response.data.record_type.code,
+                        value: response.data.record_type.id
+                    };
+                }
+                if (response.data.patient) {
+                    _this4.record.patient = {
+                        label: response.data.patient.first_name + ' ' + response.data.patient.middle_name + ' ' + response.data.patient.last_name,
+                        value: response.data.patient.id
+                    };
+                }
+                if (response.data.floor) {
+                    _this4.record.floor = {
+                        label: response.data.floor.code,
+                        value: response.data.floor.id
+                    };
+                }
+                if (response.data.room) {
+                    _this4.record.room = {
+                        label: response.data.room.code,
+                        value: response.data.room.id
+                    };
+                }
+                if (response.data.philhealth_membership) {
+                    _this4.record.philhealthMemberShip = {
+                        label: response.data.philhealth_membership.code,
+                        value: response.data.philhealth_membership.id
+                    };
+                }
+                if (response.data.disposition) {
+                    _this4.record.disposition = {
+                        label: response.data.disposition.code,
+                        value: response.data.disposition.id
+                    };
+                }
+                if (response.data.result) {
+                    _this4.record.result = {
+                        label: response.data.result.code,
+                        value: response.data.result.id
+                    };
+                }
+                if (response.data.physician) {
+                    _this4.record.attending_physician = {
+                        label: response.data.physician.first_name + ' ' + response.data.physician.middle_name + ' ' + response.data.physician.last_name,
+                        value: response.data.physician.id
+                    };
+                }
+                if (response.data.chart_completed_by) {
+                    _this4.record.completed_by = {
+                        label: response.data.chart_completed_by.first_name + ' ' + response.data.chart_completed_by.middle_name + ' ' + response.data.chart_completed_by.last_name,
+                        value: response.data.chart_completed_by.id
+                    };
+                }
+                if (response.data.admit_checkup_by) {
+                    _this4.record.addmission_doctor = {
+                        label: response.data.admit_checkup_by.first_name + ' ' + response.data.admit_checkup_by.middle_name + ' ' + response.data.admit_checkup_by.last_name,
+                        value: response.data.admit_checkup_by.id
+                    };
+                }
+                if (response.data.discharged_by) {
+                    _this4.record.discharged_doctor = {
+                        label: response.data.discharged_by.first_name + ' ' + response.data.discharged_by.middle_name + ' ' + response.data.discharged_by.last_name,
+                        value: response.data.discharged_by.id
+                    };
+                }
+                if (response.data.initial_diagnoses) {
+                    _this4.record.remarks = response.data.initial_diagnoses.remarks;
+                    _this4.record.diagnose = {
+                        label: response.data.initial_diagnoses.diagnose.code,
+                        value: response.data.initial_diagnoses.diagnose_id,
+                        data: response.data.initial_diagnoses.diagnose
+                    };
+                }
+                _this4.modalInfo.title = "Record";
+                _this4.$root.$emit('bv::show::modal', 'modalRecordForm');
+            });
+        },
+        getUrl: function getUrl() {
+
+            if (this.patientType == 0) {
+                return '/api/records';
+            } else {
+                return '/api/records/' + this.patientType;
+            }
+        },
+        showMedication: function showMedication(item) {
+            this.selected_id = item.id;
+            this.modalInfo.title = "Medication";
+            this.$root.$emit('bv::show::modal', 'modalMedication');
+        },
+
+
+        // modal entry
+        getPatients: function getPatients() {
+            var _this5 = this;
+
+            axios.get('/api/patients').then(function (response) {
+                _this5.patients = response.data.map(function (patient) {
+                    return {
+                        value: patient.id,
+                        label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name
+                    };
+                });
+            });
+        },
+        getFloors: function getFloors() {
+            var _this6 = this;
+
+            axios.get('/api/floors').then(function (response) {
+                _this6.floors = response.data.map(function (floor) {
+                    return {
+                        value: floor.id,
+                        label: floor.code
+                    };
+                });
+            });
+        },
+        getRooms: function getRooms() {
+            var _this7 = this;
+
+            axios.get('/api/rooms').then(function (response) {
+                _this7.rooms = response.data.map(function (room) {
+                    return {
+                        value: room.id,
+                        label: room.code
+                    };
+                });
+            });
+        },
+        getPhilhealthMemberShip: function getPhilhealthMemberShip() {
+            var _this8 = this;
+
+            axios.get('/api/philhealthMemberShip').then(function (response) {
+                _this8.philhealthMemberShips = response.data.map(function (philhealthMemberShip) {
+                    return {
+                        value: philhealthMemberShip.id,
+                        label: philhealthMemberShip.code
+                    };
+                });
+            });
+        },
+        getDispositions: function getDispositions() {
+            var _this9 = this;
+
+            axios.get('/api/dispositions').then(function (response) {
+                _this9.dispositions = response.data.map(function (disposition) {
+                    return {
+                        value: disposition.id,
+                        label: disposition.code
+                    };
+                });
+            });
+        },
+        getResults: function getResults() {
+            var _this10 = this;
+
+            axios.get('/api/results').then(function (response) {
+                _this10.results = response.data.map(function (result) {
+                    return {
+                        value: result.id,
+                        label: result.code
+                    };
+                });
+            });
+        },
+        getDoctors: function getDoctors() {
+            var _this11 = this;
+
+            axios.get('/api/users').then(function (response) {
+                _this11.doctors = response.data.map(function (user) {
+                    return {
+                        value: user.id,
+                        label: user.first_name + ' ' + user.middle_name + ' ' + user.last_name
+                    };
+                });
+            });
+        },
+        getDiagnoses: function getDiagnoses() {
+            var _this12 = this;
+
+            axios.get('/api/diagnoses').then(function (response) {
+                _this12.diagnoses = response.data.map(function (diagnose) {
+                    return {
+                        value: diagnose.id,
+                        label: diagnose.code,
+                        data: diagnose
+                    };
+                });
+            });
+        },
+        getTypeOfRecords: function getTypeOfRecords() {
+            var _this13 = this;
+
+            axios.get('/api/typeOfRecords').then(function (response) {
+                _this13.typeOfRecords = response.data.map(function (type) {
+                    return {
+                        value: type.id,
+                        label: type.code
+                    };
+                });
+            });
+        },
+        getTypeOfRecordBy: function getTypeOfRecordBy(event) {
+            if (event) {
+                this.record.typeOfRecord = event;
+                this.type_of_record = event.value;
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Record" }
+                },
+                [
+                  _c("b-button", { on: { click: _vm.showModalForm } }, [
+                    _vm._v("New")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Type of Patient" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.patientOptions },
+                    on: { change: _vm.getSelectedPatientType },
+                    model: {
+                      value: _vm.patientType,
+                      callback: function($$v) {
+                        _vm.patientType = $$v
+                      },
+                      expression: "patientType"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Filter" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Type to Search" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Clear")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Sort" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { options: _vm.sortOptions },
+                          model: {
+                            value: _vm.sortBy,
+                            callback: function($$v) {
+                              _vm.sortBy = $$v
+                            },
+                            expression: "sortBy"
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { slot: "first" },
+                              domProps: { value: null },
+                              slot: "first"
+                            },
+                            [_vm._v("-- none --")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append", disabled: !_vm.sortBy },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDesc,
+                            callback: function($$v) {
+                              _vm.sortDesc = $$v
+                            },
+                            expression: "sortDesc"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: false } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: true } }, [
+                            _vm._v("Desc")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Sort direction" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append" },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDirection,
+                            callback: function($$v) {
+                              _vm.sortDirection = $$v
+                            },
+                            expression: "sortDirection"
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "asc" } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "desc" } }, [
+                            _vm._v("Desc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "last" } }, [
+                            _vm._v("Last")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Per page" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.records,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc,
+          "sort-direction": _vm.sortDirection
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "patient",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      row.item.patient.first_name +
+                        " " +
+                        row.item.patient.last_name
+                    ) +
+                    "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "patient-type",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " + _vm._s(row.item.record_type.code) + "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "room",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(
+                      row.item.record_type.id == 2
+                        ? row.item.room
+                          ? row.item.room.code
+                          : null
+                        : null
+                    ) +
+                    "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-button",
+                  { attrs: { size: "sm" }, on: { click: row.toggleDetails } },
+                  [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(row.detailsShowing ? "Hide" : "Show") +
+                        " Details\n      "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showMedication(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Medication\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalEdit(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Edit\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalDelete(row.item, row.index, $event.target)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Delete\n      ")]
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-card",
+                  [
+                    _c(
+                      "b-row",
+                      [
+                        _c(
+                          "b-col",
+                          { attrs: { md: "6" } },
+                          [
+                            _c("legend", [_vm._v("Information")]),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Patient"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.patient.first_name +
+                                          " " +
+                                          row.item.patient.middle_name +
+                                          " " +
+                                          row.item.patient.last_name
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Type Of Patient"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.record_type.code) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Attending Physician"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.physician
+                                          ? row.item.physician.first_name +
+                                              " " +
+                                              row.item.physician.last_name
+                                          : null
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Height" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.height) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Weight" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.weight) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Blood Pressure"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.blood_pressure) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Pulse Rate"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.pulse_rate) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Temperature"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.temperature) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Brief History"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.brief_history) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: {
+                                  "label-cols-sm": "3",
+                                  label: "Chief Complaints"
+                                }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(row.item.chief_complaints) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-col",
+                          { attrs: { md: "6" } },
+                          [
+                            _c("legend", [
+                              _vm._v(
+                                _vm._s(
+                                  row.item.record_type.id == 1
+                                    ? "Checkup"
+                                    : "Admitted"
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              { attrs: { "label-cols-sm": "3", label: "By" } },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.admit_checkup_by
+                                          ? row.item.admit_checkup_by
+                                              .first_name +
+                                              " " +
+                                              row.item.admit_checkup_by
+                                                .last_name
+                                          : null
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Date" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.addmitted_and_check_up_date
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                attrs: { "label-cols-sm": "3", label: "Time" }
+                              },
+                              [
+                                _c("b-input-group", [
+                                  _vm._v(
+                                    "\n                  " +
+                                      _vm._s(
+                                        row.item.addmitted_and_check_up_time
+                                      ) +
+                                      "\n                "
+                                  )
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            row.item.record_type.id == 2
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c("legend", [_vm._v("Discharged")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "By"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item.admit_checkup_by
+                                                  ? row.item.admit_checkup_by
+                                                      .first_name +
+                                                      " " +
+                                                      row.item.admit_checkup_by
+                                                        .last_name
+                                                  : null
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "Date"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item
+                                                  .addmitted_and_check_up_time
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-form-group",
+                                      {
+                                        attrs: {
+                                          "label-cols-sm": "3",
+                                          label: "Time"
+                                        }
+                                      },
+                                      [
+                                        _c("b-input-group", [
+                                          _vm._v(
+                                            "\n                    " +
+                                              _vm._s(
+                                                row.item
+                                                  .addmitted_and_check_up_time
+                                              ) +
+                                              "\n                  "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c("b-pagination", {
+                staticClass: "my-0",
+                attrs: { "total-rows": _vm.totalRows, "per-page": _vm.perPage },
+                model: {
+                  value: _vm.currentPage,
+                  callback: function($$v) {
+                    _vm.currentPage = $$v
+                  },
+                  expression: "currentPage"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalInfo", title: _vm.modalInfo.title, "ok-only": "" },
+          on: { hide: _vm.resetModal }
+        },
+        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalDelete", title: _vm.modalInfo.title },
+          on: { hide: _vm.resetModal, ok: _vm.onDelete }
+        },
+        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modalMedication",
+            title: _vm.modalInfo.title,
+            size: "lg",
+            "ok-only": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _c(
+            "b-tabs",
+            { attrs: { "content-class": "mt-3" } },
+            [
+              _c(
+                "b-tab",
+                { attrs: { title: "Diagnoses", active: "" } },
+                [
+                  _c("diagnoses-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Laboratory" } },
+                [
+                  _c("laboratory-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Vital Sign" } },
+                [
+                  _c("vital-sign-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Doctor's Order" } },
+                [
+                  _c("doctors-order-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Nurse Note" } },
+                [
+                  _c("nurses-note-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Intravenous Fuid" } },
+                [
+                  _c("intravenous-fluid-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-tab",
+                { attrs: { title: "Medication & Treatment" } },
+                [
+                  _c("medication-and-treatment-table-component", {
+                    attrs: { patient_record_id: _vm.selected_id }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modalRecordForm",
+            title: _vm.modalInfo.title,
+            size: "lg"
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.stopPropagation()
+                  $event.preventDefault()
+                  return _vm.onSubmit($event)
+                }
+              }
+            },
+            [
+              _c(
+                "b-row",
+                [
+                  _c(
+                    "b-col",
+                    { attrs: { md: "6" } },
+                    [
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Patient" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.patients },
+                                model: {
+                                  value: _vm.record.patient,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "patient", $$v)
+                                  },
+                                  expression: "record.patient"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Status" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  options: _vm.typeOfRecords,
+                                  onChange: _vm.getTypeOfRecordBy
+                                },
+                                model: {
+                                  value: _vm.record.typeOfRecord,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "typeOfRecord", $$v)
+                                  },
+                                  expression: "record.typeOfRecord"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.type_of_record && _vm.type_of_record == 2
+                        ? _c(
+                            "b-form-group",
+                            { attrs: { "label-cols-sm": "3", label: "Floor" } },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.floors },
+                                    model: {
+                                      value: _vm.record.floor,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "floor", $$v)
+                                      },
+                                      expression: "record.floor"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.record.floor &&
+                      _vm.type_of_record &&
+                      _vm.type_of_record == 2
+                        ? _c(
+                            "b-form-group",
+                            { attrs: { "label-cols-sm": "3", label: "Room" } },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("v-select", {
+                                    attrs: { options: _vm.rooms },
+                                    model: {
+                                      value: _vm.record.room,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "room", $$v)
+                                      },
+                                      expression: "record.room"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.type_of_record && _vm.type_of_record == 2
+                        ? _c(
+                            "b-form-group",
+                            { attrs: { "label-cols-sm": "3", label: "Bed" } },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Enter Bed"
+                                    },
+                                    model: {
+                                      value: _vm.record.bed,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "bed", $$v)
+                                      },
+                                      expression: "record.bed"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Weight" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Weight"
+                                },
+                                model: {
+                                  value: _vm.record.weight,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "weight", $$v)
+                                  },
+                                  expression: "record.weight"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Height" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Height"
+                                },
+                                model: {
+                                  value: _vm.record.height,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "height", $$v)
+                                  },
+                                  expression: "record.height"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: { "label-cols-sm": "3", label: "Temperature" }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Temperature"
+                                },
+                                model: {
+                                  value: _vm.record.temperature,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "temperature", $$v)
+                                  },
+                                  expression: "record.temperature"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Blood Pressure"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Blood Pressure"
+                                },
+                                model: {
+                                  value: _vm.record.blood_pressure,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "blood_pressure", $$v)
+                                  },
+                                  expression: "record.blood_pressure"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: { "label-cols-sm": "3", label: "Pulse Rate" }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Enter Pulse Rate"
+                                },
+                                model: {
+                                  value: _vm.record.pulse_rate,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "pulse_rate", $$v)
+                                  },
+                                  expression: "record.pulse_rate"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("legend", [_vm._v("Additional Information")]),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Philhealth Membership"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.philhealthMemberShips },
+                                model: {
+                                  value: _vm.record.philhealthMemberShip,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.record,
+                                      "philhealthMemberShip",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "record.philhealthMemberShip"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.record.philhealthMemberShip &&
+                      _vm.record.philhealthMemberShip.value === 5
+                        ? _c(
+                            "b-form-group",
+                            {
+                              attrs: { "label-cols-sm": "3", label: "Sponsor" }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Enter Sponsor"
+                                    },
+                                    model: {
+                                      value: _vm.record.sponsor,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.record, "sponsor", $$v)
+                                      },
+                                      expression: "record.sponsor"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: { "label-cols-sm": "3", label: "Disposition" }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.dispositions },
+                                model: {
+                                  value: _vm.record.disposition,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "disposition", $$v)
+                                  },
+                                  expression: "record.disposition"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Result" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.results },
+                                model: {
+                                  value: _vm.record.result,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "result", $$v)
+                                  },
+                                  expression: "record.result"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Attending Physician"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.doctors },
+                                model: {
+                                  value: _vm.record.attending_physician,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.record,
+                                      "attending_physician",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "record.attending_physician"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Chart Completed By"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.doctors },
+                                model: {
+                                  value: _vm.record.completed_by,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "completed_by", $$v)
+                                  },
+                                  expression: "record.completed_by"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { attrs: { md: "6" } },
+                    [
+                      _c(
+                        "div",
+                        [
+                          _c(
+                            "b-form-group",
+                            {
+                              attrs: {
+                                "label-cols-sm": "3",
+                                label: "Chief Complaints"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-textarea", {
+                                    attrs: {
+                                      id: "textarea1",
+                                      placeholder: "Enter Chief Complaints",
+                                      rows: "3",
+                                      "max-rows": "6"
+                                    },
+                                    model: {
+                                      value: _vm.record.chief_complaints,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.record,
+                                          "chief_complaints",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "record.chief_complaints"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            {
+                              attrs: {
+                                "label-cols-sm": "3",
+                                label: "Brief History"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-input-group",
+                                [
+                                  _c("b-form-textarea", {
+                                    attrs: {
+                                      id: "textarea1",
+                                      placeholder: "Enter Brief History",
+                                      rows: "3",
+                                      "max-rows": "6"
+                                    },
+                                    model: {
+                                      value: _vm.record.brief_history,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.record,
+                                          "brief_history",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "record.brief_history"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("legend", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.type_of_record && _vm.type_of_record == 2
+                              ? "Admission"
+                              : "Checkup"
+                          )
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Doctor" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.doctors },
+                                model: {
+                                  value: _vm.record.addmission_doctor,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.record,
+                                      "addmission_doctor",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "record.addmission_doctor"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Date" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "date",
+                                  placeholder: "Enter Date"
+                                },
+                                model: {
+                                  value: _vm.record.addmission_date,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "addmission_date", $$v)
+                                  },
+                                  expression: "record.addmission_date"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Time" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  type: "time",
+                                  placeholder: "Enter Time"
+                                },
+                                model: {
+                                  value: _vm.record.addmission_time,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "addmission_time", $$v)
+                                  },
+                                  expression: "record.addmission_time"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.type_of_record && _vm.type_of_record == 2
+                        ? _c(
+                            "div",
+                            [
+                              _c("legend", [_vm._v("Discharged")]),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: {
+                                    "label-cols-sm": "3",
+                                    label: "Doctor"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("v-select", {
+                                        attrs: { options: _vm.doctors },
+                                        model: {
+                                          value: _vm.record.discharged_doctor,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.record,
+                                              "discharged_doctor",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "record.discharged_doctor"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: { "label-cols-sm": "3", label: "Date" }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("b-form-input", {
+                                        attrs: {
+                                          type: "date",
+                                          placeholder: "Enter Date"
+                                        },
+                                        model: {
+                                          value: _vm.record.discharged_date,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.record,
+                                              "discharged_date",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "record.discharged_date"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: { "label-cols-sm": "3", label: "Time" }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("b-form-input", {
+                                        attrs: {
+                                          type: "time",
+                                          placeholder: "Enter Time"
+                                        },
+                                        model: {
+                                          value: _vm.record.discharged_time,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.record,
+                                              "discharged_time",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "record.discharged_time"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("legend", [_vm._v("Initial Diagnoses")]),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Diagnoses Code"
+                          }
+                        },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("v-select", {
+                                attrs: { options: _vm.diagnoses },
+                                model: {
+                                  value: _vm.record.diagnose,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "diagnose", $$v)
+                                  },
+                                  expression: "record.diagnose"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Diagnoses" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-input", {
+                                attrs: {
+                                  disabled: "",
+                                  type: "text",
+                                  placeholder: "Enter Diagnoses"
+                                },
+                                model: {
+                                  value: _vm.diagnose_name,
+                                  callback: function($$v) {
+                                    _vm.diagnose_name = $$v
+                                  },
+                                  expression: "diagnose_name"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { "label-cols-sm": "3", label: "Remarks" } },
+                        [
+                          _c(
+                            "b-input-group",
+                            [
+                              _c("b-form-textarea", {
+                                attrs: {
+                                  id: "textarea1",
+                                  placeholder: "Enter Remarks",
+                                  rows: "3",
+                                  "max-rows": "6"
+                                },
+                                model: {
+                                  value: _vm.record.remarks,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.record, "remarks", $$v)
+                                  },
+                                  expression: "record.remarks"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("legend", [_vm._v("Patient Status")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        [
+                          _c(
+                            "b-form-checkbox",
+                            {
+                              attrs: {
+                                id: "checkbox1",
+                                name: "checkbox1",
+                                value: 1,
+                                "unchecked-value": 0
+                              },
+                              model: {
+                                value: _vm.record.discharged,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.record, "discharged", $$v)
+                                },
+                                expression: "record.discharged"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                Discharged\n              "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { attrs: { slot: "modal-footer" }, slot: "modal-footer" },
+            [
+              _c("b-button", { on: { click: _vm.hideModal } }, [
+                _vm._v("Cancel")
+              ]),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  attrs: {
+                    variant: "primary",
+                    disabled: !(
+                      _vm.record &&
+                      _vm.record.patient &&
+                      _vm.record.typeOfRecord
+                    )
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.onSubmit(_vm.action)
+                    }
+                  }
+                },
+                [_vm._v("Save")]
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-29867971", module.exports)
+  }
+}
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(278)
+/* template */
+var __vue_template__ = __webpack_require__(279)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/js/components/VitalSignComponent.vue"
 
 /* hot reload */
@@ -103232,14 +106066,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 275 */
+/* 278 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -103709,7 +106543,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 276 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -104822,15 +107656,15 @@ if (false) {
 }
 
 /***/ }),
-/* 277 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(278)
+var __vue_script__ = __webpack_require__(281)
 /* template */
-var __vue_template__ = __webpack_require__(279)
+var __vue_template__ = __webpack_require__(282)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -104869,12 +107703,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 278 */
+/* 281 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
@@ -105032,7 +107866,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 279 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -105359,7 +108193,7 @@ if (false) {
 }
 
 /***/ }),
-/* 280 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -111215,2861 +114049,10 @@ S2.define('jquery.select2',[
 
 
 /***/ }),
-/* 281 */
+/* 284 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(4)
-/* script */
-var __vue_script__ = __webpack_require__(295)
-/* template */
-var __vue_template__ = __webpack_require__(296)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/RecordComponent2.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-29867971", Component.options)
-  } else {
-    hotAPI.reload("data-v-29867971", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 295 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
-    },
-
-    props: ['user_id'],
-
-    data: function data() {
-        return {
-            record: {},
-            records: [],
-            patients: [],
-            floors: [],
-            rooms: [],
-            philhealthMemberShips: [],
-            dispositions: [],
-            results: [],
-            doctors: [],
-            diagnoses: [],
-            type_of_record: null,
-            typeOfRecords: [],
-            selected_id: null,
-            action: 'store' | 'update',
-            fields: [{ key: 'patient', label: 'Patient', sortable: true, sortDirection: 'desc' }, { key: 'patient-type', label: 'Type Of Patient', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'addmitted_and_check_up_date', label: 'Date', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'addmitted_and_check_up_time', label: 'Time', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'room', label: 'Room', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
-            currentPage: 1,
-            perPage: 5,
-            totalRows: 1,
-            pageOptions: [5, 10, 15],
-            sortBy: null,
-            sortDesc: false,
-            sortDirection: 'asc',
-            filter: null,
-            modalInfo: { title: '', content: '' },
-            patientOptions: [{ text: 'All', value: 0 }, { text: 'Out Patient', value: 1 }, { text: 'In Patient', value: 2 }],
-            patientType: 0
-        };
-    },
-    mounted: function mounted() {
-        this.getRecords();
-        this.getPatients();
-        this.getFloors();
-        this.getRooms();
-        this.getPhilhealthMemberShip();
-        this.getResults();
-        this.getDispositions();
-        this.getDoctors();
-        this.getDiagnoses();
-        this.getTypeOfRecords();
-    },
-
-    computed: {
-        sortOptions: function sortOptions() {
-            // Create an options list from our fields
-            return this.fields.filter(function (f) {
-                return f.sortable;
-            }).map(function (f) {
-                return { text: f.label, value: f.key };
-            });
-        },
-
-        diagnose_name: function diagnose_name() {
-            var description = this.record.diagnose ? this.record.diagnose.data.description : null;
-            this.record.diagnoses_description = description;
-            return description;
-        }
-    },
-    methods: {
-        resetModal: function resetModal() {
-            this.modalInfo.title = '';
-            this.modalInfo.content = '';
-            this.selected_id = null;
-        },
-        onFiltered: function onFiltered(filteredItems) {
-            // Trigger pagination to update the number of buttons/pages due to filtering
-            console.log('filter', filteredItems);
-            this.totalRows = filteredItems.length;
-            this.currentPage = 1;
-        },
-        getRecords: function getRecords() {
-            var _this = this;
-
-            axios.get(this.getUrl()).then(function (response) {
-                _this.records = response.data;
-                _this.totalRows = _this.records.length;
-                console.log(_this.records, _this.totalRows);
-            });
-        },
-        getSelectedPatientType: function getSelectedPatientType(event) {
-            this.patientType = event;
-            this.getRecords();
-        },
-        showModalDelete: function showModalDelete(item, index, button) {
-            this.modalInfo.title = 'Record';
-            this.modalInfo.content = 'Are you sure you want to delete?';
-            this.$root.$emit('bv::show::modal', 'modalDelete', button);
-            this.selected_id = item.id;
-        },
-        onDelete: function onDelete() {
-            var _this2 = this;
-
-            axios.delete('/api/records/' + this.selected_id).then(function (response) {
-                if (response.data == 'success') {
-                    _this2.getRecords();
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Deleted.', 'success');
-                }
-            }).catch(function (response) {
-                console.log(response);
-            });
-        },
-        showModalForm: function showModalForm() {
-            this.action = 'store';
-            this.record = {};
-            this.modalInfo.title = "Record";
-            this.$root.$emit('bv::show::modal', 'modalRecordForm');
-        },
-        onSubmit: function onSubmit(action) {
-            var _this3 = this;
-
-            console.log('submit', this.record);
-            if (action === 'store') {
-                axios.post('/api/records', {
-                    addmission_date: this.record.addmission_date,
-                    addmission_doctor: this.record.addmission_doctor ? this.record.addmission_doctor.value : null,
-                    addmission_time: this.record.addmission_time,
-                    attending_physician: this.record.attending_physician ? this.record.attending_physician.value : null,
-                    bed: this.record.bed,
-                    blood_pressure: this.record.blood_pressure,
-                    brief_history: this.record.brief_history,
-                    chief_complaints: this.record.chief_complaints,
-                    completed_by: this.record.completed_by ? this.record.completed_by.value : null,
-                    diagnose: this.record.diagnose ? this.record.diagnose.value : null,
-                    diagnoses_description: this.record.diagnoses_description,
-                    discharged_date: this.record.discharged_date,
-                    discharged_doctor: this.record.discharged_doctor ? this.record.discharged_doctor.value : null,
-                    discharged_time: this.record.discharged_time,
-                    disposition: this.record.disposition ? this.record.disposition.value : null,
-                    floor: this.record.floor ? this.record.floor.value : null,
-                    height: this.record.height,
-                    patient: this.record.patient.value,
-                    philhealthMemberShip: this.record.philhealthMemberShip ? this.record.philhealthMemberShip.value : null,
-                    pulse_rate: this.record.pulse_rate,
-                    remarks: this.record.remarks,
-                    result: this.record.result ? this.record.result.value : null,
-                    room: this.record.room ? this.record.room.value : null,
-                    sponsor: this.record.sponsor,
-                    temperature: this.record.temperature,
-                    typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
-                    weight: this.record.weight,
-                    discharged: this.record.discharged
-                }).then(function (response) {
-                    console.log('return', response.data);
-                    if (response.data == 'success') {
-                        _this3.getRecords();
-                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
-                        _this3.$root.$emit('bv::hide::modal', 'modalRecordForm');
-                    }
-                }).catch(function (response) {
-                    console.log(response);
-                });
-            } else {
-                axios.put('/api/records/' + this.selected_id, {
-                    addmission_date: this.record.addmission_date,
-                    addmission_doctor: this.record.addmission_doctor ? this.record.addmission_doctor.value : null,
-                    addmission_time: this.record.addmission_time,
-                    attending_physician: this.record.attending_physician ? this.record.attending_physician.value : null,
-                    bed: this.record.bed,
-                    blood_pressure: this.record.blood_pressure,
-                    brief_history: this.record.brief_history,
-                    chief_complaints: this.record.chief_complaints,
-                    completed_by: this.record.completed_by ? this.record.completed_by.value : null,
-                    diagnose: this.record.diagnose ? this.record.diagnose.value : null,
-                    diagnoses_description: this.record.diagnoses_description,
-                    discharged_date: this.record.discharged_date,
-                    discharged_doctor: this.record.discharged_doctor ? this.record.discharged_doctor.value : null,
-                    discharged_time: this.record.discharged_time,
-                    disposition: this.record.disposition ? this.record.disposition.value : null,
-                    floor: this.record.floor ? this.record.floor.value : null,
-                    height: this.record.height,
-                    patient: this.record.patient.value,
-                    philhealthMemberShip: this.record.philhealthMemberShip ? this.record.philhealthMemberShip.value : null,
-                    pulse_rate: this.record.pulse_rate,
-                    remarks: this.record.remarks,
-                    result: this.record.result ? this.record.result.value : null,
-                    room: this.record.room ? this.record.room.value : null,
-                    sponsor: this.record.sponsor,
-                    temperature: this.record.temperature,
-                    typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
-                    weight: this.record.weight,
-                    discharged: this.record.discharged
-                }).then(function (response) {
-                    console.log(response.data);
-                    if (response.data == 'success') {
-                        _this3.getRecords();
-                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Updated.', 'success');
-                        _this3.$root.$emit('bv::hide::modal', 'modalRecordForm');
-                    }
-                }).catch(function (response) {
-                    console.log(response);
-                });
-            }
-        },
-        hideModal: function hideModal() {
-            this.$root.$emit('bv::hide::modal', 'modalRecordForm');
-        },
-        showModalEdit: function showModalEdit(item) {
-            var _this4 = this;
-
-            this.action = 'edit';
-            this.selected_id = item.id;
-            axios.get('/api/records/' + this.selected_id + '/edit').then(function (response) {
-                console.log('edit', response.data);
-                _this4.record = response.data;
-                _this4.record.addmission_date = response.data.addmitted_and_check_up_date;
-                _this4.record.addmission_time = response.data.addmitted_and_check_up_time;
-                _this4.record.discharged_date = response.data.discharge_date;
-                _this4.record.discharged_time = response.data.discharge_time;
-                _this4.record.discharged = response.data.discharged;
-                if (response.data.record_type) {
-                    _this4.record.typeOfRecord = {
-                        label: response.data.record_type.code,
-                        value: response.data.record_type.id
-                    };
-                }
-                if (response.data.patient) {
-                    _this4.record.patient = {
-                        label: response.data.patient.first_name + ' ' + response.data.patient.middle_name + ' ' + response.data.patient.last_name,
-                        value: response.data.patient.id
-                    };
-                }
-                if (response.data.floor) {
-                    _this4.record.floor = {
-                        label: response.data.floor.code,
-                        value: response.data.floor.id
-                    };
-                }
-                if (response.data.room) {
-                    _this4.record.room = {
-                        label: response.data.room.code,
-                        value: response.data.room.id
-                    };
-                }
-                if (response.data.philhealth_membership) {
-                    _this4.record.philhealthMemberShip = {
-                        label: response.data.philhealth_membership.code,
-                        value: response.data.philhealth_membership.id
-                    };
-                }
-                if (response.data.disposition) {
-                    _this4.record.disposition = {
-                        label: response.data.disposition.code,
-                        value: response.data.disposition.id
-                    };
-                }
-                if (response.data.result) {
-                    _this4.record.result = {
-                        label: response.data.result.code,
-                        value: response.data.result.id
-                    };
-                }
-                if (response.data.physician) {
-                    _this4.record.attending_physician = {
-                        label: response.data.physician.first_name + ' ' + response.data.physician.middle_name + ' ' + response.data.physician.last_name,
-                        value: response.data.physician.id
-                    };
-                }
-                if (response.data.chart_completed_by) {
-                    _this4.record.completed_by = {
-                        label: response.data.chart_completed_by.first_name + ' ' + response.data.chart_completed_by.middle_name + ' ' + response.data.chart_completed_by.last_name,
-                        value: response.data.chart_completed_by.id
-                    };
-                }
-                if (response.data.admit_checkup_by) {
-                    _this4.record.addmission_doctor = {
-                        label: response.data.admit_checkup_by.first_name + ' ' + response.data.admit_checkup_by.middle_name + ' ' + response.data.admit_checkup_by.last_name,
-                        value: response.data.admit_checkup_by.id
-                    };
-                }
-                if (response.data.discharged_by) {
-                    _this4.record.discharged_doctor = {
-                        label: response.data.discharged_by.first_name + ' ' + response.data.discharged_by.middle_name + ' ' + response.data.discharged_by.last_name,
-                        value: response.data.discharged_by.id
-                    };
-                }
-                if (response.data.initial_diagnoses) {
-                    _this4.record.remarks = response.data.initial_diagnoses.remarks;
-                    _this4.record.diagnose = {
-                        label: response.data.initial_diagnoses.diagnose.code,
-                        value: response.data.initial_diagnoses.diagnose_id,
-                        data: response.data.initial_diagnoses.diagnose
-                    };
-                }
-                _this4.modalInfo.title = "Record";
-                _this4.$root.$emit('bv::show::modal', 'modalRecordForm');
-            });
-        },
-        getUrl: function getUrl() {
-
-            if (this.patientType == 0) {
-                return '/api/records';
-            } else {
-                return '/api/records/' + this.patientType;
-            }
-        },
-        showMedication: function showMedication(item) {
-            this.selected_id = item.id;
-            this.modalInfo.title = "Medication";
-            this.$root.$emit('bv::show::modal', 'modalMedication');
-        },
-
-
-        // modal entry
-        getPatients: function getPatients() {
-            var _this5 = this;
-
-            axios.get('/api/patients').then(function (response) {
-                _this5.patients = response.data.map(function (patient) {
-                    return {
-                        value: patient.id,
-                        label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name
-                    };
-                });
-            });
-        },
-        getFloors: function getFloors() {
-            var _this6 = this;
-
-            axios.get('/api/floors').then(function (response) {
-                _this6.floors = response.data.map(function (floor) {
-                    return {
-                        value: floor.id,
-                        label: floor.code
-                    };
-                });
-            });
-        },
-        getRooms: function getRooms() {
-            var _this7 = this;
-
-            axios.get('/api/rooms').then(function (response) {
-                _this7.rooms = response.data.map(function (room) {
-                    return {
-                        value: room.id,
-                        label: room.code
-                    };
-                });
-            });
-        },
-        getPhilhealthMemberShip: function getPhilhealthMemberShip() {
-            var _this8 = this;
-
-            axios.get('/api/philhealthMemberShip').then(function (response) {
-                _this8.philhealthMemberShips = response.data.map(function (philhealthMemberShip) {
-                    return {
-                        value: philhealthMemberShip.id,
-                        label: philhealthMemberShip.code
-                    };
-                });
-            });
-        },
-        getDispositions: function getDispositions() {
-            var _this9 = this;
-
-            axios.get('/api/dispositions').then(function (response) {
-                _this9.dispositions = response.data.map(function (disposition) {
-                    return {
-                        value: disposition.id,
-                        label: disposition.code
-                    };
-                });
-            });
-        },
-        getResults: function getResults() {
-            var _this10 = this;
-
-            axios.get('/api/results').then(function (response) {
-                _this10.results = response.data.map(function (result) {
-                    return {
-                        value: result.id,
-                        label: result.code
-                    };
-                });
-            });
-        },
-        getDoctors: function getDoctors() {
-            var _this11 = this;
-
-            axios.get('/api/users').then(function (response) {
-                _this11.doctors = response.data.map(function (user) {
-                    return {
-                        value: user.id,
-                        label: user.first_name + ' ' + user.middle_name + ' ' + user.last_name
-                    };
-                });
-            });
-        },
-        getDiagnoses: function getDiagnoses() {
-            var _this12 = this;
-
-            axios.get('/api/diagnoses').then(function (response) {
-                _this12.diagnoses = response.data.map(function (diagnose) {
-                    return {
-                        value: diagnose.id,
-                        label: diagnose.code,
-                        data: diagnose
-                    };
-                });
-            });
-        },
-        getTypeOfRecords: function getTypeOfRecords() {
-            var _this13 = this;
-
-            axios.get('/api/typeOfRecords').then(function (response) {
-                _this13.typeOfRecords = response.data.map(function (type) {
-                    return {
-                        value: type.id,
-                        label: type.code
-                    };
-                });
-            });
-        },
-        getTypeOfRecordBy: function getTypeOfRecordBy(event) {
-            if (event) {
-                this.record.typeOfRecord = event;
-                this.type_of_record = event.value;
-            }
-        }
-    }
-});
-
-/***/ }),
-/* 296 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "b-container",
-    { attrs: { fluid: "" } },
-    [
-      _c(
-        "b-row",
-        [
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Record" }
-                },
-                [
-                  _c("b-button", { on: { click: _vm.showModalForm } }, [
-                    _vm._v("New")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Type of Patient" }
-                },
-                [
-                  _c("b-form-select", {
-                    attrs: { options: _vm.patientOptions },
-                    on: { change: _vm.getSelectedPatientType },
-                    model: {
-                      value: _vm.patientType,
-                      callback: function($$v) {
-                        _vm.patientType = $$v
-                      },
-                      expression: "patientType"
-                    }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-row",
-        [
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Filter" }
-                },
-                [
-                  _c(
-                    "b-input-group",
-                    [
-                      _c("b-form-input", {
-                        attrs: { placeholder: "Type to Search" },
-                        model: {
-                          value: _vm.filter,
-                          callback: function($$v) {
-                            _vm.filter = $$v
-                          },
-                          expression: "filter"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "b-input-group-append",
-                        [
-                          _c(
-                            "b-button",
-                            {
-                              attrs: { disabled: !_vm.filter },
-                              on: {
-                                click: function($event) {
-                                  _vm.filter = ""
-                                }
-                              }
-                            },
-                            [_vm._v("Clear")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Sort" }
-                },
-                [
-                  _c(
-                    "b-input-group",
-                    [
-                      _c(
-                        "b-form-select",
-                        {
-                          attrs: { options: _vm.sortOptions },
-                          model: {
-                            value: _vm.sortBy,
-                            callback: function($$v) {
-                              _vm.sortBy = $$v
-                            },
-                            expression: "sortBy"
-                          }
-                        },
-                        [
-                          _c(
-                            "option",
-                            {
-                              attrs: { slot: "first" },
-                              domProps: { value: null },
-                              slot: "first"
-                            },
-                            [_vm._v("-- none --")]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-select",
-                        {
-                          attrs: { slot: "append", disabled: !_vm.sortBy },
-                          slot: "append",
-                          model: {
-                            value: _vm.sortDesc,
-                            callback: function($$v) {
-                              _vm.sortDesc = $$v
-                            },
-                            expression: "sortDesc"
-                          }
-                        },
-                        [
-                          _c("option", { domProps: { value: false } }, [
-                            _vm._v("Asc")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { domProps: { value: true } }, [
-                            _vm._v("Desc")
-                          ])
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Sort direction" }
-                },
-                [
-                  _c(
-                    "b-input-group",
-                    [
-                      _c(
-                        "b-form-select",
-                        {
-                          attrs: { slot: "append" },
-                          slot: "append",
-                          model: {
-                            value: _vm.sortDirection,
-                            callback: function($$v) {
-                              _vm.sortDirection = $$v
-                            },
-                            expression: "sortDirection"
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "asc" } }, [
-                            _vm._v("Asc")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "desc" } }, [
-                            _vm._v("Desc")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "last" } }, [
-                            _vm._v("Last")
-                          ])
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Per page" }
-                },
-                [
-                  _c("b-form-select", {
-                    attrs: { options: _vm.pageOptions },
-                    model: {
-                      value: _vm.perPage,
-                      callback: function($$v) {
-                        _vm.perPage = $$v
-                      },
-                      expression: "perPage"
-                    }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("b-table", {
-        attrs: {
-          "show-empty": "",
-          stacked: "md",
-          items: _vm.records,
-          fields: _vm.fields,
-          "current-page": _vm.currentPage,
-          "per-page": _vm.perPage,
-          filter: _vm.filter,
-          "sort-by": _vm.sortBy,
-          "sort-desc": _vm.sortDesc,
-          "sort-direction": _vm.sortDirection
-        },
-        on: {
-          "update:sortBy": function($event) {
-            _vm.sortBy = $event
-          },
-          "update:sortDesc": function($event) {
-            _vm.sortDesc = $event
-          },
-          filtered: _vm.onFiltered
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "patient",
-            fn: function(row) {
-              return [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      row.item.patient.first_name +
-                        " " +
-                        row.item.patient.last_name
-                    ) +
-                    "\n    "
-                )
-              ]
-            }
-          },
-          {
-            key: "patient-type",
-            fn: function(row) {
-              return [
-                _vm._v(
-                  "\n        " + _vm._s(row.item.record_type.code) + "\n    "
-                )
-              ]
-            }
-          },
-          {
-            key: "room",
-            fn: function(row) {
-              return [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(
-                      row.item.record_type.id == 2
-                        ? row.item.room
-                          ? row.item.room.code
-                          : null
-                        : null
-                    ) +
-                    "\n    "
-                )
-              ]
-            }
-          },
-          {
-            key: "actions",
-            fn: function(row) {
-              return [
-                _c(
-                  "b-button",
-                  { attrs: { size: "sm" }, on: { click: row.toggleDetails } },
-                  [
-                    _vm._v(
-                      "\n        " +
-                        _vm._s(row.detailsShowing ? "Hide" : "Show") +
-                        " Details\n      "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    attrs: { size: "sm" },
-                    on: {
-                      click: function($event) {
-                        _vm.showMedication(row.item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n          Medication\n      ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    attrs: { size: "sm" },
-                    on: {
-                      click: function($event) {
-                        _vm.showModalEdit(row.item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n          Edit\n      ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    attrs: { size: "sm" },
-                    on: {
-                      click: function($event) {
-                        _vm.showModalDelete(row.item, row.index, $event.target)
-                      }
-                    }
-                  },
-                  [_vm._v("\n          Delete\n      ")]
-                )
-              ]
-            }
-          },
-          {
-            key: "row-details",
-            fn: function(row) {
-              return [
-                _c(
-                  "b-card",
-                  [
-                    _c(
-                      "b-row",
-                      [
-                        _c(
-                          "b-col",
-                          { attrs: { md: "6" } },
-                          [
-                            _c("legend", [_vm._v("Information")]),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Patient"
-                                }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(
-                                        row.item.patient.first_name +
-                                          " " +
-                                          row.item.patient.middle_name +
-                                          " " +
-                                          row.item.patient.last_name
-                                      ) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Type Of Patient"
-                                }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(row.item.record_type.code) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Attending Physician"
-                                }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(
-                                        row.item.physician
-                                          ? row.item.physician.first_name +
-                                              " " +
-                                              row.item.physician.last_name
-                                          : null
-                                      ) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: { "label-cols-sm": "3", label: "Height" }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(row.item.height) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: { "label-cols-sm": "3", label: "Weight" }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(row.item.weight) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Blood Pressure"
-                                }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(row.item.blood_pressure) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Pulse Rate"
-                                }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(row.item.pulse_rate) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Temperature"
-                                }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(row.item.temperature) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Brief History"
-                                }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(row.item.brief_history) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Chief Complaints"
-                                }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(row.item.chief_complaints) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-col",
-                          { attrs: { md: "6" } },
-                          [
-                            _c("legend", [
-                              _vm._v(
-                                _vm._s(
-                                  row.item.record_type.id == 1
-                                    ? "Checkup"
-                                    : "Admitted"
-                                )
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              { attrs: { "label-cols-sm": "3", label: "By" } },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(
-                                        row.item.admit_checkup_by
-                                          ? row.item.admit_checkup_by
-                                              .first_name +
-                                              " " +
-                                              row.item.admit_checkup_by
-                                                .last_name
-                                          : null
-                                      ) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: { "label-cols-sm": "3", label: "Date" }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(
-                                        row.item.addmitted_and_check_up_date
-                                      ) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-form-group",
-                              {
-                                attrs: { "label-cols-sm": "3", label: "Time" }
-                              },
-                              [
-                                _c("b-input-group", [
-                                  _vm._v(
-                                    "\n                  " +
-                                      _vm._s(
-                                        row.item.addmitted_and_check_up_time
-                                      ) +
-                                      "\n                "
-                                  )
-                                ])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            row.item.record_type.id == 2
-                              ? _c(
-                                  "div",
-                                  [
-                                    _c("legend", [_vm._v("Discharged")]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "b-form-group",
-                                      {
-                                        attrs: {
-                                          "label-cols-sm": "3",
-                                          label: "By"
-                                        }
-                                      },
-                                      [
-                                        _c("b-input-group", [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                row.item.admit_checkup_by
-                                                  ? row.item.admit_checkup_by
-                                                      .first_name +
-                                                      " " +
-                                                      row.item.admit_checkup_by
-                                                        .last_name
-                                                  : null
-                                              ) +
-                                              "\n                  "
-                                          )
-                                        ])
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "b-form-group",
-                                      {
-                                        attrs: {
-                                          "label-cols-sm": "3",
-                                          label: "Date"
-                                        }
-                                      },
-                                      [
-                                        _c("b-input-group", [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                row.item
-                                                  .addmitted_and_check_up_time
-                                              ) +
-                                              "\n                  "
-                                          )
-                                        ])
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "b-form-group",
-                                      {
-                                        attrs: {
-                                          "label-cols-sm": "3",
-                                          label: "Time"
-                                        }
-                                      },
-                                      [
-                                        _c("b-input-group", [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                row.item
-                                                  .addmitted_and_check_up_time
-                                              ) +
-                                              "\n                  "
-                                          )
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]
-            }
-          }
-        ])
-      }),
-      _vm._v(" "),
-      _c(
-        "b-row",
-        [
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c("b-pagination", {
-                staticClass: "my-0",
-                attrs: { "total-rows": _vm.totalRows, "per-page": _vm.perPage },
-                model: {
-                  value: _vm.currentPage,
-                  callback: function($$v) {
-                    _vm.currentPage = $$v
-                  },
-                  expression: "currentPage"
-                }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "modalInfo", title: _vm.modalInfo.title, "ok-only": "" },
-          on: { hide: _vm.resetModal }
-        },
-        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "modalDelete", title: _vm.modalInfo.title },
-          on: { hide: _vm.resetModal, ok: _vm.onDelete }
-        },
-        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: {
-            id: "modalMedication",
-            title: _vm.modalInfo.title,
-            size: "lg",
-            "ok-only": ""
-          },
-          on: { hide: _vm.resetModal }
-        },
-        [
-          _c(
-            "b-tabs",
-            { attrs: { "content-class": "mt-3" } },
-            [
-              _c(
-                "b-tab",
-                { attrs: { title: "Diagnoses", active: "" } },
-                [
-                  _c("diagnoses-table-component", {
-                    attrs: { patient_record_id: _vm.selected_id }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-tab",
-                { attrs: { title: "Laboratory" } },
-                [
-                  _c("laboratory-table-component", {
-                    attrs: { patient_record_id: _vm.selected_id }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-tab",
-                { attrs: { title: "Vital Sign" } },
-                [
-                  _c("vital-sign-table-component", {
-                    attrs: { patient_record_id: _vm.selected_id }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-tab",
-                { attrs: { title: "Doctor's Order" } },
-                [
-                  _c("doctors-order-table-component", {
-                    attrs: { patient_record_id: _vm.selected_id }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-tab",
-                { attrs: { title: "Nurse Note" } },
-                [
-                  _c("nurses-note-table-component", {
-                    attrs: { patient_record_id: _vm.selected_id }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-tab",
-                { attrs: { title: "Intravenous Fuid" } },
-                [
-                  _c("intravenous-fluid-table-component", {
-                    attrs: { patient_record_id: _vm.selected_id }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-tab",
-                { attrs: { title: "Medication & Treatment" } },
-                [
-                  _c("medication-and-treatment-table-component", {
-                    attrs: { patient_record_id: _vm.selected_id }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: {
-            id: "modalRecordForm",
-            title: _vm.modalInfo.title,
-            size: "lg"
-          },
-          on: { hide: _vm.resetModal }
-        },
-        [
-          _c(
-            "form",
-            {
-              on: {
-                submit: function($event) {
-                  $event.stopPropagation()
-                  $event.preventDefault()
-                  return _vm.onSubmit($event)
-                }
-              }
-            },
-            [
-              _c(
-                "b-row",
-                [
-                  _c(
-                    "b-col",
-                    { attrs: { md: "6" } },
-                    [
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Patient" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.patients },
-                                model: {
-                                  value: _vm.record.patient,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "patient", $$v)
-                                  },
-                                  expression: "record.patient"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Status" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  options: _vm.typeOfRecords,
-                                  onChange: _vm.getTypeOfRecordBy
-                                },
-                                model: {
-                                  value: _vm.record.typeOfRecord,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "typeOfRecord", $$v)
-                                  },
-                                  expression: "record.typeOfRecord"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _vm.type_of_record && _vm.type_of_record == 2
-                        ? _c(
-                            "b-form-group",
-                            { attrs: { "label-cols-sm": "3", label: "Floor" } },
-                            [
-                              _c(
-                                "b-input-group",
-                                [
-                                  _c("v-select", {
-                                    attrs: { options: _vm.floors },
-                                    model: {
-                                      value: _vm.record.floor,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.record, "floor", $$v)
-                                      },
-                                      expression: "record.floor"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.record.floor &&
-                      _vm.type_of_record &&
-                      _vm.type_of_record == 2
-                        ? _c(
-                            "b-form-group",
-                            { attrs: { "label-cols-sm": "3", label: "Room" } },
-                            [
-                              _c(
-                                "b-input-group",
-                                [
-                                  _c("v-select", {
-                                    attrs: { options: _vm.rooms },
-                                    model: {
-                                      value: _vm.record.room,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.record, "room", $$v)
-                                      },
-                                      expression: "record.room"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.type_of_record && _vm.type_of_record == 2
-                        ? _c(
-                            "b-form-group",
-                            { attrs: { "label-cols-sm": "3", label: "Bed" } },
-                            [
-                              _c(
-                                "b-input-group",
-                                [
-                                  _c("b-form-input", {
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Enter Bed"
-                                    },
-                                    model: {
-                                      value: _vm.record.bed,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.record, "bed", $$v)
-                                      },
-                                      expression: "record.bed"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Weight" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Enter Weight"
-                                },
-                                model: {
-                                  value: _vm.record.weight,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "weight", $$v)
-                                  },
-                                  expression: "record.weight"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Height" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Enter Height"
-                                },
-                                model: {
-                                  value: _vm.record.height,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "height", $$v)
-                                  },
-                                  expression: "record.height"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: { "label-cols-sm": "3", label: "Temperature" }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Enter Temperature"
-                                },
-                                model: {
-                                  value: _vm.record.temperature,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "temperature", $$v)
-                                  },
-                                  expression: "record.temperature"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            "label-cols-sm": "3",
-                            label: "Blood Pressure"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Enter Blood Pressure"
-                                },
-                                model: {
-                                  value: _vm.record.blood_pressure,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "blood_pressure", $$v)
-                                  },
-                                  expression: "record.blood_pressure"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: { "label-cols-sm": "3", label: "Pulse Rate" }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Enter Pulse Rate"
-                                },
-                                model: {
-                                  value: _vm.record.pulse_rate,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "pulse_rate", $$v)
-                                  },
-                                  expression: "record.pulse_rate"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("legend", [_vm._v("Additional Information")]),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            "label-cols-sm": "3",
-                            label: "Philhealth Membership"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.philhealthMemberShips },
-                                model: {
-                                  value: _vm.record.philhealthMemberShip,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.record,
-                                      "philhealthMemberShip",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "record.philhealthMemberShip"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _vm.record.philhealthMemberShip &&
-                      _vm.record.philhealthMemberShip.value === 5
-                        ? _c(
-                            "b-form-group",
-                            {
-                              attrs: { "label-cols-sm": "3", label: "Sponsor" }
-                            },
-                            [
-                              _c(
-                                "b-input-group",
-                                [
-                                  _c("b-form-input", {
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Enter Sponsor"
-                                    },
-                                    model: {
-                                      value: _vm.record.sponsor,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.record, "sponsor", $$v)
-                                      },
-                                      expression: "record.sponsor"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: { "label-cols-sm": "3", label: "Disposition" }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.dispositions },
-                                model: {
-                                  value: _vm.record.disposition,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "disposition", $$v)
-                                  },
-                                  expression: "record.disposition"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Result" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.results },
-                                model: {
-                                  value: _vm.record.result,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "result", $$v)
-                                  },
-                                  expression: "record.result"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            "label-cols-sm": "3",
-                            label: "Attending Physician"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.doctors },
-                                model: {
-                                  value: _vm.record.attending_physician,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.record,
-                                      "attending_physician",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "record.attending_physician"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            "label-cols-sm": "3",
-                            label: "Chart Completed By"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.doctors },
-                                model: {
-                                  value: _vm.record.completed_by,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "completed_by", $$v)
-                                  },
-                                  expression: "record.completed_by"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { attrs: { md: "6" } },
-                    [
-                      _c(
-                        "div",
-                        [
-                          _c(
-                            "b-form-group",
-                            {
-                              attrs: {
-                                "label-cols-sm": "3",
-                                label: "Chief Complaints"
-                              }
-                            },
-                            [
-                              _c(
-                                "b-input-group",
-                                [
-                                  _c("b-form-textarea", {
-                                    attrs: {
-                                      id: "textarea1",
-                                      placeholder: "Enter Chief Complaints",
-                                      rows: "3",
-                                      "max-rows": "6"
-                                    },
-                                    model: {
-                                      value: _vm.record.chief_complaints,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.record,
-                                          "chief_complaints",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "record.chief_complaints"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-form-group",
-                            {
-                              attrs: {
-                                "label-cols-sm": "3",
-                                label: "Brief History"
-                              }
-                            },
-                            [
-                              _c(
-                                "b-input-group",
-                                [
-                                  _c("b-form-textarea", {
-                                    attrs: {
-                                      id: "textarea1",
-                                      placeholder: "Enter Brief History",
-                                      rows: "3",
-                                      "max-rows": "6"
-                                    },
-                                    model: {
-                                      value: _vm.record.brief_history,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.record,
-                                          "brief_history",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "record.brief_history"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("legend", [
-                        _vm._v(
-                          _vm._s(
-                            _vm.type_of_record && _vm.type_of_record == 2
-                              ? "Admission"
-                              : "Checkup"
-                          )
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Doctor" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.doctors },
-                                model: {
-                                  value: _vm.record.addmission_doctor,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.record,
-                                      "addmission_doctor",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "record.addmission_doctor"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Date" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "date",
-                                  placeholder: "Enter Date"
-                                },
-                                model: {
-                                  value: _vm.record.addmission_date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "addmission_date", $$v)
-                                  },
-                                  expression: "record.addmission_date"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Time" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  type: "time",
-                                  placeholder: "Enter Time"
-                                },
-                                model: {
-                                  value: _vm.record.addmission_time,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "addmission_time", $$v)
-                                  },
-                                  expression: "record.addmission_time"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _vm.type_of_record && _vm.type_of_record == 2
-                        ? _c(
-                            "div",
-                            [
-                              _c("legend", [_vm._v("Discharged")]),
-                              _vm._v(" "),
-                              _c(
-                                "b-form-group",
-                                {
-                                  attrs: {
-                                    "label-cols-sm": "3",
-                                    label: "Doctor"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "b-input-group",
-                                    [
-                                      _c("v-select", {
-                                        attrs: { options: _vm.doctors },
-                                        model: {
-                                          value: _vm.record.discharged_doctor,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.record,
-                                              "discharged_doctor",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "record.discharged_doctor"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "b-form-group",
-                                {
-                                  attrs: { "label-cols-sm": "3", label: "Date" }
-                                },
-                                [
-                                  _c(
-                                    "b-input-group",
-                                    [
-                                      _c("b-form-input", {
-                                        attrs: {
-                                          type: "date",
-                                          placeholder: "Enter Date"
-                                        },
-                                        model: {
-                                          value: _vm.record.discharged_date,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.record,
-                                              "discharged_date",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "record.discharged_date"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "b-form-group",
-                                {
-                                  attrs: { "label-cols-sm": "3", label: "Time" }
-                                },
-                                [
-                                  _c(
-                                    "b-input-group",
-                                    [
-                                      _c("b-form-input", {
-                                        attrs: {
-                                          type: "time",
-                                          placeholder: "Enter Time"
-                                        },
-                                        model: {
-                                          value: _vm.record.discharged_time,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.record,
-                                              "discharged_time",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "record.discharged_time"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("legend", [_vm._v("Initial Diagnoses")]),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            "label-cols-sm": "3",
-                            label: "Diagnoses Code"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("v-select", {
-                                attrs: { options: _vm.diagnoses },
-                                model: {
-                                  value: _vm.record.diagnose,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "diagnose", $$v)
-                                  },
-                                  expression: "record.diagnose"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Diagnoses" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-input", {
-                                attrs: {
-                                  disabled: "",
-                                  type: "text",
-                                  placeholder: "Enter Diagnoses"
-                                },
-                                model: {
-                                  value: _vm.diagnose_name,
-                                  callback: function($$v) {
-                                    _vm.diagnose_name = $$v
-                                  },
-                                  expression: "diagnose_name"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { "label-cols-sm": "3", label: "Remarks" } },
-                        [
-                          _c(
-                            "b-input-group",
-                            [
-                              _c("b-form-textarea", {
-                                attrs: {
-                                  id: "textarea1",
-                                  placeholder: "Enter Remarks",
-                                  rows: "3",
-                                  "max-rows": "6"
-                                },
-                                model: {
-                                  value: _vm.record.remarks,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.record, "remarks", $$v)
-                                  },
-                                  expression: "record.remarks"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("legend", [_vm._v("Patient Status")]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        [
-                          _c(
-                            "b-form-checkbox",
-                            {
-                              attrs: {
-                                id: "checkbox1",
-                                name: "checkbox1",
-                                value: 1,
-                                "unchecked-value": 0
-                              },
-                              model: {
-                                value: _vm.record.discharged,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.record, "discharged", $$v)
-                                },
-                                expression: "record.discharged"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                Discharged\n              "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { attrs: { slot: "modal-footer" }, slot: "modal-footer" },
-            [
-              _c("b-button", { on: { click: _vm.hideModal } }, [
-                _vm._v("Cancel")
-              ]),
-              _vm._v(" "),
-              _c(
-                "b-button",
-                {
-                  attrs: {
-                    variant: "primary",
-                    disabled: !(
-                      _vm.record &&
-                      _vm.record.patient &&
-                      _vm.record.typeOfRecord
-                    )
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.onSubmit(_vm.action)
-                    }
-                  }
-                },
-                [_vm._v("Save")]
-              )
-            ],
-            1
-          )
-        ]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-29867971", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
