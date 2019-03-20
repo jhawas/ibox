@@ -106,52 +106,52 @@
             <b-row>
               <b-col md="6">
                 <legend>Information</legend>
-                <b-form-group label-cols-sm="3" label="Patient">
+                <b-form-group label-cols-sm="4" label="Patient">
                   <b-input-group>
                     {{row.item.patient.first_name + ' ' + row.item.patient.middle_name + ' ' + row.item.patient.last_name}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Type Of Patient">
+                <b-form-group label-cols-sm="4" label="Type Of Patient">
                   <b-input-group>
                     {{row.item.record_type.code}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Attending Physician">
+                <b-form-group label-cols-sm="4" label="Attending Physician">
                   <b-input-group>
                     {{row.item.physician ? row.item.physician.first_name + ' ' + row.item.physician.last_name : null}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Height (cm)">
+                <b-form-group label-cols-sm="4" label="Height (cm)">
                   <b-input-group>
                     {{row.item.height}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Weight (kg)">
+                <b-form-group label-cols-sm="4" label="Weight (kg)">
                   <b-input-group>
                     {{row.item.weight}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Blood Pressure">
+                <b-form-group label-cols-sm="4" label="Blood Pressure (mm/hg)">
                   <b-input-group>
                     {{row.item.blood_pressure}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Pulse Rate">
+                <b-form-group label-cols-sm="4" label="Pulse Rate (Bit/Minute)">
                   <b-input-group>
                     {{row.item.pulse_rate}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Temperature (°C)">
+                <b-form-group label-cols-sm="4" label="Temperature (°C)">
                   <b-input-group>
                     {{row.item.temperature}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Brief History">
+                <b-form-group label-cols-sm="4" label="Brief History">
                   <b-input-group>
                     {{row.item.brief_history}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Chief Complaints">
+                <b-form-group label-cols-sm="4" label="Chief Complaints">
                   <b-input-group>
                     {{row.item.chief_complaints}}
                   </b-input-group>
@@ -159,36 +159,36 @@
               </b-col>
               <b-col md="6">
                 <legend>{{row.item.record_type.id == 1 ? 'Checkup' : 'Admitted'}}</legend>
-                <b-form-group label-cols-sm="3" label="By">
+                <b-form-group label-cols-sm="4" label="By">
                   <b-input-group>
                     {{row.item.admit_checkup_by ? row.item.admit_checkup_by.first_name + ' ' + row.item.admit_checkup_by.last_name : null}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Date">
+                <b-form-group label-cols-sm="4" label="Date">
                   <b-input-group>
                     {{row.item.addmitted_and_check_up_date}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Time">
+                <b-form-group label-cols-sm="4" label="Time">
                   <b-input-group>
                     {{row.item.addmitted_and_check_up_time}}
                   </b-input-group>
                 </b-form-group>
-                <div v-if="row.item.record_type.id == 2 && row.item.admit_checkup_by">
+                <div v-if="row.item.record_type.id == 2 && row.item.discharged_by">
                   <legend>Discharged</legend>
-                  <b-form-group label-cols-sm="3" label="By">
+                  <b-form-group label-cols-sm="4" label="By">
                     <b-input-group>
-                      {{row.item.admit_checkup_by ? row.item.admit_checkup_by.first_name + ' ' + row.item.admit_checkup_by.last_name : null}}
+                      {{row.item.discharged_by ? row.item.discharged_by.first_name + ' ' + row.item.discharged_by.last_name : null}}
                     </b-input-group>
                   </b-form-group>
-                  <b-form-group label-cols-sm="3" label="Date">
+                  <b-form-group label-cols-sm="4" label="Date">
                     <b-input-group>
-                      {{row.item.addmitted_and_check_up_time}}
+                      {{row.item.discharge_date}}
                     </b-input-group>
                   </b-form-group>
-                  <b-form-group label-cols-sm="3" label="Time">
+                  <b-form-group label-cols-sm="4" label="Time">
                     <b-input-group>
-                      {{row.item.addmitted_and_check_up_time}}
+                      {{row.item.discharge_time}}
                     </b-input-group>
                   </b-form-group>
                 </div>
@@ -307,12 +307,12 @@
                   <b-form-input type="text" placeholder="Enter Temperature" v-model="record.temperature" />
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Blood Pressure">
+            <b-form-group label-cols-sm="3" label="Blood Pressure (mm/hg)">
               <b-input-group>
                   <b-form-input type="text" placeholder="Enter Blood Pressure" v-model="record.blood_pressure" />
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Pulse Rate">
+            <b-form-group label-cols-sm="3" label="Pulse Rate (Bit/Minute)">
               <b-input-group>
                   <b-form-input type="text" placeholder="Enter Pulse Rate" v-model="record.pulse_rate" />
               </b-input-group>

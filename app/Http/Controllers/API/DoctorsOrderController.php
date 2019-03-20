@@ -33,6 +33,7 @@ class DoctorsOrderController extends Controller
 
     public function edit($id) {
     	$doctorsOrder = DoctorsOrder::where('id', $id)->first();
+        $doctorsOrder->laboratories = explode(',',$doctorsOrder->laboratories);
         return $doctorsOrder;
     }
 
@@ -44,6 +45,7 @@ class DoctorsOrderController extends Controller
         $doctorsOrder->progress_note = $request->progress_note;
         $doctorsOrder->doctors_orders = $request->doctors_orders;
         $doctorsOrder->physician_id = $request->user_id;
+        $doctorsOrder->laboratories = implode(',', $request->laboratories);
         $doctorsOrder->save();
         return 'success';
     }
@@ -56,6 +58,7 @@ class DoctorsOrderController extends Controller
         $doctorsOrder->progress_note = $request->progress_note;
         $doctorsOrder->doctors_orders = $request->doctors_orders;
         $doctorsOrder->physician_id = $request->user_id;
+        $doctorsOrder->laboratories = implode(',', $request->laboratories);
         $doctorsOrder->save();
         return 'success';
     }

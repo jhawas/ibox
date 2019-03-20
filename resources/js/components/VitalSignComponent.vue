@@ -91,37 +91,37 @@
         <b-card>
           <b-row>
             <b-col md="6" class="my-1">
-                <b-form-group label-cols-sm="2" label="Patient Record" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Patient Record" class="mb-0">
                   <b-input-group>
                     {{row.item.record.patient.first_name + ' ' + row.item.record.patient.first_name}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="Date" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Date" class="mb-0">
                   <b-input-group>
                     {{row.item.date}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="Time" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Time" class="mb-0">
                   <b-input-group>
                     {{row.item.time}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="BP" class="mb-0">
+                <b-form-group label-cols-sm="4" label="BP (mm/hg)" class="mb-0">
                   <b-input-group>
                     {{row.item.bp}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="T" class="mb-0">
+                <b-form-group label-cols-sm="4" label="T (°C)" class="mb-0">
                   <b-input-group>
                     {{row.item.t}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="P" class="mb-0">
+                <b-form-group label-cols-sm="4" label="P (Bit/Minute)" class="mb-0">
                   <b-input-group>
                     {{row.item.p}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="R" class="mb-0">
+                <b-form-group label-cols-sm="4" label="R (Cycle/Minute)" class="mb-0">
                   <b-input-group>
                     {{row.item.r}}
                   </b-input-group>
@@ -129,48 +129,48 @@
             </b-col>
             <b-col md="6" class="my-1">
                 <legend>Intake</legend>
-                <b-form-group label-cols-sm="2" label="Intake Oral" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Intake Oral" class="mb-0">
                   <b-input-group>
                     {{row.item.intake_oral}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="intake I.V." class="mb-0">
+                <b-form-group label-cols-sm="4" label="intake I.V." class="mb-0">
                   <b-input-group>
                     {{row.item.intake_iv}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="Intake NG" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Intake NG" class="mb-0">
                   <b-input-group>
                     {{row.item.intake_ng}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="Total Intake" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Total Intake" class="mb-0">
                   <b-input-group>
                     {{row.item.total_intake}}
                   </b-input-group>
                 </b-form-group>
                 <legend>Output</legend>
-                <b-form-group label-cols-sm="2" label="Output Urine" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Output Urine" class="mb-0">
                   <b-input-group>
                     {{row.item.output_urine}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="Output Stool" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Output Stool" class="mb-0">
                   <b-input-group>
                     {{row.item.output_stool}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="Output Emesis" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Output Emesis" class="mb-0">
                   <b-input-group>
                     {{row.item.output_emesis}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="Output NG" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Output NG" class="mb-0">
                   <b-input-group>
                     {{row.item.output_ng}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="2" label="Total Output" class="mb-0">
+                <b-form-group label-cols-sm="4" label="Total Output" class="mb-0">
                   <b-input-group>
                     {{row.item.total_output}}
                   </b-input-group>
@@ -219,22 +219,22 @@
                 <b-form-input type="time" placeholder="Enter Time" v-model="vitalSign.time" />
             </b-input-group>
         </b-form-group>
-        <b-form-group label-cols-sm="2" label="BP">
+        <b-form-group label-cols-sm="2" label="BP (mm/hg)">
             <b-input-group>
                 <b-form-input type="text" placeholder="Enter BP" v-model="vitalSign.bp" />
             </b-input-group>
         </b-form-group>
-        <b-form-group label-cols-sm="2" label="T">
+        <b-form-group label-cols-sm="2" label="T (°C)">
             <b-input-group>
                 <b-form-input type="text" placeholder="Enter T" v-model="vitalSign.t" />
             </b-input-group>
         </b-form-group>
-        <b-form-group label-cols-sm="2" label="P">
+        <b-form-group label-cols-sm="2" label="P (Bit/Minute)">
             <b-input-group>
                 <b-form-input type="text" placeholder="Enter P" v-model="vitalSign.p" />
             </b-input-group>
         </b-form-group>
-        <b-form-group label-cols-sm="2" label="R">
+        <b-form-group label-cols-sm="2" label="R (Cycle/Minute)">
             <b-input-group>
                 <b-form-input type="text" placeholder="Enter R" v-model="vitalSign.r" />
             </b-input-group>

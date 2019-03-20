@@ -61007,12 +61007,12 @@ window._ = __webpack_require__(15);
  */
 
 try {
-  window.Popper = __webpack_require__(44).default;
-  window.$ = window.jQuery = __webpack_require__(21);
+    window.Popper = __webpack_require__(44).default;
+    window.$ = window.jQuery = __webpack_require__(21);
 
-  __webpack_require__(221);
+    __webpack_require__(221);
 
-  __webpack_require__(222)(window, $);
+    __webpack_require__(222)(window, $);
 } catch (e) {}
 
 /**
@@ -61034,9 +61034,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -106098,6 +106098,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -106112,12 +106127,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             patients: [],
-            doctorsOrder: [],
+            doctorsOrder: {},
             doctorsOrders: [],
+            laboratories: [],
             patient_record_id: null,
             selected_id: null,
             action: 'store' | 'update',
-            fields: [{ key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' }, { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'progress_note', label: 'Progress Note', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'doctors_orders', label: 'Doctors Orders', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions' }],
+            fields: [{ key: 'date', label: 'Date', sortable: true, sortDirection: 'desc' }, { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'progress_note', label: 'Progress Note', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'doctors_orders', label: 'Doctors Orders', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'laboratories', label: 'Laboratories', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions' }],
             currentPage: 1,
             perPage: 5,
             totalRows: 1,
@@ -106131,6 +106147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.getPatients();
+        this.getTypeOfLaboratories();
     },
 
     computed: {
@@ -106186,6 +106203,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(_this2.doctorsOrders, _this2.totalRows);
             });
         },
+        getTypeOfLaboratories: function getTypeOfLaboratories() {
+            var _this3 = this;
+
+            axios.get('/api/typeOfLaboratories').then(function (response) {
+                _this3.laboratories = response.data.map(function (lab) {
+                    return {
+                        value: lab.code,
+                        text: lab.code
+                    };
+                });
+            });
+        },
         showModalDelete: function showModalDelete(item, index, button) {
             this.modalInfo.title = 'Record';
             this.modalInfo.content = 'Are you sure you want to delete?';
@@ -106193,11 +106222,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selected_id = item.id;
         },
         onDelete: function onDelete() {
-            var _this3 = this;
+            var _this4 = this;
 
             axios.delete('/api/doctorsOrders/' + this.selected_id).then(function (response) {
                 if (response.data == 'success') {
-                    _this3.getDoctorsOrders();
+                    _this4.getDoctorsOrders();
                     __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Deleted.', 'success');
                 }
             }).catch(function (response) {
@@ -106206,12 +106235,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         showModalForm: function showModalForm() {
             this.action = 'store';
-            this.doctorsOrder = [];
+            this.doctorsOrder = {
+                laboratories: []
+            };
             this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit: function onSubmit(action) {
-            var _this4 = this;
+            var _this5 = this;
 
             console.log('submit', this.doctorsOrder);
             if (action === 'store') {
@@ -106221,11 +106252,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     date: this.doctorsOrder.date,
                     time: this.doctorsOrder.time,
                     progress_note: this.doctorsOrder.progress_note,
-                    doctors_orders: this.doctorsOrder.doctors_orders
+                    doctors_orders: this.doctorsOrder.doctors_orders,
+                    laboratories: this.doctorsOrder.laboratories
                 }).then(function (response) {
                     console.log(response.data);
                     if (response.data == 'success') {
-                        _this4.getDoctorsOrders();
+                        _this5.getDoctorsOrders();
                         __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
                     }
                 }).catch(function (response) {
@@ -106238,11 +106270,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     date: this.doctorsOrder.date,
                     time: this.doctorsOrder.time,
                     progress_note: this.doctorsOrder.progress_note,
-                    doctors_orders: this.doctorsOrder.doctors_orders
+                    doctors_orders: this.doctorsOrder.doctors_orders,
+                    laboratories: this.doctorsOrder.laboratories
                 }).then(function (response) {
                     console.log(response.data);
                     if (response.data == 'success') {
-                        _this4.getDoctorsOrders();
+                        _this5.getDoctorsOrders();
                         __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Updated.', 'success');
                     }
                 }).catch(function (response) {
@@ -106251,12 +106284,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         showModalEdit: function showModalEdit(item) {
-            var _this5 = this;
+            var _this6 = this;
 
             this.action = 'edit';
             this.selected_id = item.id;
             axios.get('/api/doctorsOrders/' + this.selected_id + '/edit').then(function (response) {
-                _this5.doctorsOrder = response.data;
+                _this6.doctorsOrder = response.data;
+                console.log(response.data);
             });
             this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');
@@ -106719,6 +106753,24 @@ var render = function() {
                         ])
                       ],
                       1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-form-group",
+                      {
+                        staticClass: "mb-0",
+                        attrs: { "label-cols-sm": "2", label: "laboratories" }
+                      },
+                      [
+                        _c("b-input-group", [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(row.item.laboratories) +
+                              "\n            "
+                          )
+                        ])
+                      ],
+                      1
                     )
                   ],
                   1
@@ -106875,7 +106927,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "Doctor's Orders" } },
+                { attrs: { "label-cols-sm": "2", label: "Doctor's Order" } },
                 [
                   _c(
                     "b-input-group",
@@ -106893,6 +106945,34 @@ var render = function() {
                             _vm.$set(_vm.doctorsOrder, "doctors_orders", $$v)
                           },
                           expression: "doctorsOrder.doctors_orders"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Laboratories" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-checkbox-group", {
+                        attrs: {
+                          id: "checkboxes1",
+                          name: "laboratories",
+                          options: _vm.laboratories
+                        },
+                        model: {
+                          value: _vm.doctorsOrder.laboratories,
+                          callback: function($$v) {
+                            _vm.$set(_vm.doctorsOrder, "laboratories", $$v)
+                          },
+                          expression: "doctorsOrder.laboratories"
                         }
                       })
                     ],
@@ -118839,7 +118919,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
+                                  "label-cols-sm": "4",
                                   label: "Patient"
                                 }
                               },
@@ -118865,7 +118945,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
+                                  "label-cols-sm": "4",
                                   label: "Type Of Patient"
                                 }
                               },
@@ -118885,7 +118965,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
+                                  "label-cols-sm": "4",
                                   label: "Attending Physician"
                                 }
                               },
@@ -118911,7 +118991,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
+                                  "label-cols-sm": "4",
                                   label: "Height (cm)"
                                 }
                               },
@@ -118931,7 +119011,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
+                                  "label-cols-sm": "4",
                                   label: "Weight (kg)"
                                 }
                               },
@@ -118951,8 +119031,8 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Blood Pressure"
+                                  "label-cols-sm": "4",
+                                  label: "Blood Pressure (mm/hg)"
                                 }
                               },
                               [
@@ -118971,8 +119051,8 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
-                                  label: "Pulse Rate"
+                                  "label-cols-sm": "4",
+                                  label: "Pulse Rate (Bit/Minute)"
                                 }
                               },
                               [
@@ -118991,7 +119071,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
+                                  "label-cols-sm": "4",
                                   label: "Temperature (°C)"
                                 }
                               },
@@ -119011,7 +119091,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
+                                  "label-cols-sm": "4",
                                   label: "Brief History"
                                 }
                               },
@@ -119031,7 +119111,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 attrs: {
-                                  "label-cols-sm": "3",
+                                  "label-cols-sm": "4",
                                   label: "Chief Complaints"
                                 }
                               },
@@ -119066,7 +119146,7 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "b-form-group",
-                              { attrs: { "label-cols-sm": "3", label: "By" } },
+                              { attrs: { "label-cols-sm": "4", label: "By" } },
                               [
                                 _c("b-input-group", [
                                   _vm._v(
@@ -119090,7 +119170,7 @@ var render = function() {
                             _c(
                               "b-form-group",
                               {
-                                attrs: { "label-cols-sm": "3", label: "Date" }
+                                attrs: { "label-cols-sm": "4", label: "Date" }
                               },
                               [
                                 _c("b-input-group", [
@@ -119109,7 +119189,7 @@ var render = function() {
                             _c(
                               "b-form-group",
                               {
-                                attrs: { "label-cols-sm": "3", label: "Time" }
+                                attrs: { "label-cols-sm": "4", label: "Time" }
                               },
                               [
                                 _c("b-input-group", [
@@ -119126,7 +119206,7 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             row.item.record_type.id == 2 &&
-                            row.item.admit_checkup_by
+                            row.item.discharged_by
                               ? _c(
                                   "div",
                                   [
@@ -119136,7 +119216,7 @@ var render = function() {
                                       "b-form-group",
                                       {
                                         attrs: {
-                                          "label-cols-sm": "3",
+                                          "label-cols-sm": "4",
                                           label: "By"
                                         }
                                       },
@@ -119145,11 +119225,11 @@ var render = function() {
                                           _vm._v(
                                             "\n                    " +
                                               _vm._s(
-                                                row.item.admit_checkup_by
-                                                  ? row.item.admit_checkup_by
+                                                row.item.discharged_by
+                                                  ? row.item.discharged_by
                                                       .first_name +
                                                       " " +
-                                                      row.item.admit_checkup_by
+                                                      row.item.discharged_by
                                                         .last_name
                                                   : null
                                               ) +
@@ -119164,7 +119244,7 @@ var render = function() {
                                       "b-form-group",
                                       {
                                         attrs: {
-                                          "label-cols-sm": "3",
+                                          "label-cols-sm": "4",
                                           label: "Date"
                                         }
                                       },
@@ -119172,10 +119252,7 @@ var render = function() {
                                         _c("b-input-group", [
                                           _vm._v(
                                             "\n                    " +
-                                              _vm._s(
-                                                row.item
-                                                  .addmitted_and_check_up_time
-                                              ) +
+                                              _vm._s(row.item.discharge_date) +
                                               "\n                  "
                                           )
                                         ])
@@ -119187,7 +119264,7 @@ var render = function() {
                                       "b-form-group",
                                       {
                                         attrs: {
-                                          "label-cols-sm": "3",
+                                          "label-cols-sm": "4",
                                           label: "Time"
                                         }
                                       },
@@ -119195,10 +119272,7 @@ var render = function() {
                                         _c("b-input-group", [
                                           _vm._v(
                                             "\n                    " +
-                                              _vm._s(
-                                                row.item
-                                                  .addmitted_and_check_up_time
-                                              ) +
+                                              _vm._s(row.item.discharge_time) +
                                               "\n                  "
                                           )
                                         ])
@@ -119606,7 +119680,7 @@ var render = function() {
                         {
                           attrs: {
                             "label-cols-sm": "3",
-                            label: "Blood Pressure"
+                            label: "Blood Pressure (mm/hg)"
                           }
                         },
                         [
@@ -119636,7 +119710,10 @@ var render = function() {
                       _c(
                         "b-form-group",
                         {
-                          attrs: { "label-cols-sm": "3", label: "Pulse Rate" }
+                          attrs: {
+                            "label-cols-sm": "3",
+                            label: "Pulse Rate (Bit/Minute)"
+                          }
                         },
                         [
                           _c(
@@ -124082,7 +124159,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Patient Record"
                                 }
                               },
@@ -124106,7 +124183,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 staticClass: "mb-0",
-                                attrs: { "label-cols-sm": "2", label: "Date" }
+                                attrs: { "label-cols-sm": "4", label: "Date" }
                               },
                               [
                                 _c("b-input-group", [
@@ -124124,7 +124201,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 staticClass: "mb-0",
-                                attrs: { "label-cols-sm": "2", label: "Time" }
+                                attrs: { "label-cols-sm": "4", label: "Time" }
                               },
                               [
                                 _c("b-input-group", [
@@ -124142,7 +124219,10 @@ var render = function() {
                               "b-form-group",
                               {
                                 staticClass: "mb-0",
-                                attrs: { "label-cols-sm": "2", label: "BP" }
+                                attrs: {
+                                  "label-cols-sm": "4",
+                                  label: "BP (mm/hg)"
+                                }
                               },
                               [
                                 _c("b-input-group", [
@@ -124160,7 +124240,7 @@ var render = function() {
                               "b-form-group",
                               {
                                 staticClass: "mb-0",
-                                attrs: { "label-cols-sm": "2", label: "T" }
+                                attrs: { "label-cols-sm": "4", label: "T (°C)" }
                               },
                               [
                                 _c("b-input-group", [
@@ -124178,7 +124258,10 @@ var render = function() {
                               "b-form-group",
                               {
                                 staticClass: "mb-0",
-                                attrs: { "label-cols-sm": "2", label: "P" }
+                                attrs: {
+                                  "label-cols-sm": "4",
+                                  label: "P (Bit/Minute)"
+                                }
                               },
                               [
                                 _c("b-input-group", [
@@ -124196,7 +124279,10 @@ var render = function() {
                               "b-form-group",
                               {
                                 staticClass: "mb-0",
-                                attrs: { "label-cols-sm": "2", label: "R" }
+                                attrs: {
+                                  "label-cols-sm": "4",
+                                  label: "R (Cycle/Minute)"
+                                }
                               },
                               [
                                 _c("b-input-group", [
@@ -124224,7 +124310,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Intake Oral"
                                 }
                               },
@@ -124245,7 +124331,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "intake I.V."
                                 }
                               },
@@ -124266,7 +124352,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Intake NG"
                                 }
                               },
@@ -124287,7 +124373,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Total Intake"
                                 }
                               },
@@ -124310,7 +124396,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Output Urine"
                                 }
                               },
@@ -124331,7 +124417,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Output Stool"
                                 }
                               },
@@ -124352,7 +124438,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Output Emesis"
                                 }
                               },
@@ -124373,7 +124459,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Output NG"
                                 }
                               },
@@ -124394,7 +124480,7 @@ var render = function() {
                               {
                                 staticClass: "mb-0",
                                 attrs: {
-                                  "label-cols-sm": "2",
+                                  "label-cols-sm": "4",
                                   label: "Total Output"
                                 }
                               },
@@ -124541,7 +124627,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "BP" } },
+                { attrs: { "label-cols-sm": "2", label: "BP (mm/hg)" } },
                 [
                   _c(
                     "b-input-group",
@@ -124565,7 +124651,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "T" } },
+                { attrs: { "label-cols-sm": "2", label: "T (°C)" } },
                 [
                   _c(
                     "b-input-group",
@@ -124589,7 +124675,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "P" } },
+                { attrs: { "label-cols-sm": "2", label: "P (Bit/Minute)" } },
                 [
                   _c(
                     "b-input-group",
@@ -124613,7 +124699,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "R" } },
+                { attrs: { "label-cols-sm": "2", label: "R (Cycle/Minute)" } },
                 [
                   _c(
                     "b-input-group",

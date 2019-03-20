@@ -114,6 +114,11 @@
                 {{row.item.doctors_orders}}
               </b-input-group>
             </b-form-group>
+            <b-form-group label-cols-sm="2" label="laboratories" class="mb-0">
+              <b-input-group>
+                {{row.item.laboratories}}
+              </b-input-group>
+            </b-form-group>
         </b-card>
       </template>
     </b-table>
@@ -164,7 +169,7 @@
                 />
             </b-input-group>
         </b-form-group>
-        <b-form-group label-cols-sm="2" label="Doctor's Orders">
+        <b-form-group label-cols-sm="2" label="Doctor's Order">
             <b-input-group>
                 <b-form-textarea
                   id="textarea1"
@@ -172,6 +177,16 @@
                   placeholder="Enter Progress Note"
                   rows="3"
                   max-rows="6"
+                />
+            </b-input-group>
+        </b-form-group>
+        <b-form-group label-cols-sm="2" label="Laboratories">
+            <b-input-group>
+                <b-form-checkbox-group
+                  id="checkboxes1"
+                  name="laboratories"
+                  v-model="doctorsOrder.laboratories"
+                  :options="laboratories"
                 />
             </b-input-group>
         </b-form-group>
@@ -194,8 +209,9 @@
     data() {
       return {
         patients: [],
-        doctorsOrder: [],
+        doctorsOrder: {},
         doctorsOrders: [],
+        laboratories: [],
         patient_record_id: null,
         selected_id: null,
         action: 'store' | 'update',
@@ -204,6 +220,7 @@
           { key: 'time', label: 'Time', sortable: true, sortDirection: 'desc', class: 'text-center' },
           { key: 'progress_note', label: 'Progress Note', sortable: true, sortDirection: 'desc', class: 'text-center' },
           { key: 'doctors_orders', label: 'Doctors Orders', sortable: true, sortDirection: 'desc', class: 'text-center' },
+          { key: 'laboratories', label: 'Laboratories', sortable: true, sortDirection: 'desc', class: 'text-center' },
           { key: 'actions', label: 'Actions' }
         ],
         currentPage: 1,
@@ -219,6 +236,7 @@
     },
     mounted() {
         this.getPatients();
+        this.getTypeOfLaboratories();
     },
     computed: {
       sortOptions() {
@@ -270,6 +288,15 @@
                 console.log(this.doctorsOrders, this.totalRows);
             });
         },
+        getTypeOfLaboratories() {
+          axios.get('/api/typeOfLaboratories')
+            .then(response => {
+              this.laboratories = response.data.map( (lab) => ({ 
+                  value: lab.code, 
+                  text: lab.code
+              }));
+            });
+        },
         showModalDelete(item, index, button) {
             this.modalInfo.title = 'Record';
             this.modalInfo.content = 'Are you sure you want to delete?';
@@ -294,7 +321,9 @@
         },
         showModalForm() {
             this.action = 'store';
-            this.doctorsOrder = [];
+            this.doctorsOrder = {
+                laboratories: [],
+            };
             this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
@@ -308,6 +337,7 @@
                     time: this.doctorsOrder.time,
                     progress_note: this.doctorsOrder.progress_note,
                     doctors_orders: this.doctorsOrder.doctors_orders,
+                    laboratories: this.doctorsOrder.laboratories,
                 })
                 .then(response => {
                     console.log(response.data);
@@ -331,6 +361,7 @@
                     time: this.doctorsOrder.time,
                     progress_note: this.doctorsOrder.progress_note,
                     doctors_orders: this.doctorsOrder.doctors_orders,
+                    laboratories: this.doctorsOrder.laboratories,
                 })
                 .then(response => {
                     console.log(response.data);
@@ -354,6 +385,7 @@
             axios.get('/api/doctorsOrders/'+this.selected_id+'/edit')
             .then(response => {
                 this.doctorsOrder = response.data;
+                console.log(response.data);
             });
             this.modalInfo.title = "Doctor's Order";
             this.$root.$emit('bv::show::modal', 'modalForm');

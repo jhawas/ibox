@@ -37,6 +37,24 @@ class DefaultTableSeeder extends Seeder
 	       		'description' => $type['description']
 	       	]);
         }
+
+        $typeOfOrders = array(
+            array(
+                'code' => 'medicine',
+                'description' => 'medicine'
+            ),
+            array(
+                'code' => 'laboratory',
+                'description' => 'laboratory',
+            )
+        );
+
+        foreach ($typeOfOrders as $key => $typeOfOrder) {
+            factory(App\TypeOfOrder::class)->create([
+                'code' => $typeOfOrder['code'],
+                'description' => $typeOfOrder['description']
+            ]);
+        }
     	
     	// user roles
         $roles = array(

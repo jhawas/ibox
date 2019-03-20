@@ -162,3 +162,7 @@ Route::put('users/{id}', 'API\UserController@update');
 //users
 Route::get('typeOfRecords', 'API\TypeOfRecordController@data');
 
+Route::get('typeOfOrders', 'API\TypeOfOrderController@data');
+
+Route::get('typeOfLaboratories', 'API\TypeOfLaboratoryController@data');
+
