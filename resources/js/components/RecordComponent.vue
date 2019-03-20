@@ -121,12 +121,12 @@
                     {{row.item.physician ? row.item.physician.first_name + ' ' + row.item.physician.last_name : null}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Height">
+                <b-form-group label-cols-sm="3" label="Height (cm)">
                   <b-input-group>
                     {{row.item.height}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Weight">
+                <b-form-group label-cols-sm="3" label="Weight (kg)">
                   <b-input-group>
                     {{row.item.weight}}
                   </b-input-group>
@@ -141,7 +141,7 @@
                     {{row.item.pulse_rate}}
                   </b-input-group>
                 </b-form-group>
-                <b-form-group label-cols-sm="3" label="Temperature">
+                <b-form-group label-cols-sm="3" label="Temperature (°C)">
                   <b-input-group>
                     {{row.item.temperature}}
                   </b-input-group>
@@ -302,7 +302,7 @@
                   <b-form-input type="text" placeholder="Enter Height" v-model="record.height" />
               </b-input-group>
             </b-form-group>
-            <b-form-group label-cols-sm="3" label="Temperature">
+            <b-form-group label-cols-sm="3" label="Temperature (°C)">
               <b-input-group>
                   <b-form-input type="text" placeholder="Enter Temperature" v-model="record.temperature" />
               </b-input-group>
@@ -462,7 +462,7 @@
         vSelect
     },
 
-    props: ['user_id', 'record_type', 'user_role'],
+    props: ['user_id', 'record_type', 'user_role', 'doctor'],
 
     data() {
       return {
@@ -516,6 +516,7 @@
         this.getDoctors();
         this.getDiagnoses();
         this.getTypeOfRecords();
+        console.log(this.doctor);
     },
     computed: {
       sortOptions() {
@@ -580,7 +581,12 @@
         },
         showModalForm() {
             this.action = 'store';
-            this.record = {};
+            this.record = {
+              addmission_doctor: {
+                label: this.doctor,
+                value: this.user_id
+              }
+            };
             this.modalInfo.title = "Record";
             this.$root.$emit('bv::show::modal', 'modalRecordForm');
         },
@@ -759,6 +765,11 @@
                   this.record.discharged_doctor = {
                     label: response.data.discharged_by.first_name + ' ' + response.data.discharged_by.middle_name + ' ' + response.data.discharged_by.last_name,
                     value: response.data.discharged_by.id,
+                  }
+                } else {
+                    this.record.discharged_doctor = {
+                    label: this.doctor,
+                    value: this.user_id,
                   }
                 }
                 if(response.data.initial_diagnoses) {

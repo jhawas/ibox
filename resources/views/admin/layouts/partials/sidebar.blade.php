@@ -29,13 +29,11 @@
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
       <ul class="treeview-menu">
-        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 4 || Auth::user()->user_role->role->id == 5)
         <li>
             <a class="treeview-item" href="{{ route('patients.index') }}">
               <i class="icon fa fa-circle-o"></i> Patient Information
             </a>
         </li>
-        @endif
         <li>
             <a class="treeview-item" href="{{ route('records.index') }}">
               <i class="icon fa fa-circle-o"></i> In & Out Patient

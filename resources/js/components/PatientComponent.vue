@@ -4,7 +4,7 @@
     <b-row>
         <b-col md="6" class="my-1">
             <b-form-group label-cols-sm="3" label="Add" class="mb-0">
-                <b-button @click="showModalForm">New</b-button>
+                <b-button @click="showModalForm" :disabled="user_role == 3">New</b-button>
             </b-form-group>
         </b-col>
         <b-col md="6" class="my-1">
@@ -82,7 +82,7 @@
         <b-button size="sm" @click="row.toggleDetails">
             {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
-        <b-button size="sm" @click="showModalEdit(row.item)">
+        <b-button v-show="user_role != 3" size="sm" @click="showModalEdit(row.item)">
             Edit
         </b-button>
         <!-- <b-button size="sm" @click="showModalDelete(row.item, row.index, $event.target)">
@@ -424,6 +424,9 @@
     components : {
         vSelect
     },
+
+    props: ['user_id', 'user_role'],
+
     data() {
       return {
         patients: [],
@@ -439,7 +442,7 @@
           { key: 'actions', label: 'Actions', class: 'text-right' }
         ],
         recordFields: [
-          { key: 'addmitted_and_check_up_date', label: 'Admiteed/Checkup', sortable: true, sortDirection: 'desc' },
+          { key: 'addmitted_and_check_up_date', label: 'Date', sortable: true, sortDirection: 'desc' },
           { key: 'recordType', label: 'Status', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: 'Actions', class: 'text-right' }
         ],

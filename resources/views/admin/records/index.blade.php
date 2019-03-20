@@ -15,10 +15,14 @@
       <div class="col-md-12">
         <div class="tile">
           <div class="tile-body">
+              <?php 
+                  $doctor = Auth::user()->first_name . ' ' . Auth::user()->middle_name . ' ' . Auth::user()->last_name;
+              ?>
               <record-component 
                 record_type={{$type_of_patient}} 
                 user_id={{Auth::user()->id}}
                 user_role={{Auth::user()->user_role->role->id}}
+                doctor="{{$doctor}}"
               />
           </div>
       </div>
