@@ -1919,7 +1919,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(392)("./" + name);
+                __webpack_require__(395)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -60913,7 +60913,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(219);
-module.exports = __webpack_require__(413);
+module.exports = __webpack_require__(416);
 
 
 /***/ }),
@@ -60924,7 +60924,7 @@ module.exports = __webpack_require__(413);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2__ = __webpack_require__(412);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_select2__);
 
 /**
@@ -61007,12 +61007,12 @@ window._ = __webpack_require__(15);
  */
 
 try {
-  window.Popper = __webpack_require__(44).default;
-  window.$ = window.jQuery = __webpack_require__(21);
+    window.Popper = __webpack_require__(44).default;
+    window.$ = window.jQuery = __webpack_require__(21);
 
-  __webpack_require__(221);
+    __webpack_require__(221);
 
-  __webpack_require__(222)(window, $);
+    __webpack_require__(222)(window, $);
 } catch (e) {}
 
 /**
@@ -61034,9 +61034,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -104488,19 +104488,20 @@ var map = {
 	"./components/ExampleComponent.vue": 90,
 	"./components/IntravenousFluidComponent.vue": 369,
 	"./components/IntravenousFluidTableComponent.vue": 372,
-	"./components/LaboratoryComponent.vue": 425,
-	"./components/LaboratoryTableComponent.vue": 375,
-	"./components/MedicationAndTreatmentComponent.vue": 378,
-	"./components/MedicationAndTreatmentTableComponent.vue": 381,
-	"./components/NursesNoteComponent.vue": 384,
-	"./components/NursesNoteTableComponent.vue": 387,
-	"./components/PatientComponent.vue": 390,
-	"./components/PatientDiagnosesComponent.vue": 394,
-	"./components/PaymentComponent.vue": 397,
-	"./components/RecordComponent.vue": 400,
-	"./components/RecordComponent2.vue": 403,
-	"./components/VitalSignComponent.vue": 406,
-	"./components/VitalSignTableComponent.vue": 409
+	"./components/LaboratoryComponent.vue": 375,
+	"./components/LaboratoryRequestComponent.vue": 428,
+	"./components/LaboratoryTableComponent.vue": 378,
+	"./components/MedicationAndTreatmentComponent.vue": 381,
+	"./components/MedicationAndTreatmentTableComponent.vue": 384,
+	"./components/NursesNoteComponent.vue": 387,
+	"./components/NursesNoteTableComponent.vue": 390,
+	"./components/PatientComponent.vue": 393,
+	"./components/PatientDiagnosesComponent.vue": 397,
+	"./components/PaymentComponent.vue": 400,
+	"./components/RecordComponent.vue": 403,
+	"./components/RecordComponent2.vue": 406,
+	"./components/VitalSignComponent.vue": 409,
+	"./components/VitalSignTableComponent.vue": 412
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -109405,6 +109406,1057 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/js/components/LaboratoryComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b6106122", Component.options)
+  } else {
+    hotAPI.reload("data-v-b6106122", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 376 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
+    },
+
+    props: ['user_id'],
+
+    data: function data() {
+        return {
+            patients: [],
+            laboratory: {},
+            laboratories: [],
+            lab: [],
+            patient_record_id: null,
+            action: 'store' | 'update',
+            image: null,
+            fields: [{ key: 'laboratory', label: 'Laboratory', sortable: true, sortDirection: 'desc' }, { key: 'image', label: 'Image', sortable: true, sortDirection: 'desc' }, { key: 'description', label: 'Results', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
+            currentPage: 1,
+            perPage: 5,
+            totalRows: 1,
+            pageOptions: [5, 10, 15],
+            sortBy: null,
+            sortDesc: false,
+            sortDirection: 'asc',
+            filter: null,
+            modalInfo: { title: '', content: '' }
+        };
+    },
+    mounted: function mounted() {
+        this.getPatients();
+        this.getLab();
+    },
+
+    computed: {
+        sortOptions: function sortOptions() {
+            // Create an options list from our fields
+            return this.fields.filter(function (f) {
+                return f.sortable;
+            }).map(function (f) {
+                return { text: f.label, value: f.key };
+            });
+        }
+    },
+    methods: {
+        resetModal: function resetModal() {
+            this.modalInfo.title = '';
+            this.modalInfo.content = '';
+            this.selected_id = null;
+        },
+        onFiltered: function onFiltered(filteredItems) {
+            // Trigger pagination to update the number of buttons/pages due to filtering
+            console.log('filter', filteredItems);
+            this.totalRows = filteredItems.length;
+            this.currentPage = 1;
+        },
+        getPatients: function getPatients() {
+            var _this = this;
+
+            axios.get('/api/patientRecords').then(function (response) {
+                console.log(response);
+                _this.patients = response.data.map(function (patientRecord) {
+                    return {
+                        value: patientRecord.id,
+                        label: patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name
+                    };
+                });
+            });
+        },
+        getPatientBy: function getPatientBy(event) {
+            if (event) {
+                console.log('selected', event.value);
+                this.patient_record_id = event.value;
+            } else {
+                this.patient_record_id = null;
+            }
+            this.getPatientLaboratories();
+        },
+        getPatientLaboratories: function getPatientLaboratories() {
+            var _this2 = this;
+
+            axios.get('/api/patientLaboratories/' + this.patient_record_id).then(function (response) {
+                _this2.laboratories = response.data;
+                _this2.totalRows = _this2.laboratories.length;
+                console.log(_this2.laboratories, _this2.totalRows);
+            });
+        },
+        showModalDelete: function showModalDelete(item, index, button) {
+            this.modalInfo.title = 'Record';
+            this.modalInfo.content = 'Are you sure you want to delete?';
+            this.$root.$emit('bv::show::modal', 'modalDelete', button);
+            this.selected_id = item.id;
+        },
+        onDelete: function onDelete() {
+            var _this3 = this;
+
+            axios.delete('/api/patientLaboratories/' + this.selected_id).then(function (response) {
+                if (response.data == 'success') {
+                    _this3.getPatientLaboratories();
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Deleted.', 'success');
+                }
+            }).catch(function (response) {
+                console.log(response);
+            });
+        },
+        showModalForm: function showModalForm() {
+            this.action = 'store';
+            this.laboratory = {};
+            this.modalInfo.title = "Laboratory";
+            this.$root.$emit('bv::show::modal', 'modalForm');
+        },
+        onSubmit: function onSubmit(action) {
+            var _this4 = this;
+
+            console.log('submit', this.laboratory);
+            if (action === 'store') {
+                axios.post('/api/patientLaboratories', {
+                    patient_record_id: this.patient_record_id,
+                    type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
+                    description: this.laboratory.description,
+                    file: this.laboratory.file
+                }).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'success') {
+                        _this4.getPatientLaboratories();
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
+                    }
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            } else {
+                axios.put('/api/patientLaboratories/' + this.selected_id, {
+                    patient_record_id: this.patient_record_id,
+                    type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
+                    description: this.laboratory.description,
+                    file: this.laboratory.file
+                }).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'success') {
+                        _this4.getPatientLaboratories();
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Updated.', 'success');
+                    }
+                }).catch(function (response) {
+                    console.log(response);
+                });
+            }
+        },
+        showModalEdit: function showModalEdit(item) {
+            var _this5 = this;
+
+            this.action = 'edit';
+            this.selected_id = item.id;
+            axios.get('/api/patientLaboratories/' + this.selected_id + '/edit').then(function (response) {
+                _this5.laboratory = response.data;
+                _this5.laboratory.diagnose_id = response.data.diagnose_id;
+                _this5.laboratory.lab = {
+                    value: response.data.laboratory.id,
+                    label: response.data.laboratory.code
+                };
+            });
+            this.modalInfo.title = "Laboratory";
+            this.$root.$emit('bv::show::modal', 'modalForm');
+        },
+        getLab: function getLab() {
+            var _this6 = this;
+
+            axios.get('/api/typeOfLaboratories').then(function (response) {
+                console.log(response.data);
+                _this6.lab = response.data.map(function (lab) {
+                    return {
+                        value: lab.id,
+                        label: lab.code
+                    };
+                });
+            });
+        },
+        showImage: function showImage(item) {
+            this.image = item.image;
+            this.modalInfo.title = "Laboratory Image";
+            this.$root.$emit('bv::show::modal', 'modalImage');
+        },
+        replaceUrl: function replaceUrl(url) {
+            if (url) {
+                return '/storage/laboratory/' + url;
+            }
+        },
+        onFileChange: function onFileChange(e) {
+            console.log('file changed', e);
+            var files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            this.createImage(files[0]);
+        },
+        createImage: function createImage(file) {
+            var reader = new FileReader();
+            var vm = this;
+            reader.onload = function (e) {
+                vm.laboratory.file = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+});
+
+/***/ }),
+/* 377 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Patient Record" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          options: _vm.patients,
+                          onChange: _vm.getPatientBy
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Add" }
+                },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { disabled: _vm.patient_record_id ? false : true },
+                      on: { click: _vm.showModalForm }
+                    },
+                    [_vm._v("New")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Filter" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Type to Search" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Clear")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Sort" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { options: _vm.sortOptions },
+                          model: {
+                            value: _vm.sortBy,
+                            callback: function($$v) {
+                              _vm.sortBy = $$v
+                            },
+                            expression: "sortBy"
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { slot: "first" },
+                              domProps: { value: null },
+                              slot: "first"
+                            },
+                            [_vm._v("-- none --")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append", disabled: !_vm.sortBy },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDesc,
+                            callback: function($$v) {
+                              _vm.sortDesc = $$v
+                            },
+                            expression: "sortDesc"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: false } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: true } }, [
+                            _vm._v("Desc")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Sort direction" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append" },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDirection,
+                            callback: function($$v) {
+                              _vm.sortDirection = $$v
+                            },
+                            expression: "sortDirection"
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "asc" } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "desc" } }, [
+                            _vm._v("Desc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "last" } }, [
+                            _vm._v("Last")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { "label-cols-sm": "3", label: "Per page" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.laboratories,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc,
+          "sort-direction": _vm.sortDirection
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "laboratory",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n          " + _vm._s(row.item.laboratory.code) + "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "image",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showImage(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Show Image\n        ")]
+                )
+              ]
+            }
+          },
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-button",
+                  { attrs: { size: "sm" }, on: { click: row.toggleDetails } },
+                  [
+                    _vm._v(
+                      "\n        " +
+                        _vm._s(row.detailsShowing ? "Hide" : "Show") +
+                        " Details\n      "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalEdit(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Edit\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalDelete(row.item, row.index, $event.target)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Delete\n      ")]
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-card",
+                  [
+                    _c(
+                      "b-form-group",
+                      {
+                        staticClass: "mb-0",
+                        attrs: { "label-cols-sm": "4", label: "Patient Record" }
+                      },
+                      [
+                        _c("b-input-group", [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                row.item.record.patient.first_name +
+                                  " " +
+                                  row.item.record.patient.first_name
+                              ) +
+                              "\n            "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-form-group",
+                      {
+                        staticClass: "mb-0",
+                        attrs: { "label-cols-sm": "4", label: "Results" }
+                      },
+                      [
+                        _c("b-input-group", [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(row.item.description) +
+                              "\n            "
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c("b-pagination", {
+                staticClass: "my-0",
+                attrs: { "total-rows": _vm.totalRows, "per-page": _vm.perPage },
+                model: {
+                  value: _vm.currentPage,
+                  callback: function($$v) {
+                    _vm.currentPage = $$v
+                  },
+                  expression: "currentPage"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modalImage",
+            title: _vm.modalInfo.title,
+            "ok-only": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _c("b-img", {
+            attrs: {
+              src: _vm.replaceUrl(_vm.image),
+              fluid: "",
+              alt: "Responsive image"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalDelete", title: _vm.modalInfo.title },
+          on: { hide: _vm.resetModal, ok: _vm.onDelete }
+        },
+        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalForm", title: _vm.modalInfo.title, size: "lg" },
+          on: {
+            hide: _vm.resetModal,
+            ok: function($event) {
+              _vm.onSubmit(_vm.action)
+            }
+          }
+        },
+        [
+          _c(
+            "form",
+            {
+              attrs: { enctype: "multipart/form-data" },
+              on: {
+                submit: function($event) {
+                  $event.stopPropagation()
+                  $event.preventDefault()
+                  return _vm.onSubmit($event)
+                }
+              }
+            },
+            [
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Laboratory" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("v-select", {
+                        ref: "lab",
+                        attrs: { options: _vm.lab },
+                        model: {
+                          value: _vm.laboratory.lab,
+                          callback: function($$v) {
+                            _vm.$set(_vm.laboratory, "lab", $$v)
+                          },
+                          expression: "laboratory.lab"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Results" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-textarea", {
+                        attrs: {
+                          id: "textarea1",
+                          placeholder: "Enter Results",
+                          rows: "3",
+                          "max-rows": "6"
+                        },
+                        model: {
+                          value: _vm.laboratory.description,
+                          callback: function($$v) {
+                            _vm.$set(_vm.laboratory, "description", $$v)
+                          },
+                          expression: "laboratory.description"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "File" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-file", {
+                        attrs: {
+                          name: "file",
+                          placeholder: "Choose a file...",
+                          "drop-placeholder": "Drop file here..."
+                        },
+                        on: { change: _vm.onFileChange },
+                        model: {
+                          value: _vm.laboratory.file,
+                          callback: function($$v) {
+                            _vm.$set(_vm.laboratory, "file", $$v)
+                          },
+                          expression: "laboratory.file"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b6106122", module.exports)
+  }
+}
+
+/***/ }),
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(379)
+/* template */
+var __vue_template__ = __webpack_require__(380)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/js/components/LaboratoryTableComponent.vue"
 
 /* hot reload */
@@ -109427,7 +110479,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 376 */
+/* 379 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -109596,7 +110648,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 377 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -109925,15 +110977,15 @@ if (false) {
 }
 
 /***/ }),
-/* 378 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(379)
+var __vue_script__ = __webpack_require__(382)
 /* template */
-var __vue_template__ = __webpack_require__(380)
+var __vue_template__ = __webpack_require__(383)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -109972,7 +111024,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 379 */
+/* 382 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -110324,7 +111376,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 380 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -111030,15 +112082,15 @@ if (false) {
 }
 
 /***/ }),
-/* 381 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(382)
+var __vue_script__ = __webpack_require__(385)
 /* template */
-var __vue_template__ = __webpack_require__(383)
+var __vue_template__ = __webpack_require__(386)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -111077,7 +112129,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 382 */
+/* 385 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -111235,7 +112287,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 383 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -111545,15 +112597,15 @@ if (false) {
 }
 
 /***/ }),
-/* 384 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(385)
+var __vue_script__ = __webpack_require__(388)
 /* template */
-var __vue_template__ = __webpack_require__(386)
+var __vue_template__ = __webpack_require__(389)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -111592,7 +112644,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 385 */
+/* 388 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -111946,7 +112998,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 386 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -112604,15 +113656,15 @@ if (false) {
 }
 
 /***/ }),
-/* 387 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(388)
+var __vue_script__ = __webpack_require__(391)
 /* template */
-var __vue_template__ = __webpack_require__(389)
+var __vue_template__ = __webpack_require__(392)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -112651,7 +113703,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 388 */
+/* 391 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -112813,7 +113865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 389 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -113137,15 +114189,15 @@ if (false) {
 }
 
 /***/ }),
-/* 390 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(391)
+var __vue_script__ = __webpack_require__(394)
 /* template */
-var __vue_template__ = __webpack_require__(393)
+var __vue_template__ = __webpack_require__(396)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -113184,7 +114236,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 391 */
+/* 394 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -113799,7 +114851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 392 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -114072,10 +115124,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 392;
+webpackContext.id = 395;
 
 /***/ }),
-/* 393 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -115704,15 +116756,15 @@ if (false) {
 }
 
 /***/ }),
-/* 394 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(395)
+var __vue_script__ = __webpack_require__(398)
 /* template */
-var __vue_template__ = __webpack_require__(396)
+var __vue_template__ = __webpack_require__(399)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -115751,7 +116803,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 395 */
+/* 398 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -116154,7 +117206,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 396 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -116800,15 +117852,15 @@ if (false) {
 }
 
 /***/ }),
-/* 397 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(398)
+var __vue_script__ = __webpack_require__(401)
 /* template */
-var __vue_template__ = __webpack_require__(399)
+var __vue_template__ = __webpack_require__(402)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -116847,7 +117899,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 398 */
+/* 401 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -117111,7 +118163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 399 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -117543,15 +118595,15 @@ if (false) {
 }
 
 /***/ }),
-/* 400 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(401)
+var __vue_script__ = __webpack_require__(404)
 /* template */
-var __vue_template__ = __webpack_require__(402)
+var __vue_template__ = __webpack_require__(405)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -117590,7 +118642,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 401 */
+/* 404 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -118499,7 +119551,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 402 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -120428,15 +121480,15 @@ if (false) {
 }
 
 /***/ }),
-/* 403 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(404)
+var __vue_script__ = __webpack_require__(407)
 /* template */
-var __vue_template__ = __webpack_require__(405)
+var __vue_template__ = __webpack_require__(408)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -120475,7 +121527,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 404 */
+/* 407 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121373,7 +122425,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 405 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -123267,15 +124319,15 @@ if (false) {
 }
 
 /***/ }),
-/* 406 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(407)
+var __vue_script__ = __webpack_require__(410)
 /* template */
-var __vue_template__ = __webpack_require__(408)
+var __vue_template__ = __webpack_require__(411)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -123314,7 +124366,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 407 */
+/* 410 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -123791,7 +124843,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 408 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -124913,15 +125965,15 @@ if (false) {
 }
 
 /***/ }),
-/* 409 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(410)
+var __vue_script__ = __webpack_require__(413)
 /* template */
-var __vue_template__ = __webpack_require__(411)
+var __vue_template__ = __webpack_require__(414)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -124960,7 +126012,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 410 */
+/* 413 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -125123,7 +126175,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 411 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -125450,7 +126502,7 @@ if (false) {
 }
 
 /***/ }),
-/* 412 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -131306,15 +132358,12 @@ S2.define('jquery.select2',[
 
 
 /***/ }),
-/* 413 */
+/* 416 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 414 */,
-/* 415 */,
-/* 416 */,
 /* 417 */,
 /* 418 */,
 /* 419 */,
@@ -131323,15 +132372,18 @@ S2.define('jquery.select2',[
 /* 422 */,
 /* 423 */,
 /* 424 */,
-/* 425 */
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(426)
+var __vue_script__ = __webpack_require__(429)
 /* template */
-var __vue_template__ = __webpack_require__(427)
+var __vue_template__ = __webpack_require__(430)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -131348,7 +132400,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/LaboratoryComponent.vue"
+Component.options.__file = "resources/js/components/LaboratoryRequestComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -131357,9 +132409,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b6106122", Component.options)
+    hotAPI.createRecord("data-v-247e672c", Component.options)
   } else {
-    hotAPI.reload("data-v-b6106122", Component.options)
+    hotAPI.reload("data-v-247e672c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -131370,102 +132422,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 426 */
+/* 429 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
 //
 //
 //
@@ -131556,211 +132521,87 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
-    },
+  components: {
+    vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
+  },
 
-    props: ['user_id'],
+  props: [],
 
-    data: function data() {
-        return {
-            patients: [],
-            laboratory: {},
-            laboratories: [],
-            lab: [],
-            patient_record_id: null,
-            selected_id: null,
-            action: 'store' | 'update',
-            image: null,
-            fields: [{ key: 'laboratory', label: 'Laboratory', sortable: true, sortDirection: 'desc' }, { key: 'image', label: 'Image', sortable: true, sortDirection: 'desc' }, { key: 'description', label: 'Results', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
-            currentPage: 1,
-            perPage: 5,
-            totalRows: 1,
-            pageOptions: [5, 10, 15],
-            sortBy: null,
-            sortDesc: false,
-            sortDirection: 'asc',
-            filter: null,
-            modalInfo: { title: '', content: '' }
-        };
-    },
-    mounted: function mounted() {
-        this.getPatients();
-        this.getLab();
-    },
+  data: function data() {
+    return {
+      patients: [],
+      patient_record_id: null,
+      items: null,
+      fields: [{ key: 'laboratories', label: 'Request', sortable: true, sortDirection: 'desc' }, { key: 'user', label: 'Doctor', sortable: true, sortDirection: 'desc' }],
+      currentPage: 1,
+      perPage: 5,
+      totalRows: 1,
+      pageOptions: [5, 10, 15],
+      sortBy: null,
+      sortDesc: false,
+      sortDirection: 'asc',
+      filter: null
+    };
+  },
+  mounted: function mounted() {
+    this.getPatients();
+  },
+  created: function created() {},
 
-    computed: {
-        sortOptions: function sortOptions() {
-            // Create an options list from our fields
-            return this.fields.filter(function (f) {
-                return f.sortable;
-            }).map(function (f) {
-                return { text: f.label, value: f.key };
-            });
-        }
-    },
-    methods: {
-        resetModal: function resetModal() {
-            this.modalInfo.title = '';
-            this.modalInfo.content = '';
-            this.selected_id = null;
-        },
-        onFiltered: function onFiltered(filteredItems) {
-            // Trigger pagination to update the number of buttons/pages due to filtering
-            console.log('filter', filteredItems);
-            this.totalRows = filteredItems.length;
-            this.currentPage = 1;
-        },
-        getPatients: function getPatients() {
-            var _this = this;
-
-            axios.get('/api/patientRecords').then(function (response) {
-                console.log(response);
-                _this.patients = response.data.map(function (patientRecord) {
-                    return {
-                        value: patientRecord.id,
-                        label: patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name
-                    };
-                });
-            });
-        },
-        getPatientBy: function getPatientBy(event) {
-            if (event) {
-                console.log('selected', event.value);
-                this.patient_record_id = event.value;
-            } else {
-                this.patient_record_id = null;
-            }
-            this.getPatientLaboratories();
-        },
-        getPatientLaboratories: function getPatientLaboratories() {
-            var _this2 = this;
-
-            axios.get('/api/patientLaboratories/' + this.patient_record_id).then(function (response) {
-                _this2.laboratories = response.data;
-                _this2.totalRows = _this2.laboratories.length;
-                console.log(_this2.laboratories, _this2.totalRows);
-            });
-        },
-        showModalDelete: function showModalDelete(item, index, button) {
-            this.modalInfo.title = 'Record';
-            this.modalInfo.content = 'Are you sure you want to delete?';
-            this.$root.$emit('bv::show::modal', 'modalDelete', button);
-            this.selected_id = item.id;
-        },
-        onDelete: function onDelete() {
-            var _this3 = this;
-
-            axios.delete('/api/patientLaboratories/' + this.selected_id).then(function (response) {
-                if (response.data == 'success') {
-                    _this3.getPatientLaboratories();
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Deleted.', 'success');
-                }
-            }).catch(function (response) {
-                console.log(response);
-            });
-        },
-        showModalForm: function showModalForm() {
-            this.action = 'store';
-            this.laboratory = {};
-            this.modalInfo.title = "Laboratory";
-            this.$root.$emit('bv::show::modal', 'modalForm');
-        },
-        onSubmit: function onSubmit(action) {
-            var _this4 = this;
-
-            console.log('submit', this.laboratory);
-            if (action === 'store') {
-                axios.post('/api/patientLaboratories', {
-                    patient_record_id: this.patient_record_id,
-                    type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
-                    description: this.laboratory.description,
-                    file: this.laboratory.file
-                }).then(function (response) {
-                    console.log(response.data);
-                    if (response.data == 'success') {
-                        _this4.getPatientLaboratories();
-                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
-                    }
-                }).catch(function (response) {
-                    console.log(response);
-                });
-            } else {
-                axios.put('/api/patientLaboratories/' + this.selected_id, {
-                    patient_record_id: this.patient_record_id,
-                    type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
-                    description: this.laboratory.description,
-                    file: this.laboratory.file
-                }).then(function (response) {
-                    console.log(response.data);
-                    if (response.data == 'success') {
-                        _this4.getPatientLaboratories();
-                        __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Updated.', 'success');
-                    }
-                }).catch(function (response) {
-                    console.log(response);
-                });
-            }
-        },
-        showModalEdit: function showModalEdit(item) {
-            var _this5 = this;
-
-            this.action = 'edit';
-            this.selected_id = item.id;
-            axios.get('/api/laboratories/' + this.selected_id + '/edit').then(function (response) {
-                _this5.laboratory = response.data;
-                _this5.laboratory.diagnose_id = response.data.diagnose_id;
-                _this5.selected = {
-                    id: response.data.diagnose_id,
-                    label: response.data.diagnose.code,
-                    description: response.data.diagnose.description
-                };
-            });
-            this.modalInfo.title = "Laboratory";
-            this.$root.$emit('bv::show::modal', 'modalForm');
-        },
-        getLab: function getLab() {
-            var _this6 = this;
-
-            axios.get('/api/typeOfLaboratories').then(function (response) {
-                console.log(response.data);
-                _this6.lab = response.data.map(function (lab) {
-                    return {
-                        value: lab.id,
-                        label: lab.code
-                    };
-                });
-            });
-        },
-        showImage: function showImage(item) {
-            this.image = item.image;
-            this.modalInfo.title = "Laboratory Image";
-            this.$root.$emit('bv::show::modal', 'modalImage');
-        },
-        replaceUrl: function replaceUrl(url) {
-            if (url) {
-                return url.replace("public", "storage");
-            }
-        },
-        onFileChange: function onFileChange(e) {
-            console.log('file changed', e);
-            var files = e.target.files || e.dataTransfer.files;
-            if (!files.length) return;
-            this.createImage(files[0]);
-        },
-        createImage: function createImage(file) {
-            var reader = new FileReader();
-            var vm = this;
-            reader.onload = function (e) {
-                vm.laboratory.file = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
+  watch: {},
+  computed: {
+    sortOptions: function sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(function (f) {
+        return f.sortable;
+      }).map(function (f) {
+        return { text: f.label, value: f.key };
+      });
     }
+  },
+  methods: {
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      console.log('filter', filteredItems);
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    getData: function getData() {
+      var _this = this;
+
+      axios.get('/api/doctorsOrders/' + this.patient_record_id).then(function (response) {
+        console.log(JSON.parse(JSON.stringify(response.data)));
+        _this.items = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.cloneDeep(response.data);
+        _this.totalRows = _this.items.length;
+      });
+    },
+    getPatients: function getPatients() {
+      var _this2 = this;
+
+      axios.get('/api/patientRecords').then(function (response) {
+        console.log(response);
+        _this2.patients = response.data.map(function (patientRecord) {
+          return {
+            value: patientRecord.id,
+            label: patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name
+          };
+        });
+      });
+    },
+    getPatientBy: function getPatientBy(event) {
+      if (event) {
+        console.log('selected', event.value);
+        this.patient_record_id = event.value;
+      } else {
+        this.patient_record_id = null;
+      }
+      this.getData();
+    }
+  }
 });
 
 /***/ }),
-/* 427 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -131782,7 +132623,7 @@ var render = function() {
                 "b-form-group",
                 {
                   staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Patient Record" }
+                  attrs: { "label-cols-sm": "3", label: "Filter" }
                 },
                 [
                   _c(
@@ -131794,91 +132635,6 @@ var render = function() {
                           onChange: _vm.getPatientBy
                         }
                       })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Add" }
-                },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      attrs: { disabled: _vm.patient_record_id ? false : true },
-                      on: { click: _vm.showModalForm }
-                    },
-                    [_vm._v("New")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-row",
-        [
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Filter" }
-                },
-                [
-                  _c(
-                    "b-input-group",
-                    [
-                      _c("b-form-input", {
-                        attrs: { placeholder: "Type to Search" },
-                        model: {
-                          value: _vm.filter,
-                          callback: function($$v) {
-                            _vm.filter = $$v
-                          },
-                          expression: "filter"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "b-input-group-append",
-                        [
-                          _c(
-                            "b-button",
-                            {
-                              attrs: { disabled: !_vm.filter },
-                              on: {
-                                click: function($event) {
-                                  _vm.filter = ""
-                                }
-                              }
-                            },
-                            [_vm._v("Clear")]
-                          )
-                        ],
-                        1
-                      )
                     ],
                     1
                   )
@@ -131969,38 +132725,40 @@ var render = function() {
                 "b-form-group",
                 {
                   staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Sort direction" }
+                  attrs: { "label-cols-sm": "3", label: "Filter" }
                 },
                 [
                   _c(
                     "b-input-group",
                     [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Type to Search" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
                       _c(
-                        "b-form-select",
-                        {
-                          attrs: { slot: "append" },
-                          slot: "append",
-                          model: {
-                            value: _vm.sortDirection,
-                            callback: function($$v) {
-                              _vm.sortDirection = $$v
-                            },
-                            expression: "sortDirection"
-                          }
-                        },
+                        "b-input-group-append",
                         [
-                          _c("option", { attrs: { value: "asc" } }, [
-                            _vm._v("Asc")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "desc" } }, [
-                            _vm._v("Desc")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "last" } }, [
-                            _vm._v("Last")
-                          ])
-                        ]
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Clear")]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
@@ -132047,7 +132805,7 @@ var render = function() {
         attrs: {
           "show-empty": "",
           stacked: "md",
-          items: _vm.laboratories,
+          items: _vm.items,
           fields: _vm.fields,
           "current-page": _vm.currentPage,
           "per-page": _vm.perPage,
@@ -132067,35 +132825,6 @@ var render = function() {
         },
         scopedSlots: _vm._u([
           {
-            key: "laboratory",
-            fn: function(row) {
-              return [
-                _vm._v(
-                  "\n          " + _vm._s(row.item.laboratory.code) + "\n    "
-                )
-              ]
-            }
-          },
-          {
-            key: "image",
-            fn: function(row) {
-              return [
-                _c(
-                  "b-button",
-                  {
-                    attrs: { size: "sm" },
-                    on: {
-                      click: function($event) {
-                        _vm.showImage(row.item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n          Show Image\n        ")]
-                )
-              ]
-            }
-          },
-          {
             key: "actions",
             fn: function(row) {
               return [
@@ -132109,32 +132838,6 @@ var render = function() {
                         " Details\n      "
                     )
                   ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    attrs: { size: "sm" },
-                    on: {
-                      click: function($event) {
-                        _vm.showModalEdit(row.item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n          Edit\n      ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    attrs: { size: "sm" },
-                    on: {
-                      click: function($event) {
-                        _vm.showModalDelete(row.item, row.index, $event.target)
-                      }
-                    }
-                  },
-                  [_vm._v("\n          Delete\n      ")]
                 )
               ]
             }
@@ -132142,51 +132845,19 @@ var render = function() {
           {
             key: "row-details",
             fn: function(row) {
+              return [_c("b-card", [_vm._v("\n          test\n      ")])]
+            }
+          },
+          {
+            key: "user",
+            fn: function(row) {
               return [
-                _c(
-                  "b-card",
-                  [
-                    _c(
-                      "b-form-group",
-                      {
-                        staticClass: "mb-0",
-                        attrs: { "label-cols-sm": "4", label: "Patient Record" }
-                      },
-                      [
-                        _c("b-input-group", [
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(
-                                row.item.record.patient.first_name +
-                                  " " +
-                                  row.item.record.patient.first_name
-                              ) +
-                              "\n            "
-                          )
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-form-group",
-                      {
-                        staticClass: "mb-0",
-                        attrs: { "label-cols-sm": "4", label: "Results" }
-                      },
-                      [
-                        _c("b-input-group", [
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(row.item.description) +
-                              "\n            "
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
+                _vm._v(
+                  "\n      " +
+                    _vm._s(
+                      row.item.user.first_name + " " + row.item.user.last_name
+                    ) +
+                    "\n    "
                 )
               ]
             }
@@ -132217,151 +132888,6 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: {
-            id: "modalImage",
-            title: _vm.modalInfo.title,
-            "ok-only": ""
-          },
-          on: { hide: _vm.resetModal }
-        },
-        [
-          _c("b-img", {
-            attrs: {
-              src: _vm.replaceUrl(_vm.image),
-              fluid: "",
-              alt: "Responsive image"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "modalDelete", title: _vm.modalInfo.title },
-          on: { hide: _vm.resetModal, ok: _vm.onDelete }
-        },
-        [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])]
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "modalForm", title: _vm.modalInfo.title, size: "lg" },
-          on: {
-            hide: _vm.resetModal,
-            ok: function($event) {
-              _vm.onSubmit(_vm.action)
-            }
-          }
-        },
-        [
-          _c(
-            "form",
-            {
-              attrs: { enctype: "multipart/form-data" },
-              on: {
-                submit: function($event) {
-                  $event.stopPropagation()
-                  $event.preventDefault()
-                  return _vm.onSubmit($event)
-                }
-              }
-            },
-            [
-              _c(
-                "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "Laboratory" } },
-                [
-                  _c(
-                    "b-input-group",
-                    [
-                      _c("v-select", {
-                        ref: "lab",
-                        attrs: { options: _vm.lab },
-                        model: {
-                          value: _vm.laboratory.lab,
-                          callback: function($$v) {
-                            _vm.$set(_vm.laboratory, "lab", $$v)
-                          },
-                          expression: "laboratory.lab"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "Results" } },
-                [
-                  _c(
-                    "b-input-group",
-                    [
-                      _c("b-form-textarea", {
-                        attrs: {
-                          id: "textarea1",
-                          placeholder: "Enter Results",
-                          rows: "3",
-                          "max-rows": "6"
-                        },
-                        model: {
-                          value: _vm.laboratory.description,
-                          callback: function($$v) {
-                            _vm.$set(_vm.laboratory, "description", $$v)
-                          },
-                          expression: "laboratory.description"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                { attrs: { "label-cols-sm": "2", label: "File" } },
-                [
-                  _c(
-                    "b-input-group",
-                    [
-                      _c("b-form-file", {
-                        attrs: {
-                          name: "file",
-                          state: Boolean(_vm.laboratory.file),
-                          placeholder: "Choose a file...",
-                          "drop-placeholder": "Drop file here..."
-                        },
-                        on: { change: _vm.onFileChange },
-                        model: {
-                          value: _vm.laboratory.file,
-                          callback: function($$v) {
-                            _vm.$set(_vm.laboratory, "file", $$v)
-                          },
-                          expression: "laboratory.file"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ]
       )
     ],
     1
@@ -132373,7 +132899,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b6106122", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-247e672c", module.exports)
   }
 }
 

@@ -56,17 +56,17 @@
               </a>
           </li>
         @endif
-        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3)
+        {{-- @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3)
           <li>
               <a class="treeview-item" href="{{ route('laboratoryTests.index') }}">
                 <i class="icon fa fa-circle-o"></i> Laboratory
               </a>
           </li>
-        @endif
+        @endif --}}
         @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3)
           <li>
               <a class="treeview-item" href="{{ route('laboratories.index') }}">
-                <i class="icon fa fa-circle-o"></i> Laboratories
+                <i class="icon fa fa-circle-o"></i> Laboratory
               </a>
           </li>
         @endif

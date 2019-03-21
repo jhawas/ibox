@@ -158,7 +158,6 @@
                 <b-form-file
                   name="file"
                   v-model="laboratory.file"
-                  :state="Boolean(laboratory.file)"
                   placeholder="Choose a file..."
                   drop-placeholder="Drop file here..."
                   @change="onFileChange"
@@ -188,7 +187,6 @@
         laboratories: [],
         lab: [],
         patient_record_id: null,
-        selected_id: null,
         action: 'store' | 'update',
         image: null,
         fields: [
@@ -339,14 +337,13 @@
         showModalEdit(item) {
             this.action = 'edit';
             this.selected_id = item.id;
-            axios.get('/api/laboratories/'+this.selected_id+'/edit')
+            axios.get('/api/patientLaboratories/'+this.selected_id+'/edit')
             .then(response => {
                 this.laboratory = response.data;
                 this.laboratory.diagnose_id = response.data.diagnose_id;
-                this.selected = {
-                  id: response.data.diagnose_id,
-                  label: response.data.diagnose.code,
-                  description: response.data.diagnose.description
+                this.laboratory.lab = {
+                    value: response.data.laboratory.id,
+                    label: response.data.laboratory.code,
                 };
             });
             this.modalInfo.title = "Laboratory";
@@ -369,7 +366,7 @@
         },
         replaceUrl(url) {
             if(url) {
-              return url.replace("public", "storage");
+              return '/storage/laboratory/'+url;
             }
         },
         onFileChange(e) {

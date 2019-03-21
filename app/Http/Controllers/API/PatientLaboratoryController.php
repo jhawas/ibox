@@ -29,6 +29,7 @@ class PatientLaboratoryController extends Controller
 
     public function delete($id = null) {
     	$laboratoryTest = LaboratoryTest::where('id', $id)->first();
+        Storage::delete(['public/laboratory/'.$laboratoryTest->image]);
         $laboratoryTest->delete();
         return 'success';
     }
@@ -45,29 +46,34 @@ class PatientLaboratoryController extends Controller
 
     public function update(Request $request, $id = null) {
     	$laboratoryTest = LaboratoryTest::where('id', $id)->first();
+        if ($request->get('file')) {
+            // delete old logo
+            Storage::delete(['public/laboratory/'.$laboratoryTest->image]);
+            $image = $request->get('file');
+            $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+              \Image::make($request->get('file'))->save(public_path('storage/laboratory/').$name);
+            $laboratoryTest->image = $name;
+        }
     	$laboratoryTest->patient_record_id = $request->patient_record_id;
-        $laboratoryTest->diagnose_id = $request->diagnose_id;
-        $laboratoryTest->diagnoses = $request->diagnoses;
-        $laboratoryTest->remarks = $request->remarks;
+        $laboratoryTest->type_of_laboratory_id = $request->type_of_laboratory_id;
+        $laboratoryTest->description = $request->description;
         $laboratoryTest->save();
         return 'success';
     }
 
     public function store(Request $request) {
-        // if($request->get('file')) {
-        //   $image = $request->get('file');
-        //   return $this->base64_to_jpeg($image, 'test.jpg');
-        // }
-        // $file_path = null;
-        // if ($request->file) {
-        //     $file_path = Storage::putFile('public/laboratory', base64_decode($image));
-        // }
+
+        if($request->get('file')) {
+          $image = $request->get('file');
+          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+          \Image::make($request->get('file'))->save(public_path('storage/laboratory/').$name);
+        }
 
         $laboratoryTest = new LaboratoryTest;
         $laboratoryTest->patient_record_id = $request->patient_record_id;
         $laboratoryTest->type_of_laboratory_id = $request->type_of_laboratory_id;
         $laboratoryTest->description = $request->description;
-        // $laboratoryTest->image = $request->get('file');
+        $laboratoryTest->image = $name;
         $laboratoryTest->save();
         return 'success';
     }

@@ -23,9 +23,8 @@
                   />
               </b-tab>
               <b-tab title="Request">
-                  <laboratory-component 
-                    user_role={{Auth::user()->user_role->role->id}} 
-                    user_id={{Auth::user()->id}} 
+                  <laboratory-request-component 
+                      
                   />
               </b-tab>
             </b-tabs>
