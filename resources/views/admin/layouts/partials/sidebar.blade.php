@@ -63,6 +63,13 @@
               </a>
           </li>
         @endif
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3)
+          <li>
+              <a class="treeview-item" href="{{ route('laboratories.index') }}">
+                <i class="icon fa fa-circle-o"></i> Laboratories
+              </a>
+          </li>
+        @endif
         @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3 || Auth::user()->user_role->role->id == 5)
           <li>
               <a class="treeview-item" href="{{ route('vitalSigns.index') }}">

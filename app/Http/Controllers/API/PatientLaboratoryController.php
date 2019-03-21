@@ -6,6 +6,8 @@ use App\LaboratoryTest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Storage;
+
 class PatientLaboratoryController extends Controller
 {
     public function __construct()
@@ -52,12 +54,22 @@ class PatientLaboratoryController extends Controller
     }
 
     public function store(Request $request) {
-    	$laboratoryTest = new LaboratoryTest;
+        // if($request->get('file')) {
+        //   $image = $request->get('file');
+        //   return $this->base64_to_jpeg($image, 'test.jpg');
+        // }
+        // $file_path = null;
+        // if ($request->file) {
+        //     $file_path = Storage::putFile('public/laboratory', base64_decode($image));
+        // }
+
+        $laboratoryTest = new LaboratoryTest;
         $laboratoryTest->patient_record_id = $request->patient_record_id;
-        $laboratoryTest->diagnose_id = $request->diagnose_id;
-        $laboratoryTest->diagnoses = $request->diagnoses;
-        $laboratoryTest->remarks = $request->remarks;
+        $laboratoryTest->type_of_laboratory_id = $request->type_of_laboratory_id;
+        $laboratoryTest->description = $request->description;
+        // $laboratoryTest->image = $request->get('file');
         $laboratoryTest->save();
         return 'success';
     }
+
 }
