@@ -2,9 +2,13 @@
   <b-container fluid>
     <b-row>
       <b-col md="6" class="my-1">
+
         <b-form-group label-cols-sm="3" label="Filter" class="mb-0">
           <b-input-group>
-            <v-select :options="patients" :onChange="getPatientBy"></v-select>
+            <b-form-input v-model="filter" placeholder="Type to Search" />
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+            </b-input-group-append>
           </b-input-group>
         </b-form-group>
       </b-col>
@@ -18,17 +22,6 @@
             <b-form-select :disabled="!sortBy" v-model="sortDesc" slot="append">
               <option :value="false">Asc</option> <option :value="true">Desc</option>
             </b-form-select>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-
-      <b-col md="6" class="my-1">
-        <b-form-group label-cols-sm="3" label="Filter" class="mb-0">
-          <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-            </b-input-group-append>
           </b-input-group>
         </b-form-group>
       </b-col>
@@ -55,8 +48,8 @@
       @filtered="onFiltered"
     >
       <template slot="actions" slot-scope="row">
-        <b-button size="sm" @click="row.toggleDetails">
-          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+        <b-button size="sm" @click="showModalUpload(row.item)">
+            Upload
         </b-button>
       </template>
 
@@ -67,6 +60,9 @@
       </template>
       <template slot="user" slot-scope="row">
         {{row.item.user.first_name + ' ' + row.item.user.last_name}}
+      </template>
+      <template slot="record" slot-scope="row">
+        {{row.item.record.patient.first_name + ' ' + row.item.record.patient.last_name}}
       </template>
     </b-table>
 
@@ -80,12 +76,56 @@
         />
       </b-col>
     </b-row>
+    
+    <b-modal 
+        id="modalForm2" 
+        @hide="resetModal" 
+        :title="modalInfo.title" 
+        @ok="onSubmit"
+        size="lg"
+    >
+      <form @submit.stop.prevent="onSubmit" enctype="multipart/form-data">
+        <b-form-group label-cols-sm="2" label="Laboratory">
+            <b-input-group>
+                <v-select 
+                  ref="lab"
+                  v-model="laboratory.lab" 
+                  :options="lab"
+                ></v-select>
+            </b-input-group>
+        </b-form-group>
+        <b-form-group label-cols-sm="2" label="Results">
+            <b-input-group>
+                <b-form-textarea
+                  id="textarea1"
+                  v-model="laboratory.description"
+                  placeholder="Enter Results"
+                  rows="3"
+                  max-rows="6"
+                />
+            </b-input-group>
+        </b-form-group>
+        <b-form-group label-cols-sm="2" label="File">
+            <b-input-group>
+                <b-form-file
+                  name="file"
+                  v-model="laboratory.file"
+                  placeholder="Choose a file..."
+                  drop-placeholder="Drop file here..."
+                  @change="onFileChange"
+                />
+            </b-input-group>
+        </b-form-group>
+      </form>
+    </b-modal>
+
   </b-container>
 </template>
 
 <script>
     import vSelect from 'vue-select';
     import _ from 'lodash'; 
+    import Swal from 'sweetalert2';
 
   export default {
     components : {
@@ -97,11 +137,14 @@
     data() {
       return {
         patients: [],
-        patient_record_id: null,
         items: null,
+        laboratory: {},
+        lab: [],
         fields: [
-          { key: 'laboratories', label: 'Request', sortable: true, sortDirection: 'desc' },
-          { key: 'user', label: 'Doctor', sortable: true, sortDirection: 'desc' },
+          { key: 'record', label: 'Patient', sortable: true, sortDirection: 'desc' },
+          { key: 'laboratories', label: 'Laboratory', sortable: true, sortDirection: 'desc' },
+          { key: 'user', label: 'Request By', sortable: true, sortDirection: 'desc' },
+          { key: 'actions', label: 'Actions', sortable: true, sortDirection: 'desc' },
         ],
         currentPage: 1,
         perPage: 5,
@@ -111,10 +154,12 @@
         sortDesc: false,
         sortDirection: 'asc',
         filter: null,
+        modalInfo: { title: '', content: '' },
       }
     },
     mounted() {
-        this.getPatients();
+        this.getData();
+        this.getLab();
     },
     created() {
 
@@ -133,6 +178,11 @@
       }
     },
     methods: {
+        resetModal() {
+            this.modalInfo.title = ''
+            this.modalInfo.content = ''
+            this.selected_id = null;
+        },
        onFiltered(filteredItems) {
             // Trigger pagination to update the number of buttons/pages due to filtering
             console.log('filter', filteredItems);
@@ -140,33 +190,68 @@
             this.currentPage = 1;
         },
         getData() {
-            axios.get('/api/doctorsOrders/'+this.patient_record_id)
+            axios.get('/api/doctorsOrders')
             .then(response => {
                 console.log(JSON.parse(JSON.stringify(response.data)));
                 this.items = _.cloneDeep(response.data);
                 this.totalRows = this.items.length;
             });
         },
-        getPatients() {
-            axios.get('/api/patientRecords')
+        getLab() {
+            axios.get('/api/typeOfLaboratories')
             .then(response => {
-                console.log(response);
-                this.patients = response.data.map( (patientRecord) => ({ 
-                    value: patientRecord.id, 
-                    label: patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name,
+                console.log(response.data);
+                this.lab = response.data.map( (lab) => ({ 
+                    value: lab.id, 
+                    label: lab.code,
                 }));
             });
         },
-        getPatientBy(event) {
-            if(event) {
-              console.log('selected',event.value);
-              this.patient_record_id = event.value;
-              
-            } else {
-              this.patient_record_id = null;
-            }
-            this.getData();
+        onFileChange(e) {
+            console.log('file changed', e);
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length)
+                return;
+            this.createImage(files[0]);
         },
+        createImage(file) {
+            let reader = new FileReader();
+            let vm = this;
+            reader.onload = (e) => {
+                vm.laboratory.file = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
+        showModalUpload(item) {
+            console.log(item);
+            this.laboratory.patient_record_id = item.patient_record_id;
+            this.laboratory.doctor_order_id = item.id;
+            this.modalInfo.title = "Laboratory";
+            this.$root.$emit('bv::show::modal', 'modalForm2');
+        },
+        onSubmit() {
+          axios.post('/api/patientLaboratories', {
+              doctor_order_id: this.laboratory.doctor_order_id,
+              patient_record_id: this.laboratory.patient_record_id,
+              type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
+              description: this.laboratory.description,
+              file: this.laboratory.file
+          })
+          .then(response => {
+              console.log(response.data);
+              if(response.data == 'success') {
+                  this.getData();
+                  Swal.fire(
+                    'Message',
+                    'Succesfully Saved.',
+                    'success'
+                  );
+              }  
+          })
+          .catch (response => {
+              console.log(response);
+          });
+        }
     }
   }
 </script>

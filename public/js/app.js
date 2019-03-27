@@ -109857,32 +109857,6 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Add" }
-                },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      attrs: { disabled: _vm.patient_record_id ? false : true },
-                      on: { click: _vm.showModalForm }
-                    },
-                    [_vm._v("New")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
           )
         ],
         1
@@ -110488,6 +110462,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_sweetalert2__);
 //
 //
 //
@@ -110573,88 +110549,167 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
-  },
+    components: {
+        vSelect: __WEBPACK_IMPORTED_MODULE_0_vue_select___default.a
+    },
 
-  props: [],
+    props: [],
 
-  data: function data() {
-    return {
-      patients: [],
-      patient_record_id: null,
-      items: null,
-      fields: [{ key: 'laboratories', label: 'Request', sortable: true, sortDirection: 'desc' }, { key: 'user', label: 'Doctor', sortable: true, sortDirection: 'desc' }],
-      currentPage: 1,
-      perPage: 5,
-      totalRows: 1,
-      pageOptions: [5, 10, 15],
-      sortBy: null,
-      sortDesc: false,
-      sortDirection: 'asc',
-      filter: null
-    };
-  },
-  mounted: function mounted() {
-    this.getPatients();
-  },
-  created: function created() {},
+    data: function data() {
+        return {
+            patients: [],
+            items: null,
+            laboratory: {},
+            lab: [],
+            fields: [{ key: 'record', label: 'Patient', sortable: true, sortDirection: 'desc' }, { key: 'laboratories', label: 'Laboratory', sortable: true, sortDirection: 'desc' }, { key: 'user', label: 'Request By', sortable: true, sortDirection: 'desc' }, { key: 'actions', label: 'Actions', sortable: true, sortDirection: 'desc' }],
+            currentPage: 1,
+            perPage: 5,
+            totalRows: 1,
+            pageOptions: [5, 10, 15],
+            sortBy: null,
+            sortDesc: false,
+            sortDirection: 'asc',
+            filter: null,
+            modalInfo: { title: '', content: '' }
+        };
+    },
+    mounted: function mounted() {
+        this.getData();
+        this.getLab();
+    },
+    created: function created() {},
 
-  watch: {},
-  computed: {
-    sortOptions: function sortOptions() {
-      // Create an options list from our fields
-      return this.fields.filter(function (f) {
-        return f.sortable;
-      }).map(function (f) {
-        return { text: f.label, value: f.key };
-      });
+    watch: {},
+    computed: {
+        sortOptions: function sortOptions() {
+            // Create an options list from our fields
+            return this.fields.filter(function (f) {
+                return f.sortable;
+            }).map(function (f) {
+                return { text: f.label, value: f.key };
+            });
+        }
+    },
+    methods: {
+        resetModal: function resetModal() {
+            this.modalInfo.title = '';
+            this.modalInfo.content = '';
+            this.selected_id = null;
+        },
+        onFiltered: function onFiltered(filteredItems) {
+            // Trigger pagination to update the number of buttons/pages due to filtering
+            console.log('filter', filteredItems);
+            this.totalRows = filteredItems.length;
+            this.currentPage = 1;
+        },
+        getData: function getData() {
+            var _this = this;
+
+            axios.get('/api/doctorsOrders').then(function (response) {
+                console.log(JSON.parse(JSON.stringify(response.data)));
+                _this.items = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.cloneDeep(response.data);
+                _this.totalRows = _this.items.length;
+            });
+        },
+        getLab: function getLab() {
+            var _this2 = this;
+
+            axios.get('/api/typeOfLaboratories').then(function (response) {
+                console.log(response.data);
+                _this2.lab = response.data.map(function (lab) {
+                    return {
+                        value: lab.id,
+                        label: lab.code
+                    };
+                });
+            });
+        },
+        onFileChange: function onFileChange(e) {
+            console.log('file changed', e);
+            var files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            this.createImage(files[0]);
+        },
+        createImage: function createImage(file) {
+            var reader = new FileReader();
+            var vm = this;
+            reader.onload = function (e) {
+                vm.laboratory.file = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
+        showModalUpload: function showModalUpload(item) {
+            console.log(item);
+            this.laboratory.patient_record_id = item.patient_record_id;
+            this.laboratory.doctor_order_id = item.id;
+            this.modalInfo.title = "Laboratory";
+            this.$root.$emit('bv::show::modal', 'modalForm2');
+        },
+        onSubmit: function onSubmit() {
+            var _this3 = this;
+
+            axios.post('/api/patientLaboratories', {
+                doctor_order_id: this.laboratory.doctor_order_id,
+                patient_record_id: this.laboratory.patient_record_id,
+                type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
+                description: this.laboratory.description,
+                file: this.laboratory.file
+            }).then(function (response) {
+                console.log(response.data);
+                if (response.data == 'success') {
+                    _this3.getData();
+                    __WEBPACK_IMPORTED_MODULE_2_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
+                }
+            }).catch(function (response) {
+                console.log(response);
+            });
+        }
     }
-  },
-  methods: {
-    onFiltered: function onFiltered(filteredItems) {
-      // Trigger pagination to update the number of buttons/pages due to filtering
-      console.log('filter', filteredItems);
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    },
-    getData: function getData() {
-      var _this = this;
-
-      axios.get('/api/doctorsOrders/' + this.patient_record_id).then(function (response) {
-        console.log(JSON.parse(JSON.stringify(response.data)));
-        _this.items = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.cloneDeep(response.data);
-        _this.totalRows = _this.items.length;
-      });
-    },
-    getPatients: function getPatients() {
-      var _this2 = this;
-
-      axios.get('/api/patientRecords').then(function (response) {
-        console.log(response);
-        _this2.patients = response.data.map(function (patientRecord) {
-          return {
-            value: patientRecord.id,
-            label: patientRecord.patient.first_name + ' ' + patientRecord.patient.middle_name + ' ' + patientRecord.patient.last_name
-          };
-        });
-      });
-    },
-    getPatientBy: function getPatientBy(event) {
-      if (event) {
-        console.log('selected', event.value);
-        this.patient_record_id = event.value;
-      } else {
-        this.patient_record_id = null;
-      }
-      this.getData();
-    }
-  }
 });
 
 /***/ }),
@@ -110686,12 +110741,35 @@ var render = function() {
                   _c(
                     "b-input-group",
                     [
-                      _c("v-select", {
-                        attrs: {
-                          options: _vm.patients,
-                          onChange: _vm.getPatientBy
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Type to Search" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Clear")]
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -110782,59 +110860,6 @@ var render = function() {
                 "b-form-group",
                 {
                   staticClass: "mb-0",
-                  attrs: { "label-cols-sm": "3", label: "Filter" }
-                },
-                [
-                  _c(
-                    "b-input-group",
-                    [
-                      _c("b-form-input", {
-                        attrs: { placeholder: "Type to Search" },
-                        model: {
-                          value: _vm.filter,
-                          callback: function($$v) {
-                            _vm.filter = $$v
-                          },
-                          expression: "filter"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "b-input-group-append",
-                        [
-                          _c(
-                            "b-button",
-                            {
-                              attrs: { disabled: !_vm.filter },
-                              on: {
-                                click: function($event) {
-                                  _vm.filter = ""
-                                }
-                              }
-                            },
-                            [_vm._v("Clear")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { staticClass: "my-1", attrs: { md: "6" } },
-            [
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "mb-0",
                   attrs: { "label-cols-sm": "3", label: "Per page" }
                 },
                 [
@@ -110887,14 +110912,15 @@ var render = function() {
               return [
                 _c(
                   "b-button",
-                  { attrs: { size: "sm" }, on: { click: row.toggleDetails } },
-                  [
-                    _vm._v(
-                      "\n        " +
-                        _vm._s(row.detailsShowing ? "Hide" : "Show") +
-                        " Details\n      "
-                    )
-                  ]
+                  {
+                    attrs: { size: "sm" },
+                    on: {
+                      click: function($event) {
+                        _vm.showModalUpload(row.item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          Upload\n      ")]
                 )
               ]
             }
@@ -110913,6 +110939,22 @@ var render = function() {
                   "\n      " +
                     _vm._s(
                       row.item.user.first_name + " " + row.item.user.last_name
+                    ) +
+                    "\n    "
+                )
+              ]
+            }
+          },
+          {
+            key: "record",
+            fn: function(row) {
+              return [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(
+                      row.item.record.patient.first_name +
+                        " " +
+                        row.item.record.patient.last_name
                     ) +
                     "\n    "
                 )
@@ -110945,6 +110987,114 @@ var render = function() {
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modalForm2", title: _vm.modalInfo.title, size: "lg" },
+          on: { hide: _vm.resetModal, ok: _vm.onSubmit }
+        },
+        [
+          _c(
+            "form",
+            {
+              attrs: { enctype: "multipart/form-data" },
+              on: {
+                submit: function($event) {
+                  $event.stopPropagation()
+                  $event.preventDefault()
+                  return _vm.onSubmit($event)
+                }
+              }
+            },
+            [
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Laboratory" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("v-select", {
+                        ref: "lab",
+                        attrs: { options: _vm.lab },
+                        model: {
+                          value: _vm.laboratory.lab,
+                          callback: function($$v) {
+                            _vm.$set(_vm.laboratory, "lab", $$v)
+                          },
+                          expression: "laboratory.lab"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "Results" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-textarea", {
+                        attrs: {
+                          id: "textarea1",
+                          placeholder: "Enter Results",
+                          rows: "3",
+                          "max-rows": "6"
+                        },
+                        model: {
+                          value: _vm.laboratory.description,
+                          callback: function($$v) {
+                            _vm.$set(_vm.laboratory, "description", $$v)
+                          },
+                          expression: "laboratory.description"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                { attrs: { "label-cols-sm": "2", label: "File" } },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-file", {
+                        attrs: {
+                          name: "file",
+                          placeholder: "Choose a file...",
+                          "drop-placeholder": "Drop file here..."
+                        },
+                        on: { change: _vm.onFileChange },
+                        model: {
+                          value: _vm.laboratory.file,
+                          callback: function($$v) {
+                            _vm.$set(_vm.laboratory, "file", $$v)
+                          },
+                          expression: "laboratory.file"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]
       )
     ],
     1

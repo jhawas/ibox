@@ -25,6 +25,9 @@ class CreateDoctorsOrdersTable extends Migration
             $table->string('progress_note')->nullable();
             $table->string('doctors_orders')->nullable();
             $table->string('laboratories')->nullable();
+            $table->boolean('approved')->default(0);
+            $table->integer('approved_by')->unsigned()->nullable();
+            $table->foreign('approved_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

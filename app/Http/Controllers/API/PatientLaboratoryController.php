@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\DoctorsOrder;
 use App\LaboratoryTest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -62,12 +63,16 @@ class PatientLaboratoryController extends Controller
     }
 
     public function store(Request $request) {
-
+                
         if($request->get('file')) {
           $image = $request->get('file');
           $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
           \Image::make($request->get('file'))->save(public_path('storage/laboratory/').$name);
         }
+
+        $doctorsOrder = DoctorsOrder::where('patient_record_id', $request->patient_record_id)->first();
+        $doctorsOrder->approved = 1;
+        $doctorsOrder->save();
 
         $laboratoryTest = new LaboratoryTest;
         $laboratoryTest->patient_record_id = $request->patient_record_id;

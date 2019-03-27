@@ -53,6 +53,7 @@ Route::put('vitalSigns/{id}', 'API\VitalSignController@update');
 
 // doctors orders
 Route::get('doctorsOrders/{patient_record_id}', 'API\DoctorsOrderController@data');
+Route::get('doctorsOrders', 'API\DoctorsOrderController@all');
 Route::delete('doctorsOrders/{patient_record_id}', 'API\DoctorsOrderController@delete');
 Route::post('doctorsOrders', 'API\DoctorsOrderController@store');
 Route::get('doctorsOrders/{id}/edit', 'API\DoctorsOrderController@edit');

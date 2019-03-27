@@ -25,6 +25,18 @@ class DoctorsOrderController extends Controller
         return $doctorsOrders;
     }
 
+    public function all()
+    {
+        $doctorsOrders = DoctorsOrder::with([
+            'record' => function($query) {
+                $query->with(['patient']);
+            },
+            'user'
+        ])->where('approved', 0)->get();
+        return $doctorsOrders;
+    }
+
+
     public function delete($id = null) {
     	$doctorsOrder = DoctorsOrder::where('id', $id)->first();
         $doctorsOrder->delete();

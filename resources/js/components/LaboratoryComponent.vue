@@ -9,11 +9,11 @@
               </b-input-group>
             </b-form-group>
         </b-col>
-        <b-col md="6" class="my-1">
+        <!-- <b-col md="6" class="my-1">
             <b-form-group label-cols-sm="3" label="Add" class="mb-0">
                 <b-button @click="showModalForm" :disabled="patient_record_id ? false : true">New</b-button>
             </b-form-group>
-        </b-col>
+        </b-col> -->
     </b-row>
     <b-row>
       <b-col md="6" class="my-1">
