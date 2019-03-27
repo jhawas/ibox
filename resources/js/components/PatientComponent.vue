@@ -662,7 +662,9 @@
             this.$root.$emit('bv::show::modal', 'modalHistory');
         },
         replaceUrl(url) {
-            return url.replace("public", "storage");
+            if(url) {
+              return '/storage/laboratory/'+url;
+            }
         },
         printUrl() {
             window.open('patients/patients/print', '_blank');

@@ -111321,7 +111321,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     replaceUrl: function replaceUrl(url) {
-      return url.replace("public", "storage");
+      if (url) {
+        return '/storage/laboratory/' + url;
+      }
     }
   }
 });
@@ -115518,7 +115520,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$root.$emit('bv::show::modal', 'modalHistory');
         },
         replaceUrl: function replaceUrl(url) {
-            return url.replace("public", "storage");
+            if (url) {
+                return '/storage/laboratory/' + url;
+            }
         },
         printUrl: function printUrl() {
             window.open('patients/patients/print', '_blank');

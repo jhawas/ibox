@@ -159,7 +159,9 @@
             });
         },
         replaceUrl(url) {
-            return url.replace("public", "storage");
+            if(url) {
+              return '/storage/laboratory/'+url;
+            }
         },
     }
   }
