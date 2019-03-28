@@ -119,8 +119,12 @@
       </b-col>
     </b-row>
     <!-- Info modal -->
-    <b-modal id="modalImage" @hide="resetModal" :title="modalInfo.title" ok-only>
-        <b-img :src="replaceUrl(image)" fluid alt="Responsive image" />
+    <b-modal id="modalImage" @hide="resetModal" :title="modalInfo.title" size="lg" ok-only>
+      <div class="row">
+        <div class="col-md-4" v-for="img in images" v-viewer>
+            <b-img :src="replaceUrl(img)" thumbnail fluid alt="Responsive image" />
+        </div>
+      </div>
     </b-modal>
     <b-modal id="modalDelete" @hide="resetModal" :title="modalInfo.title" @ok="onDelete">
       <pre>{{ modalInfo.content }}</pre>
@@ -156,8 +160,9 @@
         <b-form-group label-cols-sm="2" label="File">
             <b-input-group>
                 <b-form-file
-                  name="file"
-                  v-model="laboratory.file"
+                  ref="file"
+                  id="file"
+                  multiple
                   placeholder="Choose a file..."
                   drop-placeholder="Drop file here..."
                   @change="onFileChange"
@@ -182,13 +187,14 @@
 
     data() {
       return {
+        files: [],
         patients: [],
         laboratory: {},
         laboratories: [],
         lab: [],
         patient_record_id: null,
         action: 'store' | 'update',
-        image: null,
+        images: null,
         fields: [
           { key: 'laboratory', label: 'Laboratory', sortable: true, sortDirection: 'desc' },
           { key: 'image', label: 'Image', sortable: true, sortDirection: 'desc' },
@@ -269,6 +275,7 @@
         onDelete() {
             axios.delete('/api/patientLaboratories/' + this.selected_id)
             .then(response => {
+              console.log(response.data);
                 if(response.data == 'success') {
                     this.getPatientLaboratories();
                     Swal.fire(
@@ -289,7 +296,7 @@
             this.$root.$emit('bv::show::modal', 'modalForm');
         },
         onSubmit(action) {
-            console.log('submit',this.laboratory);
+            let formData = new FormData();
             if(action === 'store') {
                 axios.post('/api/patientLaboratories', {
                     patient_record_id: this.patient_record_id,
@@ -312,13 +319,22 @@
                     console.log(response);
                 });
             } else {
-                axios.put('/api/patientLaboratories/' + this.selected_id, {
-                    patient_record_id: this.patient_record_id,
-                    type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
-                    description: this.laboratory.description,
-                    file: this.laboratory.file
-                })
-                .then(response => {
+
+                for( var i = 0; i < this.files.length; i++ ){
+                  let file = this.files[i];
+                  formData.append('files[' + i + ']', file);
+                }
+                formData.append('patient_record_id', this.patient_record_id);
+                formData.append('description', this.laboratory.description);
+                formData.append('type_of_laboratory_id', this.laboratory.lab ? this.laboratory.lab.value : null);
+                formData.append('_method', 'PUT');
+                const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+                axios.post(
+                  '/api/patientLaboratories/' + this.selected_id, 
+                  formData, 
+                  config
+                ).then(response => {
                     console.log(response.data);
                     if(response.data == 'success') {
                         this.getPatientLaboratories();
@@ -360,7 +376,8 @@
             });
         },
         showImage(item) {
-            this.image = item.image;
+            this.images = item.image;
+            this.images = JSON.parse(item.image);
             this.modalInfo.title = "Laboratory Image";
             this.$root.$emit('bv::show::modal', 'modalImage');
         },
@@ -374,15 +391,7 @@
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length)
                 return;
-            this.createImage(files[0]);
-        },
-        createImage(file) {
-            let reader = new FileReader();
-            let vm = this;
-            reader.onload = (e) => {
-                vm.laboratory.file = e.target.result;
-            };
-            reader.readAsDataURL(file);
+            this.files = files;
         },
 
     }

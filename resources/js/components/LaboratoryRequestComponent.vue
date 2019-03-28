@@ -108,8 +108,9 @@
         <b-form-group label-cols-sm="2" label="File">
             <b-input-group>
                 <b-form-file
-                  name="file"
-                  v-model="laboratory.file"
+                  ref="file"
+                  id="file"
+                  multiple
                   placeholder="Choose a file..."
                   drop-placeholder="Drop file here..."
                   @change="onFileChange"
@@ -136,6 +137,7 @@
 
     data() {
       return {
+        files: [],
         patients: [],
         items: null,
         laboratory: {},
@@ -212,15 +214,7 @@
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length)
                 return;
-            this.createImage(files[0]);
-        },
-        createImage(file) {
-            let reader = new FileReader();
-            let vm = this;
-            reader.onload = (e) => {
-                vm.laboratory.file = e.target.result;
-            };
-            reader.readAsDataURL(file);
+            this.files = files;
         },
         showModalUpload(item) {
             console.log(item);
@@ -230,13 +224,20 @@
             this.$root.$emit('bv::show::modal', 'modalForm2');
         },
         onSubmit() {
-          axios.post('/api/patientLaboratories', {
-              doctor_order_id: this.laboratory.doctor_order_id,
-              patient_record_id: this.laboratory.patient_record_id,
-              type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
-              description: this.laboratory.description,
-              file: this.laboratory.file
-          })
+
+          let formData = new FormData();
+
+          for( var i = 0; i < this.files.length; i++ ){
+            let file = this.files[i];
+            formData.append('files[' + i + ']', file);
+          }
+          formData.append('patient_record_id', this.laboratory.patient_record_id);
+          formData.append('doctor_order_id', this.laboratory.doctor_order_id);
+          formData.append('description', this.laboratory.description);
+          formData.append('type_of_laboratory_id', this.laboratory.lab ? this.laboratory.lab.value : null);
+
+          const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+          axios.post('/api/patientLaboratories', formData, config)
           .then(response => {
               console.log(response.data);
               if(response.data == 'success') {

@@ -251,7 +251,11 @@
                         {{row.item.laboratory.code}}
                     </template>
                     <template slot="image" slot-scope="row">
-                        <img :src="replaceUrl(row.item.image)" class="laboratoryImage" />
+                        <div class="row">
+                          <div class="col-md-1" v-for="img in JSON.parse(row.item.image)" v-viewer>
+                              <b-img :src="replaceUrl(img)" thumbnail fluid alt="Responsive image" class="laboratoryImage"/>
+                          </div>
+                        </div>
                     </template>
                 </b-table>
             </b-tab>

@@ -5947,287 +5947,6 @@ exports.default = _default;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-exports.__esModule = true;
-exports.propsFactory = propsFactory;
-exports.pickLinkProps = pickLinkProps;
-exports.omitLinkProps = omitLinkProps;
-exports.default = exports.computed = exports.props = void 0;
-
-var _object = __webpack_require__(9);
-
-var _array = __webpack_require__(4);
-
-var _vueFunctionalDataMerge = __webpack_require__(1);
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/**
- * The Link component is used in many other BV components.
- * As such, sharing its props makes supporting all its features easier.
- * However, some components need to modify the defaults for their own purpose.
- * Prefer sharing a fresh copy of the props to ensure mutations
- * do not affect other component references to the props.
- *
- * https://github.com/vuejs/vue-router/blob/dev/src/components/link.js
- * @return {{}}
- */
-function propsFactory() {
-  return {
-    href: {
-      type: String,
-      default: null
-    },
-    rel: {
-      type: String,
-      default: null
-    },
-    target: {
-      type: String,
-      default: '_self'
-    },
-    active: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    // router-link specific props
-    to: {
-      type: [String, Object],
-      default: null
-    },
-    append: {
-      type: Boolean,
-      default: false
-    },
-    replace: {
-      type: Boolean,
-      default: false
-    },
-    event: {
-      type: [String, Array],
-      default: 'click'
-    },
-    activeClass: {
-      type: String // default: undefined
-
-    },
-    exact: {
-      type: Boolean,
-      default: false
-    },
-    exactActiveClass: {
-      type: String // default: undefined
-
-    },
-    routerTag: {
-      type: String,
-      default: 'a'
-    },
-    // nuxt-link specific prop(s)
-    noPrefetch: {
-      type: Boolean,
-      default: false
-    }
-  };
-}
-
-var props = propsFactory();
-exports.props = props;
-
-function pickLinkProps(propsToPick) {
-  var freshLinkProps = propsFactory(); // Normalize everything to array.
-
-  propsToPick = (0, _array.concat)(propsToPick);
-  return (0, _object.keys)(freshLinkProps).reduce(function (memo, prop) {
-    if ((0, _array.arrayIncludes)(propsToPick, prop)) {
-      memo[prop] = freshLinkProps[prop];
-    }
-
-    return memo;
-  }, {});
-}
-
-function omitLinkProps(propsToOmit) {
-  var freshLinkProps = propsFactory(); // Normalize everything to array.
-
-  propsToOmit = (0, _array.concat)(propsToOmit);
-  return (0, _object.keys)(props).reduce(function (memo, prop) {
-    if (!(0, _array.arrayIncludes)(propsToOmit, prop)) {
-      memo[prop] = freshLinkProps[prop];
-    }
-
-    return memo;
-  }, {});
-}
-
-var computed = {
-  linkProps: function linkProps() {
-    var linkProps = {};
-    var propKeys = (0, _object.keys)(props);
-
-    for (var i = 0; i < propKeys.length; i++) {
-      var prop = propKeys[i]; // Computed Vue getters are bound to the instance.
-
-      linkProps[prop] = this[prop];
-    }
-
-    return linkProps;
-  }
-};
-exports.computed = computed;
-
-function computeTag(props, parent) {
-  return parent.$router && props.to && !props.disabled ? parent.$nuxt ? 'nuxt-link' : 'router-link' : 'a';
-}
-
-function isRouterLink(tag) {
-  return tag !== 'a';
-}
-
-function computeHref(_ref, tag) {
-  var disabled = _ref.disabled,
-      href = _ref.href,
-      to = _ref.to;
-
-  // We've already checked the parent.$router in computeTag,
-  // so isRouterLink(tag) indicates a live router.
-  // When deferring to Vue Router's router-link, don't use the href attr at all.
-  // We return null, and then remove href from the attributes passed to router-link
-  if (isRouterLink(tag)) {
-    return null;
-  } // If href explicitly provided
-
-
-  if (href) {
-    return href;
-  } // Reconstruct `href` when `to` used, but no router
-
-
-  if (to) {
-    // Fallback to `to` prop (if `to` is a string)
-    if (typeof to === 'string') {
-      return to;
-    } // Fallback to `to.path` prop (if `to` is an object)
-
-
-    if (_typeof(to) === 'object' && typeof to.path === 'string') {
-      return to.path;
-    }
-  } // If nothing is provided use '#' as a fallback
-
-
-  return '#';
-}
-
-function computeRel(_ref2) {
-  var target = _ref2.target,
-      rel = _ref2.rel;
-
-  if (target === '_blank' && rel === null) {
-    return 'noopener';
-  }
-
-  return rel || null;
-}
-
-function clickHandlerFactory(_ref3) {
-  var disabled = _ref3.disabled,
-      tag = _ref3.tag,
-      href = _ref3.href,
-      suppliedHandler = _ref3.suppliedHandler,
-      parent = _ref3.parent;
-  return function onClick(e) {
-    if (disabled && e instanceof Event) {
-      // Stop event from bubbling up.
-      e.stopPropagation(); // Kill the event loop attached to this specific EventTarget.
-
-      e.stopImmediatePropagation();
-    } else {
-      if (isRouterLink(tag) && e.target.__vue__) {
-        e.target.__vue__.$emit('click', e);
-      }
-
-      if (typeof suppliedHandler === 'function') {
-        suppliedHandler.apply(void 0, arguments);
-      }
-
-      parent.$root.$emit('clicked::link', e);
-    }
-
-    if (!isRouterLink(tag) && href === '#' || disabled) {
-      // Stop scroll-to-top behavior or navigation.
-      e.preventDefault();
-    }
-  };
-} // @vue/component
-
-
-var _default = {
-  name: 'BLink',
-  functional: true,
-  props: propsFactory(),
-  render: function render(h, _ref4) {
-    var props = _ref4.props,
-        data = _ref4.data,
-        parent = _ref4.parent,
-        children = _ref4.children;
-    var tag = computeTag(props, parent);
-    var rel = computeRel(props);
-    var href = computeHref(props, tag);
-    var eventType = isRouterLink(tag) ? 'nativeOn' : 'on';
-    var suppliedHandler = (data[eventType] || {}).click;
-    var handlers = {
-      click: clickHandlerFactory({
-        tag: tag,
-        href: href,
-        disabled: props.disabled,
-        suppliedHandler: suppliedHandler,
-        parent: parent
-      })
-    };
-    var componentData = (0, _vueFunctionalDataMerge.mergeData)(data, {
-      class: {
-        active: props.active,
-        disabled: props.disabled
-      },
-      attrs: {
-        rel: rel,
-        target: props.target,
-        tabindex: props.disabled ? '-1' : data.attrs ? data.attrs.tabindex : null,
-        'aria-disabled': props.disabled ? 'true' : null
-      },
-      props: _objectSpread({}, props, {
-        tag: props.routerTag
-      })
-    }); // If href attribute exists on router-link (even undefined or null) it fails working on SSR
-    // So we explicitly add it here if needed (i.e. if computeHref() is truthy)
-
-    if (href) {
-      componentData.attrs.href = href;
-    } // We want to overwrite any click handler since our callback
-    // will invoke the user supplied handler if !props.disabled
-
-
-    componentData[eventType] = _objectSpread({}, componentData[eventType] || {}, handlers);
-    return h(tag, componentData, children);
-  }
-};
-exports.default = _default;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /*!
 * sweetalert2 v8.2.6
 * Released under the MIT License.
@@ -8805,6 +8524,287 @@ return Swal;
 if (typeof window !== 'undefined' && window.Sweetalert2){  window.swal = window.sweetAlert = window.Swal = window.SweetAlert = window.Sweetalert2}
 
 "undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,"@-webkit-keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes swal2-show{0%{-webkit-transform:scale(.7);transform:scale(.7)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}100%{-webkit-transform:scale(1);transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{-webkit-transform:scale(1);transform:scale(1);opacity:1}100%{-webkit-transform:scale(.5);transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.875em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}100%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}50%{margin-top:1.625em;-webkit-transform:scale(.4);transform:scale(.4);opacity:0}80%{margin-top:-.375em;-webkit-transform:scale(1.15);transform:scale(1.15)}100%{margin-top:0;-webkit-transform:scale(1);transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-shown{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{flex-direction:column;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast{flex-direction:row;align-items:center;width:auto;padding:.625em;box-shadow:0 0 .625em #d9d9d9;overflow-y:hidden}.swal2-popup.swal2-toast .swal2-header{flex-direction:row}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:initial;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon-text{font-size:2em;font-weight:700;line-height:1em}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{height:auto;margin:0 .3125em}.swal2-popup.swal2-toast .swal2-styled{margin:0 .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 .0625em #fff,0 0 0 .125em rgba(50,100,150,.4)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:2em;height:2.8125em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.25em;left:-.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:2em 2em;transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;-webkit-transform-origin:0 2em;transform-origin:0 2em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:showSweetToast .5s;animation:showSweetToast .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:hideSweetToast .2s forwards;animation:hideSweetToast .2s forwards}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:animate-toast-success-tip .75s;animation:animate-toast-success-tip .75s}.swal2-popup.swal2-toast .swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:animate-toast-success-long .75s;animation:animate-toast-success-long .75s}@-webkit-keyframes showSweetToast{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg);opacity:0}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg);opacity:.5}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg);opacity:.7}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0);opacity:1}}@keyframes showSweetToast{0%{-webkit-transform:translateY(-.625em) rotateZ(2deg);transform:translateY(-.625em) rotateZ(2deg);opacity:0}33%{-webkit-transform:translateY(0) rotateZ(-2deg);transform:translateY(0) rotateZ(-2deg);opacity:.5}66%{-webkit-transform:translateY(.3125em) rotateZ(2deg);transform:translateY(.3125em) rotateZ(2deg);opacity:.7}100%{-webkit-transform:translateY(0) rotateZ(0);transform:translateY(0) rotateZ(0);opacity:1}}@-webkit-keyframes hideSweetToast{0%{opacity:1}33%{opacity:.5}100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@keyframes hideSweetToast{0%{opacity:1}33%{opacity:.5}100%{-webkit-transform:rotateZ(1deg);transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes animate-toast-success-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes animate-toast-success-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes animate-toast-success-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes animate-toast-success-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-shown{top:auto;right:auto;bottom:auto;left:auto;background-color:transparent}body.swal2-no-backdrop .swal2-shown>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-shown.swal2-top{top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-top-left,body.swal2-no-backdrop .swal2-shown.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-top-end,body.swal2-no-backdrop .swal2-shown.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-shown.swal2-center{top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-left,body.swal2-no-backdrop .swal2-shown.swal2-center-start{top:50%;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-center-end,body.swal2-no-backdrop .swal2-shown.swal2-center-right{top:50%;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom{bottom:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}body.swal2-no-backdrop .swal2-shown.swal2-bottom-left,body.swal2-no-backdrop .swal2-shown.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-shown.swal2-bottom-end,body.swal2-no-backdrop .swal2-shown.swal2-bottom-right{right:0;bottom:0}.swal2-container{display:flex;position:fixed;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:10px;background-color:transparent;z-index:1060;overflow-x:hidden;-webkit-overflow-scrolling:touch}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{margin-top:auto}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-container.swal2-fade{transition:background-color .1s}.swal2-container.swal2-shown{background-color:rgba(0,0,0,.4)}.swal2-popup{display:none;position:relative;flex-direction:column;justify-content:center;width:32em;max-width:100%;padding:1.25em;border-radius:.3125em;background:#fff;font-family:inherit;font-size:1rem;box-sizing:border-box}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-popup .swal2-header{display:flex;flex-direction:column;align-items:center}.swal2-popup .swal2-title{display:block;position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-popup .swal2-actions{flex-wrap:wrap;align-items:center;justify-content:center;margin:1.25em auto 0;z-index:1}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-popup .swal2-actions.swal2-loading .swal2-styled.swal2-confirm{width:2.5em;height:2.5em;margin:.46875em;padding:0;border:.25em solid transparent;border-radius:100%;border-color:transparent;background-color:transparent!important;color:transparent;cursor:default;box-sizing:border-box;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-popup .swal2-actions.swal2-loading .swal2-styled.swal2-cancel{margin-right:30px;margin-left:30px}.swal2-popup .swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{display:inline-block;width:15px;height:15px;margin-left:5px;border:3px solid #999;border-radius:50%;border-right-color:transparent;box-shadow:1px 1px 1px #fff;content:'';-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal}.swal2-popup .swal2-styled{margin:.3125em;padding:.625em 2em;font-weight:500;box-shadow:none}.swal2-popup .swal2-styled:not([disabled]){cursor:pointer}.swal2-popup .swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#3085d6;color:#fff;font-size:1.0625em}.swal2-popup .swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#aaa;color:#fff;font-size:1.0625em}.swal2-popup .swal2-styled:focus{outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(50,100,150,.4)}.swal2-popup .swal2-styled::-moz-focus-inner{border:0}.swal2-popup .swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-popup .swal2-image{max-width:100%;margin:1.25em auto}.swal2-popup .swal2-close{position:absolute;top:0;right:0;justify-content:center;width:1.2em;height:1.2em;padding:0;transition:color .1s ease-out;border:none;border-radius:0;outline:initial;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer;overflow:hidden}.swal2-popup .swal2-close:hover{-webkit-transform:none;transform:none;color:#f27474}.swal2-popup>.swal2-checkbox,.swal2-popup>.swal2-file,.swal2-popup>.swal2-input,.swal2-popup>.swal2-radio,.swal2-popup>.swal2-select,.swal2-popup>.swal2-textarea{display:none}.swal2-popup .swal2-content{justify-content:center;margin:0;padding:0;color:#545454;font-size:1.125em;font-weight:300;line-height:normal;z-index:1;word-wrap:break-word}.swal2-popup #swal2-content{text-align:center}.swal2-popup .swal2-checkbox,.swal2-popup .swal2-file,.swal2-popup .swal2-input,.swal2-popup .swal2-radio,.swal2-popup .swal2-select,.swal2-popup .swal2-textarea{margin:1em auto}.swal2-popup .swal2-file,.swal2-popup .swal2-input,.swal2-popup .swal2-textarea{width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;font-size:1.125em;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);box-sizing:border-box}.swal2-popup .swal2-file.swal2-inputerror,.swal2-popup .swal2-input.swal2-inputerror,.swal2-popup .swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-popup .swal2-file:focus,.swal2-popup .swal2-input:focus,.swal2-popup .swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 3px #c4e6f5}.swal2-popup .swal2-file::-webkit-input-placeholder,.swal2-popup .swal2-input::-webkit-input-placeholder,.swal2-popup .swal2-textarea::-webkit-input-placeholder{color:#ccc}.swal2-popup .swal2-file:-ms-input-placeholder,.swal2-popup .swal2-input:-ms-input-placeholder,.swal2-popup .swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-popup .swal2-file::-ms-input-placeholder,.swal2-popup .swal2-input::-ms-input-placeholder,.swal2-popup .swal2-textarea::-ms-input-placeholder{color:#ccc}.swal2-popup .swal2-file::placeholder,.swal2-popup .swal2-input::placeholder,.swal2-popup .swal2-textarea::placeholder{color:#ccc}.swal2-popup .swal2-range{margin:1em auto;background:inherit}.swal2-popup .swal2-range input{width:80%}.swal2-popup .swal2-range output{width:20%;font-weight:600;text-align:center}.swal2-popup .swal2-range input,.swal2-popup .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-popup .swal2-input{height:2.625em;padding:0 .75em}.swal2-popup .swal2-input[type=number]{max-width:10em}.swal2-popup .swal2-file{background:inherit;font-size:1.125em}.swal2-popup .swal2-textarea{height:6.75em;padding:.75em}.swal2-popup .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:#545454;font-size:1.125em}.swal2-popup .swal2-checkbox,.swal2-popup .swal2-radio{align-items:center;justify-content:center;background:inherit}.swal2-popup .swal2-checkbox label,.swal2-popup .swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-popup .swal2-checkbox input,.swal2-popup .swal2-radio input{margin:0 .4em}.swal2-popup .swal2-validation-message{display:none;align-items:center;justify-content:center;padding:.625em;background:#f0f0f0;color:#666;font-size:1em;font-weight:300;overflow:hidden}.swal2-popup .swal2-validation-message::before{display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center;content:'!';zoom:normal}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-moz-document url-prefix(){.swal2-close:focus{outline:2px solid rgba(50,100,150,.4)}}.swal2-icon{position:relative;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;line-height:5em;cursor:default;box-sizing:content-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;zoom:normal}.swal2-icon-text{font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;-webkit-transform:rotate(45deg);transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:3.75em 3.75em;transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 3.75em;transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;top:-.25em;left:-.25em;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%;z-index:2;box-sizing:content-box}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;top:.5em;left:1.625em;width:.4375em;height:5.625em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);z-index:1}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;height:.3125em;border-radius:.125em;background-color:#a5dc86;z-index:2}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.875em;width:1.5625em;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal2-progress-steps{align-items:center;margin:0 0 1.25em;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{width:2em;height:2em;border-radius:2em;background:#3085d6;color:#fff;line-height:2em;text-align:center;z-index:20}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#3085d6}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{width:2.5em;height:.4em;margin:0 -1px;background:#3085d6;z-index:10}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-show.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-hide.swal2-noanimation{-webkit-animation:none;animation:none}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-animate-success-icon .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-animate-success-icon .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-animate-success-icon .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-animate-error-icon{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-animate-error-icon .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}@-webkit-keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:initial!important}}");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.propsFactory = propsFactory;
+exports.pickLinkProps = pickLinkProps;
+exports.omitLinkProps = omitLinkProps;
+exports.default = exports.computed = exports.props = void 0;
+
+var _object = __webpack_require__(9);
+
+var _array = __webpack_require__(4);
+
+var _vueFunctionalDataMerge = __webpack_require__(1);
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * The Link component is used in many other BV components.
+ * As such, sharing its props makes supporting all its features easier.
+ * However, some components need to modify the defaults for their own purpose.
+ * Prefer sharing a fresh copy of the props to ensure mutations
+ * do not affect other component references to the props.
+ *
+ * https://github.com/vuejs/vue-router/blob/dev/src/components/link.js
+ * @return {{}}
+ */
+function propsFactory() {
+  return {
+    href: {
+      type: String,
+      default: null
+    },
+    rel: {
+      type: String,
+      default: null
+    },
+    target: {
+      type: String,
+      default: '_self'
+    },
+    active: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    // router-link specific props
+    to: {
+      type: [String, Object],
+      default: null
+    },
+    append: {
+      type: Boolean,
+      default: false
+    },
+    replace: {
+      type: Boolean,
+      default: false
+    },
+    event: {
+      type: [String, Array],
+      default: 'click'
+    },
+    activeClass: {
+      type: String // default: undefined
+
+    },
+    exact: {
+      type: Boolean,
+      default: false
+    },
+    exactActiveClass: {
+      type: String // default: undefined
+
+    },
+    routerTag: {
+      type: String,
+      default: 'a'
+    },
+    // nuxt-link specific prop(s)
+    noPrefetch: {
+      type: Boolean,
+      default: false
+    }
+  };
+}
+
+var props = propsFactory();
+exports.props = props;
+
+function pickLinkProps(propsToPick) {
+  var freshLinkProps = propsFactory(); // Normalize everything to array.
+
+  propsToPick = (0, _array.concat)(propsToPick);
+  return (0, _object.keys)(freshLinkProps).reduce(function (memo, prop) {
+    if ((0, _array.arrayIncludes)(propsToPick, prop)) {
+      memo[prop] = freshLinkProps[prop];
+    }
+
+    return memo;
+  }, {});
+}
+
+function omitLinkProps(propsToOmit) {
+  var freshLinkProps = propsFactory(); // Normalize everything to array.
+
+  propsToOmit = (0, _array.concat)(propsToOmit);
+  return (0, _object.keys)(props).reduce(function (memo, prop) {
+    if (!(0, _array.arrayIncludes)(propsToOmit, prop)) {
+      memo[prop] = freshLinkProps[prop];
+    }
+
+    return memo;
+  }, {});
+}
+
+var computed = {
+  linkProps: function linkProps() {
+    var linkProps = {};
+    var propKeys = (0, _object.keys)(props);
+
+    for (var i = 0; i < propKeys.length; i++) {
+      var prop = propKeys[i]; // Computed Vue getters are bound to the instance.
+
+      linkProps[prop] = this[prop];
+    }
+
+    return linkProps;
+  }
+};
+exports.computed = computed;
+
+function computeTag(props, parent) {
+  return parent.$router && props.to && !props.disabled ? parent.$nuxt ? 'nuxt-link' : 'router-link' : 'a';
+}
+
+function isRouterLink(tag) {
+  return tag !== 'a';
+}
+
+function computeHref(_ref, tag) {
+  var disabled = _ref.disabled,
+      href = _ref.href,
+      to = _ref.to;
+
+  // We've already checked the parent.$router in computeTag,
+  // so isRouterLink(tag) indicates a live router.
+  // When deferring to Vue Router's router-link, don't use the href attr at all.
+  // We return null, and then remove href from the attributes passed to router-link
+  if (isRouterLink(tag)) {
+    return null;
+  } // If href explicitly provided
+
+
+  if (href) {
+    return href;
+  } // Reconstruct `href` when `to` used, but no router
+
+
+  if (to) {
+    // Fallback to `to` prop (if `to` is a string)
+    if (typeof to === 'string') {
+      return to;
+    } // Fallback to `to.path` prop (if `to` is an object)
+
+
+    if (_typeof(to) === 'object' && typeof to.path === 'string') {
+      return to.path;
+    }
+  } // If nothing is provided use '#' as a fallback
+
+
+  return '#';
+}
+
+function computeRel(_ref2) {
+  var target = _ref2.target,
+      rel = _ref2.rel;
+
+  if (target === '_blank' && rel === null) {
+    return 'noopener';
+  }
+
+  return rel || null;
+}
+
+function clickHandlerFactory(_ref3) {
+  var disabled = _ref3.disabled,
+      tag = _ref3.tag,
+      href = _ref3.href,
+      suppliedHandler = _ref3.suppliedHandler,
+      parent = _ref3.parent;
+  return function onClick(e) {
+    if (disabled && e instanceof Event) {
+      // Stop event from bubbling up.
+      e.stopPropagation(); // Kill the event loop attached to this specific EventTarget.
+
+      e.stopImmediatePropagation();
+    } else {
+      if (isRouterLink(tag) && e.target.__vue__) {
+        e.target.__vue__.$emit('click', e);
+      }
+
+      if (typeof suppliedHandler === 'function') {
+        suppliedHandler.apply(void 0, arguments);
+      }
+
+      parent.$root.$emit('clicked::link', e);
+    }
+
+    if (!isRouterLink(tag) && href === '#' || disabled) {
+      // Stop scroll-to-top behavior or navigation.
+      e.preventDefault();
+    }
+  };
+} // @vue/component
+
+
+var _default = {
+  name: 'BLink',
+  functional: true,
+  props: propsFactory(),
+  render: function render(h, _ref4) {
+    var props = _ref4.props,
+        data = _ref4.data,
+        parent = _ref4.parent,
+        children = _ref4.children;
+    var tag = computeTag(props, parent);
+    var rel = computeRel(props);
+    var href = computeHref(props, tag);
+    var eventType = isRouterLink(tag) ? 'nativeOn' : 'on';
+    var suppliedHandler = (data[eventType] || {}).click;
+    var handlers = {
+      click: clickHandlerFactory({
+        tag: tag,
+        href: href,
+        disabled: props.disabled,
+        suppliedHandler: suppliedHandler,
+        parent: parent
+      })
+    };
+    var componentData = (0, _vueFunctionalDataMerge.mergeData)(data, {
+      class: {
+        active: props.active,
+        disabled: props.disabled
+      },
+      attrs: {
+        rel: rel,
+        target: props.target,
+        tabindex: props.disabled ? '-1' : data.attrs ? data.attrs.tabindex : null,
+        'aria-disabled': props.disabled ? 'true' : null
+      },
+      props: _objectSpread({}, props, {
+        tag: props.routerTag
+      })
+    }); // If href attribute exists on router-link (even undefined or null) it fails working on SSR
+    // So we explicitly add it here if needed (i.e. if computeHref() is truthy)
+
+    if (href) {
+      componentData.attrs.href = href;
+    } // We want to overwrite any click handler since our callback
+    // will invoke the user supplied handler if !props.disabled
+
+
+    componentData[eventType] = _objectSpread({}, componentData[eventType] || {}, handlers);
+    return h(tag, componentData, children);
+  }
+};
+exports.default = _default;
 
 /***/ }),
 /* 14 */
@@ -39697,7 +39697,7 @@ var _object = __webpack_require__(9);
 
 var _dom = __webpack_require__(3);
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -44754,7 +44754,7 @@ var _vueFunctionalDataMerge = __webpack_require__(1);
 
 var _pluckProps = __webpack_require__(17);
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 var _html = __webpack_require__(8);
 
@@ -47368,7 +47368,7 @@ var _dom = __webpack_require__(3);
 
 var _html = __webpack_require__(8);
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 /*
  * Comon props, computed, data, render function, and methods for b-pagination and b-pagination-nav
@@ -60924,8 +60924,10 @@ module.exports = __webpack_require__(419);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2__ = __webpack_require__(418);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_select2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_v_viewer__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_v_viewer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_v_viewer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2__ = __webpack_require__(418);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_select2__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -60939,6 +60941,10 @@ window.Vue = __webpack_require__(243);
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_bootstrap_vue___default.a);
+
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_1_v_viewer___default.a);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -93165,7 +93171,7 @@ var _vueFunctionalDataMerge = __webpack_require__(1);
 
 var _pluckProps = __webpack_require__(17);
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -95641,7 +95647,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = exports.props = void 0;
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 var props = (0, _link.propsFactory)(); // @vue/component
 
@@ -98042,7 +98048,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 var _plugins = __webpack_require__(2);
 
@@ -98151,7 +98157,7 @@ var _pluckProps = __webpack_require__(17);
 
 var _array = __webpack_require__(4);
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -99544,7 +99550,7 @@ exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(1);
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 var props = (0, _link.propsFactory)(); // @vue/component
 
@@ -99915,7 +99921,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = exports.props = void 0;
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 var _vueFunctionalDataMerge = __webpack_require__(1);
 
@@ -100201,7 +100207,7 @@ var _warn = __webpack_require__(11);
 
 var _pagination = __webpack_require__(84);
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -102676,7 +102682,7 @@ exports.default = _default;
 exports.__esModule = true;
 exports.default = void 0;
 
-var _link = __webpack_require__(12);
+var _link = __webpack_require__(13);
 
 var _keyCodes = __webpack_require__(18);
 
@@ -104574,7 +104580,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -105916,7 +105922,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -107590,7 +107596,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -109435,8 +109441,13 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -109621,13 +109632,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            files: [],
             patients: [],
             laboratory: {},
             laboratories: [],
             lab: [],
             patient_record_id: null,
             action: 'store' | 'update',
-            image: null,
+            images: null,
             fields: [{ key: 'laboratory', label: 'Laboratory', sortable: true, sortDirection: 'desc' }, { key: 'image', label: 'Image', sortable: true, sortDirection: 'desc' }, { key: 'description', label: 'Results', sortable: true, sortDirection: 'desc', class: 'text-center' }, { key: 'actions', label: 'Actions', class: 'text-right' }],
             currentPage: 1,
             perPage: 5,
@@ -109708,6 +109720,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             axios.delete('/api/patientLaboratories/' + this.selected_id).then(function (response) {
+                console.log(response.data);
                 if (response.data == 'success') {
                     _this3.getPatientLaboratories();
                     __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Deleted.', 'success');
@@ -109725,7 +109738,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onSubmit: function onSubmit(action) {
             var _this4 = this;
 
-            console.log('submit', this.laboratory);
+            var formData = new FormData();
             if (action === 'store') {
                 axios.post('/api/patientLaboratories', {
                     patient_record_id: this.patient_record_id,
@@ -109742,12 +109755,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     console.log(response);
                 });
             } else {
-                axios.put('/api/patientLaboratories/' + this.selected_id, {
-                    patient_record_id: this.patient_record_id,
-                    type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
-                    description: this.laboratory.description,
-                    file: this.laboratory.file
-                }).then(function (response) {
+
+                for (var i = 0; i < this.files.length; i++) {
+                    var file = this.files[i];
+                    formData.append('files[' + i + ']', file);
+                }
+                formData.append('patient_record_id', this.patient_record_id);
+                formData.append('description', this.laboratory.description);
+                formData.append('type_of_laboratory_id', this.laboratory.lab ? this.laboratory.lab.value : null);
+                formData.append('_method', 'PUT');
+                var config = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+                axios.post('/api/patientLaboratories/' + this.selected_id, formData, config).then(function (response) {
                     console.log(response.data);
                     if (response.data == 'success') {
                         _this4.getPatientLaboratories();
@@ -109788,7 +109807,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         showImage: function showImage(item) {
-            this.image = item.image;
+            this.images = item.image;
+            this.images = JSON.parse(item.image);
             this.modalInfo.title = "Laboratory Image";
             this.$root.$emit('bv::show::modal', 'modalImage');
         },
@@ -109801,15 +109821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('file changed', e);
             var files = e.target.files || e.dataTransfer.files;
             if (!files.length) return;
-            this.createImage(files[0]);
-        },
-        createImage: function createImage(file) {
-            var reader = new FileReader();
-            var vm = this;
-            reader.onload = function (e) {
-                vm.laboratory.file = e.target.result;
-            };
-            reader.readAsDataURL(file);
+            this.files = files;
         }
     }
 });
@@ -110254,20 +110266,38 @@ var render = function() {
           attrs: {
             id: "modalImage",
             title: _vm.modalInfo.title,
+            size: "lg",
             "ok-only": ""
           },
           on: { hide: _vm.resetModal }
         },
         [
-          _c("b-img", {
-            attrs: {
-              src: _vm.replaceUrl(_vm.image),
-              fluid: "",
-              alt: "Responsive image"
-            }
-          })
-        ],
-        1
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.images, function(img) {
+              return _c(
+                "div",
+                {
+                  directives: [{ name: "viewer", rawName: "v-viewer" }],
+                  staticClass: "col-md-4"
+                },
+                [
+                  _c("b-img", {
+                    attrs: {
+                      src: _vm.replaceUrl(img),
+                      thumbnail: "",
+                      fluid: "",
+                      alt: "Responsive image"
+                    }
+                  })
+                ],
+                1
+              )
+            }),
+            0
+          )
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -110366,19 +110396,14 @@ var render = function() {
                     "b-input-group",
                     [
                       _c("b-form-file", {
+                        ref: "file",
                         attrs: {
-                          name: "file",
+                          id: "file",
+                          multiple: "",
                           placeholder: "Choose a file...",
                           "drop-placeholder": "Drop file here..."
                         },
-                        on: { change: _vm.onFileChange },
-                        model: {
-                          value: _vm.laboratory.file,
-                          callback: function($$v) {
-                            _vm.$set(_vm.laboratory, "file", $$v)
-                          },
-                          expression: "laboratory.file"
-                        }
+                        on: { change: _vm.onFileChange }
                       })
                     ],
                     1
@@ -110462,8 +110487,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_sweetalert2__);
+//
 //
 //
 //
@@ -110602,6 +110628,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            files: [],
             patients: [],
             items: null,
             laboratory: {},
@@ -110673,15 +110700,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('file changed', e);
             var files = e.target.files || e.dataTransfer.files;
             if (!files.length) return;
-            this.createImage(files[0]);
-        },
-        createImage: function createImage(file) {
-            var reader = new FileReader();
-            var vm = this;
-            reader.onload = function (e) {
-                vm.laboratory.file = e.target.result;
-            };
-            reader.readAsDataURL(file);
+            this.files = files;
         },
         showModalUpload: function showModalUpload(item) {
             console.log(item);
@@ -110693,13 +110712,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onSubmit: function onSubmit() {
             var _this3 = this;
 
-            axios.post('/api/patientLaboratories', {
-                doctor_order_id: this.laboratory.doctor_order_id,
-                patient_record_id: this.laboratory.patient_record_id,
-                type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
-                description: this.laboratory.description,
-                file: this.laboratory.file
-            }).then(function (response) {
+            var formData = new FormData();
+
+            for (var i = 0; i < this.files.length; i++) {
+                var file = this.files[i];
+                formData.append('files[' + i + ']', file);
+            }
+            formData.append('patient_record_id', this.laboratory.patient_record_id);
+            formData.append('doctor_order_id', this.laboratory.doctor_order_id);
+            formData.append('description', this.laboratory.description);
+            formData.append('type_of_laboratory_id', this.laboratory.lab ? this.laboratory.lab.value : null);
+
+            var config = { headers: { 'Content-Type': 'multipart/form-data' } };
+            axios.post('/api/patientLaboratories', formData, config).then(function (response) {
                 console.log(response.data);
                 if (response.data == 'success') {
                     _this3.getData();
@@ -111071,19 +111096,14 @@ var render = function() {
                     "b-input-group",
                     [
                       _c("b-form-file", {
+                        ref: "file",
                         attrs: {
-                          name: "file",
+                          id: "file",
+                          multiple: "",
                           placeholder: "Choose a file...",
                           "drop-placeholder": "Drop file here..."
                         },
-                        on: { change: _vm.onFileChange },
-                        model: {
-                          value: _vm.laboratory.file,
-                          callback: function($$v) {
-                            _vm.$set(_vm.laboratory, "file", $$v)
-                          },
-                          expression: "laboratory.file"
-                        }
+                        on: { change: _vm.onFileChange }
                       })
                     ],
                     1
@@ -111167,6 +111187,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
+//
+//
+//
+//
 //
 //
 //
@@ -111609,10 +111633,31 @@ var render = function() {
             key: "image",
             fn: function(row) {
               return [
-                _c("img", {
-                  staticClass: "laboratoryImage",
-                  attrs: { src: _vm.replaceUrl(row.item.image) }
-                })
+                _c(
+                  "div",
+                  { staticClass: "row" },
+                  _vm._l(JSON.parse(row.item.image), function(img) {
+                    return _c(
+                      "div",
+                      {
+                        directives: [{ name: "viewer", rawName: "v-viewer" }],
+                        staticClass: "col-md-1"
+                      },
+                      [
+                        _c("b-img", {
+                          attrs: {
+                            src: _vm.replaceUrl(img),
+                            thumbnail: "",
+                            fluid: "",
+                            alt: "Responsive image"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
               ]
             }
           }
@@ -111712,7 +111757,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -113332,7 +113377,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -114924,10 +114969,14 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
+//
+//
+//
+//
 //
 //
 //
@@ -116747,10 +116796,39 @@ var render = function() {
                             key: "image",
                             fn: function(row) {
                               return [
-                                _c("img", {
-                                  staticClass: "laboratoryImage",
-                                  attrs: { src: _vm.replaceUrl(row.item.image) }
-                                })
+                                _c(
+                                  "div",
+                                  { staticClass: "row" },
+                                  _vm._l(JSON.parse(row.item.image), function(
+                                    img
+                                  ) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "viewer",
+                                            rawName: "v-viewer"
+                                          }
+                                        ],
+                                        staticClass: "col-md-1"
+                                      },
+                                      [
+                                        _c("b-img", {
+                                          staticClass: "laboratoryImage",
+                                          attrs: {
+                                            src: _vm.replaceUrl(img),
+                                            thumbnail: "",
+                                            fluid: "",
+                                            alt: "Responsive image"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  }),
+                                  0
+                                )
                               ]
                             }
                           }
@@ -117493,7 +117571,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -119332,7 +119410,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -122217,7 +122295,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -125056,7 +125134,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 //
 //
@@ -133045,6 +133123,3593 @@ S2.define('jquery.select2',[
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory(__webpack_require__(435));
+	else if(typeof define === 'function' && define.amd)
+		define(["viewerjs"], factory);
+	else if(typeof exports === 'object')
+		exports["VueViewer"] = factory(require("viewerjs"));
+	else
+		root["VueViewer"] = factory(root["Viewer"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_viewerjs__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_viewerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_viewerjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_throttle_debounce__ = __webpack_require__(5);
+
+
+
+var install = function install(Vue, _ref) {
+  var _ref$name = _ref.name,
+      name = _ref$name === undefined ? 'viewer' : _ref$name,
+      _ref$debug = _ref.debug,
+      debug = _ref$debug === undefined ? false : _ref$debug;
+
+  function createViewer(el, options) {
+    Vue.nextTick(function () {
+      destroyViewer(el);
+      el['$' + name] = new __WEBPACK_IMPORTED_MODULE_0_viewerjs___default.a(el, options);
+      log('viewer created');
+    });
+  }
+
+  function createObserver(el, options, debouncedCreateViewer) {
+    destroyObserver(el);
+    var MutationObserver = global.MutationObserver || global.WebKitMutationObserver || global.MozMutationObserver;
+    if (!MutationObserver) {
+      log('observer not supported');
+      return;
+    }
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        log('viewer mutation:' + mutation.type);
+        debouncedCreateViewer(el, options);
+      });
+    });
+    var config = { attributes: true, childList: true, characterData: true, subtree: true };
+    observer.observe(el, config);
+    el['$viewerMutationObserver'] = observer;
+    log('observer created');
+  }
+
+  function createWatcher(el, _ref2, vnode, debouncedCreateViewer) {
+    var expression = _ref2.expression;
+
+    var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
+    if (!expression || !simplePathRE.test(expression)) {
+      log('only simple dot-delimited paths can create watcher');
+      return;
+    }
+    el['$viewerUnwatch'] = vnode.context.$watch(expression, function (newVal, oldVal) {
+      log('change detected by watcher: ', expression);
+      debouncedCreateViewer(el, newVal);
+    }, {
+      deep: true
+    });
+    log('watcher created, expression: ', expression);
+  }
+
+  function destroyViewer(el) {
+    if (!el['$' + name]) {
+      return;
+    }
+    el['$' + name].destroy();
+    delete el['$' + name];
+    log('viewer destroyed');
+  }
+
+  function destroyObserver(el) {
+    if (!el['$viewerMutationObserver']) {
+      return;
+    }
+    el['$viewerMutationObserver'].disconnect();
+    delete el['$viewerMutationObserver'];
+    log('observer destroyed');
+  }
+
+  function destroyWatcher(el) {
+    if (!el['$viewerUnwatch']) {
+      return;
+    }
+    el['$viewerUnwatch']();
+    delete el['$viewerUnwatch'];
+    log('watcher destroyed');
+  }
+
+  function log() {
+    var _console;
+
+    debug && (_console = console).log.apply(_console, arguments);
+  }
+
+  Vue.directive('viewer', {
+    bind: function bind(el, binding, vnode) {
+      log('viewer bind');
+      var debouncedCreateViewer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_throttle_debounce__["a" /* debounce */])(50, createViewer);
+      debouncedCreateViewer(el, binding.value);
+
+      createWatcher(el, binding, vnode, debouncedCreateViewer);
+
+      if (!binding.modifiers.static) {
+        createObserver(el, binding.value, debouncedCreateViewer);
+      }
+    },
+    unbind: function unbind(el, binding) {
+      log('viewer unbind');
+
+      destroyObserver(el);
+
+      destroyWatcher(el);
+
+      destroyViewer(el);
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  install: install
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(7)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = extend;
+
+function extend() {
+  var extended = {};
+  var deep = false;
+  var i = 0;
+  var length = arguments.length;
+
+  if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
+    deep = arguments[0];
+    i++;
+  }
+
+  function merge(obj) {
+    for (var prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+        if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+          extended[prop] = extend(true, extended[prop], obj[prop]);
+        } else {
+          extended[prop] = obj[prop];
+        }
+      }
+    }
+  }
+
+  for (; i < length; i++) {
+    var obj = arguments[i];
+    merge(obj);
+  }
+
+  return extended;
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(8)(
+  /* script */
+  __webpack_require__(6),
+  /* template */
+  __webpack_require__(9),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Workspaces\\Web\\Git\\v-viewer\\src\\component.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] component.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3091014c", Component.options)
+  } else {
+    hotAPI.reload("data-v-3091014c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__component_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directive__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_viewerjs__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_viewerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_viewerjs__);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  install: function install(Vue) {
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+        _ref$name = _ref.name,
+        name = _ref$name === undefined ? 'viewer' : _ref$name,
+        _ref$debug = _ref.debug,
+        debug = _ref$debug === undefined ? false : _ref$debug,
+        defaultOptions = _ref.defaultOptions;
+
+    __WEBPACK_IMPORTED_MODULE_3_viewerjs___default.a.setDefaults(defaultOptions);
+
+    Vue.component(name, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* extend */])(__WEBPACK_IMPORTED_MODULE_1__component_vue___default.a, { name: name }));
+    Vue.use(__WEBPACK_IMPORTED_MODULE_2__directive__["a" /* default */], { name: name, debug: debug });
+  },
+  setDefaults: function setDefaults(defaultOptions) {
+    __WEBPACK_IMPORTED_MODULE_3_viewerjs___default.a.setDefaults(defaultOptions);
+  }
+});
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export throttle */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return debounce; });
+
+function throttle(delay, noTrailing, callback, debounceMode) {
+	var timeoutID;
+
+	var lastExec = 0;
+
+	if (typeof noTrailing !== 'boolean') {
+		debounceMode = callback;
+		callback = noTrailing;
+		noTrailing = undefined;
+	}
+
+	function wrapper() {
+
+		var self = this;
+		var elapsed = Number(new Date()) - lastExec;
+		var args = arguments;
+
+		function exec() {
+			lastExec = Number(new Date());
+			callback.apply(self, args);
+		}
+
+		function clear() {
+			timeoutID = undefined;
+		}
+
+		if (debounceMode && !timeoutID) {
+			exec();
+		}
+
+		if (timeoutID) {
+			clearTimeout(timeoutID);
+		}
+
+		if (debounceMode === undefined && elapsed > delay) {
+			exec();
+		} else if (noTrailing !== true) {
+			timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay);
+		}
+	}
+
+	return wrapper;
+}
+
+function debounce(delay, atBegin, callback) {
+	return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false);
+}
+
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_viewerjs__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_viewerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_viewerjs__);
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    images: {
+      type: Array
+    },
+    trigger: {},
+    options: {
+      type: Object
+    }
+  },
+
+  data: function data() {
+    return {};
+  },
+
+
+  computed: {},
+
+  methods: {
+    createViewer: function createViewer() {
+      this.$viewer && this.$viewer.destroy();
+      this.$viewer = new __WEBPACK_IMPORTED_MODULE_0_viewerjs___default.a(this.$el, this.options);
+      this.$emit('inited', this.$viewer);
+    }
+  },
+
+  watch: {
+    images: function images() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        _this.createViewer();
+      });
+    },
+
+    trigger: {
+      handler: function handler() {
+        var _this2 = this;
+
+        this.$nextTick(function () {
+          _this2.createViewer();
+        });
+      },
+      deep: true
+    },
+    options: {
+      handler: function handler() {
+        var _this3 = this;
+
+        this.$nextTick(function () {
+          _this3.createViewer();
+        });
+      },
+      deep: true
+    }
+  },
+
+  mounted: function mounted() {
+    this.createViewer();
+  },
+  destroyed: function destroyed() {
+    this.$viewer && this.$viewer.destroy();
+  }
+});
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var g;
+
+g = function () {
+	return this;
+}();
+
+try {
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	if ((typeof window === "undefined" ? "undefined" : _typeof(window)) === "object") g = window;
+}
+
+module.exports = g;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = Object.create(options.computed || null)
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+    options.computed = computed
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_vm._t("default", null, {
+    images: _vm.images,
+    options: _vm.options
+  })], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3091014c", module.exports)
+  }
+}
+
+/***/ })
+/******/ ]);
+});
+
+/***/ }),
+/* 435 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/*!
+ * Viewer.js v1.3.2
+ * https://fengyuanchen.github.io/viewerjs
+ *
+ * Copyright 2015-present Chen Fengyuan
+ * Released under the MIT license
+ *
+ * Date: 2019-01-24T11:01:33.473Z
+ */
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+var DEFAULTS = {
+  /**
+   * Enable a modal backdrop, specify `static` for a backdrop
+   * which doesn't close the modal on click.
+   * @type {boolean}
+   */
+  backdrop: true,
+
+  /**
+   * Show the button on the top-right of the viewer.
+   * @type {boolean}
+   */
+  button: true,
+
+  /**
+   * Show the navbar.
+   * @type {boolean | number}
+   */
+  navbar: true,
+
+  /**
+   * Specify the visibility and the content of the title.
+   * @type {boolean | number | Function | Array}
+   */
+  title: true,
+
+  /**
+   * Show the toolbar.
+   * @type {boolean | number | Object}
+   */
+  toolbar: true,
+
+  /**
+   * Custom class name(s) to add to the viewer's root element.
+   * @type {string}
+   */
+  className: '',
+
+  /**
+   * Define where to put the viewer in modal mode.
+   * @type {string | Element}
+   */
+  container: 'body',
+
+  /**
+   * Filter the images for viewing. Return true if the image is viewable.
+   * @type {Function}
+   */
+  filter: null,
+
+  /**
+   * Enable to request fullscreen when play.
+   * @type {boolean}
+   */
+  fullscreen: true,
+
+  /**
+   * Define the initial index of image for viewing.
+   * @type {number}
+   */
+  initialViewIndex: 0,
+
+  /**
+   * Enable inline mode.
+   * @type {boolean}
+   */
+  inline: false,
+
+  /**
+   * The amount of time to delay between automatically cycling an image when playing.
+   * @type {number}
+   */
+  interval: 5000,
+
+  /**
+   * Enable keyboard support.
+   * @type {boolean}
+   */
+  keyboard: true,
+
+  /**
+   * Indicate if show a loading spinner when load image or not.
+   * @type {boolean}
+   */
+  loading: true,
+
+  /**
+   * Indicate if enable loop viewing or not.
+   * @type {boolean}
+   */
+  loop: true,
+
+  /**
+   * Min width of the viewer in inline mode.
+   * @type {number}
+   */
+  minWidth: 200,
+
+  /**
+   * Min height of the viewer in inline mode.
+   * @type {number}
+   */
+  minHeight: 100,
+
+  /**
+   * Enable to move the image.
+   * @type {boolean}
+   */
+  movable: true,
+
+  /**
+   * Enable to zoom the image.
+   * @type {boolean}
+   */
+  zoomable: true,
+
+  /**
+   * Enable to rotate the image.
+   * @type {boolean}
+   */
+  rotatable: true,
+
+  /**
+   * Enable to scale the image.
+   * @type {boolean}
+   */
+  scalable: true,
+
+  /**
+   * Indicate if toggle the image size between its natural size
+   * and initial size when double click on the image or not.
+   * @type {boolean}
+   */
+  toggleOnDblclick: true,
+
+  /**
+   * Show the tooltip with image ratio (percentage) when zoom in or zoom out.
+   * @type {boolean}
+   */
+  tooltip: true,
+
+  /**
+   * Enable CSS3 Transition for some special elements.
+   * @type {boolean}
+   */
+  transition: true,
+
+  /**
+   * Define the CSS `z-index` value of viewer in modal mode.
+   * @type {number}
+   */
+  zIndex: 2015,
+
+  /**
+   * Define the CSS `z-index` value of viewer in inline mode.
+   * @type {number}
+   */
+  zIndexInline: 0,
+
+  /**
+   * Define the ratio when zoom the image by wheeling mouse.
+   * @type {number}
+   */
+  zoomRatio: 0.1,
+
+  /**
+   * Define the min ratio of the image when zoom out.
+   * @type {number}
+   */
+  minZoomRatio: 0.01,
+
+  /**
+   * Define the max ratio of the image when zoom in.
+   * @type {number}
+   */
+  maxZoomRatio: 100,
+
+  /**
+   * Define where to get the original image URL for viewing.
+   * @type {string | Function}
+   */
+  url: 'src',
+
+  /**
+   * Event shortcuts.
+   * @type {Function}
+   */
+  ready: null,
+  show: null,
+  shown: null,
+  hide: null,
+  hidden: null,
+  view: null,
+  viewed: null,
+  zoom: null,
+  zoomed: null
+};
+
+var TEMPLATE = '<div class="viewer-container" touch-action="none">' + '<div class="viewer-canvas"></div>' + '<div class="viewer-footer">' + '<div class="viewer-title"></div>' + '<div class="viewer-toolbar"></div>' + '<div class="viewer-navbar">' + '<ul class="viewer-list"></ul>' + '</div>' + '</div>' + '<div class="viewer-tooltip"></div>' + '<div role="button" class="viewer-button" data-viewer-action="mix"></div>' + '<div class="viewer-player"></div>' + '</div>';
+
+var IS_BROWSER = typeof window !== 'undefined';
+var WINDOW = IS_BROWSER ? window : {};
+var IS_TOUCH_DEVICE = IS_BROWSER ? 'ontouchstart' in WINDOW.document.documentElement : false;
+var HAS_POINTER_EVENT = IS_BROWSER ? 'PointerEvent' in WINDOW : false;
+var NAMESPACE = 'viewer'; // Actions
+
+var ACTION_MOVE = 'move';
+var ACTION_SWITCH = 'switch';
+var ACTION_ZOOM = 'zoom'; // Classes
+
+var CLASS_ACTIVE = "".concat(NAMESPACE, "-active");
+var CLASS_CLOSE = "".concat(NAMESPACE, "-close");
+var CLASS_FADE = "".concat(NAMESPACE, "-fade");
+var CLASS_FIXED = "".concat(NAMESPACE, "-fixed");
+var CLASS_FULLSCREEN = "".concat(NAMESPACE, "-fullscreen");
+var CLASS_FULLSCREEN_EXIT = "".concat(NAMESPACE, "-fullscreen-exit");
+var CLASS_HIDE = "".concat(NAMESPACE, "-hide");
+var CLASS_HIDE_MD_DOWN = "".concat(NAMESPACE, "-hide-md-down");
+var CLASS_HIDE_SM_DOWN = "".concat(NAMESPACE, "-hide-sm-down");
+var CLASS_HIDE_XS_DOWN = "".concat(NAMESPACE, "-hide-xs-down");
+var CLASS_IN = "".concat(NAMESPACE, "-in");
+var CLASS_INVISIBLE = "".concat(NAMESPACE, "-invisible");
+var CLASS_LOADING = "".concat(NAMESPACE, "-loading");
+var CLASS_MOVE = "".concat(NAMESPACE, "-move");
+var CLASS_OPEN = "".concat(NAMESPACE, "-open");
+var CLASS_SHOW = "".concat(NAMESPACE, "-show");
+var CLASS_TRANSITION = "".concat(NAMESPACE, "-transition"); // Events
+
+var EVENT_CLICK = 'click';
+var EVENT_DBLCLICK = 'dblclick';
+var EVENT_DRAG_START = 'dragstart';
+var EVENT_HIDDEN = 'hidden';
+var EVENT_HIDE = 'hide';
+var EVENT_KEY_DOWN = 'keydown';
+var EVENT_LOAD = 'load';
+var EVENT_TOUCH_START = IS_TOUCH_DEVICE ? 'touchstart' : 'mousedown';
+var EVENT_TOUCH_MOVE = IS_TOUCH_DEVICE ? 'touchmove' : 'mousemove';
+var EVENT_TOUCH_END = IS_TOUCH_DEVICE ? 'touchend touchcancel' : 'mouseup';
+var EVENT_POINTER_DOWN = HAS_POINTER_EVENT ? 'pointerdown' : EVENT_TOUCH_START;
+var EVENT_POINTER_MOVE = HAS_POINTER_EVENT ? 'pointermove' : EVENT_TOUCH_MOVE;
+var EVENT_POINTER_UP = HAS_POINTER_EVENT ? 'pointerup pointercancel' : EVENT_TOUCH_END;
+var EVENT_READY = 'ready';
+var EVENT_RESIZE = 'resize';
+var EVENT_SHOW = 'show';
+var EVENT_SHOWN = 'shown';
+var EVENT_TRANSITION_END = 'transitionend';
+var EVENT_VIEW = 'view';
+var EVENT_VIEWED = 'viewed';
+var EVENT_WHEEL = 'wheel';
+var EVENT_ZOOM = 'zoom';
+var EVENT_ZOOMED = 'zoomed'; // Data keys
+
+var DATA_ACTION = "".concat(NAMESPACE, "Action"); // RegExps
+
+var REGEXP_SPACES = /\s\s*/; // Misc
+
+var BUTTONS = ['zoom-in', 'zoom-out', 'one-to-one', 'reset', 'prev', 'play', 'next', 'rotate-left', 'rotate-right', 'flip-horizontal', 'flip-vertical'];
+
+/**
+ * Check if the given value is a string.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns `true` if the given value is a string, else `false`.
+ */
+
+function isString(value) {
+  return typeof value === 'string';
+}
+/**
+ * Check if the given value is not a number.
+ */
+
+var isNaN = Number.isNaN || WINDOW.isNaN;
+/**
+ * Check if the given value is a number.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns `true` if the given value is a number, else `false`.
+ */
+
+function isNumber(value) {
+  return typeof value === 'number' && !isNaN(value);
+}
+/**
+ * Check if the given value is undefined.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns `true` if the given value is undefined, else `false`.
+ */
+
+function isUndefined(value) {
+  return typeof value === 'undefined';
+}
+/**
+ * Check if the given value is an object.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns `true` if the given value is an object, else `false`.
+ */
+
+function isObject(value) {
+  return _typeof(value) === 'object' && value !== null;
+}
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+/**
+ * Check if the given value is a plain object.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns `true` if the given value is a plain object, else `false`.
+ */
+
+function isPlainObject(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+
+  try {
+    var _constructor = value.constructor;
+    var prototype = _constructor.prototype;
+    return _constructor && prototype && hasOwnProperty.call(prototype, 'isPrototypeOf');
+  } catch (error) {
+    return false;
+  }
+}
+/**
+ * Check if the given value is a function.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns `true` if the given value is a function, else `false`.
+ */
+
+function isFunction(value) {
+  return typeof value === 'function';
+}
+/**
+ * Iterate the given data.
+ * @param {*} data - The data to iterate.
+ * @param {Function} callback - The process function for each element.
+ * @returns {*} The original data.
+ */
+
+function forEach(data, callback) {
+  if (data && isFunction(callback)) {
+    if (Array.isArray(data) || isNumber(data.length)
+    /* array-like */
+    ) {
+        var length = data.length;
+        var i;
+
+        for (i = 0; i < length; i += 1) {
+          if (callback.call(data, data[i], i, data) === false) {
+            break;
+          }
+        }
+      } else if (isObject(data)) {
+      Object.keys(data).forEach(function (key) {
+        callback.call(data, data[key], key, data);
+      });
+    }
+  }
+
+  return data;
+}
+/**
+ * Extend the given object.
+ * @param {*} obj - The object to be extended.
+ * @param {*} args - The rest objects which will be merged to the first object.
+ * @returns {Object} The extended object.
+ */
+
+var assign = Object.assign || function assign(obj) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  if (isObject(obj) && args.length > 0) {
+    args.forEach(function (arg) {
+      if (isObject(arg)) {
+        Object.keys(arg).forEach(function (key) {
+          obj[key] = arg[key];
+        });
+      }
+    });
+  }
+
+  return obj;
+};
+var REGEXP_SUFFIX = /^(?:width|height|left|top|marginLeft|marginTop)$/;
+/**
+ * Apply styles to the given element.
+ * @param {Element} element - The target element.
+ * @param {Object} styles - The styles for applying.
+ */
+
+function setStyle(element, styles) {
+  var style = element.style;
+  forEach(styles, function (value, property) {
+    if (REGEXP_SUFFIX.test(property) && isNumber(value)) {
+      value += 'px';
+    }
+
+    style[property] = value;
+  });
+}
+/**
+ * Check if the given element has a special class.
+ * @param {Element} element - The element to check.
+ * @param {string} value - The class to search.
+ * @returns {boolean} Returns `true` if the special class was found.
+ */
+
+function hasClass(element, value) {
+  return element.classList ? element.classList.contains(value) : element.className.indexOf(value) > -1;
+}
+/**
+ * Add classes to the given element.
+ * @param {Element} element - The target element.
+ * @param {string} value - The classes to be added.
+ */
+
+function addClass(element, value) {
+  if (!value) {
+    return;
+  }
+
+  if (isNumber(element.length)) {
+    forEach(element, function (elem) {
+      addClass(elem, value);
+    });
+    return;
+  }
+
+  if (element.classList) {
+    element.classList.add(value);
+    return;
+  }
+
+  var className = element.className.trim();
+
+  if (!className) {
+    element.className = value;
+  } else if (className.indexOf(value) < 0) {
+    element.className = "".concat(className, " ").concat(value);
+  }
+}
+/**
+ * Remove classes from the given element.
+ * @param {Element} element - The target element.
+ * @param {string} value - The classes to be removed.
+ */
+
+function removeClass(element, value) {
+  if (!value) {
+    return;
+  }
+
+  if (isNumber(element.length)) {
+    forEach(element, function (elem) {
+      removeClass(elem, value);
+    });
+    return;
+  }
+
+  if (element.classList) {
+    element.classList.remove(value);
+    return;
+  }
+
+  if (element.className.indexOf(value) >= 0) {
+    element.className = element.className.replace(value, '');
+  }
+}
+/**
+ * Add or remove classes from the given element.
+ * @param {Element} element - The target element.
+ * @param {string} value - The classes to be toggled.
+ * @param {boolean} added - Add only.
+ */
+
+function toggleClass(element, value, added) {
+  if (!value) {
+    return;
+  }
+
+  if (isNumber(element.length)) {
+    forEach(element, function (elem) {
+      toggleClass(elem, value, added);
+    });
+    return;
+  } // IE10-11 doesn't support the second parameter of `classList.toggle`
+
+
+  if (added) {
+    addClass(element, value);
+  } else {
+    removeClass(element, value);
+  }
+}
+var REGEXP_HYPHENATE = /([a-z\d])([A-Z])/g;
+/**
+ * Transform the given string from camelCase to kebab-case
+ * @param {string} value - The value to transform.
+ * @returns {string} The transformed value.
+ */
+
+function hyphenate(value) {
+  return value.replace(REGEXP_HYPHENATE, '$1-$2').toLowerCase();
+}
+/**
+ * Get data from the given element.
+ * @param {Element} element - The target element.
+ * @param {string} name - The data key to get.
+ * @returns {string} The data value.
+ */
+
+function getData(element, name) {
+  if (isObject(element[name])) {
+    return element[name];
+  }
+
+  if (element.dataset) {
+    return element.dataset[name];
+  }
+
+  return element.getAttribute("data-".concat(hyphenate(name)));
+}
+/**
+ * Set data to the given element.
+ * @param {Element} element - The target element.
+ * @param {string} name - The data key to set.
+ * @param {string} data - The data value.
+ */
+
+function setData(element, name, data) {
+  if (isObject(data)) {
+    element[name] = data;
+  } else if (element.dataset) {
+    element.dataset[name] = data;
+  } else {
+    element.setAttribute("data-".concat(hyphenate(name)), data);
+  }
+}
+
+var onceSupported = function () {
+  var supported = false;
+
+  if (IS_BROWSER) {
+    var once = false;
+
+    var listener = function listener() {};
+
+    var options = Object.defineProperty({}, 'once', {
+      get: function get() {
+        supported = true;
+        return once;
+      },
+
+      /**
+       * This setter can fix a `TypeError` in strict mode
+       * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Getter_only}
+       * @param {boolean} value - The value to set
+       */
+      set: function set(value) {
+        once = value;
+      }
+    });
+    WINDOW.addEventListener('test', listener, options);
+    WINDOW.removeEventListener('test', listener, options);
+  }
+
+  return supported;
+}();
+/**
+ * Remove event listener from the target element.
+ * @param {Element} element - The event target.
+ * @param {string} type - The event type(s).
+ * @param {Function} listener - The event listener.
+ * @param {Object} options - The event options.
+ */
+
+
+function removeListener(element, type, listener) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var handler = listener;
+  type.trim().split(REGEXP_SPACES).forEach(function (event) {
+    if (!onceSupported) {
+      var listeners = element.listeners;
+
+      if (listeners && listeners[event] && listeners[event][listener]) {
+        handler = listeners[event][listener];
+        delete listeners[event][listener];
+
+        if (Object.keys(listeners[event]).length === 0) {
+          delete listeners[event];
+        }
+
+        if (Object.keys(listeners).length === 0) {
+          delete element.listeners;
+        }
+      }
+    }
+
+    element.removeEventListener(event, handler, options);
+  });
+}
+/**
+ * Add event listener to the target element.
+ * @param {Element} element - The event target.
+ * @param {string} type - The event type(s).
+ * @param {Function} listener - The event listener.
+ * @param {Object} options - The event options.
+ */
+
+function addListener(element, type, listener) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var _handler = listener;
+  type.trim().split(REGEXP_SPACES).forEach(function (event) {
+    if (options.once && !onceSupported) {
+      var _element$listeners = element.listeners,
+          listeners = _element$listeners === void 0 ? {} : _element$listeners;
+
+      _handler = function handler() {
+        delete listeners[event][listener];
+        element.removeEventListener(event, _handler, options);
+
+        for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+          args[_key2] = arguments[_key2];
+        }
+
+        listener.apply(element, args);
+      };
+
+      if (!listeners[event]) {
+        listeners[event] = {};
+      }
+
+      if (listeners[event][listener]) {
+        element.removeEventListener(event, listeners[event][listener], options);
+      }
+
+      listeners[event][listener] = _handler;
+      element.listeners = listeners;
+    }
+
+    element.addEventListener(event, _handler, options);
+  });
+}
+/**
+ * Dispatch event on the target element.
+ * @param {Element} element - The event target.
+ * @param {string} type - The event type(s).
+ * @param {Object} data - The additional event data.
+ * @returns {boolean} Indicate if the event is default prevented or not.
+ */
+
+function dispatchEvent(element, type, data) {
+  var event; // Event and CustomEvent on IE9-11 are global objects, not constructors
+
+  if (isFunction(Event) && isFunction(CustomEvent)) {
+    event = new CustomEvent(type, {
+      detail: data,
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    event = document.createEvent('CustomEvent');
+    event.initCustomEvent(type, true, true, data);
+  }
+
+  return element.dispatchEvent(event);
+}
+/**
+ * Get the offset base on the document.
+ * @param {Element} element - The target element.
+ * @returns {Object} The offset data.
+ */
+
+function getOffset(element) {
+  var box = element.getBoundingClientRect();
+  return {
+    left: box.left + (window.pageXOffset - document.documentElement.clientLeft),
+    top: box.top + (window.pageYOffset - document.documentElement.clientTop)
+  };
+}
+/**
+ * Get transforms base on the given object.
+ * @param {Object} obj - The target object.
+ * @returns {string} A string contains transform values.
+ */
+
+function getTransforms(_ref) {
+  var rotate = _ref.rotate,
+      scaleX = _ref.scaleX,
+      scaleY = _ref.scaleY,
+      translateX = _ref.translateX,
+      translateY = _ref.translateY;
+  var values = [];
+
+  if (isNumber(translateX) && translateX !== 0) {
+    values.push("translateX(".concat(translateX, "px)"));
+  }
+
+  if (isNumber(translateY) && translateY !== 0) {
+    values.push("translateY(".concat(translateY, "px)"));
+  } // Rotate should come first before scale to match orientation transform
+
+
+  if (isNumber(rotate) && rotate !== 0) {
+    values.push("rotate(".concat(rotate, "deg)"));
+  }
+
+  if (isNumber(scaleX) && scaleX !== 1) {
+    values.push("scaleX(".concat(scaleX, ")"));
+  }
+
+  if (isNumber(scaleY) && scaleY !== 1) {
+    values.push("scaleY(".concat(scaleY, ")"));
+  }
+
+  var transform = values.length ? values.join(' ') : 'none';
+  return {
+    WebkitTransform: transform,
+    msTransform: transform,
+    transform: transform
+  };
+}
+/**
+ * Get an image name from an image url.
+ * @param {string} url - The target url.
+ * @example
+ * // picture.jpg
+ * getImageNameFromURL('http://domain.com/path/to/picture.jpg?size=1280×960')
+ * @returns {string} A string contains the image name.
+ */
+
+function getImageNameFromURL(url) {
+  return isString(url) ? url.replace(/^.*\//, '').replace(/[?&#].*$/, '') : '';
+}
+var IS_SAFARI = WINDOW.navigator && /(Macintosh|iPhone|iPod|iPad).*AppleWebKit/i.test(WINDOW.navigator.userAgent);
+/**
+ * Get an image's natural sizes.
+ * @param {string} image - The target image.
+ * @param {Function} callback - The callback function.
+ * @returns {HTMLImageElement} The new image.
+ */
+
+function getImageNaturalSizes(image, callback) {
+  var newImage = document.createElement('img'); // Modern browsers (except Safari)
+
+  if (image.naturalWidth && !IS_SAFARI) {
+    callback(image.naturalWidth, image.naturalHeight);
+    return newImage;
+  }
+
+  var body = document.body || document.documentElement;
+
+  newImage.onload = function () {
+    callback(newImage.width, newImage.height);
+
+    if (!IS_SAFARI) {
+      body.removeChild(newImage);
+    }
+  };
+
+  newImage.src = image.src; // iOS Safari will convert the image automatically
+  // with its orientation once append it into DOM
+
+  if (!IS_SAFARI) {
+    newImage.style.cssText = 'left:0;' + 'max-height:none!important;' + 'max-width:none!important;' + 'min-height:0!important;' + 'min-width:0!important;' + 'opacity:0;' + 'position:absolute;' + 'top:0;' + 'z-index:-1;';
+    body.appendChild(newImage);
+  }
+
+  return newImage;
+}
+/**
+ * Get the related class name of a responsive type number.
+ * @param {string} type - The responsive type.
+ * @returns {string} The related class name.
+ */
+
+function getResponsiveClass(type) {
+  switch (type) {
+    case 2:
+      return CLASS_HIDE_XS_DOWN;
+
+    case 3:
+      return CLASS_HIDE_SM_DOWN;
+
+    case 4:
+      return CLASS_HIDE_MD_DOWN;
+
+    default:
+      return '';
+  }
+}
+/**
+ * Get the max ratio of a group of pointers.
+ * @param {string} pointers - The target pointers.
+ * @returns {number} The result ratio.
+ */
+
+function getMaxZoomRatio(pointers) {
+  var pointers2 = assign({}, pointers);
+  var ratios = [];
+  forEach(pointers, function (pointer, pointerId) {
+    delete pointers2[pointerId];
+    forEach(pointers2, function (pointer2) {
+      var x1 = Math.abs(pointer.startX - pointer2.startX);
+      var y1 = Math.abs(pointer.startY - pointer2.startY);
+      var x2 = Math.abs(pointer.endX - pointer2.endX);
+      var y2 = Math.abs(pointer.endY - pointer2.endY);
+      var z1 = Math.sqrt(x1 * x1 + y1 * y1);
+      var z2 = Math.sqrt(x2 * x2 + y2 * y2);
+      var ratio = (z2 - z1) / z1;
+      ratios.push(ratio);
+    });
+  });
+  ratios.sort(function (a, b) {
+    return Math.abs(a) < Math.abs(b);
+  });
+  return ratios[0];
+}
+/**
+ * Get a pointer from an event object.
+ * @param {Object} event - The target event object.
+ * @param {boolean} endOnly - Indicates if only returns the end point coordinate or not.
+ * @returns {Object} The result pointer contains start and/or end point coordinates.
+ */
+
+function getPointer(_ref2, endOnly) {
+  var pageX = _ref2.pageX,
+      pageY = _ref2.pageY;
+  var end = {
+    endX: pageX,
+    endY: pageY
+  };
+  return endOnly ? end : assign({
+    timeStamp: Date.now(),
+    startX: pageX,
+    startY: pageY
+  }, end);
+}
+/**
+ * Get the center point coordinate of a group of pointers.
+ * @param {Object} pointers - The target pointers.
+ * @returns {Object} The center point coordinate.
+ */
+
+function getPointersCenter(pointers) {
+  var pageX = 0;
+  var pageY = 0;
+  var count = 0;
+  forEach(pointers, function (_ref3) {
+    var startX = _ref3.startX,
+        startY = _ref3.startY;
+    pageX += startX;
+    pageY += startY;
+    count += 1;
+  });
+  pageX /= count;
+  pageY /= count;
+  return {
+    pageX: pageX,
+    pageY: pageY
+  };
+}
+
+var render = {
+  render: function render() {
+    this.initContainer();
+    this.initViewer();
+    this.initList();
+    this.renderViewer();
+  },
+  initContainer: function initContainer() {
+    this.containerData = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  },
+  initViewer: function initViewer() {
+    var options = this.options,
+        parent = this.parent;
+    var viewerData;
+
+    if (options.inline) {
+      viewerData = {
+        width: Math.max(parent.offsetWidth, options.minWidth),
+        height: Math.max(parent.offsetHeight, options.minHeight)
+      };
+      this.parentData = viewerData;
+    }
+
+    if (this.fulled || !viewerData) {
+      viewerData = this.containerData;
+    }
+
+    this.viewerData = assign({}, viewerData);
+  },
+  renderViewer: function renderViewer() {
+    if (this.options.inline && !this.fulled) {
+      setStyle(this.viewer, this.viewerData);
+    }
+  },
+  initList: function initList() {
+    var _this = this;
+
+    var element = this.element,
+        options = this.options,
+        list = this.list;
+    var items = [];
+    forEach(this.images, function (image, i) {
+      var src = image.src;
+      var alt = image.alt || getImageNameFromURL(src);
+      var url = options.url;
+
+      if (isString(url)) {
+        url = image.getAttribute(url);
+      } else if (isFunction(url)) {
+        url = url.call(_this, image);
+      }
+
+      if (src || url) {
+        items.push('<li>' + '<img' + " src=\"".concat(src || url, "\"") + ' role="button"' + ' data-viewer-action="view"' + " data-index=\"".concat(i, "\"") + " data-original-url=\"".concat(url || src, "\"") + " alt=\"".concat(alt, "\"") + '>' + '</li>');
+      }
+    });
+    list.innerHTML = items.join('');
+    this.items = list.getElementsByTagName('li');
+    forEach(this.items, function (item) {
+      var image = item.firstElementChild;
+      setData(image, 'filled', true);
+
+      if (options.loading) {
+        addClass(item, CLASS_LOADING);
+      }
+
+      addListener(image, EVENT_LOAD, function (event) {
+        if (options.loading) {
+          removeClass(item, CLASS_LOADING);
+        }
+
+        _this.loadImage(event);
+      }, {
+        once: true
+      });
+    });
+
+    if (options.transition) {
+      addListener(element, EVENT_VIEWED, function () {
+        addClass(list, CLASS_TRANSITION);
+      }, {
+        once: true
+      });
+    }
+  },
+  renderList: function renderList(index) {
+    var i = index || this.index;
+    var width = this.items[i].offsetWidth || 30;
+    var outerWidth = width + 1; // 1 pixel of `margin-left` width
+    // Place the active item in the center of the screen
+
+    setStyle(this.list, assign({
+      width: outerWidth * this.length
+    }, getTransforms({
+      translateX: (this.viewerData.width - width) / 2 - outerWidth * i
+    })));
+  },
+  resetList: function resetList() {
+    var list = this.list;
+    list.innerHTML = '';
+    removeClass(list, CLASS_TRANSITION);
+    setStyle(list, getTransforms({
+      translateX: 0
+    }));
+  },
+  initImage: function initImage(done) {
+    var _this2 = this;
+
+    var options = this.options,
+        image = this.image,
+        viewerData = this.viewerData;
+    var footerHeight = this.footer.offsetHeight;
+    var viewerWidth = viewerData.width;
+    var viewerHeight = Math.max(viewerData.height - footerHeight, footerHeight);
+    var oldImageData = this.imageData || {};
+    var sizingImage;
+    this.imageInitializing = {
+      abort: function abort() {
+        sizingImage.onload = null;
+      }
+    };
+    sizingImage = getImageNaturalSizes(image, function (naturalWidth, naturalHeight) {
+      var aspectRatio = naturalWidth / naturalHeight;
+      var width = viewerWidth;
+      var height = viewerHeight;
+      _this2.imageInitializing = false;
+
+      if (viewerHeight * aspectRatio > viewerWidth) {
+        height = viewerWidth / aspectRatio;
+      } else {
+        width = viewerHeight * aspectRatio;
+      }
+
+      width = Math.min(width * 0.9, naturalWidth);
+      height = Math.min(height * 0.9, naturalHeight);
+      var imageData = {
+        naturalWidth: naturalWidth,
+        naturalHeight: naturalHeight,
+        aspectRatio: aspectRatio,
+        ratio: width / naturalWidth,
+        width: width,
+        height: height,
+        left: (viewerWidth - width) / 2,
+        top: (viewerHeight - height) / 2
+      };
+      var initialImageData = assign({}, imageData);
+
+      if (options.rotatable) {
+        imageData.rotate = oldImageData.rotate || 0;
+        initialImageData.rotate = 0;
+      }
+
+      if (options.scalable) {
+        imageData.scaleX = oldImageData.scaleX || 1;
+        imageData.scaleY = oldImageData.scaleY || 1;
+        initialImageData.scaleX = 1;
+        initialImageData.scaleY = 1;
+      }
+
+      _this2.imageData = imageData;
+      _this2.initialImageData = initialImageData;
+
+      if (done) {
+        done();
+      }
+    });
+  },
+  renderImage: function renderImage(done) {
+    var _this3 = this;
+
+    var image = this.image,
+        imageData = this.imageData;
+    setStyle(image, assign({
+      width: imageData.width,
+      height: imageData.height,
+      // XXX: Not to use translateX/Y to avoid image shaking when zooming
+      marginLeft: imageData.left,
+      marginTop: imageData.top
+    }, getTransforms(imageData)));
+
+    if (done) {
+      if ((this.viewing || this.zooming) && this.options.transition) {
+        var onTransitionEnd = function onTransitionEnd() {
+          _this3.imageRendering = false;
+          done();
+        };
+
+        this.imageRendering = {
+          abort: function abort() {
+            removeListener(image, EVENT_TRANSITION_END, onTransitionEnd);
+          }
+        };
+        addListener(image, EVENT_TRANSITION_END, onTransitionEnd, {
+          once: true
+        });
+      } else {
+        done();
+      }
+    }
+  },
+  resetImage: function resetImage() {
+    // this.image only defined after viewed
+    if (this.viewing || this.viewed) {
+      var image = this.image;
+
+      if (this.viewing) {
+        this.viewing.abort();
+      }
+
+      image.parentNode.removeChild(image);
+      this.image = null;
+    }
+  }
+};
+
+var events = {
+  bind: function bind() {
+    var options = this.options,
+        viewer = this.viewer,
+        canvas = this.canvas;
+    var document = this.element.ownerDocument;
+    addListener(viewer, EVENT_CLICK, this.onClick = this.click.bind(this));
+    addListener(viewer, EVENT_WHEEL, this.onWheel = this.wheel.bind(this), {
+      passive: false,
+      capture: true
+    });
+    addListener(viewer, EVENT_DRAG_START, this.onDragStart = this.dragstart.bind(this));
+    addListener(canvas, EVENT_POINTER_DOWN, this.onPointerDown = this.pointerdown.bind(this));
+    addListener(document, EVENT_POINTER_MOVE, this.onPointerMove = this.pointermove.bind(this));
+    addListener(document, EVENT_POINTER_UP, this.onPointerUp = this.pointerup.bind(this));
+    addListener(document, EVENT_KEY_DOWN, this.onKeyDown = this.keydown.bind(this));
+    addListener(window, EVENT_RESIZE, this.onResize = this.resize.bind(this));
+
+    if (options.toggleOnDblclick) {
+      addListener(canvas, EVENT_DBLCLICK, this.onDblclick = this.dblclick.bind(this));
+    }
+  },
+  unbind: function unbind() {
+    var options = this.options,
+        viewer = this.viewer,
+        canvas = this.canvas;
+    var document = this.element.ownerDocument;
+    removeListener(viewer, EVENT_CLICK, this.onClick);
+    removeListener(viewer, EVENT_WHEEL, this.onWheel, {
+      passive: false,
+      capture: true
+    });
+    removeListener(viewer, EVENT_DRAG_START, this.onDragStart);
+    removeListener(canvas, EVENT_POINTER_DOWN, this.onPointerDown);
+    removeListener(document, EVENT_POINTER_MOVE, this.onPointerMove);
+    removeListener(document, EVENT_POINTER_UP, this.onPointerUp);
+    removeListener(document, EVENT_KEY_DOWN, this.onKeyDown);
+    removeListener(window, EVENT_RESIZE, this.onResize);
+
+    if (options.toggleOnDblclick) {
+      removeListener(canvas, EVENT_DBLCLICK, this.onDblclick);
+    }
+  }
+};
+
+var handlers = {
+  click: function click(event) {
+    var target = event.target;
+    var options = this.options,
+        imageData = this.imageData;
+    var action = getData(target, DATA_ACTION); // Cancel the emulated click when the native click event was triggered.
+
+    if (IS_TOUCH_DEVICE && event.isTrusted && target === this.canvas) {
+      clearTimeout(this.clickCanvasTimeout);
+    }
+
+    switch (action) {
+      case 'mix':
+        if (this.played) {
+          this.stop();
+        } else if (options.inline) {
+          if (this.fulled) {
+            this.exit();
+          } else {
+            this.full();
+          }
+        } else {
+          this.hide();
+        }
+
+        break;
+
+      case 'hide':
+        this.hide();
+        break;
+
+      case 'view':
+        this.view(getData(target, 'index'));
+        break;
+
+      case 'zoom-in':
+        this.zoom(0.1, true);
+        break;
+
+      case 'zoom-out':
+        this.zoom(-0.1, true);
+        break;
+
+      case 'one-to-one':
+        this.toggle();
+        break;
+
+      case 'reset':
+        this.reset();
+        break;
+
+      case 'prev':
+        this.prev(options.loop);
+        break;
+
+      case 'play':
+        this.play(options.fullscreen);
+        break;
+
+      case 'next':
+        this.next(options.loop);
+        break;
+
+      case 'rotate-left':
+        this.rotate(-90);
+        break;
+
+      case 'rotate-right':
+        this.rotate(90);
+        break;
+
+      case 'flip-horizontal':
+        this.scaleX(-imageData.scaleX || -1);
+        break;
+
+      case 'flip-vertical':
+        this.scaleY(-imageData.scaleY || -1);
+        break;
+
+      default:
+        if (this.played) {
+          this.stop();
+        }
+
+    }
+  },
+  dblclick: function dblclick(event) {
+    event.preventDefault();
+
+    if (this.viewed && event.target === this.image) {
+      // Cancel the emulated double click when the native dblclick event was triggered.
+      if (IS_TOUCH_DEVICE && event.isTrusted) {
+        clearTimeout(this.doubleClickImageTimeout);
+      }
+
+      this.toggle();
+    }
+  },
+  load: function load() {
+    var _this = this;
+
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = false;
+    }
+
+    var element = this.element,
+        options = this.options,
+        image = this.image,
+        index = this.index,
+        viewerData = this.viewerData;
+    removeClass(image, CLASS_INVISIBLE);
+
+    if (options.loading) {
+      removeClass(this.canvas, CLASS_LOADING);
+    }
+
+    image.style.cssText = 'height:0;' + "margin-left:".concat(viewerData.width / 2, "px;") + "margin-top:".concat(viewerData.height / 2, "px;") + 'max-width:none!important;' + 'position:absolute;' + 'width:0;';
+    this.initImage(function () {
+      toggleClass(image, CLASS_MOVE, options.movable);
+      toggleClass(image, CLASS_TRANSITION, options.transition);
+
+      _this.renderImage(function () {
+        _this.viewed = true;
+        _this.viewing = false;
+
+        if (isFunction(options.viewed)) {
+          addListener(element, EVENT_VIEWED, options.viewed, {
+            once: true
+          });
+        }
+
+        dispatchEvent(element, EVENT_VIEWED, {
+          originalImage: _this.images[index],
+          index: index,
+          image: image
+        });
+      });
+    });
+  },
+  loadImage: function loadImage(event) {
+    var image = event.target;
+    var parent = image.parentNode;
+    var parentWidth = parent.offsetWidth || 30;
+    var parentHeight = parent.offsetHeight || 50;
+    var filled = !!getData(image, 'filled');
+    getImageNaturalSizes(image, function (naturalWidth, naturalHeight) {
+      var aspectRatio = naturalWidth / naturalHeight;
+      var width = parentWidth;
+      var height = parentHeight;
+
+      if (parentHeight * aspectRatio > parentWidth) {
+        if (filled) {
+          width = parentHeight * aspectRatio;
+        } else {
+          height = parentWidth / aspectRatio;
+        }
+      } else if (filled) {
+        height = parentWidth / aspectRatio;
+      } else {
+        width = parentHeight * aspectRatio;
+      }
+
+      setStyle(image, assign({
+        width: width,
+        height: height
+      }, getTransforms({
+        translateX: (parentWidth - width) / 2,
+        translateY: (parentHeight - height) / 2
+      })));
+    });
+  },
+  keydown: function keydown(event) {
+    var options = this.options;
+
+    if (!this.fulled || !options.keyboard) {
+      return;
+    }
+
+    switch (event.keyCode || event.which || event.charCode) {
+      // Escape
+      case 27:
+        if (this.played) {
+          this.stop();
+        } else if (options.inline) {
+          if (this.fulled) {
+            this.exit();
+          }
+        } else {
+          this.hide();
+        }
+
+        break;
+      // Space
+
+      case 32:
+        if (this.played) {
+          this.stop();
+        }
+
+        break;
+      // ArrowLeft
+
+      case 37:
+        this.prev(options.loop);
+        break;
+      // ArrowUp
+
+      case 38:
+        // Prevent scroll on Firefox
+        event.preventDefault(); // Zoom in
+
+        this.zoom(options.zoomRatio, true);
+        break;
+      // ArrowRight
+
+      case 39:
+        this.next(options.loop);
+        break;
+      // ArrowDown
+
+      case 40:
+        // Prevent scroll on Firefox
+        event.preventDefault(); // Zoom out
+
+        this.zoom(-options.zoomRatio, true);
+        break;
+      // Ctrl + 0
+
+      case 48: // Fall through
+      // Ctrl + 1
+      // eslint-disable-next-line no-fallthrough
+
+      case 49:
+        if (event.ctrlKey) {
+          event.preventDefault();
+          this.toggle();
+        }
+
+        break;
+
+      default:
+    }
+  },
+  dragstart: function dragstart(event) {
+    if (event.target.tagName.toLowerCase() === 'img') {
+      event.preventDefault();
+    }
+  },
+  pointerdown: function pointerdown(event) {
+    var options = this.options,
+        pointers = this.pointers;
+    var buttons = event.buttons,
+        button = event.button;
+
+    if (!this.viewed || this.showing || this.viewing || this.hiding // No primary button (Usually the left button)
+    // Note that touch events have no `buttons` or `button` property
+    || isNumber(buttons) && buttons !== 1 || isNumber(button) && button !== 0 // Open context menu
+    || event.ctrlKey) {
+      return;
+    } // Prevent default behaviours as page zooming in touch devices.
+
+
+    event.preventDefault();
+
+    if (event.changedTouches) {
+      forEach(event.changedTouches, function (touch) {
+        pointers[touch.identifier] = getPointer(touch);
+      });
+    } else {
+      pointers[event.pointerId || 0] = getPointer(event);
+    }
+
+    var action = options.movable ? ACTION_MOVE : false;
+
+    if (Object.keys(pointers).length > 1) {
+      action = ACTION_ZOOM;
+    } else if ((event.pointerType === 'touch' || event.type === 'touchstart') && this.isSwitchable()) {
+      action = ACTION_SWITCH;
+    }
+
+    if (options.transition && (action === ACTION_MOVE || action === ACTION_ZOOM)) {
+      removeClass(this.image, CLASS_TRANSITION);
+    }
+
+    this.action = action;
+  },
+  pointermove: function pointermove(event) {
+    var pointers = this.pointers,
+        action = this.action;
+
+    if (!this.viewed || !action) {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (event.changedTouches) {
+      forEach(event.changedTouches, function (touch) {
+        assign(pointers[touch.identifier] || {}, getPointer(touch, true));
+      });
+    } else {
+      assign(pointers[event.pointerId || 0] || {}, getPointer(event, true));
+    }
+
+    this.change(event);
+  },
+  pointerup: function pointerup(event) {
+    var _this2 = this;
+
+    var options = this.options,
+        action = this.action,
+        pointers = this.pointers;
+    var pointer;
+
+    if (event.changedTouches) {
+      forEach(event.changedTouches, function (touch) {
+        pointer = pointers[touch.identifier];
+        delete pointers[touch.identifier];
+      });
+    } else {
+      pointer = pointers[event.pointerId || 0];
+      delete pointers[event.pointerId || 0];
+    }
+
+    if (!action) {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (options.transition && (action === ACTION_MOVE || action === ACTION_ZOOM)) {
+      addClass(this.image, CLASS_TRANSITION);
+    }
+
+    this.action = false; // Emulate click and double click in touch devices to support backdrop and image zooming (#210).
+
+    if (IS_TOUCH_DEVICE && action !== ACTION_ZOOM && pointer && Date.now() - pointer.timeStamp < 500) {
+      clearTimeout(this.clickCanvasTimeout);
+      clearTimeout(this.doubleClickImageTimeout);
+
+      if (options.toggleOnDblclick && this.viewed && event.target === this.image) {
+        if (this.imageClicked) {
+          this.imageClicked = false; // This timeout will be cleared later when a native dblclick event is triggering
+
+          this.doubleClickImageTimeout = setTimeout(function () {
+            dispatchEvent(_this2.image, EVENT_DBLCLICK);
+          }, 50);
+        } else {
+          this.imageClicked = true; // The default timing of a double click in Windows is 500 ms
+
+          this.doubleClickImageTimeout = setTimeout(function () {
+            _this2.imageClicked = false;
+          }, 500);
+        }
+      } else {
+        this.imageClicked = false;
+
+        if (options.backdrop && options.backdrop !== 'static' && event.target === this.canvas) {
+          // This timeout will be cleared later when a native click event is triggering
+          this.clickCanvasTimeout = setTimeout(function () {
+            dispatchEvent(_this2.canvas, EVENT_CLICK);
+          }, 50);
+        }
+      }
+    }
+  },
+  resize: function resize() {
+    var _this3 = this;
+
+    if (!this.isShown || this.hiding) {
+      return;
+    }
+
+    this.initContainer();
+    this.initViewer();
+    this.renderViewer();
+    this.renderList();
+
+    if (this.viewed) {
+      this.initImage(function () {
+        _this3.renderImage();
+      });
+    }
+
+    if (this.played) {
+      if (this.options.fullscreen && this.fulled && !(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement)) {
+        this.stop();
+        return;
+      }
+
+      forEach(this.player.getElementsByTagName('img'), function (image) {
+        addListener(image, EVENT_LOAD, _this3.loadImage.bind(_this3), {
+          once: true
+        });
+        dispatchEvent(image, EVENT_LOAD);
+      });
+    }
+  },
+  wheel: function wheel(event) {
+    var _this4 = this;
+
+    if (!this.viewed) {
+      return;
+    }
+
+    event.preventDefault(); // Limit wheel speed to prevent zoom too fast
+
+    if (this.wheeling) {
+      return;
+    }
+
+    this.wheeling = true;
+    setTimeout(function () {
+      _this4.wheeling = false;
+    }, 50);
+    var ratio = Number(this.options.zoomRatio) || 0.1;
+    var delta = 1;
+
+    if (event.deltaY) {
+      delta = event.deltaY > 0 ? 1 : -1;
+    } else if (event.wheelDelta) {
+      delta = -event.wheelDelta / 120;
+    } else if (event.detail) {
+      delta = event.detail > 0 ? 1 : -1;
+    }
+
+    this.zoom(-delta * ratio, true, event);
+  }
+};
+
+var methods = {
+  /** Show the viewer (only available in modal mode)
+   * @param {boolean} [immediate=false] - Indicates if show the viewer immediately or not.
+   * @returns {Viewer} this
+   */
+  show: function show() {
+    var immediate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var element = this.element,
+        options = this.options;
+
+    if (options.inline || this.showing || this.isShown || this.showing) {
+      return this;
+    }
+
+    if (!this.ready) {
+      this.build();
+
+      if (this.ready) {
+        this.show(immediate);
+      }
+
+      return this;
+    }
+
+    if (isFunction(options.show)) {
+      addListener(element, EVENT_SHOW, options.show, {
+        once: true
+      });
+    }
+
+    if (dispatchEvent(element, EVENT_SHOW) === false || !this.ready) {
+      return this;
+    }
+
+    if (this.hiding) {
+      this.transitioning.abort();
+    }
+
+    this.showing = true;
+    this.open();
+    var viewer = this.viewer;
+    removeClass(viewer, CLASS_HIDE);
+
+    if (options.transition && !immediate) {
+      var shown = this.shown.bind(this);
+      this.transitioning = {
+        abort: function abort() {
+          removeListener(viewer, EVENT_TRANSITION_END, shown);
+          removeClass(viewer, CLASS_IN);
+        }
+      };
+      addClass(viewer, CLASS_TRANSITION); // Force reflow to enable CSS3 transition
+      // eslint-disable-next-line
+
+      viewer.offsetWidth;
+      addListener(viewer, EVENT_TRANSITION_END, shown, {
+        once: true
+      });
+      addClass(viewer, CLASS_IN);
+    } else {
+      addClass(viewer, CLASS_IN);
+      this.shown();
+    }
+
+    return this;
+  },
+
+  /**
+   * Hide the viewer (only available in modal mode)
+   * @param {boolean} [immediate=false] - Indicates if hide the viewer immediately or not.
+   * @returns {Viewer} this
+   */
+  hide: function hide() {
+    var immediate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var element = this.element,
+        options = this.options;
+
+    if (options.inline || this.hiding || !(this.isShown || this.showing)) {
+      return this;
+    }
+
+    if (isFunction(options.hide)) {
+      addListener(element, EVENT_HIDE, options.hide, {
+        once: true
+      });
+    }
+
+    if (dispatchEvent(element, EVENT_HIDE) === false) {
+      return this;
+    }
+
+    if (this.showing) {
+      this.transitioning.abort();
+    }
+
+    this.hiding = true;
+
+    if (this.played) {
+      this.stop();
+    } else if (this.viewing) {
+      this.viewing.abort();
+    }
+
+    var viewer = this.viewer;
+
+    if (options.transition && !immediate) {
+      var hidden = this.hidden.bind(this);
+
+      var hide = function hide() {
+        addListener(viewer, EVENT_TRANSITION_END, hidden, {
+          once: true
+        });
+        removeClass(viewer, CLASS_IN);
+      };
+
+      this.transitioning = {
+        abort: function abort() {
+          if (this.viewed) {
+            removeListener(this.image, EVENT_TRANSITION_END, hide);
+          } else {
+            removeListener(viewer, EVENT_TRANSITION_END, hidden);
+          }
+        }
+      };
+
+      if (this.viewed) {
+        addListener(this.image, EVENT_TRANSITION_END, hide, {
+          once: true
+        });
+        this.zoomTo(0, false, false, true);
+      } else {
+        hide();
+      }
+    } else {
+      removeClass(viewer, CLASS_IN);
+      this.hidden();
+    }
+
+    return this;
+  },
+
+  /**
+   * View one of the images with image's index
+   * @param {number} index - The index of the image to view.
+   * @returns {Viewer} this
+   */
+  view: function view() {
+    var _this = this;
+
+    var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.options.initialViewIndex;
+    index = Number(index) || 0;
+
+    if (!this.isShown) {
+      this.index = index;
+      return this.show();
+    }
+
+    if (this.hiding || this.played || index < 0 || index >= this.length || this.viewed && index === this.index) {
+      return this;
+    }
+
+    if (this.viewing) {
+      this.viewing.abort();
+    }
+
+    var element = this.element,
+        options = this.options,
+        title = this.title,
+        canvas = this.canvas;
+    var item = this.items[index];
+    var img = item.querySelector('img');
+    var url = getData(img, 'originalUrl');
+    var alt = img.getAttribute('alt');
+    var image = document.createElement('img');
+    image.src = url;
+    image.alt = alt;
+
+    if (isFunction(options.view)) {
+      addListener(element, EVENT_VIEW, options.view, {
+        once: true
+      });
+    }
+
+    if (dispatchEvent(element, EVENT_VIEW, {
+      originalImage: this.images[index],
+      index: index,
+      image: image
+    }) === false || !this.isShown || this.hiding || this.played) {
+      return this;
+    }
+
+    this.image = image;
+    removeClass(this.items[this.index], CLASS_ACTIVE);
+    addClass(item, CLASS_ACTIVE);
+    this.viewed = false;
+    this.index = index;
+    this.imageData = {};
+    addClass(image, CLASS_INVISIBLE);
+
+    if (options.loading) {
+      addClass(canvas, CLASS_LOADING);
+    }
+
+    canvas.innerHTML = '';
+    canvas.appendChild(image); // Center current item
+
+    this.renderList(); // Clear title
+
+    title.innerHTML = ''; // Generate title after viewed
+
+    var onViewed = function onViewed() {
+      var imageData = _this.imageData;
+      var render = Array.isArray(options.title) ? options.title[1] : options.title;
+      title.innerHTML = isFunction(render) ? render.call(_this, image, imageData) : "".concat(alt, " (").concat(imageData.naturalWidth, " \xD7 ").concat(imageData.naturalHeight, ")");
+    };
+
+    var onLoad;
+    addListener(element, EVENT_VIEWED, onViewed, {
+      once: true
+    });
+    this.viewing = {
+      abort: function abort() {
+        removeListener(element, EVENT_VIEWED, onViewed);
+
+        if (image.complete) {
+          if (this.imageRendering) {
+            this.imageRendering.abort();
+          } else if (this.imageInitializing) {
+            this.imageInitializing.abort();
+          }
+        } else {
+          removeListener(image, EVENT_LOAD, onLoad);
+
+          if (this.timeout) {
+            clearTimeout(this.timeout);
+          }
+        }
+      }
+    };
+
+    if (image.complete) {
+      this.load();
+    } else {
+      addListener(image, EVENT_LOAD, onLoad = this.load.bind(this), {
+        once: true
+      });
+
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      } // Make the image visible if it fails to load within 1s
+
+
+      this.timeout = setTimeout(function () {
+        removeClass(image, CLASS_INVISIBLE);
+        _this.timeout = false;
+      }, 1000);
+    }
+
+    return this;
+  },
+
+  /**
+   * View the previous image
+   * @param {boolean} [loop=false] - Indicate if view the last one
+   * when it is the first one at present.
+   * @returns {Viewer} this
+   */
+  prev: function prev() {
+    var loop = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var index = this.index - 1;
+
+    if (index < 0) {
+      index = loop ? this.length - 1 : 0;
+    }
+
+    this.view(index);
+    return this;
+  },
+
+  /**
+   * View the next image
+   * @param {boolean} [loop=false] - Indicate if view the first one
+   * when it is the last one at present.
+   * @returns {Viewer} this
+   */
+  next: function next() {
+    var loop = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var maxIndex = this.length - 1;
+    var index = this.index + 1;
+
+    if (index > maxIndex) {
+      index = loop ? 0 : maxIndex;
+    }
+
+    this.view(index);
+    return this;
+  },
+
+  /**
+   * Move the image with relative offsets.
+   * @param {number} offsetX - The relative offset distance on the x-axis.
+   * @param {number} offsetY - The relative offset distance on the y-axis.
+   * @returns {Viewer} this
+   */
+  move: function move(offsetX, offsetY) {
+    var imageData = this.imageData;
+    this.moveTo(isUndefined(offsetX) ? offsetX : imageData.left + Number(offsetX), isUndefined(offsetY) ? offsetY : imageData.top + Number(offsetY));
+    return this;
+  },
+
+  /**
+   * Move the image to an absolute point.
+   * @param {number} x - The x-axis coordinate.
+   * @param {number} [y=x] - The y-axis coordinate.
+   * @returns {Viewer} this
+   */
+  moveTo: function moveTo(x) {
+    var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : x;
+    var imageData = this.imageData;
+    x = Number(x);
+    y = Number(y);
+
+    if (this.viewed && !this.played && this.options.movable) {
+      var changed = false;
+
+      if (isNumber(x)) {
+        imageData.left = x;
+        changed = true;
+      }
+
+      if (isNumber(y)) {
+        imageData.top = y;
+        changed = true;
+      }
+
+      if (changed) {
+        this.renderImage();
+      }
+    }
+
+    return this;
+  },
+
+  /**
+   * Zoom the image with a relative ratio.
+   * @param {number} ratio - The target ratio.
+   * @param {boolean} [hasTooltip=false] - Indicates if it has a tooltip or not.
+   * @param {Event} [_originalEvent=null] - The original event if any.
+   * @returns {Viewer} this
+   */
+  zoom: function zoom(ratio) {
+    var hasTooltip = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    var _originalEvent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+    var imageData = this.imageData;
+    ratio = Number(ratio);
+
+    if (ratio < 0) {
+      ratio = 1 / (1 - ratio);
+    } else {
+      ratio = 1 + ratio;
+    }
+
+    this.zoomTo(imageData.width * ratio / imageData.naturalWidth, hasTooltip, _originalEvent);
+    return this;
+  },
+
+  /**
+   * Zoom the image to an absolute ratio.
+   * @param {number} ratio - The target ratio.
+   * @param {boolean} [hasTooltip=false] - Indicates if it has a tooltip or not.
+   * @param {Event} [_originalEvent=null] - The original event if any.
+   * @param {Event} [_zoomable=false] - Indicates if the current zoom is available or not.
+   * @returns {Viewer} this
+   */
+  zoomTo: function zoomTo(ratio) {
+    var _this2 = this;
+
+    var hasTooltip = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    var _originalEvent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+    var _zoomable = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+    var element = this.element,
+        options = this.options,
+        pointers = this.pointers,
+        imageData = this.imageData;
+    var width = imageData.width,
+        height = imageData.height,
+        left = imageData.left,
+        top = imageData.top,
+        naturalWidth = imageData.naturalWidth,
+        naturalHeight = imageData.naturalHeight;
+    ratio = Math.max(0, ratio);
+
+    if (isNumber(ratio) && this.viewed && !this.played && (_zoomable || options.zoomable)) {
+      if (!_zoomable) {
+        var minZoomRatio = Math.max(0.01, options.minZoomRatio);
+        var maxZoomRatio = Math.min(100, options.maxZoomRatio);
+        ratio = Math.min(Math.max(ratio, minZoomRatio), maxZoomRatio);
+      }
+
+      if (_originalEvent && ratio > 0.95 && ratio < 1.05) {
+        ratio = 1;
+      }
+
+      var newWidth = naturalWidth * ratio;
+      var newHeight = naturalHeight * ratio;
+      var offsetWidth = newWidth - width;
+      var offsetHeight = newHeight - height;
+      var oldRatio = width / naturalWidth;
+
+      if (isFunction(options.zoom)) {
+        addListener(element, EVENT_ZOOM, options.zoom, {
+          once: true
+        });
+      }
+
+      if (dispatchEvent(element, EVENT_ZOOM, {
+        ratio: ratio,
+        oldRatio: oldRatio,
+        originalEvent: _originalEvent
+      }) === false) {
+        return this;
+      }
+
+      this.zooming = true;
+
+      if (_originalEvent) {
+        var offset = getOffset(this.viewer);
+        var center = pointers && Object.keys(pointers).length ? getPointersCenter(pointers) : {
+          pageX: _originalEvent.pageX,
+          pageY: _originalEvent.pageY
+        }; // Zoom from the triggering point of the event
+
+        imageData.left -= offsetWidth * ((center.pageX - offset.left - left) / width);
+        imageData.top -= offsetHeight * ((center.pageY - offset.top - top) / height);
+      } else {
+        // Zoom from the center of the image
+        imageData.left -= offsetWidth / 2;
+        imageData.top -= offsetHeight / 2;
+      }
+
+      imageData.width = newWidth;
+      imageData.height = newHeight;
+      imageData.ratio = ratio;
+      this.renderImage(function () {
+        _this2.zooming = false;
+
+        if (isFunction(options.zoomed)) {
+          addListener(element, EVENT_ZOOMED, options.zoomed, {
+            once: true
+          });
+        }
+
+        dispatchEvent(element, EVENT_ZOOMED, {
+          ratio: ratio,
+          oldRatio: oldRatio,
+          originalEvent: _originalEvent
+        });
+      });
+
+      if (hasTooltip) {
+        this.tooltip();
+      }
+    }
+
+    return this;
+  },
+
+  /**
+   * Rotate the image with a relative degree.
+   * @param {number} degree - The rotate degree.
+   * @returns {Viewer} this
+   */
+  rotate: function rotate(degree) {
+    this.rotateTo((this.imageData.rotate || 0) + Number(degree));
+    return this;
+  },
+
+  /**
+   * Rotate the image to an absolute degree.
+   * @param {number} degree - The rotate degree.
+   * @returns {Viewer} this
+   */
+  rotateTo: function rotateTo(degree) {
+    var imageData = this.imageData;
+    degree = Number(degree);
+
+    if (isNumber(degree) && this.viewed && !this.played && this.options.rotatable) {
+      imageData.rotate = degree;
+      this.renderImage();
+    }
+
+    return this;
+  },
+
+  /**
+   * Scale the image on the x-axis.
+   * @param {number} scaleX - The scale ratio on the x-axis.
+   * @returns {Viewer} this
+   */
+  scaleX: function scaleX(_scaleX) {
+    this.scale(_scaleX, this.imageData.scaleY);
+    return this;
+  },
+
+  /**
+   * Scale the image on the y-axis.
+   * @param {number} scaleY - The scale ratio on the y-axis.
+   * @returns {Viewer} this
+   */
+  scaleY: function scaleY(_scaleY) {
+    this.scale(this.imageData.scaleX, _scaleY);
+    return this;
+  },
+
+  /**
+   * Scale the image.
+   * @param {number} scaleX - The scale ratio on the x-axis.
+   * @param {number} [scaleY=scaleX] - The scale ratio on the y-axis.
+   * @returns {Viewer} this
+   */
+  scale: function scale(scaleX) {
+    var scaleY = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : scaleX;
+    var imageData = this.imageData;
+    scaleX = Number(scaleX);
+    scaleY = Number(scaleY);
+
+    if (this.viewed && !this.played && this.options.scalable) {
+      var changed = false;
+
+      if (isNumber(scaleX)) {
+        imageData.scaleX = scaleX;
+        changed = true;
+      }
+
+      if (isNumber(scaleY)) {
+        imageData.scaleY = scaleY;
+        changed = true;
+      }
+
+      if (changed) {
+        this.renderImage();
+      }
+    }
+
+    return this;
+  },
+
+  /**
+   * Play the images
+   * @param {boolean} [fullscreen=false] - Indicate if request fullscreen or not.
+   * @returns {Viewer} this
+   */
+  play: function play() {
+    var _this3 = this;
+
+    var fullscreen = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+    if (!this.isShown || this.played) {
+      return this;
+    }
+
+    var options = this.options,
+        player = this.player;
+    var onLoad = this.loadImage.bind(this);
+    var list = [];
+    var total = 0;
+    var index = 0;
+    this.played = true;
+    this.onLoadWhenPlay = onLoad;
+
+    if (fullscreen) {
+      this.requestFullscreen();
+    }
+
+    addClass(player, CLASS_SHOW);
+    forEach(this.items, function (item, i) {
+      var img = item.querySelector('img');
+      var image = document.createElement('img');
+      image.src = getData(img, 'originalUrl');
+      image.alt = img.getAttribute('alt');
+      total += 1;
+      addClass(image, CLASS_FADE);
+      toggleClass(image, CLASS_TRANSITION, options.transition);
+
+      if (hasClass(item, CLASS_ACTIVE)) {
+        addClass(image, CLASS_IN);
+        index = i;
+      }
+
+      list.push(image);
+      addListener(image, EVENT_LOAD, onLoad, {
+        once: true
+      });
+      player.appendChild(image);
+    });
+
+    if (isNumber(options.interval) && options.interval > 0) {
+      var play = function play() {
+        _this3.playing = setTimeout(function () {
+          removeClass(list[index], CLASS_IN);
+          index += 1;
+          index = index < total ? index : 0;
+          addClass(list[index], CLASS_IN);
+          play();
+        }, options.interval);
+      };
+
+      if (total > 1) {
+        play();
+      }
+    }
+
+    return this;
+  },
+  // Stop play
+  stop: function stop() {
+    var _this4 = this;
+
+    if (!this.played) {
+      return this;
+    }
+
+    var player = this.player;
+    this.played = false;
+    clearTimeout(this.playing);
+    forEach(player.getElementsByTagName('img'), function (image) {
+      removeListener(image, EVENT_LOAD, _this4.onLoadWhenPlay);
+    });
+    removeClass(player, CLASS_SHOW);
+    player.innerHTML = '';
+    this.exitFullscreen();
+    return this;
+  },
+  // Enter modal mode (only available in inline mode)
+  full: function full() {
+    var _this5 = this;
+
+    var options = this.options,
+        viewer = this.viewer,
+        image = this.image,
+        list = this.list;
+
+    if (!this.isShown || this.played || this.fulled || !options.inline) {
+      return this;
+    }
+
+    this.fulled = true;
+    this.open();
+    addClass(this.button, CLASS_FULLSCREEN_EXIT);
+
+    if (options.transition) {
+      removeClass(list, CLASS_TRANSITION);
+
+      if (this.viewed) {
+        removeClass(image, CLASS_TRANSITION);
+      }
+    }
+
+    addClass(viewer, CLASS_FIXED);
+    viewer.setAttribute('style', '');
+    setStyle(viewer, {
+      zIndex: options.zIndex
+    });
+    this.initContainer();
+    this.viewerData = assign({}, this.containerData);
+    this.renderList();
+
+    if (this.viewed) {
+      this.initImage(function () {
+        _this5.renderImage(function () {
+          if (options.transition) {
+            setTimeout(function () {
+              addClass(image, CLASS_TRANSITION);
+              addClass(list, CLASS_TRANSITION);
+            }, 0);
+          }
+        });
+      });
+    }
+
+    return this;
+  },
+  // Exit modal mode (only available in inline mode)
+  exit: function exit() {
+    var _this6 = this;
+
+    var options = this.options,
+        viewer = this.viewer,
+        image = this.image,
+        list = this.list;
+
+    if (!this.isShown || this.played || !this.fulled || !options.inline) {
+      return this;
+    }
+
+    this.fulled = false;
+    this.close();
+    removeClass(this.button, CLASS_FULLSCREEN_EXIT);
+
+    if (options.transition) {
+      removeClass(list, CLASS_TRANSITION);
+
+      if (this.viewed) {
+        removeClass(image, CLASS_TRANSITION);
+      }
+    }
+
+    removeClass(viewer, CLASS_FIXED);
+    setStyle(viewer, {
+      zIndex: options.zIndexInline
+    });
+    this.viewerData = assign({}, this.parentData);
+    this.renderViewer();
+    this.renderList();
+
+    if (this.viewed) {
+      this.initImage(function () {
+        _this6.renderImage(function () {
+          if (options.transition) {
+            setTimeout(function () {
+              addClass(image, CLASS_TRANSITION);
+              addClass(list, CLASS_TRANSITION);
+            }, 0);
+          }
+        });
+      });
+    }
+
+    return this;
+  },
+  // Show the current ratio of the image with percentage
+  tooltip: function tooltip() {
+    var _this7 = this;
+
+    var options = this.options,
+        tooltipBox = this.tooltipBox,
+        imageData = this.imageData;
+
+    if (!this.viewed || this.played || !options.tooltip) {
+      return this;
+    }
+
+    tooltipBox.textContent = "".concat(Math.round(imageData.ratio * 100), "%");
+
+    if (!this.tooltipping) {
+      if (options.transition) {
+        if (this.fading) {
+          dispatchEvent(tooltipBox, EVENT_TRANSITION_END);
+        }
+
+        addClass(tooltipBox, CLASS_SHOW);
+        addClass(tooltipBox, CLASS_FADE);
+        addClass(tooltipBox, CLASS_TRANSITION); // Force reflow to enable CSS3 transition
+        // eslint-disable-next-line
+
+        tooltipBox.offsetWidth;
+        addClass(tooltipBox, CLASS_IN);
+      } else {
+        addClass(tooltipBox, CLASS_SHOW);
+      }
+    } else {
+      clearTimeout(this.tooltipping);
+    }
+
+    this.tooltipping = setTimeout(function () {
+      if (options.transition) {
+        addListener(tooltipBox, EVENT_TRANSITION_END, function () {
+          removeClass(tooltipBox, CLASS_SHOW);
+          removeClass(tooltipBox, CLASS_FADE);
+          removeClass(tooltipBox, CLASS_TRANSITION);
+          _this7.fading = false;
+        }, {
+          once: true
+        });
+        removeClass(tooltipBox, CLASS_IN);
+        _this7.fading = true;
+      } else {
+        removeClass(tooltipBox, CLASS_SHOW);
+      }
+
+      _this7.tooltipping = false;
+    }, 1000);
+    return this;
+  },
+  // Toggle the image size between its natural size and initial size
+  toggle: function toggle() {
+    if (this.imageData.ratio === 1) {
+      this.zoomTo(this.initialImageData.ratio, true);
+    } else {
+      this.zoomTo(1, true);
+    }
+
+    return this;
+  },
+  // Reset the image to its initial state
+  reset: function reset() {
+    if (this.viewed && !this.played) {
+      this.imageData = assign({}, this.initialImageData);
+      this.renderImage();
+    }
+
+    return this;
+  },
+  // Update viewer when images changed
+  update: function update() {
+    var element = this.element,
+        options = this.options,
+        isImg = this.isImg; // Destroy viewer if the target image was deleted
+
+    if (isImg && !element.parentNode) {
+      return this.destroy();
+    }
+
+    var images = [];
+    forEach(isImg ? [element] : element.querySelectorAll('img'), function (image) {
+      if (options.filter) {
+        if (options.filter(image)) {
+          images.push(image);
+        }
+      } else {
+        images.push(image);
+      }
+    });
+
+    if (!images.length) {
+      return this;
+    }
+
+    this.images = images;
+    this.length = images.length;
+
+    if (this.ready) {
+      var indexes = [];
+      forEach(this.items, function (item, i) {
+        var img = item.querySelector('img');
+        var image = images[i];
+
+        if (image) {
+          if (image.src !== img.src) {
+            indexes.push(i);
+          }
+        } else {
+          indexes.push(i);
+        }
+      });
+      setStyle(this.list, {
+        width: 'auto'
+      });
+      this.initList();
+
+      if (this.isShown) {
+        if (this.length) {
+          if (this.viewed) {
+            var index = indexes.indexOf(this.index);
+
+            if (index >= 0) {
+              this.viewed = false;
+              this.view(Math.max(this.index - (index + 1), 0));
+            } else {
+              addClass(this.items[this.index], CLASS_ACTIVE);
+            }
+          }
+        } else {
+          this.image = null;
+          this.viewed = false;
+          this.index = 0;
+          this.imageData = {};
+          this.canvas.innerHTML = '';
+          this.title.innerHTML = '';
+        }
+      }
+    } else {
+      this.build();
+    }
+
+    return this;
+  },
+  // Destroy the viewer
+  destroy: function destroy() {
+    var element = this.element,
+        options = this.options;
+
+    if (!element[NAMESPACE]) {
+      return this;
+    }
+
+    this.destroyed = true;
+
+    if (this.ready) {
+      if (this.played) {
+        this.stop();
+      }
+
+      if (options.inline) {
+        if (this.fulled) {
+          this.exit();
+        }
+
+        this.unbind();
+      } else if (this.isShown) {
+        if (this.viewing) {
+          if (this.imageRendering) {
+            this.imageRendering.abort();
+          } else if (this.imageInitializing) {
+            this.imageInitializing.abort();
+          }
+        }
+
+        if (this.hiding) {
+          this.transitioning.abort();
+        }
+
+        this.hidden();
+      } else if (this.showing) {
+        this.transitioning.abort();
+        this.hidden();
+      }
+
+      this.ready = false;
+      this.viewer.parentNode.removeChild(this.viewer);
+    } else if (options.inline) {
+      if (this.delaying) {
+        this.delaying.abort();
+      } else if (this.initializing) {
+        this.initializing.abort();
+      }
+    }
+
+    if (!options.inline) {
+      removeListener(element, EVENT_CLICK, this.onStart);
+    }
+
+    element[NAMESPACE] = undefined;
+    return this;
+  }
+};
+
+var others = {
+  open: function open() {
+    var body = this.body;
+    addClass(body, CLASS_OPEN);
+    body.style.paddingRight = "".concat(this.scrollbarWidth + (parseFloat(this.initialBodyPaddingRight) || 0), "px");
+  },
+  close: function close() {
+    var body = this.body;
+    removeClass(body, CLASS_OPEN);
+    body.style.paddingRight = this.initialBodyPaddingRight;
+  },
+  shown: function shown() {
+    var element = this.element,
+        options = this.options;
+    this.fulled = true;
+    this.isShown = true;
+    this.render();
+    this.bind();
+    this.showing = false;
+
+    if (isFunction(options.shown)) {
+      addListener(element, EVENT_SHOWN, options.shown, {
+        once: true
+      });
+    }
+
+    if (dispatchEvent(element, EVENT_SHOWN) === false) {
+      return;
+    }
+
+    if (this.ready && this.isShown && !this.hiding) {
+      this.view(this.index);
+    }
+  },
+  hidden: function hidden() {
+    var element = this.element,
+        options = this.options;
+    this.fulled = false;
+    this.viewed = false;
+    this.isShown = false;
+    this.close();
+    this.unbind();
+    addClass(this.viewer, CLASS_HIDE);
+    this.resetList();
+    this.resetImage();
+    this.hiding = false;
+
+    if (!this.destroyed) {
+      if (isFunction(options.hidden)) {
+        addListener(element, EVENT_HIDDEN, options.hidden, {
+          once: true
+        });
+      }
+
+      dispatchEvent(element, EVENT_HIDDEN);
+    }
+  },
+  requestFullscreen: function requestFullscreen() {
+    var document = this.element.ownerDocument;
+
+    if (this.fulled && !(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement)) {
+      var documentElement = document.documentElement; // Element.requestFullscreen()
+
+      if (documentElement.requestFullscreen) {
+        documentElement.requestFullscreen();
+      } else if (documentElement.webkitRequestFullscreen) {
+        documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+      } else if (documentElement.mozRequestFullScreen) {
+        documentElement.mozRequestFullScreen();
+      } else if (documentElement.msRequestFullscreen) {
+        documentElement.msRequestFullscreen();
+      }
+    }
+  },
+  exitFullscreen: function exitFullscreen() {
+    var document = this.element.ownerDocument;
+
+    if (this.fulled && (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement)) {
+      // Document.exitFullscreen()
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+  },
+  change: function change(event) {
+    var options = this.options,
+        pointers = this.pointers;
+    var pointer = pointers[Object.keys(pointers)[0]];
+    var offsetX = pointer.endX - pointer.startX;
+    var offsetY = pointer.endY - pointer.startY;
+
+    switch (this.action) {
+      // Move the current image
+      case ACTION_MOVE:
+        this.move(offsetX, offsetY);
+        break;
+      // Zoom the current image
+
+      case ACTION_ZOOM:
+        this.zoom(getMaxZoomRatio(pointers), false, event);
+        break;
+
+      case ACTION_SWITCH:
+        {
+          this.action = 'switched';
+          var absoluteOffsetX = Math.abs(offsetX);
+
+          if (absoluteOffsetX > 1 && absoluteOffsetX > Math.abs(offsetY)) {
+            // Empty `pointers` as `touchend` event will not be fired after swiped in iOS browsers.
+            this.pointers = {};
+
+            if (offsetX > 1) {
+              this.prev(options.loop);
+            } else if (offsetX < -1) {
+              this.next(options.loop);
+            }
+          }
+
+          break;
+        }
+
+      default:
+    } // Override
+
+
+    forEach(pointers, function (p) {
+      p.startX = p.endX;
+      p.startY = p.endY;
+    });
+  },
+  isSwitchable: function isSwitchable() {
+    var imageData = this.imageData,
+        viewerData = this.viewerData;
+    return this.length > 1 && imageData.left >= 0 && imageData.top >= 0 && imageData.width <= viewerData.width && imageData.height <= viewerData.height;
+  }
+};
+
+var AnotherViewer = WINDOW.Viewer;
+
+var Viewer =
+/*#__PURE__*/
+function () {
+  /**
+   * Create a new Viewer.
+   * @param {Element} element - The target element for viewing.
+   * @param {Object} [options={}] - The configuration options.
+   */
+  function Viewer(element) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    _classCallCheck(this, Viewer);
+
+    if (!element || element.nodeType !== 1) {
+      throw new Error('The first argument is required and must be an element.');
+    }
+
+    this.element = element;
+    this.options = assign({}, DEFAULTS, isPlainObject(options) && options);
+    this.action = false;
+    this.fading = false;
+    this.fulled = false;
+    this.hiding = false;
+    this.imageClicked = false;
+    this.imageData = {};
+    this.index = this.options.initialViewIndex;
+    this.isImg = false;
+    this.isShown = false;
+    this.length = 0;
+    this.played = false;
+    this.playing = false;
+    this.pointers = {};
+    this.ready = false;
+    this.showing = false;
+    this.timeout = false;
+    this.tooltipping = false;
+    this.viewed = false;
+    this.viewing = false;
+    this.wheeling = false;
+    this.zooming = false;
+    this.init();
+  }
+
+  _createClass(Viewer, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      var element = this.element,
+          options = this.options;
+
+      if (element[NAMESPACE]) {
+        return;
+      }
+
+      element[NAMESPACE] = this;
+      var isImg = element.tagName.toLowerCase() === 'img';
+      var images = [];
+      forEach(isImg ? [element] : element.querySelectorAll('img'), function (image) {
+        if (isFunction(options.filter)) {
+          if (options.filter.call(_this, image)) {
+            images.push(image);
+          }
+        } else {
+          images.push(image);
+        }
+      });
+      this.isImg = isImg;
+      this.length = images.length;
+      this.images = images;
+      var ownerDocument = element.ownerDocument;
+      var body = ownerDocument.body || ownerDocument.documentElement;
+      this.body = body;
+      this.scrollbarWidth = window.innerWidth - ownerDocument.documentElement.clientWidth;
+      this.initialBodyPaddingRight = window.getComputedStyle(body).paddingRight; // Override `transition` option if it is not supported
+
+      if (isUndefined(document.createElement(NAMESPACE).style.transition)) {
+        options.transition = false;
+      }
+
+      if (options.inline) {
+        var count = 0;
+
+        var progress = function progress() {
+          count += 1;
+
+          if (count === _this.length) {
+            var timeout;
+            _this.initializing = false;
+            _this.delaying = {
+              abort: function abort() {
+                clearTimeout(timeout);
+              }
+            }; // build asynchronously to keep `this.viewer` is accessible in `ready` event handler.
+
+            timeout = setTimeout(function () {
+              _this.delaying = false;
+
+              _this.build();
+            }, 0);
+          }
+        };
+
+        this.initializing = {
+          abort: function abort() {
+            forEach(images, function (image) {
+              if (!image.complete) {
+                removeListener(image, EVENT_LOAD, progress);
+              }
+            });
+          }
+        };
+        forEach(images, function (image) {
+          if (image.complete) {
+            progress();
+          } else {
+            addListener(image, EVENT_LOAD, progress, {
+              once: true
+            });
+          }
+        });
+      } else {
+        addListener(element, EVENT_CLICK, this.onStart = function (_ref) {
+          var target = _ref.target;
+
+          if (target.tagName.toLowerCase() === 'img' && (!isFunction(options.filter) || options.filter.call(_this, target))) {
+            _this.view(_this.images.indexOf(target));
+          }
+        });
+      }
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      if (this.ready) {
+        return;
+      }
+
+      var element = this.element,
+          options = this.options;
+      var parent = element.parentNode;
+      var template = document.createElement('div');
+      template.innerHTML = TEMPLATE;
+      var viewer = template.querySelector(".".concat(NAMESPACE, "-container"));
+      var title = viewer.querySelector(".".concat(NAMESPACE, "-title"));
+      var toolbar = viewer.querySelector(".".concat(NAMESPACE, "-toolbar"));
+      var navbar = viewer.querySelector(".".concat(NAMESPACE, "-navbar"));
+      var button = viewer.querySelector(".".concat(NAMESPACE, "-button"));
+      var canvas = viewer.querySelector(".".concat(NAMESPACE, "-canvas"));
+      this.parent = parent;
+      this.viewer = viewer;
+      this.title = title;
+      this.toolbar = toolbar;
+      this.navbar = navbar;
+      this.button = button;
+      this.canvas = canvas;
+      this.footer = viewer.querySelector(".".concat(NAMESPACE, "-footer"));
+      this.tooltipBox = viewer.querySelector(".".concat(NAMESPACE, "-tooltip"));
+      this.player = viewer.querySelector(".".concat(NAMESPACE, "-player"));
+      this.list = viewer.querySelector(".".concat(NAMESPACE, "-list"));
+      addClass(title, !options.title ? CLASS_HIDE : getResponsiveClass(Array.isArray(options.title) ? options.title[0] : options.title));
+      addClass(navbar, !options.navbar ? CLASS_HIDE : getResponsiveClass(options.navbar));
+      toggleClass(button, CLASS_HIDE, !options.button);
+
+      if (options.backdrop) {
+        addClass(viewer, "".concat(NAMESPACE, "-backdrop"));
+
+        if (!options.inline && options.backdrop !== 'static') {
+          setData(canvas, DATA_ACTION, 'hide');
+        }
+      }
+
+      if (isString(options.className) && options.className) {
+        // In case there are multiple class names
+        options.className.split(REGEXP_SPACES).forEach(function (className) {
+          addClass(viewer, className);
+        });
+      }
+
+      if (options.toolbar) {
+        var list = document.createElement('ul');
+        var custom = isPlainObject(options.toolbar);
+        var zoomButtons = BUTTONS.slice(0, 3);
+        var rotateButtons = BUTTONS.slice(7, 9);
+        var scaleButtons = BUTTONS.slice(9);
+
+        if (!custom) {
+          addClass(toolbar, getResponsiveClass(options.toolbar));
+        }
+
+        forEach(custom ? options.toolbar : BUTTONS, function (value, index) {
+          var deep = custom && isPlainObject(value);
+          var name = custom ? hyphenate(index) : value;
+          var show = deep && !isUndefined(value.show) ? value.show : value;
+
+          if (!show || !options.zoomable && zoomButtons.indexOf(name) !== -1 || !options.rotatable && rotateButtons.indexOf(name) !== -1 || !options.scalable && scaleButtons.indexOf(name) !== -1) {
+            return;
+          }
+
+          var size = deep && !isUndefined(value.size) ? value.size : value;
+          var click = deep && !isUndefined(value.click) ? value.click : value;
+          var item = document.createElement('li');
+          item.setAttribute('role', 'button');
+          addClass(item, "".concat(NAMESPACE, "-").concat(name));
+
+          if (!isFunction(click)) {
+            setData(item, DATA_ACTION, name);
+          }
+
+          if (isNumber(show)) {
+            addClass(item, getResponsiveClass(show));
+          }
+
+          if (['small', 'large'].indexOf(size) !== -1) {
+            addClass(item, "".concat(NAMESPACE, "-").concat(size));
+          } else if (name === 'play') {
+            addClass(item, "".concat(NAMESPACE, "-large"));
+          }
+
+          if (isFunction(click)) {
+            addListener(item, EVENT_CLICK, click);
+          }
+
+          list.appendChild(item);
+        });
+        toolbar.appendChild(list);
+      } else {
+        addClass(toolbar, CLASS_HIDE);
+      }
+
+      if (!options.rotatable) {
+        var rotates = toolbar.querySelectorAll('li[class*="rotate"]');
+        addClass(rotates, CLASS_INVISIBLE);
+        forEach(rotates, function (rotate) {
+          toolbar.appendChild(rotate);
+        });
+      }
+
+      if (options.inline) {
+        addClass(button, CLASS_FULLSCREEN);
+        setStyle(viewer, {
+          zIndex: options.zIndexInline
+        });
+
+        if (window.getComputedStyle(parent).position === 'static') {
+          setStyle(parent, {
+            position: 'relative'
+          });
+        }
+
+        parent.insertBefore(viewer, element.nextSibling);
+      } else {
+        addClass(button, CLASS_CLOSE);
+        addClass(viewer, CLASS_FIXED);
+        addClass(viewer, CLASS_FADE);
+        addClass(viewer, CLASS_HIDE);
+        setStyle(viewer, {
+          zIndex: options.zIndex
+        });
+        var container = options.container;
+
+        if (isString(container)) {
+          container = element.ownerDocument.querySelector(container);
+        }
+
+        if (!container) {
+          container = this.body;
+        }
+
+        container.appendChild(viewer);
+      }
+
+      if (options.inline) {
+        this.render();
+        this.bind();
+        this.isShown = true;
+      }
+
+      this.ready = true;
+
+      if (isFunction(options.ready)) {
+        addListener(element, EVENT_READY, options.ready, {
+          once: true
+        });
+      }
+
+      if (dispatchEvent(element, EVENT_READY) === false) {
+        this.ready = false;
+        return;
+      }
+
+      if (this.ready && options.inline) {
+        this.view(this.index);
+      }
+    }
+    /**
+     * Get the no conflict viewer class.
+     * @returns {Viewer} The viewer class.
+     */
+
+  }], [{
+    key: "noConflict",
+    value: function noConflict() {
+      window.Viewer = AnotherViewer;
+      return Viewer;
+    }
+    /**
+     * Change the default options.
+     * @param {Object} options - The new default options.
+     */
+
+  }, {
+    key: "setDefaults",
+    value: function setDefaults(options) {
+      assign(DEFAULTS, isPlainObject(options) && options);
+    }
+  }]);
+
+  return Viewer;
+}();
+
+assign(Viewer.prototype, render, events, handlers, methods, others);
+
+/* harmony default export */ __webpack_exports__["default"] = (Viewer);
+
 
 /***/ })
 /******/ ]);

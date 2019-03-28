@@ -27,6 +27,7 @@
         "popper": "^1.0.1",
         "select2": "^4.0.6-rc.1",
         "sweetalert2": "^8.2.6",
+        "v-viewer": "^1.4.0",
         "vali-admin": "^2.4.1",
         "vue-select": "^2.5.1"
     }

@@ -30,7 +30,10 @@ class PatientLaboratoryController extends Controller
 
     public function delete($id = null) {
     	$laboratoryTest = LaboratoryTest::where('id', $id)->first();
-        Storage::delete(['public/laboratory/'.$laboratoryTest->image]);
+        $files = json_decode($laboratoryTest->image);
+        for($i=0; $i < count($files); $i++) {
+            Storage::delete(['public/laboratory/'.$files[$i]]);
+        }
         $laboratoryTest->delete();
         return 'success';
     }
@@ -47,13 +50,17 @@ class PatientLaboratoryController extends Controller
 
     public function update(Request $request, $id = null) {
     	$laboratoryTest = LaboratoryTest::where('id', $id)->first();
-        if ($request->get('file')) {
-            // delete old logo
-            Storage::delete(['public/laboratory/'.$laboratoryTest->image]);
-            $image = $request->get('file');
-            $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-              \Image::make($request->get('file'))->save(public_path('storage/laboratory/').$name);
-            $laboratoryTest->image = $name;
+        if($request->hasfile('files')) {
+            $files = json_decode($laboratoryTest->image);
+                for($i=0; $i < count($files); $i++) {
+                Storage::delete(['public/laboratory/'.$files[$i]]);
+            }
+            foreach($request->file('files') as $key => $file) {
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/storage/laboratory/', $name);  
+                $data[$key] = $name;  
+            }
+            $laboratoryTest->image = json_encode($data);
         }
     	$laboratoryTest->patient_record_id = $request->patient_record_id;
         $laboratoryTest->type_of_laboratory_id = $request->type_of_laboratory_id;
@@ -63,11 +70,13 @@ class PatientLaboratoryController extends Controller
     }
 
     public function store(Request $request) {
-                
-        if($request->get('file')) {
-          $image = $request->get('file');
-          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-          \Image::make($request->get('file'))->save(public_path('storage/laboratory/').$name);
+        
+        if($request->hasfile('files')) {
+            foreach($request->file('files') as $key => $file) {
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/storage/laboratory/', $name);  
+                $data[$key] = $name;  
+            }
         }
 
         $doctorsOrder = DoctorsOrder::where('patient_record_id', $request->patient_record_id)->first();
@@ -78,8 +87,9 @@ class PatientLaboratoryController extends Controller
         $laboratoryTest->patient_record_id = $request->patient_record_id;
         $laboratoryTest->type_of_laboratory_id = $request->type_of_laboratory_id;
         $laboratoryTest->description = $request->description;
-        $laboratoryTest->image = $name;
+        $laboratoryTest->image = json_encode($data);
         $laboratoryTest->save();
+
         return 'success';
     }
 
