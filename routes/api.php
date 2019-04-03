@@ -160,6 +160,13 @@ Route::post('users', 'API\UserController@store');
 Route::get('users/{id}/edit', 'API\UserController@edit');
 Route::put('users/{id}', 'API\UserController@update');
 
+// insurances
+Route::get('insurances', 'API\InsuranceController@data');
+Route::delete('insurances/{id}', 'API\InsuranceController@delete');
+Route::post('insurances', 'API\InsuranceController@store');
+Route::get('insurances/{id}/edit', 'API\InsuranceController@edit');
+Route::put('insurances/{id}', 'API\InsuranceController@update');
+
 //users
 Route::get('typeOfRecords', 'API\TypeOfRecordController@data');
 

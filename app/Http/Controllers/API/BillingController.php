@@ -50,6 +50,10 @@ class BillingController extends Controller
         $patientBilling->quantity = $request->quantity;
         $patientBilling->total = $request->total;
         $patientBilling->description = $request->description;
+        $patientBilling->phic = $request->phic;
+        $patientBilling->insurance_id = $request->insurance;
+        $patientBilling->hmo = $request->insuranceAmount;
+        $patientBilling->discount = $request->insuranceAmount;
         $patientBilling->save();
         return 'success';
     }

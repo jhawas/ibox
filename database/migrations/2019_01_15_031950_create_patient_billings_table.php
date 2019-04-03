@@ -23,6 +23,11 @@ class CreatePatientBillingsTable extends Migration
             $table->decimal('price', 8, 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->decimal('total', 8, 2)->nullable();
+            $table->decimal('discount', 8, 2)->nullable();
+            $table->decimal('phic', 8, 2)->nullable();
+            $table->integer('insurance_id')->unsigned()->nullable();
+            $table->foreign('insurance_id')->references('id')->on('insurances')->onDelete('cascade');
+            $table->decimal('hmo', 8, 2)->nullable();
             $table->boolean('is_paid')->default(0);
             $table->string('description')->nullable();
             $table->timestamps();   

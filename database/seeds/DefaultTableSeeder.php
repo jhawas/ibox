@@ -38,6 +38,24 @@ class DefaultTableSeeder extends Seeder
 	       	]);
         }
 
+        $insurances = array(
+            array(
+                'code' => 'maxicare',
+                'description' => 'maxicare'
+            ),
+            array(
+                'code' => 'philcare',
+                'description' => 'philcare',
+            ),
+        );
+
+        foreach ($insurances as $key => $insurance) {
+            factory(App\Insurance::class)->create([
+                'code' => $insurance['code'],
+                'description' => $insurance['description']
+            ]);
+        }
+
         $typeOfOrders = array(
             array(
                 'code' => 'medicine',
@@ -72,7 +90,10 @@ class DefaultTableSeeder extends Seeder
         	),
         	array(
         		'name' => 'nurse'
-        	)
+        	),
+            array(
+                'name' => 'laboratory'
+            )
         );
 
         foreach ($roles as $key => $role) {

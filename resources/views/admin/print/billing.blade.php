@@ -16,7 +16,7 @@
                 </div>
                  <div class="group">
                   <div class="label">Attending Physician:</div>
-                  <div class="value">{{ucfirst($patientRecord->physician->first_name) . ' ' . ucfirst($patientRecord->physician->middle_name) . ' ' . ucfirst($patientRecord->physician->last_name)}}</div>
+                  <div class="value">{{$patientRecord->physician ? ucfirst($patientRecord->physician->first_name) . ' ' . ucfirst($patientRecord->physician->middle_name) . ' ' . ucfirst($patientRecord->physician->last_name) : null }}</div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -38,15 +38,16 @@
             <th>Particulars</th>
             <th>Actual Bill</th>
             <th>VAT exempt</th>
-            <th>sr. citizen</th>
+            <th>Sr. Citizen</th>
             <th>PHIC Case Rate</th>
             <th>HMO</th>
             <th>Excess</th>
           </tr>
         </thead>
         <tbody>
-          <?php $totalBill = 0; ?>
+          <?php $totalBill = 0; $totalPhic = 0; $totalHMO = 0; $totalDiscount = 0;?>
           @foreach ($typeOfCharges as $typeOfCharge)
+              <?php $groupTotal = 0; $totalPhic = 0; $totalHMO = 0; $totalDiscount = 0;?>
               @if($typeOfCharge->billings->count() > 0 || $typeOfCharge->child->count() > 0)
                 <tr>
                   <td>{{$typeOfCharge->code}}</td>
@@ -54,33 +55,65 @@
                     @if($typeOfCharge->billings->count() > 0)
                       {{ number_format(($typeOfCharge->billings[0]->price * $typeOfCharge->billings[0]->quantity), 2) }}
                     @elseif( $typeOfCharge->child->count() > 0 )
-                        <?php $groupTotal = 0; ?>
+                        <?php $group_total = 0; ?>
                         @foreach($typeOfCharge->child as $child)
                              @if($child->billings->count() > 0)
-                                <?php $groupTotal += ($child->billings[0]->price * $child->billings[0]->quantity) ?>
+                                <?php $group_total += ($child->billings[0]->price * $child->billings[0]->quantity) ?>
                              @endif
                         @endforeach
-                        {{number_format($groupTotal, 2)}}
+                        <?php $groupTotal += $group_total; ?>
+                        {{number_format($group_total, 2)}}
                     @endif
                   </td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                   <td>
                     @if($typeOfCharge->billings->count() > 0)
-                      <?php $totalBill += ($typeOfCharge->billings[0]->price * $typeOfCharge->billings[0]->quantity); ?>
-                      {{ ($typeOfCharge->billings[0]->price * $typeOfCharge->billings[0]->quantity) }}
+                      <?php $totalDiscount += ($typeOfCharge->billings[0]->price * $typeOfCharge->billings[0]->quantity); ?>
+                      {{ $typeOfCharge->billings[0]->discount }}
                     @elseif( $typeOfCharge->child->count() > 0 )
-                        <?php $groupTotal = 0; ?>
+                        <?php $total_discount = 0; ?>
                         @foreach($typeOfCharge->child as $child)
                              @if($child->billings->count() > 0)
-                                <?php $groupTotal += ($child->billings[0]->price * $child->billings[0]->quantity) ?>
+                                <?php $total_discount += ($child->billings[0]->discount) ?>
                              @endif
                         @endforeach
-                        <?php $totalBill += $groupTotal; ?>
-                        {{number_format($groupTotal, 2)}}
+                        <?php $totalDiscount += $total_discount; ?>
+                        {{number_format($total_discount, 2)}}
                     @endif
+                  </td>
+                  <td>
+                    @if($typeOfCharge->billings->count() > 0)
+                      <?php $totalPhic += ($typeOfCharge->billings[0]->price * $typeOfCharge->billings[0]->quantity); ?>
+                        {{ $typeOfCharge->billings[0]->phic }}
+                    @elseif( $typeOfCharge->child->count() > 0 )
+                        <?php $total_phic = 0; ?>
+                        @foreach($typeOfCharge->child as $child)
+                             @if($child->billings->count() > 0)
+                                <?php $total_phic += ($child->billings[0]->phic) ?>
+                             @endif
+                        @endforeach
+                        <?php $totalPhic += $total_phic; ?>
+                        {{number_format($total_phic, 2)}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($typeOfCharge->billings->count() > 0)
+                       <?php $totalHMO += ($typeOfCharge->billings[0]->price * $typeOfCharge->billings[0]->quantity); ?>
+                        {{ $typeOfCharge->billings[0]->hmo }}
+                    @elseif( $typeOfCharge->child->count() > 0 )
+                        <?php $total_hmo = 0; ?>
+                        @foreach($typeOfCharge->child as $child)
+                             @if($child->billings->count() > 0)
+                                <?php $total_hmo += ($child->billings[0]->hmo) ?>
+                             @endif
+                        @endforeach
+                        <?php $totalHMO += $total_hmo; ?>
+                        {{number_format($total_hmo, 2)}}
+                    @endif
+                  </td>
+                  <td>
+                    {{ number_format($groupTotal - ($totalDiscount + $totalPhic + $totalHMO), 2) }}
+                    <?php $totalBill += $groupTotal - ($totalDiscount + $totalPhic + $totalHMO); ?>
                   </td>
                 </tr>
               @endif

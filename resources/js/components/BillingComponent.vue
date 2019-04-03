@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </b-modal>
-                    <b-modal ref="myModalRef" hide-footer title="Charges Form">
+                    <b-modal ref="myModalRef" hide-footer title="Charges Form" size="lg">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -77,6 +77,24 @@
                                     <label for="Charges">Quantity</label>
                                     <input type="text" class="form-control" placeholder="Enter Price" v-model="form.quantity">
                                 </div>
+                                <legend>Discount(Sr. Citizen)</legend>
+                                <div class="form-group">
+                                    <label for="Charges">Total</label>
+                                    <input type="text" class="form-control" placeholder="Enter Price" v-model="form.discount">
+                                </div>
+                                <legend>Insurance</legend>
+                                <div class="form-group">
+                                    <label for="Charges">PHIC</label>
+                                    <input type="text" class="form-control" placeholder="Enter Amount" v-model="form.phic">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Charges">HMO</label>
+                                    <v-select :options="insurances" v-model="form.insurance"></v-select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Charges">HMO Amount</label>
+                                    <input type="text" class="form-control" placeholder="Enter Amount" v-model="form.insuranceAmount">
+                                </div>
                                 <div class="button-container">
                                     <button type="button" class="btn btn-primary" @click="storeBilling">Add</button>
                                     <button type="button" class="btn btn-primary" @click="closedModal">Close</button>
@@ -90,18 +108,22 @@
                               <thead>
                                 <tr>
                                   <th>Code</th>
-                                  <th>Price</th>
-                                  <th>Quantity</th>
+                                  <th>Price/Quantity</th>
                                   <th>Total</th>
+                                  <th>Discount</th>
+                                  <th>Phic</th>
+                                  <th>Insurance</th>
                                   <th>Delete</th>
                                 </tr>
                               </thead>
                               <tbody class="is-paid-container">
                                     <tr v-for="billing in billings">
                                           <td>{{ billing.bill }}</td>
-                                          <td>{{ billing.price }}</td>
-                                          <td>{{ billing.quantity }}</td>
+                                          <td>{{ billing.price + '/' + billing.quantity}}</td>
                                           <td>{{ billing.total }}</td>
+                                          <td>{{ billing.discount }}</td>
+                                          <td>{{ billing.phic }}</td>
+                                          <td>{{ billing.hmo }}</td>
                                           <td>
                                             <button class="btn btn-primary" @click="removeBilling(billing.id)">x</button>
                                         </td>
@@ -126,6 +148,7 @@
 
         data() {
             return {
+                insurances: [],
                 patientRecord: [],
                 billings: [],
                 patient_record_id: null,
@@ -136,6 +159,7 @@
                 change: 0,
                 is_paid: 0,
                 payment: null,
+                itemTotal: 0,
                 form: {
                     price: 0,
                     typeOfCharge: null,
@@ -148,6 +172,7 @@
         mounted() {
             this.patientRecords();
             this.getCharges();
+            this.getInsurances();
         },
 
         computed: {
@@ -221,7 +246,11 @@
                     quantity: this.form.quantity,
                     total: this.form.quantity * this.form.price,
                     charge: this.form.charge,
-                    description: 'test'
+                    description: 'test',
+                    insurance: this.form.insurance ? this.form.insurance.value : null,
+                    phic: this.form.phic,
+                    insuranceAmount: this.form.insuranceAmount,
+                    discount: this.form.discount,
                 })
                 .then(response => {
                     if(response.data == 'success') {
@@ -248,6 +277,15 @@
                         price: charges.price,
                         typeOfCharge: charges.id,
                         charge: charges.code,
+                    }));
+                });
+            },
+            getInsurances() {
+                axios.get('/api/insurances')
+                .then(response => {
+                    this.insurances = response.data.map( (insurance) => ({ 
+                        value: insurance.id, 
+                        label: insurance.code,
                     }));
                 });
             },
