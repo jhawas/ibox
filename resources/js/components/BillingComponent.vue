@@ -5,7 +5,7 @@
                 <div class="card-header">Billing</div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-8 control-container">
+                        <div class="col-md-9 control-container">
                             <div class="control">
                                 <v-select :options="patientRecord" :onChange="getPatientRecordID"></v-select>
                                 <b-button 
@@ -25,8 +25,15 @@
                                 >Payment</b-button>
                             </div>
                         </div>
-                        <div class="col-md-4 total-bill-container">
-                            Total: {{ totalBill }}
+                        <div class="col-md-3 total-bill-container">
+                            <div class="row" style="width: 100%;">
+                                <div class="col-md-6">
+                                    Total: {{ totalBill ? totalBill.total : 0 }}
+                                </div>
+                                <div class="col-md-6">
+                                    Excess: {{ totalBill ? totalBill.excess : 0 }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <b-modal ref="myCashier" hide-footer title="Payment Form">
@@ -34,7 +41,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="Charges">Total Bill</label>
-                                    <input type="text" class="form-control" placeholder="Enter Charges" v-model="totalBill" disabled="">
+                                    <input type="text" class="form-control" placeholder="Enter Charges" v-model="totalBill.excess" disabled="">
                                 </div>
                                 <div class="form-group">
                                     <label for="Amount">Amount</label>
@@ -112,7 +119,7 @@
                                   <th>Total</th>
                                   <th>Discount</th>
                                   <th>Phic</th>
-                                  <th>Insurance</th>
+                                  <th>HMO</th>
                                   <th>Delete</th>
                                 </tr>
                               </thead>
@@ -127,6 +134,15 @@
                                           <td>
                                             <button class="btn btn-primary" @click="removeBilling(billing.id)">x</button>
                                         </td>
+                                    </tr>
+                                    <tr v-show="patient_record_id">
+                                        <td>Total</td>
+                                        <td></td>
+                                        <td>{{ totalBill ? totalBill.total : 0 }}</td>
+                                        <td>{{ totalBill ? totalBill.discount : 0 }}</td>
+                                        <td>{{ totalBill ? totalBill.phic : 0 }}</td>
+                                        <td>{{ totalBill ? totalBill.hmo : 0 }}</td>
+                                        <td></td>
                                     </tr>
                               </tbody>
                             </table>
@@ -154,7 +170,12 @@
                 patient_record_id: null,
                 charges: [],
                 price: null,
-                totalBill: 0,
+                totalBill: {
+                    total: 0,
+                    phic: 0,
+                    discount: 0,
+                    hmo: 0,
+                },
                 amountEntered: 0,
                 change: 0,
                 is_paid: 0,
@@ -218,13 +239,13 @@
             getPatientRecordID(event) {
                 if(event) {
                     this.patient_record_id = event.value;
+                    this.is_paid = event.is_paid;
                 } else {
                     this.patient_record_id = null;
                 }
                 this.billing();
                 this.getTotalBill();
                 this.getPayment();
-                this.is_paid = event.is_paid;
                 // this.getPaymentStatus();
             },
 
@@ -319,7 +340,7 @@
                 axios.get('/api/billing/total/'+ this.patient_record_id)
                 .then(response => {
                     this.totalBill = response.data;
-                    console.log(response.data);
+                    console.log('totalbill',response.data);
                 });
             },
 
@@ -330,7 +351,7 @@
             savePayment() {
                 axios.post('/api/billing/payment', {
                     patient_record_id: this.patient_record_id,
-                    totalBill: this.totalBill,
+                    totalBill: this.totalBill.excess,
                     enteredAmount: this.enteredAmount,
                     change: this.change
                 })
@@ -351,7 +372,7 @@
             },
 
             getChanged() {
-                this.change = this.amountEntered - this.totalBill;
+                this.change = this.amountEntered - this.totalBill.excess;
             },
 
             getPayment() {

@@ -802,10 +802,17 @@
         getPatients() {
           axios.get('/api/patients')
           .then(response => {
-              this.patients = response.data.map((patient) => ({ 
-                  value: patient.id, 
-                  label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name,
-              }));
+              console.log('patients', response.data);
+              this.patients = response.data.map((patient) => { 
+                  if(!patient.records.length) {
+                      return ({
+                        value: patient.id, 
+                        label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name,
+                      });
+                  } else {
+                      return;
+                  }
+              });
           });
         },
         getFloors() {

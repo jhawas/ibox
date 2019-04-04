@@ -29,16 +29,18 @@
         <i class="treeview-indicator fa fa-angle-right"></i>
       </a>
       <ul class="treeview-menu">
-        <li>
-            <a class="treeview-item" href="{{ route('patients.index') }}">
-              <i class="icon fa fa-circle-o"></i> Patient Information
-            </a>
-        </li>
-        <li>
-            <a class="treeview-item" href="{{ route('records.index') }}">
-              <i class="icon fa fa-circle-o"></i> In & Out Patient
-            </a>
-        </li>
+        @if(Auth::user()->user_role->role->id != 6)
+          <li>
+              <a class="treeview-item" href="{{ route('patients.index') }}">
+                <i class="icon fa fa-circle-o"></i> Patient Information
+              </a>
+          </li>
+          <li>
+              <a class="treeview-item" href="{{ route('records.index') }}">
+                <i class="icon fa fa-circle-o"></i> In & Out Patient
+              </a>
+          </li>
+        @endif
         {{-- <li>
             <a class="treeview-item" href="{{ route('outPatients.index') }}">
               <i class="icon fa fa-circle-o"></i> Out Patient
@@ -63,7 +65,7 @@
               </a>
           </li>
         @endif --}}
-        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3)
+        @if (Auth::user()->user_role->role->id == 1 || Auth::user()->user_role->role->id == 2 || Auth::user()->user_role->role->id == 3 || Auth::user()->user_role->role->id == 6)
           <li>
               <a class="treeview-item" href="{{ route('laboratories.index') }}">
                 <i class="icon fa fa-circle-o"></i> Laboratory
@@ -98,11 +100,13 @@
             </a>
         </li>
         @endif
-        <li>
-            <a class="treeview-item" href="{{ route('medicationAndTreatments.index') }}">
-              <i class="icon fa fa-circle-o"></i> Medication & Treatment
-            </a>
-        </li>
+        @if (Auth::user()->user_role->role->id != 6)
+          <li>
+              <a class="treeview-item" href="{{ route('medicationAndTreatments.index') }}">
+                <i class="icon fa fa-circle-o"></i> Medication & Treatment
+              </a>
+          </li>
+        @endif
       </ul>
     </li>
     @if(

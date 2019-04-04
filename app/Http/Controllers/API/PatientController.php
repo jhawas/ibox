@@ -36,7 +36,7 @@ class PatientController extends Controller
         			'laboratory' => function($lab) {
         				$lab->with(['laboratory']);
         			},
-        		]);
+        		])->where('discharged', 0);
         	}
         ])->get();
         return $patients;

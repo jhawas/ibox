@@ -65,12 +65,21 @@ class BillingController extends Controller
     }
 
     public function getTotalBill($patient_record_id = null) {
-        $patientBilling = PatientBilling::with([
-            'charge'
-        ])
-        ->where('patient_record_id', $patient_record_id)
+        $total = PatientBilling::where('patient_record_id', $patient_record_id)
         ->get()->sum('total');
-        return $patientBilling;
+        $phic = PatientBilling::where('patient_record_id', $patient_record_id)
+        ->get()->sum('phic');
+        $discount = PatientBilling::where('patient_record_id', $patient_record_id)
+        ->get()->sum('discount');
+        $hmo = PatientBilling::where('patient_record_id', $patient_record_id)
+        ->get()->sum('hmo');
+        return [
+            'total' => $total,
+            'phic' => $phic,
+            'discount' => $discount,
+            'hmo' => $hmo,
+            'excess' => $total - ($phic + $discount + $hmo),
+        ];
     }
 
     public function storePayment(Request $request) {

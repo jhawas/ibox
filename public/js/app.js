@@ -108295,6 +108295,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -108311,7 +108327,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             patient_record_id: null,
             charges: [],
             price: null,
-            totalBill: 0,
+            totalBill: {
+                total: 0,
+                phic: 0,
+                discount: 0,
+                hmo: 0
+            },
             amountEntered: 0,
             change: 0,
             is_paid: 0,
@@ -108369,13 +108390,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getPatientRecordID: function getPatientRecordID(event) {
             if (event) {
                 this.patient_record_id = event.value;
+                this.is_paid = event.is_paid;
             } else {
                 this.patient_record_id = null;
             }
             this.billing();
             this.getTotalBill();
             this.getPayment();
-            this.is_paid = event.is_paid;
             // this.getPaymentStatus();
         },
         billing: function billing() {
@@ -108467,7 +108488,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/api/billing/total/' + this.patient_record_id).then(function (response) {
                 _this7.totalBill = response.data;
-                console.log(response.data);
+                console.log('totalbill', response.data);
             });
         },
         printUrl: function printUrl() {
@@ -108478,7 +108499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('/api/billing/payment', {
                 patient_record_id: this.patient_record_id,
-                totalBill: this.totalBill,
+                totalBill: this.totalBill.excess,
                 enteredAmount: this.enteredAmount,
                 change: this.change
             }).then(function (response) {
@@ -108492,7 +108513,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         getChanged: function getChanged() {
-            this.change = this.amountEntered - this.totalBill;
+            this.change = this.amountEntered - this.totalBill.excess;
         },
         getPayment: function getPayment() {
             var _this9 = this;
@@ -108532,7 +108553,7 @@ var render = function() {
           { staticClass: "card-body" },
           [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-8 control-container" }, [
+              _c("div", { staticClass: "col-md-9 control-container" }, [
                 _c(
                   "div",
                   { staticClass: "control" },
@@ -108578,11 +108599,27 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-4 total-bill-container" }, [
-                _vm._v(
-                  "\n                        Total: " +
-                    _vm._s(_vm.totalBill) +
-                    "\n                    "
+              _c("div", { staticClass: "col-md-3 total-bill-container" }, [
+                _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { width: "100%" } },
+                  [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _vm._v(
+                        "\n                                Total: " +
+                          _vm._s(_vm.totalBill ? _vm.totalBill.total : 0) +
+                          "\n                            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _vm._v(
+                        "\n                                Excess: " +
+                          _vm._s(_vm.totalBill ? _vm.totalBill.excess : 0) +
+                          "\n                            "
+                      )
+                    ])
+                  ]
                 )
               ])
             ]),
@@ -108606,8 +108643,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.totalBill,
-                            expression: "totalBill"
+                            value: _vm.totalBill.excess,
+                            expression: "totalBill.excess"
                           }
                         ],
                         staticClass: "form-control",
@@ -108616,13 +108653,17 @@ var render = function() {
                           placeholder: "Enter Charges",
                           disabled: ""
                         },
-                        domProps: { value: _vm.totalBill },
+                        domProps: { value: _vm.totalBill.excess },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.totalBill = $event.target.value
+                            _vm.$set(
+                              _vm.totalBill,
+                              "excess",
+                              $event.target.value
+                            )
                           }
                         }
                       })
@@ -108990,41 +109031,90 @@ var render = function() {
                     _c(
                       "tbody",
                       { staticClass: "is-paid-container" },
-                      _vm._l(_vm.billings, function(billing) {
-                        return _c("tr", [
-                          _c("td", [_vm._v(_vm._s(billing.bill))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(billing.price + "/" + billing.quantity)
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(billing.total))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(billing.discount))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(billing.phic))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(billing.hmo))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary",
-                                on: {
-                                  click: function($event) {
-                                    _vm.removeBilling(billing.id)
+                      [
+                        _vm._l(_vm.billings, function(billing) {
+                          return _c("tr", [
+                            _c("td", [_vm._v(_vm._s(billing.bill))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(billing.price + "/" + billing.quantity)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(billing.total))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(billing.discount))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(billing.phic))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(billing.hmo))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.removeBilling(billing.id)
+                                    }
                                   }
-                                }
-                              },
-                              [_vm._v("x")]
-                            )
+                                },
+                                [_vm._v("x")]
+                              )
+                            ])
                           ])
-                        ])
-                      }),
-                      0
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "tr",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.patient_record_id,
+                                expression: "patient_record_id"
+                              }
+                            ]
+                          },
+                          [
+                            _c("td", [_vm._v("Total")]),
+                            _vm._v(" "),
+                            _c("td"),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.totalBill ? _vm.totalBill.total : 0)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.totalBill ? _vm.totalBill.discount : 0
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.totalBill ? _vm.totalBill.phic : 0)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.totalBill ? _vm.totalBill.hmo : 0)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td")
+                          ]
+                        )
+                      ],
+                      2
                     )
                   ]
                 )
@@ -109054,7 +109144,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Phic")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Insurance")]),
+        _c("th", [_vm._v("HMO")]),
         _vm._v(" "),
         _c("th", [_vm._v("Delete")])
       ])
@@ -123937,11 +124027,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this5 = this;
 
             axios.get('/api/patients').then(function (response) {
+                console.log('patients', response.data);
                 _this5.patients = response.data.map(function (patient) {
-                    return {
-                        value: patient.id,
-                        label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name
-                    };
+                    if (!patient.records.length) {
+                        return {
+                            value: patient.id,
+                            label: patient.first_name + ' ' + patient.middle_name + ' ' + patient.last_name
+                        };
+                    } else {
+                        return;
+                    }
                 });
             });
         },
