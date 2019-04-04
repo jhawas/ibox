@@ -108884,7 +108884,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { attrs: { for: "Charges" } }, [
-                        _vm._v("Total")
+                        _vm._v("Amount")
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -108897,7 +108897,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Enter Price" },
+                        attrs: { type: "text", placeholder: "Enter Amount" },
                         domProps: { value: _vm.form.discount },
                         on: {
                           input: function($event) {

@@ -86,8 +86,8 @@
                                 </div>
                                 <legend>Discount(Sr. Citizen)</legend>
                                 <div class="form-group">
-                                    <label for="Charges">Total</label>
-                                    <input type="text" class="form-control" placeholder="Enter Price" v-model="form.discount">
+                                    <label for="Charges">Amount</label>
+                                    <input type="text" class="form-control" placeholder="Enter Amount" v-model="form.discount">
                                 </div>
                                 <legend>Insurance</legend>
                                 <div class="form-group">
