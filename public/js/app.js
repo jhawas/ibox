@@ -123794,6 +123794,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.getRecords();
         },
         showModalDelete: function showModalDelete(item, index, button) {
+            this.getPatients();
             this.modalInfo.title = 'Record';
             this.modalInfo.content = 'Are you sure you want to delete?';
             this.$root.$emit('bv::show::modal', 'modalDelete', button);
@@ -123812,6 +123813,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         showModalForm: function showModalForm() {
+            this.getPatients();
             this.action = 'store';
             this.record = {
                 addmission_doctor: {
@@ -123906,6 +123908,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }).catch(function (response) {
                     console.log(response);
                 });
+                this.getPatients();
             }
         },
         hideModal: function hideModal() {
@@ -123914,6 +123917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showModalEdit: function showModalEdit(item) {
             var _this4 = this;
 
+            this.getPatients();
             this.action = 'edit';
             this.selected_id = item.id;
             axios.get('/api/records/' + this.selected_id + '/edit').then(function (response) {

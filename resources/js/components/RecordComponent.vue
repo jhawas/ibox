@@ -558,6 +558,7 @@
             this.getRecords();
         },
         showModalDelete(item, index, button) {
+            this.getPatients();
             this.modalInfo.title = 'Record';
             this.modalInfo.content = 'Are you sure you want to delete?';
             this.$root.$emit('bv::show::modal', 'modalDelete', button);
@@ -580,6 +581,7 @@
             });
         },
         showModalForm() {
+            this.getPatients();
             this.action = 'store';
             this.record = {
               addmission_doctor: {
@@ -684,12 +686,14 @@
                 .catch (response => {
                     console.log(response);
                 });
+                this.getPatients();
             }
         },
         hideModal() {
           this.$root.$emit('bv::hide::modal', 'modalRecordForm');
         },
         showModalEdit(item) {
+            this.getPatients();
             this.action = 'edit';
             this.selected_id = item.id;
             axios.get('/api/records/'+this.selected_id+'/edit')
