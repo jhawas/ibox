@@ -72,6 +72,7 @@ class CreatePatientRecordsTable extends Migration
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->boolean('discharged')->default(0);
+            $table->boolean('is_final_discharged')->default(0);
             $table->timestamps();
         });
     }

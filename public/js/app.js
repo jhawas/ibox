@@ -108331,7 +108331,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 total: 0,
                 phic: 0,
                 discount: 0,
-                hmo: 0
+                hmo: 0,
+                excess: 0
             },
             amountEntered: 0,
             change: 0,
@@ -108377,7 +108378,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         patientRecords: function patientRecords() {
             var _this = this;
 
-            axios.get('/api/patientRecords').then(function (response) {
+            axios.get('/api/billingPatientRecords').then(function (response) {
                 _this.patientRecord = response.data.map(function (patientRecord) {
                     return {
                         value: patientRecord.id,
@@ -108404,9 +108405,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/api/billing/patientRecord/' + this.patient_record_id).then(function (response) {
                 _this2.billings = response.data;
-                _this2.totalBill = response.data.forEach(function (data) {
-                    console.log(data);
-                });
+
+                // this.totalBill = response.data;
             });
         },
         storeBilling: function storeBilling() {
@@ -123770,6 +123770,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -123930,7 +123942,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     temperature: this.record.temperature,
                     typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
                     weight: this.record.weight,
-                    discharged: this.record.discharged
+                    discharged: this.record.discharged,
+                    is_final_discharged: this.record.is_final_discharged
                 }).then(function (response) {
                     console.log('return', response.data);
                     if (response.data == 'success') {
@@ -123970,7 +123983,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     temperature: this.record.temperature,
                     typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
                     weight: this.record.weight,
-                    discharged: this.record.discharged
+                    discharged: this.record.discharged,
+                    is_final_discharged: this.record.is_final_discharged
                 }).then(function (response) {
                     console.log(response.data);
                     if (response.data == 'success') {
@@ -126064,7 +126078,7 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("legend", [_vm._v("Patient Status")]),
+                          _c("legend", [_vm._v("Doctor Notice")]),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -126084,6 +126098,42 @@ var render = function() {
                                       _vm.$set(_vm.record, "discharged", $$v)
                                     },
                                     expression: "record.discharged"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                Discharged\n              "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("legend", [_vm._v("Hospital Notice")]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c(
+                                "b-form-checkbox",
+                                {
+                                  attrs: {
+                                    id: "checkbox2",
+                                    name: "checkbox2",
+                                    value: 1,
+                                    "unchecked-value": 0
+                                  },
+                                  model: {
+                                    value: _vm.record.is_final_discharged,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.record,
+                                        "is_final_discharged",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "record.is_final_discharged"
                                   }
                                 },
                                 [

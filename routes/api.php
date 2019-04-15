@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('patientRecords', 'API\BillingController@patientRecords');
 
+Route::get('billingPatientRecords', 'API\BillingController@billingPatientRecords');
+
 Route::get('billing/patientRecord/{patient_record_id}', 'API\BillingController@billing');
 
 Route::post('billing', 'API\BillingController@storeBilling');

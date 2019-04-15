@@ -175,6 +175,7 @@
                     phic: 0,
                     discount: 0,
                     hmo: 0,
+                    excess: 0,
                 },
                 amountEntered: 0,
                 change: 0,
@@ -226,7 +227,7 @@
             },
 
             patientRecords() {
-                axios.get('/api/patientRecords')
+                axios.get('/api/billingPatientRecords')
                 .then(response => {
                     this.patientRecord = response.data.map( (patientRecord) => ({ 
                         value: patientRecord.id, 
@@ -253,9 +254,8 @@
                  axios.get('/api/billing/patientRecord/'+ this.patient_record_id)
                 .then(response => {
                     this.billings = response.data;
-                    this.totalBill = response.data.forEach( (data) => {
-                        console.log(data);
-                    });
+
+                    // this.totalBill = response.data;
                 });
             },
 

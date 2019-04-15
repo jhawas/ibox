@@ -118,6 +118,7 @@ class RecordController extends Controller
 		$record->type_of_record_id = $request->typeOfRecord;
 		$record->weight = $request->weight;
 		$record->discharged = empty($request->discharged) ? 0 : $request->discharged;
+        $record->is_final_discharged = empty($request->is_final_discharged) ? 0 : $request->is_final_discharged;
 		$record->save();
 
 		if($request->diagnose) {
@@ -167,6 +168,7 @@ class RecordController extends Controller
 		$record->type_of_record_id = $request->typeOfRecord;
 		$record->weight = $request->weight;
 		$record->discharged = empty($request->discharged) ? 0 : $request->discharged;
+        $record->is_final_discharged = empty($request->is_final_discharged) ? 0 : $request->is_final_discharged;
 		$record->save();
 
 		if($request->diagnose) {

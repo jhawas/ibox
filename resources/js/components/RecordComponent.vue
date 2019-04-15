@@ -430,12 +430,24 @@
                 />
               </b-input-group>
             </b-form-group>
-            <legend>Patient Status</legend>
+            <legend>Doctor Notice</legend>
             <div>
                 <b-form-checkbox
                   id="checkbox1"
                   name="checkbox1"
                   v-model="record.discharged"
+                  :value="1"
+                  :unchecked-value="0"
+                >
+                  Discharged
+                </b-form-checkbox>
+            </div>
+            <legend>Hospital Notice</legend>
+            <div>
+                <b-form-checkbox
+                  id="checkbox2"
+                  name="checkbox2"
+                  v-model="record.is_final_discharged"
                   :value="1"
                   :unchecked-value="0"
                 >
@@ -624,6 +636,7 @@
                     typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
                     weight: this.record.weight,
                     discharged: this.record.discharged,
+                    is_final_discharged: this.record.is_final_discharged,
                 })
                 .then(response => {
                     console.log('return', response.data);
@@ -670,6 +683,7 @@
                     typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
                     weight: this.record.weight,
                     discharged: this.record.discharged,
+                    is_final_discharged: this.record.is_final_discharged,
                 })
                 .then(response => {
                     console.log(response.data);

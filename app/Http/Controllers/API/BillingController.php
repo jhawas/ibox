@@ -23,6 +23,12 @@ class BillingController extends Controller
         return $patientRecords;
     }
 
+    public function billingPatientRecords()
+    {
+        $patientRecords = PatientRecord::with(['patient', 'billings'])->where('is_final_discharged', 0)->get();
+        return $patientRecords;
+    }
+
     public function charges()
     {
         $typeOfCharges = TypeOfCharge::with([
