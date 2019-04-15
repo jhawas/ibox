@@ -21,8 +21,7 @@ class PatientLaboratoryController extends Controller
         $laboratoryTests = LaboratoryTest::with([
         	'record' => function($query) {
         		$query->with(['patient']);
-        	},
-        	'laboratory'
+        	}
         ])->where('patient_record_id', $patient_record_id)
         	->get();
         return response()->json($laboratoryTests);
@@ -31,9 +30,10 @@ class PatientLaboratoryController extends Controller
     public function delete($id = null) {
     	$laboratoryTest = LaboratoryTest::where('id', $id)->first();
         $files = json_decode($laboratoryTest->image);
-        for($i=0; $i < count($files); $i++) {
-            Storage::delete(['public/laboratory/'.$files[$i]]);
-        }
+        Storage::deleteDirectory('public/laboratory/'.$laboratoryTest->patient_record_id);
+        // for($i=0; $i < count($files); $i++) {
+        //     Storage::delete(['public/laboratory/'.$files[$i]]);
+        // }
         $laboratoryTest->delete();
         return 'success';
     }
@@ -52,12 +52,13 @@ class PatientLaboratoryController extends Controller
     	$laboratoryTest = LaboratoryTest::where('id', $id)->first();
         if($request->hasfile('files')) {
             $files = json_decode($laboratoryTest->image);
-                for($i=0; $i < count($files); $i++) {
-                Storage::delete(['public/laboratory/'.$files[$i]]);
-            }
+            Storage::deleteDirectory('public/laboratory/'.$laboratoryTest->patient_record_id);
+            // for($i=0; $i < count($files); $i++) {
+            //     Storage::delete(['public/laboratory/'.$files[$i]]);
+            // }
             foreach($request->file('files') as $key => $file) {
                 $name=$file->getClientOriginalName();
-                $file->move(public_path().'/storage/laboratory/', $name);  
+                $file->move(public_path().'/storage/laboratory/'. $request->patient_record_id, $name);  
                 $data[$key] = $name;  
             }
             $laboratoryTest->image = json_encode($data);
@@ -70,11 +71,10 @@ class PatientLaboratoryController extends Controller
     }
 
     public function store(Request $request) {
-        
         if($request->hasfile('files')) {
             foreach($request->file('files') as $key => $file) {
                 $name=$file->getClientOriginalName();
-                $file->move(public_path().'/storage/laboratory/', $name);  
+                $file->move(public_path().'/storage/laboratory/'. $request->patient_record_id, $name);  
                 $data[$key] = $name;  
             }
         }

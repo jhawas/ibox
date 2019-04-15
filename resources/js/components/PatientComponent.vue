@@ -248,12 +248,14 @@
                   :fields="laboratoryFields"
                 >
                     <template slot="laboratory" slot-scope="row">
-                        {{row.item.laboratory.code}}
+                        <div v-for="lab in JSON.parse(row.item.type_of_laboratory_id)">
+                            {{ lab.label }}
+                        </div>
                     </template>
                     <template slot="image" slot-scope="row">
                         <div class="row">
                           <div class="col-md-1" v-for="img in JSON.parse(row.item.image)" v-viewer>
-                              <b-img :src="replaceUrl(img)" thumbnail fluid alt="Responsive image" class="laboratoryImage"/>
+                              <b-img :src="replaceUrl(img, row.item.patient_record_id)" thumbnail fluid alt="Responsive image" class="laboratoryImage"/>
                           </div>
                         </div>
                     </template>
@@ -665,9 +667,9 @@
             this.modalInfo.title = "Medical History";
             this.$root.$emit('bv::show::modal', 'modalHistory');
         },
-        replaceUrl(url) {
+        replaceUrl(url, id) {
             if(url) {
-              return '/storage/laboratory/'+url;
+              return '/storage/laboratory/' + id + '/' +url;
             }
         },
         printUrl() {

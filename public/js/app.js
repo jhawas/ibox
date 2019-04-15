@@ -109951,6 +109951,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -110047,7 +110055,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/api/typeOfLaboratories').then(function (response) {
                 _this3.laboratories = response.data.map(function (lab) {
                     return {
-                        value: lab.code,
+                        value: { id: lab.id, label: lab.code },
                         text: lab.code
                     };
                 });
@@ -110490,6 +110498,20 @@ var render = function() {
             }
           },
           {
+            key: "laboratories",
+            fn: function(row) {
+              return _vm._l(JSON.parse(row.item.laboratories), function(lab) {
+                return _c("span", [
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(lab.label + ",") +
+                      "\n          "
+                  )
+                ])
+              })
+            }
+          },
+          {
             key: "row-details",
             fn: function(row) {
               return [
@@ -110600,13 +110622,22 @@ var render = function() {
                         attrs: { "label-cols-sm": "2", label: "laboratories" }
                       },
                       [
-                        _c("b-input-group", [
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(row.item.laboratories) +
-                              "\n            "
-                          )
-                        ])
+                        _c(
+                          "b-input-group",
+                          _vm._l(JSON.parse(row.item.laboratories), function(
+                            lab,
+                            index
+                          ) {
+                            return _c("span", [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(lab.label + ",") +
+                                  "\n                "
+                              )
+                            ])
+                          }),
+                          0
+                        )
                       ],
                       1
                     )
@@ -113449,6 +113480,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -113535,6 +113569,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/api/patientLaboratories/' + this.patient_record_id).then(function (response) {
+                console.log(response.data);
                 _this2.laboratories = response.data;
                 _this2.totalRows = _this2.laboratories.length;
                 console.log(_this2.laboratories, _this2.totalRows);
@@ -113572,7 +113607,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (action === 'store') {
                 axios.post('/api/patientLaboratories', {
                     patient_record_id: this.patient_record_id,
-                    type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
+                    type_of_laboratory_id: this.laboratory.lab ? JSON.stringify(this.laboratory.lab) : null,
                     description: this.laboratory.description,
                     file: this.laboratory.file
                 }).then(function (response) {
@@ -113592,7 +113627,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
                 formData.append('patient_record_id', this.patient_record_id);
                 formData.append('description', this.laboratory.description);
-                formData.append('type_of_laboratory_id', this.laboratory.lab ? this.laboratory.lab.value : null);
+                formData.append('type_of_laboratory_id', this.laboratory.lab ? JSON.stringify(this.laboratory.lab) : null);
                 formData.append('_method', 'PUT');
                 var config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
@@ -113615,10 +113650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/api/patientLaboratories/' + this.selected_id + '/edit').then(function (response) {
                 _this5.laboratory = response.data;
                 _this5.laboratory.diagnose_id = response.data.diagnose_id;
-                _this5.laboratory.lab = {
-                    value: response.data.laboratory.id,
-                    label: response.data.laboratory.code
-                };
+                _this5.laboratory.lab = JSON.parse(item.type_of_laboratory_id);
             });
             this.modalInfo.title = "Laboratory";
             this.$root.$emit('bv::show::modal', 'modalForm');
@@ -113644,7 +113676,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         replaceUrl: function replaceUrl(url) {
             if (url) {
-                return '/storage/laboratory/' + url;
+                return '/storage/laboratory/' + this.patient_record_id + '/' + url;
             }
         },
         onFileChange: function onFileChange(e) {
@@ -113940,11 +113972,14 @@ var render = function() {
           {
             key: "laboratory",
             fn: function(row) {
-              return [
-                _vm._v(
-                  "\n          " + _vm._s(row.item.laboratory.code) + "\n    "
-                )
-              ]
+              return _vm._l(
+                JSON.parse(row.item.type_of_laboratory_id),
+                function(lab) {
+                  return _c("div", [
+                    _vm._v("\n            " + _vm._s(lab.label) + "\n        ")
+                  ])
+                }
+              )
             }
           },
           {
@@ -114173,7 +114208,7 @@ var render = function() {
                     [
                       _c("v-select", {
                         ref: "lab",
-                        attrs: { options: _vm.lab },
+                        attrs: { options: _vm.lab, multiple: "" },
                         model: {
                           value: _vm.laboratory.lab,
                           callback: function($$v) {
@@ -114444,6 +114479,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -114536,6 +114578,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(item);
             this.laboratory.patient_record_id = item.patient_record_id;
             this.laboratory.doctor_order_id = item.id;
+            this.laboratory.lab = JSON.parse(item.laboratories);
             this.modalInfo.title = "Laboratory";
             this.$root.$emit('bv::show::modal', 'modalForm2');
         },
@@ -114551,7 +114594,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('patient_record_id', this.laboratory.patient_record_id);
             formData.append('doctor_order_id', this.laboratory.doctor_order_id);
             formData.append('description', this.laboratory.description);
-            formData.append('type_of_laboratory_id', this.laboratory.lab ? this.laboratory.lab.value : null);
+            formData.append('type_of_laboratory_id', this.laboratory.lab ? JSON.stringify(this.laboratory.lab) : null);
 
             var config = { headers: { 'Content-Type': 'multipart/form-data' } };
             axios.post('/api/patientLaboratories', formData, config).then(function (response) {
@@ -114781,6 +114824,16 @@ var render = function() {
             }
           },
           {
+            key: "laboratories",
+            fn: function(row) {
+              return _vm._l(JSON.parse(row.item.laboratories), function(lab) {
+                return _c("div", [
+                  _vm._v("\n            " + _vm._s(lab.label) + "\n        ")
+                ])
+              })
+            }
+          },
+          {
             key: "row-details",
             fn: function(row) {
               return [_c("b-card", [_vm._v("\n          test\n      ")])]
@@ -114873,7 +114926,7 @@ var render = function() {
                     [
                       _c("v-select", {
                         ref: "lab",
-                        attrs: { options: _vm.lab },
+                        attrs: { options: _vm.lab, multiple: "" },
                         model: {
                           value: _vm.laboratory.lab,
                           callback: function($$v) {
@@ -115112,6 +115165,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -115174,9 +115229,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.totalRows = _this.items.length;
       });
     },
-    replaceUrl: function replaceUrl(url) {
+    replaceUrl: function replaceUrl(url, id) {
       if (url) {
-        return '/storage/laboratory/' + url;
+        return '/storage/laboratory/' + id + '/' + url;
       }
     }
   }
@@ -115454,9 +115509,14 @@ var render = function() {
           {
             key: "laboratory",
             fn: function(row) {
-              return [
-                _vm._v("\n      " + _vm._s(row.item.laboratory.code) + "\n    ")
-              ]
+              return _vm._l(
+                JSON.parse(row.item.type_of_laboratory_id),
+                function(lab) {
+                  return _c("div", [
+                    _vm._v("\n          " + _vm._s(lab.label) + "\n      ")
+                  ])
+                }
+              )
             }
           },
           {
@@ -115476,7 +115536,10 @@ var render = function() {
                       [
                         _c("b-img", {
                           attrs: {
-                            src: _vm.replaceUrl(img),
+                            src: _vm.replaceUrl(
+                              img,
+                              row.item.patient_record_id
+                            ),
                             thumbnail: "",
                             fluid: "",
                             alt: "Responsive image"
@@ -119224,6 +119287,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -119398,9 +119463,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modalInfo.title = "Medical History";
             this.$root.$emit('bv::show::modal', 'modalHistory');
         },
-        replaceUrl: function replaceUrl(url) {
+        replaceUrl: function replaceUrl(url, id) {
             if (url) {
-                return '/storage/laboratory/' + url;
+                return '/storage/laboratory/' + id + '/' + url;
             }
         },
         printUrl: function printUrl() {
@@ -120613,13 +120678,18 @@ var render = function() {
                           {
                             key: "laboratory",
                             fn: function(row) {
-                              return [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(row.item.laboratory.code) +
-                                    "\n                  "
-                                )
-                              ]
+                              return _vm._l(
+                                JSON.parse(row.item.type_of_laboratory_id),
+                                function(lab) {
+                                  return _c("div", [
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(lab.label) +
+                                        "\n                      "
+                                    )
+                                  ])
+                                }
+                              )
                             }
                           },
                           {
@@ -120647,7 +120717,10 @@ var render = function() {
                                         _c("b-img", {
                                           staticClass: "laboratoryImage",
                                           attrs: {
-                                            src: _vm.replaceUrl(img),
+                                            src: _vm.replaceUrl(
+                                              img,
+                                              row.item.patient_record_id
+                                            ),
                                             thumbnail: "",
                                             fluid: "",
                                             alt: "Responsive image"

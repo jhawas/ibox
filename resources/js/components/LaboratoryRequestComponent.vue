@@ -53,6 +53,12 @@
         </b-button>
       </template>
 
+      <template slot="laboratories" slot-scope="row">
+          <div v-for="lab in JSON.parse(row.item.laboratories)">
+              {{ lab.label }}
+          </div>
+      </template>
+
       <template slot="row-details" slot-scope="row">
         <b-card>
             test
@@ -91,6 +97,7 @@
                   ref="lab"
                   v-model="laboratory.lab" 
                   :options="lab"
+                  multiple
                 ></v-select>
             </b-input-group>
         </b-form-group>
@@ -220,11 +227,11 @@
             console.log(item);
             this.laboratory.patient_record_id = item.patient_record_id;
             this.laboratory.doctor_order_id = item.id;
+            this.laboratory.lab = JSON.parse(item.laboratories);
             this.modalInfo.title = "Laboratory";
             this.$root.$emit('bv::show::modal', 'modalForm2');
         },
         onSubmit() {
-
           let formData = new FormData();
 
           for( var i = 0; i < this.files.length; i++ ){
@@ -234,7 +241,7 @@
           formData.append('patient_record_id', this.laboratory.patient_record_id);
           formData.append('doctor_order_id', this.laboratory.doctor_order_id);
           formData.append('description', this.laboratory.description);
-          formData.append('type_of_laboratory_id', this.laboratory.lab ? this.laboratory.lab.value : null);
+          formData.append('type_of_laboratory_id', this.laboratory.lab ? JSON.stringify(this.laboratory.lab) : null);
 
           const config = { headers: { 'Content-Type': 'multipart/form-data' } };
           axios.post('/api/patientLaboratories', formData, config)

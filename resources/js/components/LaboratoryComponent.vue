@@ -73,7 +73,9 @@
       @filtered="onFiltered"
     >
       <template slot="laboratory" slot-scope="row">
-            {{ row.item.laboratory.code }}
+          <div v-for="lab in JSON.parse(row.item.type_of_laboratory_id)">
+              {{ lab.label }}
+          </div>
       </template>
       <template slot="image" slot-scope="row">
           <b-button size="sm" @click="showImage(row.item)">
@@ -143,6 +145,7 @@
                   ref="lab"
                   v-model="laboratory.lab" 
                   :options="lab"
+                  multiple
                 ></v-select>
             </b-input-group>
         </b-form-group>
@@ -261,6 +264,7 @@
         getPatientLaboratories() {
             axios.get('/api/patientLaboratories/'+this.patient_record_id)
             .then(response => {
+              console.log(response.data);
                 this.laboratories = response.data;
                 this.totalRows = this.laboratories.length;
                 console.log(this.laboratories, this.totalRows);
@@ -300,7 +304,7 @@
             if(action === 'store') {
                 axios.post('/api/patientLaboratories', {
                     patient_record_id: this.patient_record_id,
-                    type_of_laboratory_id: this.laboratory.lab ? this.laboratory.lab.value : null,
+                    type_of_laboratory_id: this.laboratory.lab ? JSON.stringify(this.laboratory.lab) : null,
                     description: this.laboratory.description,
                     file: this.laboratory.file
                 })
@@ -326,7 +330,7 @@
                 }
                 formData.append('patient_record_id', this.patient_record_id);
                 formData.append('description', this.laboratory.description);
-                formData.append('type_of_laboratory_id', this.laboratory.lab ? this.laboratory.lab.value : null);
+                formData.append('type_of_laboratory_id', this.laboratory.lab ? JSON.stringify(this.laboratory.lab) : null);
                 formData.append('_method', 'PUT');
                 const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
@@ -357,10 +361,7 @@
             .then(response => {
                 this.laboratory = response.data;
                 this.laboratory.diagnose_id = response.data.diagnose_id;
-                this.laboratory.lab = {
-                    value: response.data.laboratory.id,
-                    label: response.data.laboratory.code,
-                };
+                this.laboratory.lab = JSON.parse(item.type_of_laboratory_id);
             });
             this.modalInfo.title = "Laboratory";
             this.$root.$emit('bv::show::modal', 'modalForm');
@@ -383,7 +384,7 @@
         },
         replaceUrl(url) {
             if(url) {
-              return '/storage/laboratory/'+url;
+              return '/storage/laboratory/' + this.patient_record_id + '/' + url;
             }
         },
         onFileChange(e) {

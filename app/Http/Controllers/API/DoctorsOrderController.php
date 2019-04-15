@@ -70,7 +70,7 @@ class DoctorsOrderController extends Controller
         $doctorsOrder->progress_note = $request->progress_note;
         $doctorsOrder->doctors_orders = $request->doctors_orders;
         $doctorsOrder->physician_id = $request->user_id;
-        $doctorsOrder->laboratories = implode(',', $request->laboratories);
+        $doctorsOrder->laboratories = json_encode($request->laboratories);
         $doctorsOrder->save();
         return 'success';
     }

@@ -17,8 +17,7 @@ class CreateLaboratoryTestsTable extends Migration
             $table->increments('id');
             $table->integer('patient_record_id')->unsigned()->nullable();
             $table->foreign('patient_record_id')->references('id')->on('patient_records')->onDelete('cascade');
-            $table->integer('type_of_laboratory_id')->unsigned()->nullable();
-            $table->foreign('type_of_laboratory_id')->references('id')->on('type_of_laboratories')->onDelete('cascade');
+            $table->text('type_of_laboratory_id')->nullable();
             $table->integer('trans_user_id')->unsigned()->nullable();
             $table->foreign('trans_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('description')->nullable();

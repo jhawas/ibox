@@ -87,6 +87,12 @@
         </b-button>
       </template>
 
+      <template slot="laboratories" slot-scope="row">
+            <span v-for="lab in JSON.parse(row.item.laboratories)">
+                {{ lab.label + ','}}
+            </span>
+      </template>
+
       <template slot="row-details" slot-scope="row">
         <b-card>
             <b-form-group label-cols-sm="2" label="Patient Record" class="mb-0">
@@ -116,7 +122,9 @@
             </b-form-group>
             <b-form-group label-cols-sm="2" label="laboratories" class="mb-0">
               <b-input-group>
-                {{row.item.laboratories}}
+                  <span v-for="(lab, index) in JSON.parse(row.item.laboratories)">
+                      {{lab.label + ','}}
+                  </span>
               </b-input-group>
             </b-form-group>
         </b-card>
@@ -292,7 +300,7 @@
           axios.get('/api/typeOfLaboratories')
             .then(response => {
               this.laboratories = response.data.map( (lab) => ({ 
-                  value: lab.code, 
+                  value: { id: lab.id, label: lab.code }, 
                   text: lab.code
               }));
             });
