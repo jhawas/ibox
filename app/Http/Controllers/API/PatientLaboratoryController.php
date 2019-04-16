@@ -79,7 +79,7 @@ class PatientLaboratoryController extends Controller
             }
         }
 
-        $doctorsOrder = DoctorsOrder::where('patient_record_id', $request->patient_record_id)->first();
+        $doctorsOrder = DoctorsOrder::where('id', $request->doctor_order_id)->first();
         $doctorsOrder->approved = 1;
         $doctorsOrder->save();
 
