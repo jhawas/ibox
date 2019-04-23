@@ -430,7 +430,6 @@
                 />
               </b-input-group>
             </b-form-group>
-            <legend>Doctor Notice</legend>
             <div>
                 <b-form-checkbox
                   id="checkbox1"
@@ -442,7 +441,8 @@
                   Discharged
                 </b-form-checkbox>
             </div>
-            <legend>Hospital Notice</legend>
+          </b-col>
+          <b-col md="6" v-if="record.discharged && (user_role == 1 || user_role == 2 || user_role == 5)">
             <div>
                 <b-form-checkbox
                   id="checkbox2"

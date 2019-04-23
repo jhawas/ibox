@@ -126078,8 +126078,6 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("legend", [_vm._v("Doctor Notice")]),
-                          _vm._v(" "),
                           _c(
                             "div",
                             [
@@ -126108,46 +126106,51 @@ var render = function() {
                               )
                             ],
                             1
-                          ),
-                          _vm._v(" "),
-                          _c("legend", [_vm._v("Hospital Notice")]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c(
-                                "b-form-checkbox",
-                                {
-                                  attrs: {
-                                    id: "checkbox2",
-                                    name: "checkbox2",
-                                    value: 1,
-                                    "unchecked-value": 0
-                                  },
-                                  model: {
-                                    value: _vm.record.is_final_discharged,
-                                    callback: function($$v) {
-                                      _vm.$set(
-                                        _vm.record,
-                                        "is_final_discharged",
-                                        $$v
-                                      )
-                                    },
-                                    expression: "record.is_final_discharged"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                Discharged\n              "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
                           )
                         ],
                         1
                       )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.record.discharged &&
+                  (_vm.user_role == 1 ||
+                    _vm.user_role == 2 ||
+                    _vm.user_role == 5)
+                    ? _c("b-col", { attrs: { md: "6" } }, [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "b-form-checkbox",
+                              {
+                                attrs: {
+                                  id: "checkbox2",
+                                  name: "checkbox2",
+                                  value: 1,
+                                  "unchecked-value": 0
+                                },
+                                model: {
+                                  value: _vm.record.is_final_discharged,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.record,
+                                      "is_final_discharged",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "record.is_final_discharged"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                Discharged\n              "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
                     : _vm._e()
                 ],
                 1
