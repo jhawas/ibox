@@ -20,7 +20,7 @@
               @csrf
               <div class="tile-body">
                   <div class="form-group">
-                    <label class="control-label">Name</label>
+                    <label class="control-label">ICD Code</label>
                     <input name="code" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" value="{{ $diagnose->code }}" type="text" placeholder="Enter Name">
                     @if ($errors->has('code'))
                         <span class="invalid-feedback" role="alert">

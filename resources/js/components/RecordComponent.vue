@@ -141,6 +141,11 @@
                     {{row.item.pulse_rate}}
                   </b-input-group>
                 </b-form-group>
+                <b-form-group label-cols-sm="4" label="Respiratory Rate (Breath/Minute)">
+                  <b-input-group>
+                    {{row.item.respiratory_rate}}
+                  </b-input-group>
+                </b-form-group>
                 <b-form-group label-cols-sm="4" label="Temperature (°C)">
                   <b-input-group>
                     {{row.item.temperature}}
@@ -315,6 +320,11 @@
             <b-form-group label-cols-sm="3" label="Pulse Rate (Bit/Minute)">
               <b-input-group>
                   <b-form-input type="text" placeholder="Enter Pulse Rate" v-model="record.pulse_rate" />
+              </b-input-group>
+            </b-form-group>
+            <b-form-group label-cols-sm="3" label="Respiratory Rate (Breath/Minute)">
+              <b-input-group>
+                  <b-form-input type="text" placeholder="Enter Respiratory Rate" v-model="record.respiratory_rate" />
               </b-input-group>
             </b-form-group>
             <legend>Additional Information</legend>
@@ -636,6 +646,7 @@
                     typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
                     weight: this.record.weight,
                     discharged: this.record.discharged,
+                    respiratory_rate: this.record.respiratory_rate,
                     is_final_discharged: this.record.is_final_discharged,
                 })
                 .then(response => {
@@ -683,6 +694,7 @@
                     typeOfRecord: this.record.typeOfRecord ? this.record.typeOfRecord.value : null,
                     weight: this.record.weight,
                     discharged: this.record.discharged,
+                    respiratory_rate: this.record.respiratory_rate,
                     is_final_discharged: this.record.is_final_discharged,
                 })
                 .then(response => {

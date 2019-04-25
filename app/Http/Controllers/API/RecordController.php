@@ -115,6 +115,7 @@ class RecordController extends Controller
 		$record->room_id = $request->room;
 		$record->sponsor = $request->sponsor;
 		$record->temperature = $request->temperature;
+        $record->respiratory_rate = $request->respiratory_rate;
 		$record->type_of_record_id = $request->typeOfRecord;
 		$record->weight = $request->weight;
 		$record->discharged = empty($request->discharged) ? 0 : $request->discharged;
@@ -137,6 +138,7 @@ class RecordController extends Controller
         $vitalSign->bp = $request->blood_pressure;
         $vitalSign->t = $request->temperature;
         $vitalSign->p = $request->pulse_rate;
+        $vitalSign->r = $request->respiratory_rate;
         $vitalSign->save();
         return 'success';
     }
@@ -165,6 +167,7 @@ class RecordController extends Controller
 		$record->room_id = $request->room;
 		$record->sponsor = $request->sponsor;
 		$record->temperature = $request->temperature;
+        $record->respiratory_rate = $request->respiratory_rate;
 		$record->type_of_record_id = $request->typeOfRecord;
 		$record->weight = $request->weight;
 		$record->discharged = empty($request->discharged) ? 0 : $request->discharged;
@@ -187,6 +190,7 @@ class RecordController extends Controller
         $vitalSign->bp = $request->blood_pressure;
         $vitalSign->t = $request->temperature;
         $vitalSign->p = $request->pulse_rate;
+        $vitalSign->r = $request->respiratory_rate;
         $vitalSign->save();
 
         return 'success';

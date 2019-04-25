@@ -63,6 +63,7 @@ class CreatePatientRecordsTable extends Migration
             $table->string('temperature')->nullable();
             $table->string('blood_pressure')->nullable();
             $table->string('pulse_rate')->nullable();
+            $table->string('respiratory_rate')->nullable();
 
             $table->string('chief_complaints')->nullable();
 

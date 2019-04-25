@@ -22,7 +22,7 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Name</th>
+                  <th>ICD Code</th>
                   <th>Description</th>
                   <th>Created</th>
                   <th>Updated</th>
