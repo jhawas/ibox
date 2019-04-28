@@ -82,6 +82,9 @@
         <b-button size="sm" @click="row.toggleDetails">
             {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
+        <b-button size="sm" @click="printHistory(row.item)">
+            Print History
+        </b-button>
         <b-button v-show="user_role != 3" size="sm" @click="showModalEdit(row.item)">
             Edit
         </b-button>
@@ -671,6 +674,10 @@
             if(url) {
               return '/storage/laboratory/' + id + '/' +url;
             }
+        },
+        printHistory(item) {
+          // console.log(item.id);
+          window.open('patients/' + item.id + '/print', '_blank');
         },
         printUrl() {
             window.open('patients/patients/print', '_blank');
