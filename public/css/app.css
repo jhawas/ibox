@@ -21441,3 +21441,12 @@ be a descendant of the grid when it is being dragged.
   width: 100%;
 }
 
+.header-plain {
+  margin-top: 10px;
+}
+
+.hospital-logo {
+  width: 100px;
+  height: auto;
+}
+

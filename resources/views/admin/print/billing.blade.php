@@ -1,7 +1,8 @@
 @extends('admin.layouts.plain')
 
 @section('content')
-    <header id="header" class="header">
+    <header id="header" class="header header-plain">
+        <img class="hospital-logo" src="{{asset('img/hospital_logo.png')}}">
         <h2>Gaviola Medical Hospital</h2>
         <div class="title">STATEMENT OF ACCOUNT</div>
         <div class="row patient-details">
