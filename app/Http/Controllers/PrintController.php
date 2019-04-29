@@ -35,7 +35,12 @@ class PrintController extends Controller
             },
     	])->where('parent_id', null)->get();
     	// return $typeOfCharges;
-        $patientRecord = PatientRecord::where('id', $patient_record_id)->first();
+        $patientRecord = PatientRecord::with([
+            'diagnoses' => function($diagnose) {
+                return $diagnose->with(['diagnose'])->latest()->first();
+            }
+        ])->where('id', $patient_record_id)->first();
+        // return $patientRecord;
     	return view('admin.print.billing', [
             'patientRecord' => $patientRecord,
             'typeOfCharges' => $typeOfCharges

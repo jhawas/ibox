@@ -29,6 +29,10 @@
                   <div class="label">Date of Discharge/Time:</div>
                   <div class="value">{{ $patientRecord->discharge_date . '/' . $patientRecord->discharge_time}}</div>
                 </div>
+                <div class="group">
+                  <div class="label">Final Diagnoses:</div>
+                  <div class="value">{{ $patientRecord->diagnoses->isEmpty() ? null : $patientRecord->diagnoses[0]->diagnose->code }}</div>
+                </div>
             </div>
         </div>
     </header><!-- /header -->
