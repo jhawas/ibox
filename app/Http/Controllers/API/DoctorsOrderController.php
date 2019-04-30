@@ -32,7 +32,7 @@ class DoctorsOrderController extends Controller
                 $query->with(['patient']);
             },
             'user'
-        ])->where('approved', 0)->get();
+        ])->where('approved', 0)->where('laboratories', '!=' ,'[]')->get();
         return $doctorsOrders;
     }
 
@@ -71,7 +71,7 @@ class DoctorsOrderController extends Controller
         $doctorsOrder->doctors_orders = $request->doctors_orders;
         $doctorsOrder->physician_id = $request->user_id;
         $doctorsOrder->laboratories = json_encode($request->laboratories);
-        $doctorsOrder->save();
+        // $doctorsOrder->save();
         return 'success';
     }
 }
