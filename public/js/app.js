@@ -119419,7 +119419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Succesfully Saved.', 'success');
                     }
                 }).catch(function (response) {
-                    console.log(response);
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.fire('Message', 'Duplicated Entry', 'error');
                 });
             } else {
                 axios.put('/api/patients/' + this.selected_id, {

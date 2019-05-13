@@ -618,7 +618,11 @@
                     }  
                 })
                 .catch (response => {
-                    console.log(response);
+                    Swal.fire(
+                      'Message',
+                      'Duplicated Entry',
+                      'error'
+                    );
                 });
             } else {
                 axios.put('/api/patients/' + this.selected_id, {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Patient;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class PatientController extends Controller
 {
@@ -76,12 +77,13 @@ class PatientController extends Controller
     }
 
     public function store(Request $request) {
+
     	$patient = new Patient;
     	$patient->first_name = $request->first_name;
         $patient->middle_name = $request->middle_name;
         $patient->last_name = $request->last_name;
         $patient->suffix = $request->suffix;
-        $patient->birthdate = $request->birthdate;
+        $tient->birthdate = $request->birthdate;
         $patient->sex = $request->sex;
         $patient->religion = $request->religion;
         $patient->address = $request->address;

@@ -281,6 +281,6 @@ class DefaultTableSeeder extends Seeder
             ]);
         }
 
-        factory(App\Patient::class, 20)->create();
+        factory(App\Patient::class, 2)->create();
     }
 }
